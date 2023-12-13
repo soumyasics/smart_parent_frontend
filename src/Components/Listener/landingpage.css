@@ -1,0 +1,7 @@
+.landingpage_links{
+    margin-right: 5%;
+    color: #000;
+}
+.landingpage_links :hover{
+    color:rgba(118, 163, 123, 1);
+}
