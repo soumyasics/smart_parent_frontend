@@ -12,9 +12,9 @@ function LandingNav() {
           <Navbar.Brand href="#home"><img src={logo} alt="img"></img></Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
-          <Nav.Link href="#home" className="landingpage_links me-5" id="landingpage_links_hover">Home</Nav.Link>
-            <Nav.Link className="landingpage_links me-5" href="#features">Features</Nav.Link>
-            <Nav.Link className="landingpage_links me-5" href="#pricing">Pricing</Nav.Link>
+          <Nav.Link href="" className="landingpage_links me-5" id="landingpage_links_hover">Home</Nav.Link>
+            <Nav.Link className="landingpage_links me-5" href="">Login</Nav.Link>
+            <Nav.Link className="landingpage_links me-5" href="">Register</Nav.Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>
