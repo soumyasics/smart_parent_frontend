@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import logo from "../../Assest/Logo (1).png";
-import "./listenernav.css";
+import "../Listener/listenernav.css";
 import Nav from "react-bootstrap/Nav";
 
-function ListenerNav() {
-  // const [data, setData] = useState({ dob: "", image: { filename: "" } });
-  // const url = "http://localhost:4000";
+function CreatorNavbar() {
+  const [data, setData] = useState({ dob: "", image: { filename: "" } });
+  const url = "http://localhost:4000";
 
   return (
     <div>
@@ -32,20 +32,13 @@ function ListenerNav() {
             >
             Subscription
             </Nav.Link>
-            <Nav.Link
-              href="/whishlist"
-              className="landingpage_links me-5"
-              id="landingpage_links_hover"
-            >
-            whishlist
-            </Nav.Link>
             <Nav.Link to="/" class="nav-link" href="#">
-              <div className="circular-img">
-                <img
-                  src="https://tse1.mm.bing.net/th?id=OIP.9Izv-aszItToTtEqRMSE0QHaE6&pid=Api&rs=1&c=1&qlt=95&w=167&h=110"
-                  alt="img"
-                  className="profileimg"
-                ></img>
+            <div className="circular-img">
+              <img
+              src="https://tse1.mm.bing.net/th?id=OIP.9Izv-aszItToTtEqRMSE0QHaE6&pid=Api&rs=1&c=1&qlt=95&w=167&h=110"
+              alt="img"
+                className="profileimg"
+              ></img>
               </div>
             </Nav.Link>
           </Navbar.Collapse>
@@ -55,5 +48,5 @@ function ListenerNav() {
   );
 }
 
-export default ListenerNav;
-// src={`${url}/${data.image.filename}`}
+export default CreatorNavbar;
+// {`${url}/${data.image.filename}`}

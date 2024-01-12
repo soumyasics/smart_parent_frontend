@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import "./listenerlogin.css";
+import "../Listener/listenerlogin.css";
 import Form from "react-bootstrap/Form";
-import LandingNav from "./LandingNav";
-import Footer from "../../Pages/Listener/Footer";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../Baseurl";
 import { toast } from "react-toastify";
 import { BsArrowClockwise } from "react-icons/bs";
 
-function ListenerLogin() {
+function CreatorLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [captchaText, setCaptchaText] = useState("");
@@ -33,18 +31,20 @@ function ListenerLogin() {
       return;
     }
     try {
-      const result = await axiosInstance.post("/listenerlogin", {
-        email,
+      const result = await axiosInstance.post("/creatorlogin", {
+       email,
         password,
-      });
+      }); 
       if (result.data.message) {
         if (userCaptchaInput === captchaText) {
           toast.success("Login successful");
           localStorage.setItem("token", result.data.token);
-          localStorage.setItem("listenerid", result.data.id);
+          localStorage.setItem("creatorid", result.data.id);
           console.log(result);
+          alert(result.data.message);
           console.log(result.data.id);
-          navigate("/listenerhome");
+
+          navigate("/creatorhome");
         } else {
           document.getElementById("alertuser").innerHTML =
             "Invalid CAPTCHA. Please enter the correct text.";
@@ -61,7 +61,9 @@ function ListenerLogin() {
       }
     }
   };
-
+const forgot=()=>{
+  navigate('/creator_forgotpassword')
+}
   const generateCaptcha = () => {
     const chars =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -85,10 +87,6 @@ function ListenerLogin() {
   useEffect(() => {
     generateCaptcha();
   }, []);
-
-  const Forgot = () => {
-    navigate("/forgotpassword");
-  };
   return (
     <div>
       <div className="listenerlogin_main">
@@ -119,7 +117,7 @@ function ListenerLogin() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <label className="listener_forgot-password" onClick={Forgot}>
+                  <label className="listener_forgot-password" onClick={forgot}>
                     forgot password ?
                   </label>
                 </Form.Group>
@@ -149,14 +147,14 @@ function ListenerLogin() {
                 </div>
                 <div id="alertuser"></div>
                 <div>
-                  <button type="submit" className="listenerloginbtn mb-2 p-1">
+                  <button type="submit" className="listenerloginbtn mb-2 p-1 ">
                     Log in
                   </button>{" "}
                 </div>
                 <div>
                   <button
                     type="reset"
-                    className="listenercancelbtn p-1"
+                    className="listenercancelbtn p-1 mb-5"
                     variant="secondary"
                   >
                     Cancel
@@ -171,4 +169,4 @@ function ListenerLogin() {
   );
 }
 
-export default ListenerLogin;
+export default CreatorLogin;
