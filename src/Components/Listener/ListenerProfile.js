@@ -1,28 +1,68 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./listenerprofile.css";
 import img from "../../Assest/CARD (1).png";
+import axiosInstance from "../../Baseurl";
+import { Link, useNavigate } from "react-router-dom";
 
-function ListenerProfile() {
+function ListenerProfile({ url }) {
+  const navigate=useNavigate()
+  const [listenerRegister, setListenerRegister] = useState({
+    firstname: "",
+    lastname: "",
+    gender: "",
+    dob: "",
+    mobile: "",
+    email: "",
+    password: "",
+    street: "",
+    city: "",
+    country: "",
+    pincode: "",
+    image: "",
+  });
+  const handlelogout=()=>{
+    localStorage.removeItem("listenerid")
+    localStorage.removeItem("token")
+    alert('logged out successfully')
+    navigate('/')
+  }
+
+  useEffect(() => {
+    axiosInstance
+      .post("/viewListenerById", { id: localStorage.getItem("listenerid") })
+      .then((response) => {
+        console.log(response.data.data);
+        setListenerRegister(response.data.data);
+      });
+    // console.log(listenerRegister);
+  }, []);
   return (
     <div className="container">
       <div className="row" id="profilemain">
         <div className="col-3">
-          <img src={img} className="profile_img" alt="img"></img>
+          <img
+            src={url + listenerRegister.image.filename}
+            className="profile_img"
+            alt="img"
+          ></img>
         </div>
         <div className="col-8 mt-2">
           <div>
-            <label className="profilename">Name</label>
+            <label className="profilename">
+              {listenerRegister.firstname} {listenerRegister.lastname}
+            </label>
             <button className="btn btn-outline-dark bg-light px-4">
-              Edit
+              <Link to="/listeneredit" className="editlink">
+                Edit
+              </Link>
             </button>{" "}
-            <button className=" RegisterButton ms-2 p-2">Logout</button>
+            <button onClick={handlelogout} className=" RegisterButton ms-2 p-2">Logout</button>
           </div>
-          <div>ajeena@gmail.com</div>
+          <div>{listenerRegister.email}</div>
           <div>About me</div>
           <div>
-            "Tech enthusiast, avid reader, and aspiring writer. Passionate about
-            innovation and creativity. Exploring the intersections of technology
-            and art. Let's connect and learn together!"
+            my address : {listenerRegister.street},{listenerRegister.city},
+            {listenerRegister.pincode},{listenerRegister.country}
           </div>
         </div>
       </div>
@@ -54,9 +94,3 @@ function ListenerProfile() {
 }
 
 export default ListenerProfile;
-// <h4>Name</h4> <button className="cancelbutton px-3">Edit</button>
-// <button className=" RegisterButton ms-2">Logout</button>
-
-// <div>ajeena@gmail.com</div>
-// <div>About me</div>
-// <div>"Tech enthusiast, avid reader, and aspiring writer. Passionate about innovation and creativity. Exploring the intersections of technology and art. Let's connect and learn together!"</div>

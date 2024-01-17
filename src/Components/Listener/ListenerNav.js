@@ -4,10 +4,19 @@ import Navbar from "react-bootstrap/Navbar";
 import logo from "../../Assest/Logo (1).png";
 import "./listenernav.css";
 import Nav from "react-bootstrap/Nav";
+import axiosInstance from "../../Baseurl";
 
-function ListenerNav() {
-  // const [data, setData] = useState({ dob: "", image: { filename: "" } });
-  // const url = "http://localhost:4000";
+function ListenerNav({ url }) {
+  const [listenernav, setListenernav] = useState("");
+  useEffect(() => {
+    axiosInstance
+      .post("/viewListenerById", { id: localStorage.getItem("listenerid") })
+      .then((response) => {
+        console.log(response.data.data.image.filename);
+        setListenernav(response.data.data.image.filename);
+      });
+    console.log(listenernav, "mm");
+  }, []);
 
   return (
     <div>
@@ -26,26 +35,26 @@ function ListenerNav() {
               Home
             </Nav.Link>
             <Nav.Link
-              href="/subscription"
+              href="/listenersubscription"
               className="landingpage_links me-5"
               id="landingpage_links_hover"
             >
-            Subscription
+              Subscription
             </Nav.Link>
             <Nav.Link
-              href="/whishlist"
+              href="/listenerWhishlist"
               className="landingpage_links me-5"
               id="landingpage_links_hover"
             >
-            whishlist
+              whishlist
             </Nav.Link>
-            <Nav.Link to="/" class="nav-link" href="#">
+            <Nav.Link class="nav-link" href="/listenerProfile">
               <div className="circular-img">
-                <img
-                  src="https://tse1.mm.bing.net/th?id=OIP.9Izv-aszItToTtEqRMSE0QHaE6&pid=Api&rs=1&c=1&qlt=95&w=167&h=110"
-                  alt="img"
-                  className="profileimg"
-                ></img>
+                  <img
+                    src={url + listenernav}
+                    alt="img"
+                    className="profileimg"
+                  ></img>
               </div>
             </Nav.Link>
           </Navbar.Collapse>
