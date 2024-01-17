@@ -4,10 +4,19 @@ import Navbar from "react-bootstrap/Navbar";
 import logo from "../../Assest/Logo (1).png";
 import "../Listener/listenernav.css";
 import Nav from "react-bootstrap/Nav";
+import axiosInstance from "../../Baseurl";
 
-function CreatorNavbar() {
-  const [data, setData] = useState({ dob: "", image: { filename: "" } });
-  const url = "http://localhost:4000";
+function CreatorNavbar({url}) {
+  const [creatornav, setCreatornav] = useState("");
+  useEffect(() => {
+    axiosInstance
+      .post("/viewCreatorById", { id: localStorage.getItem("creatorid") })
+      .then((response) => {
+        console.log(response.data.data.image.filename);
+        setCreatornav(response.data.data.image.filename);
+      });
+    console.log(creatornav, "mm");
+  }, []);
 
   return (
     <div>
@@ -30,15 +39,15 @@ function CreatorNavbar() {
               className="landingpage_links me-5"
               id="landingpage_links_hover"
             >
-            Subscription
+              Subscription
             </Nav.Link>
-            <Nav.Link to="/" class="nav-link" href="#">
-            <div className="circular-img">
-              <img
-              src="https://tse1.mm.bing.net/th?id=OIP.9Izv-aszItToTtEqRMSE0QHaE6&pid=Api&rs=1&c=1&qlt=95&w=167&h=110"
-              alt="img"
-                className="profileimg"
-              ></img>
+            <Nav.Link class="nav-link" href="/creatorprofile">
+              <div className="circular-img">
+                <img
+                  src={url+creatornav}
+                  alt="img"
+                  className="profileimg"
+                ></img>
               </div>
             </Nav.Link>
           </Navbar.Collapse>

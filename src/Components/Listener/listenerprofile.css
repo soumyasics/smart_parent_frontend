@@ -8,9 +8,13 @@
 .profilename{
     font-size: larger;
     font-weight: bold;
-    margin-right: 50%;
+    margin-right: 30%;
 }
 .profile_img{
     width:100%;
     height: 12em;
+}
+.editlink{
+    text-decoration: none;
+    color: black;
 }

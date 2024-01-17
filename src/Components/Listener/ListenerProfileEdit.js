@@ -141,6 +141,7 @@ function ListenerEdit() {
                 />
               </div>
               <div className="mb-3 me-5">
+              <label>Date of birth</label>
                 <input
                   type="date"
                   placeholder="dob"
