@@ -32,15 +32,14 @@ function CreatorLogin() {
     }
     try {
       const result = await axiosInstance.post("/creatorlogin", {
-       email,
+        email,
         password,
-      }); 
+      });
       if (result.data.message) {
         if (userCaptchaInput === captchaText) {
-          toast.success("Login successful");
           localStorage.setItem("token", result.data.token);
           localStorage.setItem("creatorid", result.data.id);
-          console.log(result);
+          localStorage.setItem("creatorname", result.data.creatorname);
           alert(result.data.message);
           console.log(result.data.id);
 
@@ -61,9 +60,9 @@ function CreatorLogin() {
       }
     }
   };
-const forgot=()=>{
-  navigate('/creator_forgotpassword')
-}
+  const forgot = () => {
+    navigate("/creator_forgotpassword");
+  };
   const generateCaptcha = () => {
     const chars =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

@@ -36,7 +36,14 @@ function ListenerProfile({ url }) {
       });
     // console.log(listenerRegister);
   }, []);
-  return (
+  useEffect(() => {
+    if (localStorage.getItem("listenerid") !== null) {
+      navigate("/listenerProfile");
+    } else {
+      navigate("/");
+    }
+  }, []);
+    return (
     <div className="container">
       <div className="row" id="profilemain">
         <div className="col-3">

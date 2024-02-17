@@ -27,6 +27,7 @@ import CreatorUploadPage from "./Components/Creator/CreatorUploadPage";
 import CreatorUploadPoadcastEdit from "./Components/Creator/CreatorUploadPoadcastEdit";
 import CreatorEpisodeAdd from "./Components/Creator/CreatorEpisodeAdd";
 import CreatorSubscription from "./Components/Creator/CreatorSubscription";
+import CreatorPodcastList from "./Components/Creator/CreatorPodcastList";
 
 function App() {
 
@@ -60,17 +61,17 @@ function App() {
         <Route path='/creatorhome' element={[<CreatorNavbar url={url} />,<CreatorHome/>,<Footer />]}/>
         <Route path='/creatorsubscription' element={[<CreatorNavbar url={url} />,<CreatorSubscription/>,<Footer />]}/>
         <Route path='/creatorprofile' element={[<CreatorNavbar url={url} />,<CreatorProfile  url={url} />,<Footer />]}/>
-        <Route path="/creator_forgotpassword" element={[<CreatorNavbar url={url} />,<CreatorForgot />,<Footer />]} />
+        <Route path="/creatorforgotpassword" element={[<CreatorNavbar url={url} />,<CreatorForgot />,<Footer />]} />
 
         <Route path='/creatorredit' element={[<CreatorNavbar url={url} />,<CreatorProfileEdit/>,<Footer />]}/>
-        <Route path='/creator_upload' element={<CreatorUploadPage/>}/>
-        <Route path='/creator_upload_edit' element={<CreatorUploadPoadcastEdit/>}/>
-        <Route path='/creator_episod_add' element={<CreatorEpisodeAdd/>}/>
+        <Route path='/creatorupload' element={<CreatorUploadPage/>}/>
+        <Route path='/creatoruploadedit' element={<CreatorUploadPoadcastEdit/>}/>
+        <Route path='/creatorepisodadd' element={<CreatorEpisodeAdd/>}/>
+        <Route path='/creatorpodcastlist' element={[<CreatorPodcastList url={url} />]}/>
 
         <Route path="/adminhome" element={<AdminLandingPage />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
-        <Route path="/admin_dashboard" element={<AdminDashboard />} />
-
+        <Route path="/admindashboard" element={<AdminDashboard />} />
 
       </Routes>
     </BrowserRouter>

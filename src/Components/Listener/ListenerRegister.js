@@ -25,6 +25,7 @@ function ListenerRegister() {
   
   const navigate=useNavigate()
 
+
   const ListenerRegisterChange = (e) => {
     console.log(e.target.value)
     setListenerRegister({
@@ -36,7 +37,10 @@ function ListenerRegister() {
   const onSubmitData = (e) => {
     e.preventDefault();
 
-    if (!validator.isMobilePhone(listenerRegister.mobile)) {
+    if (!validator.isMobilePhone(listenerRegister.mobile) || !validator.isByteLength(listenerRegister.mobile, {
+      min: 10,
+      max: 10
+    })) {
       alert("inValid Phone Number");
     } else if (!validator.isByteLength(listenerRegister.pincode, {
       min: 6,
@@ -61,8 +65,8 @@ function ListenerRegister() {
       .then((response) => {
         console.log(response,"y");
         alert(response.data.msg)
-        window.location.reload();
-        navigate("/listener_homepage")
+        // window.location.reload();
+        navigate("/listenerlogin")
       })
       .catch((error) => {
         console.error("Error submitting data: ", error);
@@ -86,6 +90,7 @@ function ListenerRegister() {
             <div className="firstname">
                 <input
                   type="text"
+                  required
                   placeholder="firstname"
                   className="form-control"
                   name="firstname"
@@ -277,7 +282,7 @@ function ListenerRegister() {
           </Row>
           <div className="text-center">
             {" "}
-            <button type="submit" className=" RegisterButton ps-5 pe-5 p-2 mt-5 mb-5">
+            <button type="submit"  className=" RegisterButton ps-5 pe-5 p-2 mt-5 mb-5">
               Register
             </button>
             <button type="reset" className="cancelbutton ps-5 pe-5 p-2 mt-5 mb-5">

@@ -1,8 +1,17 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Form from 'react-bootstrap/Form';
 import './creator.css'
-
+import { useNavigate } from 'react-router-dom';
 function CreatorForgot() {
+  const navigate=useNavigate()
+
+  useEffect(() => {
+    if (localStorage.getItem("creatorid") !== null) {
+      navigate("/creatorforgotpassword");
+    } else {
+      navigate("/");
+    }
+  }, []);
     return (
           <div className="creatorforgot_main">
             <div className="row">

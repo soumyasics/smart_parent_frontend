@@ -1,22 +1,23 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./creatoruploadpodcast.css";
 import axiosInstance from "../../Baseurl";
+import { useNavigate } from "react-router-dom";
 
 function CreatorUploadPage() {
   const [CreatorPodcast, setCreatorPodcast] = useState({
-    creatorname: "",
     podcastname: "",
     description: "",
-    image: "",
-    audio: "",
+    coverimage: "",
   });
+  const navigate=useNavigate()
+
   const creatorPodcastChange = (e) => {
     // console.log(e.target.value);
     // console.log(e.target.name);
     setCreatorPodcast({
       ...CreatorPodcast,
       [e.target.name]:
-        e.target.name === "image" || e.target.name === "audio"
+        e.target.name === "image"
           ? e.target.files
             ? e.target.files[0]
             : null
@@ -34,8 +35,10 @@ function CreatorUploadPage() {
       }
     }
     console.log(data.get('image'),"data");
+    data.append('creatorname',localStorage.getItem("creatorname") );
     data.append('files',CreatorPodcast.image);
-    data.append('files',CreatorPodcast.audio);
+    data.append('creatorId',localStorage.getItem('creatorid'));
+    
     axiosInstance
       .post("/creator_upload_podcast", data, {
         headers: {
@@ -44,14 +47,28 @@ function CreatorUploadPage() {
       })
       .then((response) => {
         console.log(response, "y");
-        // alert(response.data.msg);
-        // window.location.reload();
+        alert(response.data.msg);
+        navigate('/creatorepisodadd')
       })
       .catch((error) => {
         console.error("Error submitting data: ", error);
       });
   };
-  return (
+  const handleback=()=>{
+    navigate('/creatorhome')
+  }
+
+const creatorname=localStorage.getItem('creatorname')
+
+  useEffect(() => {
+    if (localStorage.getItem("creatorid") !== null) {
+      navigate("/creatorupload");
+    } else {
+      navigate("/");
+    }
+  }, []);
+
+    return (
     <div className="podcast_upload">
       <div className="container">
         <h4 className="text-center">Upload Podcast</h4>
@@ -61,12 +78,13 @@ function CreatorUploadPage() {
               Creator Name
             </label>
             <input
+            value={creatorname}
               name="creatorname"
               type="text"
               class="form-control"
               id="Creator_Name"
-              placeholder="User name"
               onChange={creatorPodcastChange}
+              disabled
             ></input>
             <label className="Creator_Name_label" for="">
               Podcast Name
@@ -103,23 +121,12 @@ function CreatorUploadPage() {
               name="image"
               onChange={creatorPodcastChange}
             ></input>
-            <label className="Creator_Name_label" for="">
-              Audio MP3
-            </label>
-            <input
-              type="file"
-              class="form-control"
-              id="audiofile"
-              placeholder=""
-              name="audio"
-              onChange={creatorPodcastChange}
-            ></input>
           </div>
         </div>
         <button className="btn btn-light ms-5 px-5" onClick={UploadImage}>
           Upload
         </button>
-        <button type="reset" className="btn btn-secondary ms-4 px-5">
+        <button type="reset" onClick={handleback} className="btn btn-secondary ms-4 px-5">
           Cancel
         </button>
       </div>
