@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import { Container } from "react-bootstrap";
 import axiosInstance from "../../Baseurl";
 import validator from "validator";
+import { useNavigate } from "react-router-dom";
 
 function CreatorRegister() {
   const [CreatorRegister, setCreatorRegister] = useState({
@@ -21,6 +22,9 @@ function CreatorRegister() {
     pincode: "",
     image: "",
   });
+
+  const navigate=useNavigate()
+
   const creatorRegisterChange = (e) => {
     console.log(e.target.value);
     setCreatorRegister({
@@ -33,7 +37,10 @@ function CreatorRegister() {
   const onSubmitData = (e) => {
     e.preventDefault();
 
-    if (!validator.isMobilePhone(CreatorRegister.mobile)) {
+    if (!validator.isMobilePhone(CreatorRegister.mobile)|| !validator.isByteLength(CreatorRegister.mobile,{
+      min: 10,
+      max: 10
+    })) {
       alert("inValid Phone Number");
     } else if (
       !validator.isByteLength(CreatorRegister.pincode, {
@@ -62,7 +69,8 @@ function CreatorRegister() {
         .then((response) => {
           console.log(response, "y");
           alert(response.data.msg);
-          window.location.reload();
+          navigate("/creatorlogin")
+
         })
         .catch((error) => {
           console.error("Error submitting data: ", error);

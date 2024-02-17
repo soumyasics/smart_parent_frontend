@@ -12,11 +12,16 @@ function ListenerNav({ url }) {
     axiosInstance
       .post("/viewListenerById", { id: localStorage.getItem("listenerid") })
       .then((response) => {
-        console.log(response.data.data.image.filename);
-        setListenernav(response.data.data.image.filename);
+        if (
+          response.data.data &&
+          response.data.data.image
+        ) {
+          console.log(response.data.data.image.filename);
+          setListenernav(response.data.data.image.filename);
+        }
+        console.log(listenernav, "mm");
       });
-    console.log(listenernav, "mm");
-  }, []);
+  },[]);
 
   return (
     <div>
@@ -28,7 +33,7 @@ function ListenerNav({ url }) {
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <Nav.Link
-              href="/"
+              href="/listenerhome"
               className="landingpage_links me-5"
               id="landingpage_links_hover"
             >
@@ -50,11 +55,11 @@ function ListenerNav({ url }) {
             </Nav.Link>
             <Nav.Link class="nav-link" href="/listenerProfile">
               <div className="circular-img">
-                  <img
-                    src={url + listenernav}
-                    alt="img"
-                    className="profileimg"
-                  ></img>
+                <img
+                  src={url + listenernav}
+                  alt="img"
+                  className="profileimg"
+                ></img>
               </div>
             </Nav.Link>
           </Navbar.Collapse>

@@ -12,11 +12,17 @@ function CreatorNavbar({url}) {
     axiosInstance
       .post("/viewCreatorById", { id: localStorage.getItem("creatorid") })
       .then((response) => {
-        console.log(response.data.data.image.filename);
-        setCreatornav(response.data.data.image.filename);
+        if (
+          response.data.data &&
+          response.data.data.image
+        ) {
+          console.log(response.data.data.image.filename);
+          setCreatornav(response.data.data.image.filename);
+        }else{
+          console.log(creatornav, "mm");
+        }
       });
-    console.log(creatornav, "mm");
-  }, []);
+  },[]);
 
   return (
     <div>
@@ -28,7 +34,7 @@ function CreatorNavbar({url}) {
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <Nav.Link
-              href="/"
+              href="/creatorhome"
               className="landingpage_links me-5"
               id="landingpage_links_hover"
             >

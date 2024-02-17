@@ -6,10 +6,10 @@ import { Container } from "react-bootstrap";
 import axiosInstance from "../../Baseurl";
 import validator from "validator";
 
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ListenerEdit() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axiosInstance
@@ -92,15 +92,14 @@ function ListenerEdit() {
     }
   };
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("listenerid") !== null) {
-  //     navigate("/");
-  //   } else {
-  //     navigate("/hchsgdv");
-  //   }
-  // }, []);
-
-  return (
+  useEffect(() => {
+    if (localStorage.getItem("listenerid") !== null) {
+      navigate("/listeneredit");
+    } else {
+      navigate("/");
+    }
+  }, []);
+    return (
     <div>
       <form onSubmit={onSubmitData}>
         <Container>

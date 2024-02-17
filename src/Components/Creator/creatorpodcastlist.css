@@ -1,0 +1,19 @@
+.podcast_list_main{
+    margin-top: 3%;
+    padding: 0;
+}
+.podcast_list_main img{
+   
+}
+.podcastlist_card_img{
+    width: 90%;
+}
+
+#podcastlist_card{
+    padding: 0;
+    margin: 1%;
+}
+.podcastlist_card_content{
+    padding: 5%;
+
+}

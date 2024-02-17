@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import { Container } from "react-bootstrap";
 import axiosInstance from "../../Baseurl";
 import validator from "validator";
+import { useNavigate } from "react-router-dom";
 
 function CreatorEdit() {
   useEffect(() => {
@@ -36,6 +37,8 @@ function CreatorEdit() {
     pincode: "",
     image: "",
   });
+
+  
   const CreatorRegisterChange = (e) => {
     console.log(e.target.value);
     setCreatorRegister({
@@ -87,8 +90,16 @@ function CreatorEdit() {
       console.log("Submitted");
     }
   };
+  const navigate=useNavigate()
 
-  return (
+  useEffect(() => {
+    if (localStorage.getItem("creatorid") !== null) {
+      navigate("/creatorredit");
+    } else {
+      navigate("/");
+    }
+  }, []);
+    return (
     <div>
       <form onSubmit={onSubmitData}>
         <Container>
