@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import LandingPage from "../../Pages/Listener/LandingPage";
 import { useNavigate } from "react-router-dom";
 
-function ListenerHome() {
+function ListenerHome({props}) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function ListenerHome() {
 
   return (
     <div>
-      <LandingPage />
+      <LandingPage data={props.role} />
     </div>
   );
 }

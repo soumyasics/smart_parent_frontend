@@ -92,6 +92,9 @@ function CreatorEdit() {
   };
   const navigate=useNavigate()
 
+  const cancelbtn=()=>{
+    navigate("/creatorprofile")
+  }
   useEffect(() => {
     if (localStorage.getItem("creatorid") !== null) {
       navigate("/creatorredit");
@@ -249,7 +252,7 @@ function CreatorEdit() {
             <button type="submit" className=" RegisterButton ps-5 pe-5 p-2">
               Save Changes
             </button>
-            <button type="reset" className="cancelbutton ps-5 pe-5 p-2">
+            <button type="button" onClick={cancelbtn} className="cancelbutton ps-5 pe-5 p-2">
               Cancel
             </button>
           </div>

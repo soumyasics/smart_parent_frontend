@@ -7,7 +7,9 @@ function CreatorUploadPage() {
   const [CreatorPodcast, setCreatorPodcast] = useState({
     podcastname: "",
     description: "",
+    price:"",
     coverimage: "",
+    audio:""
   });
   const navigate=useNavigate()
 
@@ -17,7 +19,7 @@ function CreatorUploadPage() {
     setCreatorPodcast({
       ...CreatorPodcast,
       [e.target.name]:
-        e.target.name === "image"
+       ( e.target.name === "image" || e.target.name === "audio" )
           ? e.target.files
             ? e.target.files[0]
             : null
@@ -34,10 +36,14 @@ function CreatorUploadPage() {
         data.append(key, CreatorPodcast[key]);
       }
     }
-    console.log(data.get('image'),"data");
     data.append('creatorname',localStorage.getItem("creatorname") );
     data.append('files',CreatorPodcast.image);
+    data.append('files',CreatorPodcast.audio);
     data.append('creatorId',localStorage.getItem('creatorid'));
+     
+    console.log(CreatorPodcast);
+    console.log(data.get('files'),"data");
+
     
     axiosInstance
       .post("/creator_upload_podcast", data, {
@@ -48,14 +54,14 @@ function CreatorUploadPage() {
       .then((response) => {
         console.log(response, "y");
         alert(response.data.msg);
-        navigate('/creatorepisodadd')
+        navigate('/creatorprofile')
       })
       .catch((error) => {
         console.error("Error submitting data: ", error);
       });
   };
   const handleback=()=>{
-    navigate('/creatorhome')
+    navigate('/creatorprofile')
   }
 
 const creatorname=localStorage.getItem('creatorname')
@@ -108,8 +114,21 @@ const creatorname=localStorage.getItem('creatorname')
               cols={40}
               onChange={creatorPodcastChange}
             />
+           
           </div>
           <div className="col">
+          <label className="Creator_Name_label" for="">
+          price
+         </label>
+         <input
+           type="text"
+           class="form-control"
+           id="price"
+           placeholder="price"
+           onChange={creatorPodcastChange}
+           name="price"
+         ></input>
+
             <label className="Creator_Name_label" for="">
               Cover Image
             </label>
@@ -119,6 +138,19 @@ const creatorname=localStorage.getItem('creatorname')
               id="coverimg"
               placeholder=""
               name="image"
+              onChange={creatorPodcastChange}
+            ></input>
+        
+          
+            <label className="Creator_Name_label" for="">
+             Demo Audio
+            </label>
+            <input
+              type="file"
+              class="form-control"
+              id="audio"
+              placeholder=""
+              name="audio"
               onChange={creatorPodcastChange}
             ></input>
           </div>

@@ -29,7 +29,7 @@ function LandingPage() {
             </p>
             <div className="mt-5">
               <button className="seelatestpodcast ">Latest podcast</button>
-              <button className="btn border border-dark rounded-pill px-5 ms-3">
+              <button  className="btn border border-dark rounded-pill px-5 ms-3">
                 Subscribe
               </button>
             </div>
@@ -39,57 +39,6 @@ function LandingPage() {
           </div>
         </div>
         <div>
-          <h5>Recent Podcast</h5>
-          <div className="row">
-          <Card style={{ width: "16rem" }} id="podcastcard">
-              <Card.Img variant="top" src={podcast} />
-            </Card>
-            <Card style={{ width: "16rem" }} id="podcastcard">
-              <Card.Img variant="top" src={podcast} />
-            </Card>
-            <Card style={{ width: "16rem" }} id="podcastcard">
-              <Card.Img variant="top" src={podcast} />
-            </Card>
-            <Card style={{ width: "16rem" }} id="podcastcard">
-              <Card.Img variant="top" src={podcast} />
-            </Card>
-          </div>
-        </div>
-
-        <div className="">
-        <h5>Recommended</h5>
-        <div className="row">
-          <Card style={{ width: "16rem" }} id="podcastcard">
-              <Card.Img variant="top" src={podcast} />
-            </Card>
-            <Card style={{ width: "16rem" }} id="podcastcard">
-              <Card.Img variant="top" src={podcast} />
-            </Card>
-            <Card style={{ width: "16rem" }} id="podcastcard">
-              <Card.Img variant="top" src={podcast} />
-            </Card>
-            <Card style={{ width: "16rem" }} id="podcastcard">
-              <Card.Img variant="top" src={podcast} />
-            </Card>
-          </div>
-        </div>
-
-        <div className="">
-        <h5>Most Watched</h5>
-        <div className="row">
-          <Card style={{ width: "16rem" }} id="podcastcard">
-              <Card.Img variant="top" src={podcast} />
-            </Card>
-            <Card style={{ width: "16rem" }} id="podcastcard">
-              <Card.Img variant="top" src={podcast} />
-            </Card>
-            <Card style={{ width: "16rem" }} id="podcastcard">
-              <Card.Img variant="top" src={podcast} />
-            </Card>
-            <Card style={{ width: "16rem" }} id="podcastcard">
-              <Card.Img variant="top" src={podcast} />
-            </Card>
-          </div>
         </div>
       </div>
     </div>
