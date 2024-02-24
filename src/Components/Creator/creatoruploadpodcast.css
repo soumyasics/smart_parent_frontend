@@ -14,7 +14,7 @@
   background-color: rgba(67, 67, 67, 1);
   border: none;
   margin: 3% 0%;
-  color: white;
+  
 
 }
 #description {
@@ -24,7 +24,9 @@
   margin: 3% 0%;
   color: white;
 
-
+}
+#Creator_Name ::placeholder{
+  color: aliceblue;
 }
 #coverimg {
   background-color: rgba(67, 67, 67, 1);

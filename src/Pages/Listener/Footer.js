@@ -19,7 +19,7 @@ function Footer() {
         <Row>
           <Col>
             {" "}
-            <img src={img} alt="img"></img>
+            <img className="footerimg" src={img} alt="img"></img>
           </Col>
           <Col className="ms-5">
             <h6 className="footerhead">CONSUMER POLICY</h6>

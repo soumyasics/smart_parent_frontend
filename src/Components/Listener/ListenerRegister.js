@@ -63,7 +63,6 @@ function ListenerRegister() {
         },
       })
       .then((response) => {
-        console.log(response,"y");
         alert(response.data.msg)
         // window.location.reload();
         navigate("/listenerlogin")
@@ -72,7 +71,6 @@ function ListenerRegister() {
         console.error("Error submitting data: ", error);
       });
 
-    console.log("Submitted");
     }
   };
 

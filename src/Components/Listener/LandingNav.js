@@ -52,7 +52,7 @@ function LandingNav({ props }) {
       <Navbar>
         <Container>
           <Navbar.Brand href="#home">
-            <img src={logo} alt="img"></img>
+            <img className="footerimg" src={logo} alt="img"></img>
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">

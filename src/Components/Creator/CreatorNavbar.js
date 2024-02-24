@@ -29,7 +29,7 @@ function CreatorNavbar({url}) {
       <Navbar>
         <Container>
           <Navbar.Brand href="#home">
-            <img src={logo} alt="img"></img>
+            <img className="footerimg" src={logo} alt="img"></img>
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
@@ -45,7 +45,7 @@ function CreatorNavbar({url}) {
               className="landingpage_links me-5"
               id="landingpage_links_hover"
             >
-              Subscription
+              Subscribers
             </Nav.Link>
             <Nav.Link class="nav-link" href="/creatorprofile">
               <div className="circular-img">
