@@ -1,0 +1,110 @@
+.signin {
+    background-image: url("../../../../Assets/image.png");
+    height: 100%;
+
+
+
+    width: 100%;
+
+    padding-top: 100px;
+    padding-bottom: 180px;
+}
+
+.signin h1 {
+    color: #1A728E;
+    font-weight: 350;
+    margin-bottom: 2px;
+    margin: auto;
+}
+
+.regformsignin {
+    max-width: 430px;
+    margin: auto;
+    margin-top: -15px;
+
+    /* position: relative;
+    left: 450px;
+    margin-top: 30px; */
+}
+
+.signin-input {
+    padding-bottom: 15px;
+}
+
+form .input-box {
+    height: 52px;
+    margin: 40px 0;
+
+}
+
+form .input-box input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding: 0 20px;
+    font-size: 17px;
+    font-weight: 400;
+    color: #333;
+    border: 1.5px solid #C7BEBE;
+    border-top-width: 1.9px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+form .input-box .labelsignin {
+    color: #1A728E;
+    padding: 0 15px;
+
+    margin-bottom: 8px;
+
+}
+
+form .text1 h5 {
+    font-size: 19px;
+    /* position: relative;
+    top: -22px;
+    left: -25px; */
+    margin-left: 23px;
+
+    color: #1A728E;
+    font-weight: 400;
+}
+
+form .text1 h5 a {
+    text-decoration: none;
+    color: #1A728E;
+}
+
+form .text2 h5 {
+    font-size: 19px;
+    margin-top: -30.5px;
+    margin-left: 345px;
+    color: #1A728E;
+    font-weight: 400;
+}
+
+form .text2 h5 a {
+    text-decoration: none;
+    color: #1A728E;
+}
+
+.regformsignin button {
+
+    /* background-image: url(../../../../Assets/Frame\ 27.png); */
+    /* border-image: fill; */
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+    width: 50%;
+    color: #fff;
+    background-color: #1A728E;
+    font-weight: 300;
+    /* position: relative;
+    left: 35px; */
+    margin-left: 115px;
+
+}
+
+.inbutton .icon {
+    margin-left: 5px;
+}

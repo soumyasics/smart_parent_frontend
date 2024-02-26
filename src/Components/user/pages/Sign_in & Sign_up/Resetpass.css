@@ -1,0 +1,44 @@
+.passreset h1 {
+    font-size: 23px;
+    font-weight: 350;
+    text-align: center;
+
+
+}
+
+.resetform {
+
+    max-width: 430px;
+    /* position: relative;
+    top: -25px;
+    left: 460px; */
+    margin: auto;
+    margin-top: -33px;
+
+}
+
+.resettext {
+    font-size: 5px;
+    color: #1A728E;
+    font-weight: 300;
+    /* position: relative;
+    top :8px;
+    left: 22px; */
+    padding-top: 15px;
+    margin-left: 25px;
+}
+
+.passreset .resettext a {
+    text-decoration: none;
+    color: #1A728E;
+}
+
+.resetbutton {
+    margin-left: 11px;
+}
+
+.resetbutton .icon {
+
+    margin-left: 5px;
+
+}

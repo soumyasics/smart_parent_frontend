@@ -1,0 +1,86 @@
+.signup {
+    background-image: url("../../../../Assets/image.png");
+    height: 100%;
+
+
+
+    width: 100%;
+
+    padding-top: 100px;
+    padding-bottom: 180px;
+}
+
+.signup h1 {
+    color: #1A728E;
+    font-weight: 350;
+
+    text-align: center;
+}
+
+.regform form {
+    max-width: 430px;
+
+    margin: auto;
+
+
+    margin-top: 30px;
+}
+
+form .input-box {
+    height: 52px;
+    margin: 40px 0;
+}
+
+form .input-box input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding: 0 20px;
+    font-size: 17px;
+    font-weight: 400;
+    color: #333;
+    border: 1.5px solid #C7BEBE;
+    border-top-width: 1.9px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+form .input-box .label {
+    color: #1A728E;
+    padding: 0 15px;
+    margin-top: 55px;
+    margin-bottom: 8px;
+
+}
+
+form .text h5 {
+    font-size: 21px;
+    margin-top: 70px;
+    padding: 0 45px;
+    color: #1A728E;
+    font-weight: 400;
+}
+
+form .text h5 a {
+    text-decoration: none;
+    color: #1A728E;
+}
+
+button {
+
+    /* background-image: url(../../../../Assets/Frame\ 27.png); */
+    /* border-image: fill; */
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+    width: 50%;
+    color: #fff;
+    background-color: #1A728E;
+    font-weight: 300;
+    margin-top: 30px;
+    margin-left: 105px;
+}
+
+.inbutton .icon {
+    margin-left: 5px;
+}
