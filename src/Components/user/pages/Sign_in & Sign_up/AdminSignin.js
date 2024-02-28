@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Admin.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
+import { useEffect } from "react";
 
 function AdminSignin() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+
+    useEffect(() => {
+      setSelectedButton('button1');
+    }, []);
+
+    const [formData, setFormData] = useState({
+      email: "",
+      password: "",
+    });
 
   const [errors, setErrors] = useState({
     email: "",
@@ -90,7 +96,8 @@ function AdminSignin() {
             Navigate("/counsellor")
           }
         } else {
-          // login fail
+          alert(response.data.message)
+          Navigate('/')
         }
         console.log("Login successful:", response.data);
       }
@@ -169,9 +176,18 @@ function AdminSignin() {
           </form>
           <div className="form-inline">
             <div className="form-group pull-right">
-              <label id="" className="loginPwReset">
-                <a href="#">Forgot Passwort ?</a>
-              </label>
+              {selectedButton !== "button1" ? 
+                <label id="" className="loginPwReset">
+                  <span>  { selectedButton =="button2" ? <Link to>Forgot Passwort ?</Link>:<Link >Forgot Passwort ?</Link>}              
+                   
+                  </span>
+                  <span className="ms-5"> 
+                  {
+                    selectedButton == "button2" ? <Link to="">Sign Up</Link>:<Link>Sign Up</Link>
+
+                  }               
+                  </span>
+              </label> : ''}
             </div>
           </div>
           <button
