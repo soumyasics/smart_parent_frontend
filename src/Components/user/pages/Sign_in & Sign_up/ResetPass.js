@@ -48,7 +48,6 @@ function ResetPass() {
     }
 
 
-
     if (resetpass.confirmpassword !== resetpass.password) {
       formValid = false
       errors.confirmpassword = "Password not matched"

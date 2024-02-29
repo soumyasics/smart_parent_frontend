@@ -42,7 +42,7 @@ margin-bottom: 0;
 
 }
 
-.list {
+.userlist {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,17 +53,17 @@ margin-bottom: 0;
     margin-right: 152px;
 }
 
-.list li {
+.userlist li {
     list-style: none;
-    padding: 0 30px;
+    padding: 0 10px;
 }
 
-.list li a {
+.userlist li a {
     text-decoration: none;
     color: #fff;
     transition: 0.3s ease;
 }
 
-.list li a:hover {
+.userlist li a:hover {
     color: blue;
 }

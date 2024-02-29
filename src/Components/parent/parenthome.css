@@ -1,17 +1,56 @@
-.parenthome_main{
-    background-image: url("https://img.freepik.com/free-photo/happy-parents-laughing-together-with-daughter_53876-97234.jpg?t=st=1709115764~exp=1709119364~hmac=f2233aa33cfa3ac3a3edff1e270cc12126ce964dac192b7a60364034ff193286&w=900");
-    height: 600px;
-    background-repeat: no-repeat;
-    background-size: cover;
+.parenthome_main {
+  position: relative;
+  background-image: url("https://img.freepik.com/free-photo/happy-parents-laughing-together-with-daughter_53876-97234.jpg?t=st=1709115764~exp=1709119364~hmac=f2233aa33cfa3ac3a3edff1e270cc12126ce964dac192b7a60364034ff193286&w=900");
+  height: 600px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.parent_home_heading{
-    padding-top: 30%;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 900;
+.parent_home_heading {
+  padding-top: 10%;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 900;
 }
-.parent_home_button{
+.parent_home_button {
+  width: 20%;
+  margin-left: 0;
+}
+#parent_home_seconddiv {
+  position: absolute;
+  height: 100px;
+  margin: 5%;
+  top: 700px;
+  width: 90%;
+  height: fit-content;
+  background-color: rgb(100, 91, 80);
+  padding: 1%;
+}
+#img1 {
+  background-image: url("    https://img.freepik.com/free-photo/side-view-man-reading-girl_23-2149887057.jpg?t=st=1709189509~exp=1709193109~hmac=f5d157d0a2438a2b8825be7874655d006424558dd26935eb8171ee3ba04ce32a&w=740");
+  height: 200px;
+  background-size: cover;
+}
+#img2 {
+  background-image: url("https://img.freepik.com/free-photo/muscle-bodybuilding-machine-people-white-fitness_1303-3085.jpg?t=st=1709189930~exp=1709193530~hmac=02c1b28bb3148742c0dfd67fce8a690f022e287d4349d63196bfed6931444371&w=740");
+  height: 200px;
+  background-size: cover;
+}
 
+#img3 {
+  background-image: url("https://img.freepik.com/free-photo/cute-family-playing-summer-field_1157-35923.jpg?t=st=1709190113~exp=1709193713~hmac=b4723fc0e63ea89dd380a2aec4a19db447732a5cd394e3640d38b69d034215e4&w=740");
+  height: 200px;
+  background-size: cover;
 }
-.parent_home_seconddiv{
-    background-color: rgb(148, 125, 96);
-    height: 33px;}
+.heading{
+    background-color: rgba(255, 255, 255, 0.418);
+}
+.parent_home_thirddiv{
+    background-image: url("../../Assets/image.png");
+    height: 100vh;
+    padding: 20%;
+}
+.div3img{
+    width: 100%;
+}
+.parent_home_fourthdiv{
+    background-color: rgb(14, 112, 112);
+}
