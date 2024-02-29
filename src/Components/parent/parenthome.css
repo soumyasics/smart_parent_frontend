@@ -1,0 +1,17 @@
+.parenthome_main{
+    background-image: url("https://img.freepik.com/free-photo/happy-parents-laughing-together-with-daughter_53876-97234.jpg?t=st=1709115764~exp=1709119364~hmac=f2233aa33cfa3ac3a3edff1e270cc12126ce964dac192b7a60364034ff193286&w=900");
+    height: 600px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.parent_home_heading{
+    padding-top: 30%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 900;
+}
+.parent_home_button{
+
+}
+.parent_home_seconddiv{
+    background-color: rgb(148, 125, 96);
+    height: 33px;}

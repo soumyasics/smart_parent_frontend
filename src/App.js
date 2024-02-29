@@ -16,6 +16,7 @@ import AdminSignin from './Components/user/pages/Sign_in & Sign_up/AdminSignin'
 import AdminHome from './Components/user/pages/Admin/AdminHome'
 import Resource_Person_Home from './Components/user/pages/Resource_person/ResourcePersonHome'
 import ResourcePersonHome from './Components/user/pages/Resource_person/ResourcePersonHome'
+import ParentHome from './Components/parent/ParentHome'
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
 <Route path='/admin' element={<AdminSignin/>}/>
 <Route path='/admin_home' element={<AdminHome/>}/>
 <Route path='/resource_person_home' element={<ResourcePersonHome/>}/>
+<Route path='parent_home' element={<ParentHome/>}/>
 
   </Routes>
 

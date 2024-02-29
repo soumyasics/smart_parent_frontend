@@ -114,33 +114,33 @@ function AdminSignin() {
 
     <div className="Adminborder">
       <div className="buttonGroup">
-        <button
+        <button id="button"
           className={selectedButton === "button1" ? "selected" : "unselected"}
           onClick={() => handleButtonClick("button1")}
         >
           Admin
         </button>
-        <button
+        <button id="button"
           className={selectedButton === "button2" ? "selected" : "unselected"}
           onClick={() => handleButtonClick("button2")}
         >
           Resource Person
         </button>
-        <button
+        <button id="button"
           className={selectedButton === "button3" ? "selected" : "unselected"}
           onClick={() => handleButtonClick("button3")}
         >
           Councilor
         </button>
       </div>
-      <div className="container loginForm">
+      <div className="container loginForm" id="loginForm">
         <div className="">
           <form>
-            <div className="form-group has-feedback">
+            <div className="form-group has-feedback" id="form-group">
               <input
                 type="email"
                 className="form-control form-input"
-                id=""
+                id="form-controler"
                 placeholder=""
                 required=""
                 onChange={handleInputChange}
@@ -154,11 +154,11 @@ function AdminSignin() {
               )}
               <span className="glyphicon form-control-feedback" />
             </div>
-            <div className="form-group has-feedback">
+            <div className="form-group has-feedback"  id="form-group">
               <input
                 type="password"
                 className="form-control form-input"
-                id=""
+                id="form-controler"
                 placeholder=""
                 required=""
                 name="password"
@@ -175,7 +175,7 @@ function AdminSignin() {
             </div>
           </form>
           <div className="form-inline">
-            <div className="form-group pull-right">
+            <div className="form-group pull-right" id="form-group">
               {selectedButton !== "button1" ? 
                 <label id="" className="loginPwReset">
                   <span>  { selectedButton =="button2" ? <Link to>Forgot Passwort ?</Link>:<Link >Forgot Passwort ?</Link>}              
