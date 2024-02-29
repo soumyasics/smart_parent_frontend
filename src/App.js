@@ -31,6 +31,7 @@ import Rpchat from './Components/resource_person/RP_Pages/Chat/Rpchat'
 import Rprofile from './Components/resource_person/RP_Pages/Profile/Rprofile'
 import Rpsubscribers from './Components/resource_person/RP_Pages/Subscribers/Rpsubscribers'
 import Rpnav from './Components/resource_person/navbar/Rpnav'
+import Editprofile from './Components/user/User_Pages/Profile/Editprofile'
 
 
 
@@ -66,6 +67,7 @@ function App() {
           <Route path='/user_task' element={<Usertask />} />
           <Route path='/user_chat' element={<Userchat />} />
           <Route path='/user_profile' element={<Userprofile />} />
+          <Route path='/user_editprofile' element={<Editprofile/>}/>
 
 
           {/* Counselor */}
