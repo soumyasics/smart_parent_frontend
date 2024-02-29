@@ -9,7 +9,7 @@
 
 .nav-heading {
     color: #fff;
-    
+    margin: 0 0 0 160px;
 }
 
 .nav-heading img {
@@ -17,7 +17,7 @@
     height: 35px;
     /* position: relative;
     left: 32px; */
-    
+    margin-bottom: -10px;
     margin-left: 40px;
 }
 
@@ -27,7 +27,7 @@
     font-weight: 400;
     /* position: relative;
     top: 30px; */
-    margin-top: 1px;
+    margin-bottom: -12px;
 
 }
 
@@ -35,14 +35,16 @@
     color: ghostwhite;
     font-size: 19px;
     font-weight: 100;
-margin-bottom: 0;
+
     /* position: relative;
     top:45px;
     right:3.8px ; */
+    margin-bottom: 0;
+    margin-top: 50px;
 
 }
 
-.list {
+.rplist {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,17 +55,17 @@ margin-bottom: 0;
     margin-right: 152px;
 }
 
-.list li {
+.rplist li {
     list-style: none;
-    padding: 0 30px;
+    padding: 0 22px;
 }
 
-.list li a {
+.rplist li a {
     text-decoration: none;
     color: #fff;
     transition: 0.3s ease;
 }
 
-.list li a:hover {
+.rplist li a:hover {
     color: blue;
 }

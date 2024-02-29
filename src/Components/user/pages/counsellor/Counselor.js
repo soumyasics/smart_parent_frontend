@@ -13,7 +13,7 @@ function Counselor() {
     return (
         <div className='counsellor' >
 
-            <h1>Choose Counsellor</h1>
+            <h1>Choose Counselor</h1>
 
             <div className='search'>
                 <input type='text' placeholder='Search for a professional' className='search_icon_input' />
