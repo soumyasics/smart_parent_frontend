@@ -1,0 +1,45 @@
+.input-box select {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding: 0 20px;
+    font-size: 17px;
+    font-weight: 400;
+    color: #333;
+    border: 1.5px solid #C7BEBE;
+    border-top-width: 1.9px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.label {
+    color: #1A728E;
+    padding: 0 15px;
+    margin-top: 55px;
+    margin-bottom: 8px;
+
+}
+
+.files {
+
+
+    height: 32px;
+
+
+}
+
+.files input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding: 0 20px;
+    font-size: 17px;
+    font-weight: 400;
+    color: #333;
+
+    transition: all 0.3s ease;
+}
+
+.input-box select {
+    color: #333;
+}

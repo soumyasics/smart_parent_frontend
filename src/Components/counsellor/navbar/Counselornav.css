@@ -42,7 +42,7 @@ margin-bottom: 0;
 
 }
 
-.list {
+.counlist {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,17 +53,17 @@ margin-bottom: 0;
     margin-right: 152px;
 }
 
-.list li {
+.counlist li {
     list-style: none;
-    padding: 0 30px;
+    padding: 0 20px;
 }
 
-.list li a {
+.counlist li a {
     text-decoration: none;
     color: #fff;
     transition: 0.3s ease;
 }
 
-.list li a:hover {
+.counlist li a:hover {
     color: blue;
 }
