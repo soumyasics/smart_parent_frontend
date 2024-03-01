@@ -44,7 +44,7 @@ import Editprofile from "./Components/user/User_Pages/Profile/Editprofile";
 import RPLIst from "./Components/user/pages/Admin/RPLIst";
 import Sidebar from "./Components/user/pages/Admin/Sidebar";
 import Counselorlist from "./Components/user/pages/Admin/Councilrs_list";
-
+import CommonHomePage from "./pages/commonHomePage/commonHomePage";
 
 function App() {
   return (
@@ -54,7 +54,7 @@ function App() {
         <Routes>
   
 
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<CommonHomePage />} />
           <Route path="/about" element={<About />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contactus" element={<Contactus />} />
