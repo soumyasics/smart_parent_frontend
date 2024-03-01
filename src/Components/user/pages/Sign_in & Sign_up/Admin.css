@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster|Mako');
+
+.admin_login{
+   color: #1A728E;
+   font-weight: 350;
+   align-items: center;
+}
+
+
+#form-group {
+	height: 50%;
+    padding: 0 8%;
+}
+#form-controler {
+  	font-size: 100%;
+  	letter-spacing: .07em;
+  	border: 1px solid transparent;
+  	box-shadow: inset 0 1px 1px transparent;
+}
+
+#form-controler:focus {
+  	-webkit-box-shadow: inset 0 1px 1px transparent, 0 0 8px transparent;
+  	box-shadow: inset 0 1px 1px transparent, 0 0 8px transparent;
+}
+#loginForm .form-control {
+  	background-color: transparent;
+  	border-bottom: 2px solid #32797c;
+  	border-radius: 0;
+  	padding-left: 0;
+}
+#loginForm .form-control:focus {
+  	border-color: transparent;
+  	border-bottom: 2px solid #9c9e9f;
+}
+#submit {
+	margin-left: 0px;
+	margin-top: 4%;
+  margin-bottom: 1%;
+	width: 100%;
+	font-size: 100%;
+	letter-spacing: .1em;
+  color: #32797c;
+  background-color: #9cdfe2;
+}
+.btn-default.focus,
+.btn-default#submit:focus,
+.btn-default#submit:hover {
+  color: #fff;
+  background-color: #009898;
+  border-color: transparent;
+}
+.loginPwReset {
+  margin-top: .625em;
+}
+
+#button {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.selected {
+background-color: #1A728E;;
+color: white;
+}
+
+.unselected {
+background-color: rgb(221, 213, 213);
+color: black;
+}
+
+.buttonGroup button {
+    width: 213px;
+    height: 40px;
+}
+
+
+  .Adminborder{
+    border: 1px solid #b9bcbd;
+    margin: 2% 25%;
+    width: 50%;
+    border-radius: 8px;
+  }
