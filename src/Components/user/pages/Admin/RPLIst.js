@@ -1,4 +1,3 @@
-import React from "react";
 import "./rplist.css";
 import Sidebar from "./Sidebar";
 import axiosInstance from "../../../../apis/axiosInstance";
@@ -71,6 +70,7 @@ function RPLIst() {
     <div>
       <div className="row">
         <div className="col-2">
+          <Sidebar />
           <Sidebar />
         </div>
         <div style={{ maxWidth: "77%" }} className="container">

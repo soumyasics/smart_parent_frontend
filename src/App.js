@@ -108,7 +108,7 @@ function App() {
           <Route path="/rp_list" element={<RPLIst />} />
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/counsiler_list" element={<Counselorlist/>} />
-
+          <Route path="/user_nav" element={<Usernav/>}/>
         </Routes>
       </Router>
     </div>
