@@ -17,7 +17,6 @@ function Counsellorsignup() {
         certificateImg: "",
         profilePicture: ""
 
-
     })
 
     const [errors, setErrors] = useState({
@@ -31,8 +30,6 @@ function Counsellorsignup() {
         password: "",
         certificateImg: "",
         profilePicture: ""
-
-
     })
 
     const changefn = (e) => {
