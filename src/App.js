@@ -13,6 +13,7 @@ import Footer from "./Components/user/footer/Footer";
 import ResetPass from "./Components/user/pages/Sign_in & Sign_up/ResetPass";
 import Counselor from "./Components/user/pages/counsellor/Counselor";
 
+
 import AdminSignin from "./Components/user/pages/Sign_in & Sign_up/AdminSignin";
 import AdminHome from "./Components/user/pages/Admin/AdminHome";
 import Resource_Person_Home from "./Components/user/pages/Resource_person/ResourcePersonHome";
@@ -39,16 +40,20 @@ import Rprofile from "./Components/resource_person/RP_Pages/Profile/Rprofile";
 import Rpsubscribers from "./Components/resource_person/RP_Pages/Subscribers/Rpsubscribers";
 import Rpnav from "./Components/resource_person/navbar/Rpnav";
 import Editprofile from "./Components/user/User_Pages/Profile/Editprofile";
+
 import RPLIst from "./Components/user/pages/Admin/RPLIst";
 import Sidebar from "./Components/user/pages/Admin/Sidebar";
 import Counselorlist from "./Components/user/pages/Admin/Councilrs_list";
+
 
 function App() {
   return (
     <div className="appjs">
       <Router>
+
         <Routes>
   
+
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/gallery" element={<Gallery />} />
@@ -89,6 +94,7 @@ function App() {
             path="/resourceperson_subscribers"
             element={<Rpsubscribers />}
           />
+
 
 
           {/*ajeena*/}
