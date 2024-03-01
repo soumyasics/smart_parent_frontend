@@ -8,6 +8,7 @@ function AdminSignin() {
 
     useEffect(() => {
       setSelectedButton('button1');
+      setloginURL("admin");
     }, []);
 
     const [formData, setFormData] = useState({
@@ -63,6 +64,7 @@ function AdminSignin() {
   };
 
   const handleSubmit = async (event) => {
+    console.log(loginURL)
     event.preventDefault();
     let errors = {};
     errors.email = formValidating("Email", formData.email);
@@ -103,7 +105,7 @@ function AdminSignin() {
       }
       // Handle successful login, such as setting user authentication token, redirecting, etc.
     } catch (error) {
-      console.error("Login failed:", error.response.data);
+      console.error("Login failed:", error);
     }
 
     // console.log("Form submitted with data:", formData, loginURL);
