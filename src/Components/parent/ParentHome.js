@@ -39,7 +39,7 @@ function ParentHome() {
       <div className="parent_home_fourthdiv">
         <div className="row">
           <div className="col">
-            <img
+            <img  alt=""
               src="https://sf.ezoiccdn.com/ezoimgfmt/momscove.com/wp-content/uploads/2024/01/pexels-arina-krasnikova-5416613-1536x1026.jpg?ezimgfmt=ng:webp/ngcb3"
               className="div3img"
             ></img>
@@ -63,9 +63,10 @@ function ParentHome() {
             </ul>
           </div>
           <div className="col">
-            <img
+            <img 
               src="https://sf.ezoiccdn.com/ezoimgfmt/momscove.com/wp-content/uploads/2023/11/mother-taking-care-her-autistic-son-home.jpg?ezimgfmt=ng:webp/ngcb3"
               className="div3img"
+              alt=""
             ></img>
           </div>
         </div>
@@ -73,9 +74,9 @@ function ParentHome() {
       <div className="parent_home_fifthdiv container">
       <h1 className="text-center p-5 ">Meet Our Sponsors</h1>
       <div className="row mb-5 ">
-      <div className="col"><img src="https://www.smarterparenting.com/wp-content/uploads/2023/02/pbeauty.png.webp"></img></div>
-      <div className="col"><img src="https://www.smarterparenting.com/wp-content/uploads/2023/02/miller.png.webp"></img></div>
-      <div className="col "><img src="https://www.smarterparenting.com/wp-content/uploads/2023/02/slf.png.webp"></img></div>
+      <div className="col"><img  alt="" src="https://www.smarterparenting.com/wp-content/uploads/2023/02/pbeauty.png.webp"></img></div>
+      <div className="col"><img  alt="" src="https://www.smarterparenting.com/wp-content/uploads/2023/02/miller.png.webp"></img></div>
+      <div className="col"><img  alt="" src="https://www.smarterparenting.com/wp-content/uploads/2023/02/slf.png.webp"></img></div>
 
       </div>
       </div>
