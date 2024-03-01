@@ -2,6 +2,10 @@
   height: 80px;
   background-color: black !important;
 }
+#common-home-navbar a:hover {
+  color: rgb(157, 157, 152) !important;
+  font-weight: bold;
+}
 .navitems {
   font-size: medium;
   padding-left: 1000px;
@@ -11,7 +15,6 @@
   position: absolute;
   right: 0;
 }
-
 
 #sub {
   font-size: medium;
