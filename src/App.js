@@ -39,22 +39,16 @@ import Rprofile from "./Components/resource_person/RP_Pages/Profile/Rprofile";
 import Rpsubscribers from "./Components/resource_person/RP_Pages/Subscribers/Rpsubscribers";
 import Rpnav from "./Components/resource_person/navbar/Rpnav";
 import Editprofile from "./Components/user/User_Pages/Profile/Editprofile";
+import RPLIst from "./Components/user/pages/Admin/RPLIst";
+import Sidebar from "./Components/user/pages/Admin/Sidebar";
+import Counselorlist from "./Components/user/pages/Admin/Councilrs_list";
 
 function App() {
   return (
     <div className="appjs">
       <Router>
-        <Navbar />
-
         <Routes>
-          <Route path="/admin" element={<AdminSignin />} />
-          <Route path="/admin_home" element={<AdminHome />} />
-          <Route
-            path="/resource_person_home"
-            element={<ResourcePersonHome />}
-          />
-          <Route path="/parent_home" element={<ParentHome />} />
-
+  
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/gallery" element={<Gallery />} />
@@ -95,9 +89,21 @@ function App() {
             path="/resourceperson_subscribers"
             element={<Rpsubscribers />}
           />
-        </Routes>
 
-        <Footer />
+
+          {/*ajeena*/}
+          <Route path="/admin" element={<AdminSignin />} />
+          <Route path="/admin_home" element={<AdminHome />} />
+          <Route
+            path="/resource_person_home"
+            element={<ResourcePersonHome />}
+          />
+          <Route path="/parent_home" element={<ParentHome />} />
+          <Route path="/rp_list" element={<RPLIst />} />
+          <Route path="/sidebar" element={<Sidebar />} />
+          <Route path="/counsiler_list" element={<Counselorlist/>} />
+
+        </Routes>
       </Router>
     </div>
   );
