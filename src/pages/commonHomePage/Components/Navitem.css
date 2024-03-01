@@ -1,34 +1,35 @@
-.navitems{
-    font-size: medium;
-    padding-left: 1000px;
-  }
-  .a1{
-    /* padding-left: 945px; */
-    position: absolute;
-    right: 0;
-  }
-  #abc{
-    background-color: black !important; 
-  
- }
- 
-#sub{
-    font-size: medium;
-    padding-left: 1000px;
-  }
-  #blogs{
-    font-size: medium;
-    padding-left: 25px;
-  }
-  #aboutus{
-    font-size: medium;
-    padding-left: 40px;
-  }
-  #signin{
-    font-size: medium;
-    padding-left: 40px;
-  }
-  #signup{
-    font-size: medium;
-    padding-left: 40px;
-  }
+#common-home-navbar {
+  height: 80px;
+  background-color: black !important;
+}
+.navitems {
+  font-size: medium;
+  padding-left: 1000px;
+}
+.a1 {
+  /* padding-left: 945px; */
+  position: absolute;
+  right: 0;
+}
+
+
+#sub {
+  font-size: medium;
+  padding-left: 1000px;
+}
+#blogs {
+  font-size: medium;
+  padding-left: 25px;
+}
+#aboutus {
+  font-size: medium;
+  padding-left: 40px;
+}
+#signin {
+  font-size: medium;
+  padding-left: 40px;
+}
+#signup {
+  font-size: medium;
+  padding-left: 40px;
+}
