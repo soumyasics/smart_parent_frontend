@@ -67,7 +67,6 @@ const MySubscriptions = () => {
                   <th>Contact</th>
                   <th>Email</th>
                   <th>Experience Year</th>
-                  <th>View Task</th>
                 </tr>
               </thead>
               <tbody>
@@ -81,16 +80,6 @@ const MySubscriptions = () => {
                         <td>{item?.resourcePersonId?.contact}</td>
                         <td>{item?.resourcePersonId?.email}</td>
                         <td>{item?.resourcePersonId?.experienceYear}</td>
-                        <td>
-                          <button
-                            className="btn btn-primary"
-                            onClick={() => {
-                              redirectRpTask(item?.resourcePersonId?._id);
-                            }}
-                          >
-                            View Task
-                          </button>
-                        </td>
                       </tr>
                     );
                   })}
