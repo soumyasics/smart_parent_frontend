@@ -96,7 +96,7 @@ const ResoucePersonDetails = () => {
                 </Card.Text>
               </Card.Body>
               <div className="d-flex justify-content-center">
-                <Button variant="primary" onClick={handleSubscribe}>
+                <Button variant="primary mb-5" onClick={handleSubscribe}>
                   {" "}
                   Subscribe{" "}
                 </Button>

@@ -72,9 +72,12 @@ function Comp1() {
                 Parent
               </a>
             </li>
-            <li class="nav-item">
+            <li
+              class="nav-item"
+              onClick={() => navigate("/user-my-subscription")}
+            >
               <a class="nav-link active text-white" href="#" id="a3">
-                About Us
+                My Subscriptions
               </a>
             </li>
             {activeUser ? (

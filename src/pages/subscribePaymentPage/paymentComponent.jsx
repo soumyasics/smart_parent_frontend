@@ -1,25 +1,54 @@
 import { useState, useEffect, useContext } from "react";
 import { Col, Form, Row, Button, Modal } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import useParentLoggedIn from "../../customHooks/checkParentLoggedIn";
+import axiosInstance from "../../apis/axiosInstance";
 import "./payment-page.css";
 const PaymentForm = () => {
-  const { id } = useParams();
+  const { rpId } = useParams();
   const [validated, setValidated] = useState(false);
+  const isParentLoggedin = useParentLoggedIn();
 
   const [userAcDetails, setUserAcDetails] = useState({
-    acHolderName: "",
-    cardNumber: "",
-    expiryDate: "",
-    cvv: "",
-    amount: 0,
+    acHolderName: "Anand R P",
+    cardNumber: "1234568789876543",
+    expiryDate: "2024-03-14",
+    cvv: "123",
+    amount: "999",
   });
 
-  const doPayment = () => {
-    console.log(userAcDetails);
+  const doPayment = async () => {
+    let activeParent = JSON.parse(localStorage.getItem("parentData")) || null;
+    if (activeParent && activeParent._id) {
+      let requiredData = {
+        ...userAcDetails,
+        resourcePersonId: rpId,
+        parentId: activeParent._id,
+      };
+      try {
+        const subscriptionData = await axiosInstance.post(
+          "/smart_parent/new-subscription",
+          requiredData
+        );
+        console.log("data:", subscriptionData);
+        if (subscriptionData.status === 201) {
+          console.log("payment success");
+          alert("Payment Successful.");
+        }
+      } catch (error) {
+        console.log("error from subscription", error);
+      }
+    } else {
+      console.log("active parent not found, login again");
+    }
   };
 
   const handleSubmitPayment = (event) => {
     event.preventDefault();
+    if (!isParentLoggedin) {
+      alert("Please login to subscribe");
+      return;
+    }
 
     const form = event.currentTarget;
 
@@ -55,7 +84,11 @@ const PaymentForm = () => {
       console.log("all fields are mandatory");
       return;
     } else {
-      doPayment();
+      if (checkTypes()) {
+        doPayment();
+      } else {
+        console.log("check types failed");
+      }
     }
   };
 
@@ -73,7 +106,7 @@ const PaymentForm = () => {
       cardNumber: "",
       expiryDate: "",
       cvv: "",
-      amount: 0,
+      amount: 999,
     });
 
     setValidated(false);
