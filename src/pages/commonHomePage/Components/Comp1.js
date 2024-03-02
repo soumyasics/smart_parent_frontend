@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../Assets/logo.png";
 import "./Navitem.css";
 import { useNavigate } from "react-router-dom";
 import "./Logo.css";
 function Comp1() {
   const navigate = useNavigate();
+  const [activeUser, setActiveUser] = useState(null);
+  useEffect(() => {
+    if (localStorage.getItem("parentData")) {
+      setActiveUser(JSON.parse(localStorage.getItem("parentData")));
+    }
+  }, []);
+  console.log("ac", activeUser);
 
+  const handleLogout = () => {
+    if (localStorage.getItem("parentData")) {
+      localStorage.removeItem("parentData");
+    }
+    navigate("/sign_in");
+  };
   return (
     <nav
       id="common-home-navbar"
@@ -59,21 +72,39 @@ function Comp1() {
                 Parent
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active text-white" href="#" id="a3">
-                About Us
-              </a>
-            </li>
-
             <li
               class="nav-item"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/sign_up")}
+              onClick={() => navigate("/user-my-subscription")}
             >
-              <a class="nav-link active text-white" id="a5">
-                SignUp
+              <a class="nav-link active text-white" href="#" id="a3">
+                My Subscriptions
               </a>
             </li>
+            {activeUser ? (
+              <li
+                class="nav-item"
+                style={{ cursor: "pointer" }}
+                onClick={handleLogout}
+              >
+                <a
+                  style={{ color: "red", fontWeight: "800" }}
+                  className="nav-link active text-danger"
+                  id="a5"
+                >
+                  Logout
+                </a>
+              </li>
+            ) : (
+              <li
+                class="nav-item"
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate("/sign_up")}
+              >
+                <a class="nav-link active text-white" id="a5">
+                  Signup
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>

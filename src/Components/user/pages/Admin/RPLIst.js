@@ -79,9 +79,9 @@ function RPLIst() {
           )}
           {rpLists.length > 0 && (
             <div>
-              <h3 className="mt-5">All Resource person Requests</h3>
-              <table style={{ width: "100%" }}>
-                <thead>
+              <h3 className="mt-5 ms-3">All Resource person Requests</h3>
+              <table className="mt-5 ms-3" style={{ width: "100%" }}>
+                <thead style={{ height: "50px" }}>
                   <tr>
                     <th>No</th>
                     <th>Name</th>

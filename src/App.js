@@ -43,9 +43,11 @@ import Editprofile from "./Components/user/User_Pages/Profile/Editprofile";
 import RPLIst from "./Components/user/pages/Admin/RPLIst";
 import Sidebar from "./Components/user/pages/Admin/Sidebar";
 import Counselorlist from "./Components/user/pages/Admin/Councilrs_list";
+import SubscriptionTable from "./pages/mySubscriptions/mySubscriptions";
 import CommonHomePage from "./pages/commonHomePage/commonHomePage";
 import ViewResoucePerson from "./pages/viewResoucePerson/viewResoucePerson";
-import ViewResourcePersonDetails from "./pages/viewResoucePerson/resoucePersonDetails"
+import ViewResourcePersonDetails from "./pages/viewResoucePerson/resoucePersonDetails";
+import SubscribePaymentPage from "./pages/subscribePaymentPage/subscribePaymentPage";
 function App() {
   return (
     <div className="appjs">
@@ -69,7 +71,8 @@ function App() {
           <Route path="/user_chat" element={<Userchat />} />
           <Route path="/user_profile" element={<Userprofile />} />
           <Route path="/user_editprofile" element={<Editprofile />} />
-
+          <Route path="/user-payment/:rpId" element={<SubscribePaymentPage />} />
+          <Route path="/user-my-subscription" element={<SubscriptionTable />} />
           {/* Counselor */}
 
           <Route path="/counselor_signup" element={<Counsellorsignup />} />
@@ -93,7 +96,10 @@ function App() {
           />
 
           <Route path="/view-resouce-person" element={<ViewResoucePerson />} />
-        <Route path="/view-resource-person-details/:id" element={<ViewResourcePersonDetails />} />
+          <Route
+            path="/view-resource-person-details/:id"
+            element={<ViewResourcePersonDetails />}
+          />
           {/*ajeena*/}
           <Route path="/admin" element={<AdminSignin />} />
           <Route path="/admin_home" element={<AdminHome />} />
