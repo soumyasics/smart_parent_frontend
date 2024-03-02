@@ -1,0 +1,78 @@
+.counsellor {
+    padding: 0 165px;
+    padding-top: 60px;
+    padding-bottom: 300px;
+}
+
+.counsellor h1 {
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.listout h5 {
+    padding-top: 20px;
+    font-weight: 750;
+}
+
+.professionals {
+    padding-top: 8px;
+    padding-bottom: 15px;
+}
+
+.professionals .dot {
+    padding: 3px;
+
+    color: #637587;
+}
+
+.para {
+    padding: 0 76px;
+    margin-top: -52px;
+}
+
+.professionals p1 {
+    font-weight: 650;
+
+
+
+}
+
+.search {
+    padding-top: 15px;
+}
+
+.search input {
+
+
+    height: 40px;
+    width: 85%;
+    outline: none;
+    padding: 0 40px;
+    font-size: 17px;
+    font-weight: 400;
+    color: #637587;
+    font-weight: 400;
+    background-color: #F0F2F5;
+    border: 1.5px solid #C7BEBE;
+    border-top-width: 1.9px;
+    border-radius: 12px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.search_icon_input {
+
+    background: url("../../../../Assets/search.png") no-repeat 5px center;
+    background-size: 25px;
+    background-position: 10px 9px;
+}
+
+.rating {
+    margin-top: -48px;
+    margin-left: 830px;
+}
+
+.d-flex {
+    color: #637587;
+    padding: 0 77px;
+}

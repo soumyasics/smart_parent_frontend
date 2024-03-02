@@ -11,7 +11,6 @@ import SignIn from './Components/user/pages/Sign_in & Sign_up/SignIn'
 import SignUp from './Components/user/pages/Sign_in & Sign_up/SignUp'
 import Footer from './Components/user/footer/Footer'
 import ResetPass from './Components/user/pages/Sign_in & Sign_up/ResetPass'
-import Counselor from './Components/user/pages/counsellor/Counselor'
 import Counsellorsignup from './Components/counsellor/signup&signin/Counsellorsignup'
 import Rpsignup from './Components/resource_person/Sign_up&Sign_in/Rpsignup'
 import Usernav from './Components/user/navbar/Usernav'
@@ -32,6 +31,7 @@ import Rprofile from './Components/resource_person/RP_Pages/Profile/Rprofile'
 import Rpsubscribers from './Components/resource_person/RP_Pages/Subscribers/Rpsubscribers'
 import Rpnav from './Components/resource_person/navbar/Rpnav'
 import Editprofile from './Components/user/User_Pages/Profile/Editprofile'
+import Rptutorial from './Components/resource_person/RP_Pages/RP_tutorial/Rptutorial'
 
 
 
@@ -54,11 +54,11 @@ function App() {
           <Route path='/sign_up' element={<SignUp />} />
           <Route path='/sign_in' element={<SignIn />} />
           <Route path='/reset_password' element={<ResetPass />} />
-          <Route path='/counsellor' element={<Counselor />} />
+          
 
 
 
-          {/* User  */}
+          {/* User After loged in */}
 
 
           <Route path='/user_resourceperson' element={<Useresource />} />
@@ -85,6 +85,7 @@ function App() {
           <Route path='/resourceperson_chat' element={<Rpchat />} />
           <Route path='/resourceperson_profile' element={<Rprofile />} />
           <Route path='/resourceperson_subscribers' element={<Rpsubscribers />} />
+          <Route path='resourceperson_tutorials' element={<Rptutorial/>}/>
 
         </Routes>
 

@@ -33,8 +33,21 @@
     color: #1A728E;
 }
 
-.resetbutton {
-    margin-left: 11px;
+.resetbutton{
+    padding-top: 20px;
+}
+
+.resetbutton button{
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+    width: 50%;
+    color: #fff;
+    background-color: #1A728E;
+    font-weight: 300;
+    margin-left: 115px;
+
+    /* margin-left: 11px; */
 }
 
 .resetbutton .icon {

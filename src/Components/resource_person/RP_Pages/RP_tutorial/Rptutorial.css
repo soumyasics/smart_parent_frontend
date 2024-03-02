@@ -1,22 +1,28 @@
-
-.useresource{
-    padding-bottom: 80px;
-}
-
-.useresource h1{
-    text-align: center;
-    font-weight: 700;
-    font-size: 30px;
-    padding-top: 50px;
+.rptutorials{
+    padding-top: 40px;
     padding-bottom: 50px;
 }
 
-.procontainer{
-   
-    padding-left: 5px;
+.tutorialicon{
+    display: flex;
 }
 
-.reslist{
+.tutorialicon h1{
+    margin-left:680px ;
+    font-weight: 700;
+    font-size: 30px;
+
+
+
+}
+
+.tutorialprocontainer{
+   
+    padding-left: 5px;
+
+}
+
+.tutorialreslist{
     
     width: 23%;
     height: max-content;
@@ -34,35 +40,32 @@
 
 }
 
-.reslist:hover{
+.tutorialreslist:hover{
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.06);
 }
 
 
 
-.rppersonmain{
+.tutorialrppersonmain{
     padding: 0 5px;
   
 }
 
-.rppersondes{
+.tutorialrppersondes{
     padding-left: 8px;
     margin-top: 30px;
     text-align: justify;
 }
 
-.rppersondes p {
+.tutorialrppersondes p {
     line-height: 20px;
 }
 
-.rppersondes h2{
-    
-    font-size: 15px;
-}
 
 
 
-.rpsubscribe button{
+
+.tutorialbtn button{
     border: none;
     border-radius: 5px;
     height: 50px;
@@ -74,20 +77,34 @@
     margin-left: 70px;
 }
 
-.rpimage{
-    padding-left: 4px;
-}
 
-.rpimage img{
+
+.tutorialrpimage img{
    
 
     border: 2px solid;
     border: none;
     /* padding-left: 30px; */
-    height: 120px;
-    width: 120px;
-    border-radius: 50%;
-    object-fit: cover;
+    height: 200px;
+    width: 300px;
+    object-fit: fill
    
 
 }
+
+.tutorialicon button{
+
+margin-left: 510px;
+    border:none;
+    background-color: white;
+
+
+   
+}
+
+ .tutorialicon{
+    color: #75D7F0;
+    font-size: 50px;
+    
+}
+

@@ -36,7 +36,7 @@ function Rpsignup() {
 
     const changefn = (e) => {
         const { name, value } = e.target
-        setRpsignup(preData => ({ ...preData, [name]: value }))
+        setRpsignup(prerpsignup => ({ ...prerpsignup, [name]: value }))
         setErrors(preErrors => ({ ...preErrors, [name]: "" }))
     }
 
@@ -117,6 +117,7 @@ function Rpsignup() {
         else { console.log("form", formValid) }
 
     }
+    console.log(rpsignup);
     return (
         <div className='signup'>
 
