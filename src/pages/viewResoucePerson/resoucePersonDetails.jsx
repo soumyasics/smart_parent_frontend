@@ -7,6 +7,7 @@ import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import isParentLoggedIn from "../../customHooks/checkParentLoggedIn";
 import { Button } from "react-bootstrap";
 
 import ResoucePersonSubscribeModel from "./subscribeModel";
@@ -18,6 +19,16 @@ const ResoucePersonDetails = () => {
   useEffect(() => {
     getData();
   }, []);
+
+  const parentLoggedInStatus = isParentLoggedIn();
+  const handleSubscribe = () => {
+    console.log("par", parentLoggedInStatus);
+    if (!parentLoggedInStatus) {
+      alert("Please login to subscribe");
+      return;
+    }
+    setModalShow(true);
+  };
 
   console.log("rp", rpDetails);
   function getData() {
@@ -71,7 +82,7 @@ const ResoucePersonDetails = () => {
               </div>
               <Card.Body>
                 <Card.Title className="text-center text-dark mb-3">
-                  Name: {rpDetails?.name}
+                  <h2>Name: {rpDetails?.name} </h2>
                 </Card.Title>
                 <Card.Text>Age: {rpDetails?.age}</Card.Text>
                 <Card.Text>Email: {rpDetails?.email}</Card.Text>
@@ -85,7 +96,7 @@ const ResoucePersonDetails = () => {
                 </Card.Text>
               </Card.Body>
               <div className="d-flex justify-content-center">
-                <Button variant="primary" onClick={() => setModalShow(true)}>
+                <Button variant="primary" onClick={handleSubscribe}>
                   {" "}
                   Subscribe{" "}
                 </Button>

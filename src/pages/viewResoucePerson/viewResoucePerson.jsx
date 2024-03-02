@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 const ViewResourcePerson = () => {
   const navigate = useNavigate();
-  
 
   const [rpLists, setRpLists] = useState([]);
   useEffect(() => {

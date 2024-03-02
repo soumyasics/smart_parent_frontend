@@ -62,20 +62,6 @@ form .text h5 a {
   color: #1a728e;
 }
 
-button {
-  /* background-image: url(../../../../Assets/Frame\ 27.png); */
-  /* border-image: fill; */
-  border: none;
-  border-radius: 5px;
-  height: 50px;
-  width: 50%;
-  color: #fff;
-  background-color: #1a728e;
-  font-weight: 300;
-  margin-top: 30px;
-  margin-left: 105px;
-}
-
 .inbutton .icon {
   margin-left: 5px;
 }
