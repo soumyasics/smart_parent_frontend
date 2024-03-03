@@ -29,7 +29,7 @@ function Rpnav() {
         <div className="container-fluid text-white">
           <img
             src="http://localhost:3000/static/media/logo.02ba8ea67b2b7903e412.png"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/resource_person_home")}
             alt="Logo"
             width="60"
             height="60"
@@ -37,7 +37,7 @@ function Rpnav() {
             id="logo"
           />
           &nbsp;&nbsp;
-          <b onClick={() => navigate("/")}>SmartParent.</b>
+          <b onClick={() => navigate("/resource_person_home")}>SmartParent.</b>
           <button
             className="navbar-toggler"
             type="button"
@@ -53,7 +53,7 @@ function Rpnav() {
             <ul class="navbar-nav a1" style={{ marginRight: "51px" }}>
               <li
                 style={{ cursor: "pointer" }}
-                onClick={() => navigate("/view-resouce-person")}
+                onClick={() => navigate("/rp-add-tutorial")}
                 class="nav-item"
               >
                 <a class="nav-link active text-white" aria-current="page">
@@ -62,16 +62,16 @@ function Rpnav() {
               </li>
               <li
                 style={{ cursor: "pointer" }}
-                onClick={() => navigate("/counsellor")}
+                onClick={() => navigate("/rp-view-tutorials")}
                 class="nav-item"
               >
                 <a class="nav-link active text-white" aria-current="page">
-                Blogs
+                  View
                 </a>
               </li>
               <li class="nav-item" onClick={() => navigate("/parent_home")}>
                 <a class="nav-link active text-white" href="#" id="a2">
-                Subscribers
+                  Subscribers
                 </a>
               </li>
               <li
@@ -79,7 +79,7 @@ function Rpnav() {
                 onClick={() => navigate("/user-my-subscription")}
               >
                 <a class="nav-link active text-white" href="#" id="a3">
-                Tasks
+                  Tasks
                 </a>
               </li>
               {activeUser ? (
@@ -93,10 +93,12 @@ function Rpnav() {
                     className="nav-link active text-danger"
                     id="a5"
                   >
-                  profile
+                    profile
                   </a>
                 </li>
-              ) : ''}
+              ) : (
+                ""
+              )}
             </ul>
           </div>
         </div>

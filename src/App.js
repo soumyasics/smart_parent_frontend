@@ -39,7 +39,7 @@ import Rprofile from "./Components/resource_person/RP_Pages/Profile/Rprofile";
 import Rpsubscribers from "./Components/resource_person/RP_Pages/Subscribers/Rpsubscribers";
 import Rpnav from "./Components/resource_person/navbar/Rpnav";
 import Editprofile from "./Components/user/User_Pages/Profile/Editprofile";
-
+import RpViewTutorial from "./pages/resouce-person/rp-view-tutorial/rp-view-tutorial";
 import RPLIst from "./Components/user/pages/Admin/RPLIst";
 import Sidebar from "./Components/user/pages/Admin/Sidebar";
 import Counselorlist from "./Components/user/pages/Admin/Councilrs_list";
@@ -100,7 +100,7 @@ function App() {
             element={<Rpsubscribers />}
           />
           <Route path="/rp-add-tutorial" element={<RpAddTutorial />}/>
-
+          <Route path="/rp-view-tutorials" element={<RpViewTutorial />}/>
           <Route path="/view-resouce-person" element={<ViewResoucePerson />} />
           <Route
             path="/view-resource-person-details/:id"
@@ -115,6 +115,8 @@ function App() {
             element={[<Rpnav />, <ResourcePersonHome />, <Footer />]}
           />
           <Route path="/parent_home" element={<ParentHome />} />
+
+          
           <Route path="/rp_list" element={<RPLIst />} />
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/counsiler_list" element={<Counselorlist />} />
