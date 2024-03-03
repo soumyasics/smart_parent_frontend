@@ -4,6 +4,7 @@ import addTutorialImg from "../../../Assets/illustrators/add-tutorial-img.jpg";
 import { useState, useEffect, useContext } from "react";
 import { Col, Form, Row, Button, Modal } from "react-bootstrap";
 import "./rp-add-tutorial.css";
+import RpNav from "../../../Components/resource_person/navbar/Rpnav";
 import axiosInstance from "../../../apis/axiosInstance";
 import axiosMultipartInstance from "../../../apis/axiosMultipartInstance";
 const ResourceUploadForm = () => {
@@ -79,7 +80,7 @@ const ResourceUploadForm = () => {
   }, [title, description, thumbnail, video]);
   return (
     <>
-      <h3> Navbar here </h3>
+      <RpNav />
       <div className="mt-5">
         <h2 className="text-center">Upload Tutorials</h2>
 
@@ -97,8 +98,11 @@ const ResourceUploadForm = () => {
               validated={validated}
               onSubmit={handleUploadTutorail}
             >
-              <h4 className="text-center text-dark"> Upload Tutorial </h4>
-              <p className="text-center text-dark">Tutorail details</p>
+              <h4 className="text-center text-dark"> Tutorial Upload Form </h4>
+              <p className="text-center text-dark">
+                {" "}
+                <i>Upload tutorial videos here.. </i>
+              </p>
               <Row>
                 <Col>
                   <Form.Group
