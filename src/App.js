@@ -12,6 +12,7 @@ import SignUp from "./Components/user/pages/Sign_in & Sign_up/SignUp";
 import Footer from "../src/pages/commonHomePage/Components/Footer";
 import ResetPass from "./Components/user/pages/Sign_in & Sign_up/ResetPass";
 import Counselor from "./Components/user/pages/counsellor/Counselor";
+import RpAddTutorial from "./pages/resouce-person/rp-add-tutorial/rp-add-tutorial";
 
 import AdminSignin from "./Components/user/pages/Sign_in & Sign_up/AdminSignin";
 import AdminHome from "./Components/user/pages/Admin/AdminHome";
@@ -98,12 +99,14 @@ function App() {
             path="/resourceperson_subscribers"
             element={<Rpsubscribers />}
           />
+          <Route path="/rp-add-tutorial" element={<RpAddTutorial />}/>
 
           <Route path="/view-resouce-person" element={<ViewResoucePerson />} />
           <Route
             path="/view-resource-person-details/:id"
             element={<ViewResourcePersonDetails />}
           />
+          {/* <Route path="" element={< />}/> */}
           {/*ajeena*/}
           <Route path="/admin" element={<AdminSignin />} />
           <Route path="/admin_home" element={<AdminHome />} />

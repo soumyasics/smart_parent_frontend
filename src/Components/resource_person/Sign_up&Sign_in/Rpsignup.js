@@ -116,6 +116,8 @@ function Rpsignup() {
       formData.append("files", rpsignup.profilePicture);
       formData.append("files", rpsignup.certificateImg);
   
+      console.log('rp form ', formData)
+      
       axiosInstance
         .post("smart_parent/registerRp", formData, {
           headers: {
