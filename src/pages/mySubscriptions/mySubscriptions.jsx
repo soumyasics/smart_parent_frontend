@@ -26,14 +26,18 @@ const MySubscriptions = () => {
     }
   }
   async function getData(id) {
-    let res = await axiosInstance.get(
-      "/smart_parent/get-all-subscriptions-by-parent-id/" + id
-    );
-    let rpData = res?.data?.data || null;
-    if (rpData) {
-      setAllSubscription(rpData);
-    } else {
-      console.log("can't fetch parent subscription details");
+    try {
+      let res = await axiosInstance.get(
+        "/smart_parent/get-all-subscriptions-by-parent-id/" + id
+      );
+      let rpData = res?.data?.data || null;
+      if (rpData) {
+        setAllSubscription(rpData);
+      } else {
+        console.log("can't fetch parent subscription details");
+      }
+    } catch (error) {
+      console.log("error on get subscription data by parent id", error);
     }
   }
 
@@ -67,7 +71,6 @@ const MySubscriptions = () => {
                   <th>Contact</th>
                   <th>Email</th>
                   <th>Experience Year</th>
-                  <th>View Task</th>
                 </tr>
               </thead>
               <tbody>
@@ -81,16 +84,6 @@ const MySubscriptions = () => {
                         <td>{item?.resourcePersonId?.contact}</td>
                         <td>{item?.resourcePersonId?.email}</td>
                         <td>{item?.resourcePersonId?.experienceYear}</td>
-                        <td>
-                          <button
-                            className="btn btn-primary"
-                            onClick={() => {
-                              redirectRpTask(item?.resourcePersonId?._id);
-                            }}
-                          >
-                            View Task
-                          </button>
-                        </td>
                       </tr>
                     );
                   })}
