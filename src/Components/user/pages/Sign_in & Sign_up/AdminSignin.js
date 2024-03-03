@@ -25,10 +25,10 @@ function AdminSignin() {
       formValid = false;
       return `${fieldName} is required`;
     }
-    if (formData.email && formData.password){
+    if (formData.email && formData.password) {
       formValid = true;
     }
-     return "";
+    return "";
   };
 
   const Navigate = useNavigate();
@@ -193,14 +193,14 @@ function AdminSignin() {
                     <span>
                       {" "}
                       {selectedButton == "button2" ? (
-                        <Link to>Forgot Passwort ?</Link>
+                        <Link>Forgot Passwort ?</Link>
                       ) : (
                         <Link>Forgot Passwort ?</Link>
                       )}
                     </span>
                     <span className="ms-5">
                       {selectedButton == "button2" ? (
-                        <Link to="">Sign Up</Link>
+                        <Link to="/resourceperson_signup">Sign Up</Link>
                       ) : (
                         <Link>Sign Up</Link>
                       )}
