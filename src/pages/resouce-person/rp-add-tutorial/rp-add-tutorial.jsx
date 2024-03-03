@@ -13,6 +13,8 @@ const ResourceUploadForm = () => {
   const [video, setVideo] = useState(null);
   const [rpid, setRpid] = useState("65dc8ef9c5a825fd60e37b07");
   const [validated, setValidated] = useState(false);
+  const [target, setTarget] = useState("");
+  const [duration, setDuration] = useState("");
 
   const handleUploadTutorail = (e) => {
     e.preventDefault();
@@ -21,7 +23,15 @@ const ResourceUploadForm = () => {
       e.stopPropagation();
     }
 
-    if (!title || !description || !thumbnail || !video || !rpid) {
+    if (
+      !title ||
+      !description ||
+      !thumbnail ||
+      !video ||
+      !rpid ||
+      !duration ||
+      !target
+    ) {
       console.log("all fields are required.");
       return;
     }
@@ -32,29 +42,33 @@ const ResourceUploadForm = () => {
       thumbnail,
       video,
       rpid,
+      duration,
+      target,
     };
 
     sendDataToServer(videoObj);
   };
 
   const sendDataToServer = async (videoObj) => {
-   
-    console.log("vid", videoObj);
-
     const formData = new FormData();
     formData.append("title", videoObj.title);
     formData.append("description", videoObj.description);
-    formData.append("thumbnail", videoObj.thumbnail);
+    formData.append("files", videoObj.thumbnail);
     formData.append("files", videoObj.video);
-    formData.append("files", videoObj.rpId);
-    console.log("fomd", formData);
+    formData.append("rpid", videoObj.rpid);
+    formData.append("duration", videoObj.duration);
+    formData.append("target", videoObj.target);
     try {
       let res = await axiosMultipartInstance.post(
         "smart_parent/addTutorial",
         formData
       );
-
       console.log("vid", res);
+      if (res.status === 200) {
+        alert("Tutorial uploaded successfully");
+      } else {
+        alert("Something went wrong");
+      }
     } catch (error) {
       console.log("err on upload video", error);
     }
@@ -85,27 +99,63 @@ const ResourceUploadForm = () => {
             >
               <h4 className="text-center text-dark"> Upload Tutorial </h4>
               <p className="text-center text-dark">Tutorail details</p>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Label>Tutorial Title</Form.Label>
-                <Form.Control
-                  onChange={(e) => setTitle(e.target.value)}
-                  name="title"
-                  value={title}
-                  type="text"
-                  placeholder="Tutorial Title"
-                  autoFocus
-                  required
-                />
-                <Form.Control.Feedback type="invalid">
-                  Please Tutorial title
-                </Form.Control.Feedback>
-              </Form.Group>
               <Row>
                 <Col>
-                  {" "}
+                  <Form.Group
+                    className="mb-3"
+                    controlId="exampleForm.ControlInput1"
+                  >
+                    <Form.Label>Tutorial Title</Form.Label>
+                    <Form.Control
+                      onChange={(e) => setTitle(e.target.value)}
+                      name="title"
+                      value={title}
+                      type="text"
+                      placeholder="Tutorial Title"
+                      autoFocus
+                      required
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Please Tutorial title
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Tutorial Target</Form.Label>
+                    <Form.Control
+                      name="target"
+                      onChange={(e) => setTarget(e.target.value)}
+                      value={target}
+                      type="text"
+                      placeholder="Video Target "
+                      required
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Please provide tutorial target
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Tutorial Duration in mins</Form.Label>
+                    <Form.Control
+                      onChange={(e) => setDuration(e.target.value)}
+                      name="duration"
+                      value={duration}
+                      type="text"
+                      placeholder="Tutorial Duration Eg: 3"
+                      autoFocus
+                      required
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Please Provide Tutorial Duration
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                </Col>
+                <Col>
                   <Form.Group className="mb-3">
                     <Form.Label>Tutorial Description</Form.Label>
                     <Form.Control
