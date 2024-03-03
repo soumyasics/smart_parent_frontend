@@ -2,6 +2,7 @@ import "./rplist.css";
 import Sidebar from "./Sidebar";
 import axiosInstance from "../../../../apis/axiosInstance";
 import { useState, useEffect } from "react";
+import { Table } from "react-bootstrap";
 
 function RPLIst() {
   const [rpLists, setRpLists] = useState([]);
@@ -18,15 +19,15 @@ function RPLIst() {
         const filterPendingReqs = allRps.filter(
           (rp) => rp?.isAdminApproved == "pending"
         );
-console.log(filterPendingReqs,"data");
+        console.log(filterPendingReqs, "data");
         setRpLists(filterPendingReqs);
       })
       .catch((err) => {
         console.log("err", err);
       });
   }
- 
-  console.log(rpLists,"list");
+
+  console.log(rpLists, "list");
   function handleRejectClick(id) {
     console.log(id);
     axiosInstance
@@ -75,13 +76,19 @@ console.log(filterPendingReqs,"data");
           <Sidebar />
         </div>
         <div style={{ maxWidth: "77%" }} className="container">
-         {rpLists.length === 0 && (
+          {rpLists.length === 0 && (
             <h1 className="mt-5"> No Resource Person Requests Found</h1>
-         )}
-         {rpLists.length > 0 && (
+          )}
+          {rpLists.length > 0 && (
             <div>
               <h3 className="mt-5 ms-3">All Resource person Requests</h3>
-              <table className="mt-5 ms-3" style={{ width: "100%" }}>
+              <Table
+                striped
+                bordered
+                hover
+                className="mt-5 ms-3"
+                style={{ width: "100%" }}
+              >
                 <thead style={{ height: "50px" }}>
                   <tr>
                     <th>No</th>
@@ -97,7 +104,7 @@ console.log(filterPendingReqs,"data");
                 <tbody>
                   {rpLists.map((rp, index) => {
                     return (
-                      <tr key={index}>
+                      <tr key={index} className="mt-4">
                         <td>{index + 1}</td>
                         <td>{rp.name}</td>
                         <td>{rp.email}</td>
@@ -128,9 +135,9 @@ console.log(filterPendingReqs,"data");
                     );
                   })}
                 </tbody>
-              </table>
+              </Table>
             </div>
-         )}
+          )}
         </div>
       </div>
     </div>
