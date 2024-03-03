@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+
 const ViewResourcePerson = () => {
   const navigate = useNavigate();
 
