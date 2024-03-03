@@ -7,18 +7,55 @@ function Rpnav() {
   const navigate = useNavigate();
   const [activeUser, setActiveUser] = useState(null);
   useEffect(() => {
-    if (localStorage.getItem("parentData")) {
-      setActiveUser(JSON.parse(localStorage.getItem("parentData")));
+    if (localStorage.getItem("activeRp")) {
+      setActiveUser(JSON.parse(localStorage.getItem("activeRp")));
+    } else {
+      console.log("rp not logged in");
     }
   }, []);
-  console.log("ac", activeUser);
+
+  function isRpLoggedIn() {
+    if (localStorage.getItem("activeRp")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   const handleLogout = () => {
     if (localStorage.getItem("parentData")) {
       localStorage.removeItem("parentData");
     }
-    navigate("/sign_in");
+    if (localStorage.getItem("activeRp")) {
+      localStorage.removeItem("activeRp");
+    }
+    setTimeout(() => {
+      navigate("/admin");
+    }, 1500);
   };
+
+  const redirectViewTutorials = () => {
+    if (isRpLoggedIn()) {
+      navigate("/rp-view-tutorials");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    }
+  };
+  console.log("act user", activeUser);
+
+  function navigateTutorials() {
+    if (isRpLoggedIn()) {
+      navigate("/rp-add-tutorial");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    }
+  }
 
   return (
     <div>
@@ -53,7 +90,7 @@ function Rpnav() {
             <ul class="navbar-nav a1" style={{ marginRight: "51px" }}>
               <li
                 style={{ cursor: "pointer" }}
-                onClick={() => navigate("/rp-add-tutorial")}
+                onClick={navigateTutorials}
                 class="nav-item"
               >
                 <a class="nav-link active text-white" aria-current="page">
@@ -62,22 +99,19 @@ function Rpnav() {
               </li>
               <li
                 style={{ cursor: "pointer" }}
-                onClick={() => navigate("/rp-view-tutorials")}
+                onClick={redirectViewTutorials}
                 class="nav-item"
               >
                 <a class="nav-link active text-white" aria-current="page">
                   View
                 </a>
               </li>
-              <li class="nav-item" onClick={() => navigate("/parent_home")}>
+              <li class="nav-item">
                 <a class="nav-link active text-white" href="#" id="a2">
                   Subscribers
                 </a>
               </li>
-              <li
-                class="nav-item"
-                onClick={() => navigate("/user-my-subscription")}
-              >
+              <li class="nav-item">
                 <a class="nav-link active text-white" href="#" id="a3">
                   Tasks
                 </a>
@@ -93,11 +127,23 @@ function Rpnav() {
                     className="nav-link active text-danger"
                     id="a5"
                   >
-                    profile
+                    Logout
                   </a>
                 </li>
               ) : (
-                ""
+                <li
+                  class="nav-item"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/admin")}
+                >
+                  <a
+                    style={{ color: "red", fontWeight: "800" }}
+                    className="nav-link active text-danger"
+                    id="a5"
+                  >
+                    Login
+                  </a>
+                </li>
               )}
             </ul>
           </div>
