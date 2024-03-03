@@ -11,7 +11,7 @@ import Footer from "../../../../pages/commonHomePage/Components/commonFooter";
 
 function Counselor() {
   return (
-    <>
+    <div>
       <Navbar />
 
       <div className="counsellor">
@@ -161,7 +161,7 @@ function Counselor() {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

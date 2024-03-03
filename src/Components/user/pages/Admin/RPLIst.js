@@ -18,13 +18,15 @@ function RPLIst() {
         const filterPendingReqs = allRps.filter(
           (rp) => rp?.isAdminApproved == "pending"
         );
-
+console.log(filterPendingReqs,"data");
         setRpLists(filterPendingReqs);
       })
       .catch((err) => {
         console.log("err", err);
       });
   }
+ 
+  console.log(rpLists,"list");
   function handleRejectClick(id) {
     console.log(id);
     axiosInstance
@@ -71,13 +73,12 @@ function RPLIst() {
       <div className="row">
         <div className="col-2">
           <Sidebar />
-          <Sidebar />
         </div>
         <div style={{ maxWidth: "77%" }} className="container">
-          {rpLists.length === 0 && (
+         {rpLists.length === 0 && (
             <h1 className="mt-5"> No Resource Person Requests Found</h1>
-          )}
-          {rpLists.length > 0 && (
+         )}
+         {rpLists.length > 0 && (
             <div>
               <h3 className="mt-5 ms-3">All Resource person Requests</h3>
               <table className="mt-5 ms-3" style={{ width: "100%" }}>
@@ -129,7 +130,7 @@ function RPLIst() {
                 </tbody>
               </table>
             </div>
-          )}
+         )}
         </div>
       </div>
     </div>

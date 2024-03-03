@@ -15,68 +15,27 @@ function Sidebar() {
                 </span>{" "}
                 Dashboard
               </a>
-              <ul
-                className="nav-pills nav-stacked"
-                style={{ listStyleType: "none" }}
-              >
-                <li>
-                  <Link to="/rp_list">Resource person List</Link>
-                </li>
-                <li>
-                  <a href="#">Counselor List </a>
-                </li>
-                <li>
-                  <a href="#">Parents List </a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">
+              <Link to="/rp_list">
                 <span className="fa-stack fa-lg pull-left">
-                  <i className="fa fa-flag fa-stack-1x " />
-                </span>
-                Shortcut
-              </a>
-              <ul
-                className="nav-pills nav-stacked"
-                style={{ listStyleType: "none" }}
-              >
-                <li>
-                  <a href="#">
-                    <span className="fa-stack fa-lg pull-left">
-                      <i className="fa fa-flag fa-stack-1x " />
-                    </span>
-                    link1
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span className="fa-stack fa-lg pull-left">
-                      <i className="fa fa-flag fa-stack-1x " />
-                    </span>
-                    link2
-                  </a>
-                </li>
-              </ul>
+                  <i className="fa fa-dashboard fa-stack-1x " />
+                </span>{" "}
+                Resource person List
+              </Link>
+              <Link to="/counsiler_list">
+              <span className="fa-stack fa-lg pull-left">
+                <i className="fa fa-dashboard fa-stack-1x " />
+              </span>{" "}
+              Counselor List 
+            </Link>
+            <Link to="">
+            <span className="fa-stack fa-lg pull-left">
+              <i className="fa fa-dashboard fa-stack-1x " />
+            </span>{" "}
+            Parents List
+          </Link>
+              
             </li>
-            <li>
-              <a href="#">
-                <span className="fa-stack fa-lg pull-left">
-                  <i className="fa fa-cloud-download fa-stack-1x " />
-                </span>
-                Overview
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                {" "}
-                <span className="fa-stack fa-lg pull-left">
-                  <i className="fa fa-cart-plus fa-stack-1x " />
-                </span>
-                Events
-              </a>
-            </li>
-            <li>
+            <li> 
               <a href="#">
                 <span className="fa-stack fa-lg pull-left">
                   <i className="fa fa-youtube-play fa-stack-1x " />
@@ -99,6 +58,12 @@ function Sidebar() {
                 </span>
                 Contact
               </a>
+              <Link to="">
+              <span className="fa-stack fa-lg pull-left">
+                <i className="fa fa-flag fa-stack-1x " />
+              </span>
+              Logout
+            </Link>
             </li>
           </ul>
         </div>
