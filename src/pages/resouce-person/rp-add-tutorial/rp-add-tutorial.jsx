@@ -6,8 +6,10 @@ import { Col, Form, Row, Button, Modal } from "react-bootstrap";
 import "./rp-add-tutorial.css";
 import RpNav from "../../../Components/resource_person/navbar/Rpnav";
 import axiosInstance from "../../../apis/axiosInstance";
+import { useNavigate } from "react-router";
 import axiosMultipartInstance from "../../../apis/axiosMultipartInstance";
 const ResourceUploadForm = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("Learn How to Code");
   const [description, setDescription] = useState(
     "Learn how to code this video help your child"
@@ -69,6 +71,9 @@ const ResourceUploadForm = () => {
       console.log("vid", res);
       if (res.status === 200) {
         alert("Tutorial uploaded successfully");
+        setTimeout(() => {
+          navigate("/rp-view-tutorials");
+        }, 1000);
       } else {
         alert("Something went wrong");
       }
