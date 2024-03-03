@@ -65,7 +65,7 @@ const RpViewTutorials = () => {
       <Rpnav />
       <div>
         {allTutorials.length > 0 && (
-          <h1 className="text-center"> All Tutorials </h1>
+          <h1 className="text-center mt-5"> All Tutorials </h1>
         )}
 
         <div
@@ -93,15 +93,15 @@ const RpViewTutorials = () => {
                 "https://storage.googleapis.com/proudcity/mebanenc/uploads/2021/03/placeholder-image.png";
             }
 
-            let title = tutorial?.title2
-              ? tutorial.title2.length > 50
-                ? tutorial.title2.substring(0, 50) + "..."
-                : tutorial.title2
+            let title = tutorial?.title
+              ? tutorial.title.length > 50
+                ? tutorial.title.substring(0, 50) + "..."
+                : tutorial.title
               : "Title";
-            let description = tutorial?.description2
-              ? tutorial.description2.length > 50
-                ? tutorial.description2.substring(0, 50) + "..."
-                : tutorial.description2
+            let description = tutorial?.description
+              ? tutorial.description.length > 50
+                ? tutorial.description.substring(0, 50) + "..."
+                : tutorial.description
               : "Description";
             return (
               <Card key={index} style={{ width: "18rem", maxHeight: "400px" }}>

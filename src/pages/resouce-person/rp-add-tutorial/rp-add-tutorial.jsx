@@ -8,14 +8,16 @@ import RpNav from "../../../Components/resource_person/navbar/Rpnav";
 import axiosInstance from "../../../apis/axiosInstance";
 import axiosMultipartInstance from "../../../apis/axiosMultipartInstance";
 const ResourceUploadForm = () => {
-  const [title, setTitle] = useState("vid tit");
-  const [description, setDescription] = useState("vid des");
+  const [title, setTitle] = useState("Learn How to Code");
+  const [description, setDescription] = useState(
+    "Learn how to code this video help your child"
+  );
   const [thumbnail, setThumbnail] = useState(null);
   const [video, setVideo] = useState(null);
   const [rpid, setRpid] = useState("65dc8ef9c5a825fd60e37b07");
   const [validated, setValidated] = useState(false);
-  const [target, setTarget] = useState("");
-  const [duration, setDuration] = useState("");
+  const [target, setTarget] = useState("3");
+  const [duration, setDuration] = useState("20");
 
   const handleUploadTutorail = (e) => {
     e.preventDefault();
@@ -132,7 +134,7 @@ const ResourceUploadForm = () => {
                       onChange={(e) => setTarget(e.target.value)}
                       value={target}
                       type="text"
-                      placeholder="Video Target "
+                      placeholder="Video Target age Eg: 3"
                       required
                     />
                     <Form.Control.Feedback type="invalid">

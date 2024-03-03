@@ -7,8 +7,8 @@ function Rpnav() {
   const navigate = useNavigate();
   const [activeUser, setActiveUser] = useState(null);
   useEffect(() => {
-    if (localStorage.getItem("parentData")) {
-      setActiveUser(JSON.parse(localStorage.getItem("parentData")));
+    if (localStorage.getItem("activeRp")) {
+      setActiveUser(JSON.parse(localStorage.getItem("activeRp")));
     }
   }, []);
   console.log("ac", activeUser);
@@ -17,7 +17,7 @@ function Rpnav() {
     if (localStorage.getItem("parentData")) {
       localStorage.removeItem("parentData");
     }
-    navigate("/sign_in");
+    navigate("/admin");
   };
 
   return (
@@ -69,15 +69,12 @@ function Rpnav() {
                   View
                 </a>
               </li>
-              <li class="nav-item" onClick={() => navigate("/parent_home")}>
+              <li class="nav-item">
                 <a class="nav-link active text-white" href="#" id="a2">
                   Subscribers
                 </a>
               </li>
-              <li
-                class="nav-item"
-                onClick={() => navigate("/user-my-subscription")}
-              >
+              <li class="nav-item">
                 <a class="nav-link active text-white" href="#" id="a3">
                   Tasks
                 </a>
@@ -93,11 +90,23 @@ function Rpnav() {
                     className="nav-link active text-danger"
                     id="a5"
                   >
-                    profile
+                    Logout
                   </a>
                 </li>
               ) : (
-                ""
+                <li
+                  class="nav-item"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/admin")}
+                >
+                  <a
+                    style={{ color: "red", fontWeight: "800" }}
+                    className="nav-link active text-danger"
+                    id="a5"
+                  >
+                    Login
+                  </a>
+                </li>
               )}
             </ul>
           </div>
