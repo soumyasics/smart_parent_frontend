@@ -7,12 +7,12 @@ import "./rp-add-tutorial.css";
 import axiosInstance from "../../../apis/axiosInstance";
 import axiosMultipartInstance from "../../../apis/axiosMultipartInstance";
 const ResourceUploadForm = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("vid tit");
+  const [description, setDescription] = useState("vid des");
   const [thumbnail, setThumbnail] = useState(null);
   const [video, setVideo] = useState(null);
-  const [validated, setValidated] = useState(false);
   const [rpid, setRpid] = useState("65dc8ef9c5a825fd60e37b07");
+  const [validated, setValidated] = useState(false);
 
   const handleUploadTutorail = (e) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ const ResourceUploadForm = () => {
       e.stopPropagation();
     }
 
-    if (!title || !description || !thumbnail || !video) {
+    if (!title || !description || !thumbnail || !video || !rpid) {
       console.log("all fields are required.");
       return;
     }
@@ -31,19 +31,28 @@ const ResourceUploadForm = () => {
       description,
       thumbnail,
       video,
+      rpid,
     };
 
     sendDataToServer(videoObj);
   };
 
   const sendDataToServer = async (videoObj) => {
+   
     console.log("vid", videoObj);
+
+    const formData = new FormData();
+    formData.append("title", videoObj.title);
+    formData.append("description", videoObj.description);
+    formData.append("thumbnail", videoObj.thumbnail);
+    formData.append("files", videoObj.video);
+    formData.append("files", videoObj.rpId);
+    console.log("fomd", formData);
     try {
-      let res = await axiosMultipartInstance
-        .post("smart_parent/addTutorial", videoObj)
-        .then((res) => {
-          console.log(res.data);
-        });
+      let res = await axiosMultipartInstance.post(
+        "smart_parent/addTutorial",
+        formData
+      );
 
       console.log("vid", res);
     } catch (error) {
