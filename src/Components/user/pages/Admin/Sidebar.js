@@ -9,12 +9,12 @@ function Sidebar() {
         <div id="sidebar-wrapper">
           <ul className="sidebar-nav nav-pills nav-stacked" id="menu">
             <li className="active">
-              <a href="">
+              <Link to="/admin_dashboard">
                 <span className="fa-stack fa-lg pull-left">
                   <i className="fa fa-dashboard fa-stack-1x " />
                 </span>{" "}
                 Dashboard
-              </a>
+              </Link>
               <Link to="/rp_list">
                 <span className="fa-stack fa-lg pull-left">
                   <i className="fa fa-dashboard fa-stack-1x " />

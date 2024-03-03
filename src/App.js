@@ -106,7 +106,7 @@ function App() {
           <Route path="/admin_home" element={<AdminHome />} />
           <Route
             path="/resource_person_home"
-            element={<ResourcePersonHome />}
+            element={[<ResourcePersonHome />]}
           />
           <Route path="/parent_home" element={<ParentHome />} />
           <Route path="/rp_list" element={<RPLIst />} />
