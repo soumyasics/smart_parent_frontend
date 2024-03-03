@@ -9,16 +9,53 @@ function Rpnav() {
   useEffect(() => {
     if (localStorage.getItem("activeRp")) {
       setActiveUser(JSON.parse(localStorage.getItem("activeRp")));
+    } else {
+      console.log("rp not logged in");
     }
   }, []);
-  console.log("ac", activeUser);
+
+  function isRpLoggedIn() {
+    if (localStorage.getItem("activeRp")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   const handleLogout = () => {
     if (localStorage.getItem("parentData")) {
       localStorage.removeItem("parentData");
     }
-    navigate("/admin");
+    if (localStorage.getItem("activeRp")) {
+      localStorage.removeItem("activeRp");
+    }
+    setTimeout(() => {
+      navigate("/admin");
+    }, 1500);
   };
+
+  const redirectViewTutorials = () => {
+    if (isRpLoggedIn()) {
+      navigate("/rp-view-tutorials");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    }
+  };
+  console.log("act user", activeUser);
+
+  function navigateTutorials() {
+    if (isRpLoggedIn()) {
+      navigate("/rp-add-tutorial");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    }
+  }
 
   return (
     <div>
@@ -53,7 +90,7 @@ function Rpnav() {
             <ul class="navbar-nav a1" style={{ marginRight: "51px" }}>
               <li
                 style={{ cursor: "pointer" }}
-                onClick={() => navigate("/rp-add-tutorial")}
+                onClick={navigateTutorials}
                 class="nav-item"
               >
                 <a class="nav-link active text-white" aria-current="page">
@@ -62,7 +99,7 @@ function Rpnav() {
               </li>
               <li
                 style={{ cursor: "pointer" }}
-                onClick={() => navigate("/rp-view-tutorials")}
+                onClick={redirectViewTutorials}
                 class="nav-item"
               >
                 <a class="nav-link active text-white" aria-current="page">
