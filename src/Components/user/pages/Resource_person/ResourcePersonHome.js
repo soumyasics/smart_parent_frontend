@@ -1,12 +1,11 @@
-import React from 'react'
+import React from "react";
 
 function ResourcePersonHome() {
   return (
     <div>
-    Resource person
+      <h1>Resource Person Home</h1>
     </div>
-  )
+  );
 }
 
-export default ResourcePersonHome
-
+export default ResourcePersonHome;

@@ -26,14 +26,18 @@ const MySubscriptions = () => {
     }
   }
   async function getData(id) {
-    let res = await axiosInstance.get(
-      "/smart_parent/get-all-subscriptions-by-parent-id/" + id
-    );
-    let rpData = res?.data?.data || null;
-    if (rpData) {
-      setAllSubscription(rpData);
-    } else {
-      console.log("can't fetch parent subscription details");
+    try {
+      let res = await axiosInstance.get(
+        "/smart_parent/get-all-subscriptions-by-parent-id/" + id
+      );
+      let rpData = res?.data?.data || null;
+      if (rpData) {
+        setAllSubscription(rpData);
+      } else {
+        console.log("can't fetch parent subscription details");
+      }
+    } catch (error) {
+      console.log("error on get subscription data by parent id", error);
     }
   }
 

@@ -61,7 +61,7 @@ const ChildRegistrationForm = ({ parentData }) => {
         console.log("stat", res.data.data);
         if (status) {
           let userData = res?.data?.data || null;
-         
+
           alert("Registration successfull.");
 
           setTimeout(() => {
@@ -195,8 +195,11 @@ const ChildRegistrationForm = ({ parentData }) => {
             </Form.Control.Feedback>
           </Form.Group>
         </Row>
-
-        <Button type="submit">Sign Up</Button>
+        <div className="d-flex justify-content-center mt-5">
+          <Button type="submit" className="btn btn-primary w-50">
+            Sign Up
+          </Button>
+        </div>
       </Form>
     </div>
   );

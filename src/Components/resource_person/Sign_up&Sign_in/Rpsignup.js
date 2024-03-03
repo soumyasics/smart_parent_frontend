@@ -4,8 +4,9 @@ import { Icon } from "@iconify-icon/react";
 import "./Rpsignup.css";
 import axios from "axios";
 import axiosInstance from "../../../apis/axiosInstance";
-
+import { useNavigate } from "react-router-dom";
 function Rpsignup() {
+  const navigate = useNavigate();
   const [rpsignup, setRpsignup] = useState({
     name: "rp name",
     age: "20",
@@ -116,6 +117,9 @@ function Rpsignup() {
         .then((res) => {
           console.log("response", res);
           alert("Waiting for Admin approval..");
+          setTimeout(() => {
+            navigate("/admin");
+          }, 1500);
         })
         .catch((err) => {
           console.log("error", err);
@@ -272,7 +276,7 @@ function Rpsignup() {
             )}
           </div>
 
-          {/* <div className="files">
+          <div className="files">
             <div className="label">
               {" "}
               <label>Certificate</label>{" "}
@@ -284,9 +288,9 @@ function Rpsignup() {
                 {errors.img}
               </div>
             )}
-          </div> */}
+          </div>
 
-          {/* <div className="files">
+          <div className="files">
             <div className="label">
               {" "}
               <label>Profile Picture</label>{" "}
@@ -298,17 +302,21 @@ function Rpsignup() {
                 {errors.profilePicture}
               </div>
             )}
-          </div> */}
+          </div>
 
           <div className="text">
             <h5>
-              Already have an account? <Link to="">Login now</Link>
+              Already have an account? <Link to="/admin">Login now</Link>
             </h5>
           </div>
 
-          <div className="inbutton">
-            <button type="submit">
-              Sign up <Icon icon="grommet-icons:connect" className="icon" />
+          <div className="inbutton d-flex justify-content-center">
+            <button
+              type="submit"
+              className="btn btn-primary icon"
+              variant="primary"
+            >
+              Sign up <Icon icon="grommet-icons:connect" />
             </button>
           </div>
         </form>
