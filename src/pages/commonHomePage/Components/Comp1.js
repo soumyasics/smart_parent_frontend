@@ -3,6 +3,7 @@ import logo from "../Assets/logo.png";
 import "./Navitem.css";
 import { useNavigate } from "react-router-dom";
 import "./Logo.css";
+
 function Comp1() {
   const navigate = useNavigate();
   const [activeUser, setActiveUser] = useState(null);

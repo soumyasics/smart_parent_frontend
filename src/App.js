@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import SignIn from "./Components/user/pages/Sign_in & Sign_up/SignIn";
 import SignUp from "./Components/user/pages/Sign_in & Sign_up/SignUp";
-import Footer from "./Components/user/footer/Footer";
+import Footer from "../src/pages/commonHomePage/Components/Footer";
 import ResetPass from "./Components/user/pages/Sign_in & Sign_up/ResetPass";
 import Counselor from "./Components/user/pages/counsellor/Counselor";
 import RpAddTutorial from "./pages/resouce-person/rp-add-tutorial/rp-add-tutorial";
@@ -73,7 +73,10 @@ function App() {
           <Route path="/user_chat" element={<Userchat />} />
           <Route path="/user_profile" element={<Userprofile />} />
           <Route path="/user_editprofile" element={<Editprofile />} />
-          <Route path="/user-payment/:rpId" element={<SubscribePaymentPage />} />
+          <Route
+            path="/user-payment/:rpId"
+            element={<SubscribePaymentPage />}
+          />
           <Route path="/user-my-subscription" element={<SubscriptionTable />} />
           {/* Counselor */}
 
@@ -109,14 +112,15 @@ function App() {
           <Route path="/admin_home" element={<AdminHome />} />
           <Route
             path="/resource_person_home"
-            element={[<ResourcePersonHome />]}
+            element={[<Rpnav />, <ResourcePersonHome />, <Footer />]}
           />
           <Route path="/parent_home" element={<ParentHome />} />
           <Route path="/rp_list" element={<RPLIst />} />
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/counsiler_list" element={<Counselorlist />} />
           <Route path="/user_nav" element={<Usernav />} />
-          <Route path="/admin_dashboard" element={<AdminDashboard/>} />
+          <Route path="/admin_dashboard" element={<AdminDashboard />} />
+          <Route path="/rpnav" element={<Rpnav />} />
         </Routes>
       </Router>
     </div>
