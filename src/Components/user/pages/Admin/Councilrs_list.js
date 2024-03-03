@@ -1,7 +1,7 @@
 import "./rplist.css";
 import Sidebar from "./Sidebar";
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from "../../../../apis/axiosInstance";
 
 function Counselorlist() {
 
@@ -10,7 +10,7 @@ function Counselorlist() {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get('http://localhost:4009/smart_parent/viewAllCouncilars');
+            const response = await axiosInstance.get('smart_parent/viewAllCouncilars');
             setUserData(response.data.data); 
             console.log(response.data.data); 
 
@@ -48,7 +48,7 @@ function Counselorlist() {
         {userData.map((data)=>{
             return(
                 <tr>
-                <td scope="row"><img src={data.profilePicture}></img></td>
+                <td scope="row"><img src={data.profilePicture} alt=""></img></td>
                 <td>{data.name}</td>
                 <td>{data.experienceYear}</td>
                 <td>{data.age}</td>

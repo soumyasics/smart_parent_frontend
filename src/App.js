@@ -15,7 +15,6 @@ import Counselor from "./Components/user/pages/counsellor/Counselor";
 
 import AdminSignin from "./Components/user/pages/Sign_in & Sign_up/AdminSignin";
 import AdminHome from "./Components/user/pages/Admin/AdminHome";
-import Resource_Person_Home from "./Components/user/pages/Resource_person/ResourcePersonHome";
 import ResourcePersonHome from "./Components/user/pages/Resource_person/ResourcePersonHome";
 import ParentHome from "./Components/parent/ParentHome";
 
@@ -48,6 +47,8 @@ import CommonHomePage from "./pages/commonHomePage/commonHomePage";
 import ViewResoucePerson from "./pages/viewResoucePerson/viewResoucePerson";
 import ViewResourcePersonDetails from "./pages/viewResoucePerson/resoucePersonDetails";
 import SubscribePaymentPage from "./pages/subscribePaymentPage/subscribePaymentPage";
+import AdminDashboard from "./Components/user/pages/Admin/AdminDashboard";
+
 function App() {
   return (
     <div className="appjs">
@@ -105,13 +106,14 @@ function App() {
           <Route path="/admin_home" element={<AdminHome />} />
           <Route
             path="/resource_person_home"
-            element={<ResourcePersonHome />}
+            element={[<ResourcePersonHome />]}
           />
           <Route path="/parent_home" element={<ParentHome />} />
           <Route path="/rp_list" element={<RPLIst />} />
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/counsiler_list" element={<Counselorlist />} />
           <Route path="/user_nav" element={<Usernav />} />
+          <Route path="/admin_dashboard" element={<AdminDashboard/>} />
         </Routes>
       </Router>
     </div>
