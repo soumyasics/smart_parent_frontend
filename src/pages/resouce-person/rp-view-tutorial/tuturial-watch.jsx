@@ -30,13 +30,34 @@ const TutorailWatch = () => {
     if (tutorialVideoLink) {
       let URL = `${BASE_URL}${tutorialVideoLink}`;
       console.log("ur", URL);
-      // validate here its a valid url
-      setVideoUrl(URL);
+      // validate if it's a valid video URL
+      if (isValidVideoURL(URL)) {
+        setVideoUrl(URL);
+      } else {
+        console.log("Video url might be wrong.");
+        setVideoUrl(null);
+      }
     } else {
       console.log("Video url might be wrong.");
       setVideoUrl(null);
     }
   }, [tutorial]);
+
+  function isValidVideoURL(url) {
+    const videoExtensions = [
+      ".mp4",
+      ".avi",
+      ".mov",
+      ".wmv",
+      ".mkv",
+      ".flv",
+      ".webm",
+      ".ogg",
+      ".m4v",
+    ];
+    let fileExtension = url.substring(url.lastIndexOf(".")).toLowerCase();
+    return videoExtensions.includes(fileExtension);
+  }
   async function getData() {
     try {
       const res = await axiosInstance.get("smart_parent/getTutorialById/" + id);
