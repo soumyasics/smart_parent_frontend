@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import axiosInstance from "../../../../apis/axiosInstance";
 import { useState, useEffect } from "react";
+import "./admin.css"
 
 function AdminDashboard() {
   const [rpLists, setRpLists] = useState([]);
@@ -116,7 +117,7 @@ function AdminDashboard() {
                     <tr key={index}>
                       <td>{index + 1}</td>
                       <td>
-                        <img src=""></img>
+                        <img className="parentimage" src={"http://localhost:4009/" + (rp.profilePicture ? rp.profilePicture.originalname : '')}></img>
                       </td>
                       <td>{rp.name}</td>
                       <td>{rp.email}</td>
