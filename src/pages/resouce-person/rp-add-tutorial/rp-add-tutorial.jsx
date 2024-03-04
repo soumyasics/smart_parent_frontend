@@ -8,6 +8,7 @@ import RpNav from "../../../Components/resource_person/navbar/Rpnav";
 import axiosInstance from "../../../apis/axiosInstance";
 import { useNavigate } from "react-router";
 import axiosMultipartInstance from "../../../apis/axiosMultipartInstance";
+
 const ResourceUploadForm = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("Learn How to Code");
@@ -16,10 +17,27 @@ const ResourceUploadForm = () => {
   );
   const [thumbnail, setThumbnail] = useState(null);
   const [video, setVideo] = useState(null);
-  const [rpid, setRpid] = useState("65dc8ef9c5a825fd60e37b07");
+  const [rpid, setRpid] = useState("");
   const [validated, setValidated] = useState(false);
   const [target, setTarget] = useState("3");
   const [duration, setDuration] = useState("20");
+
+  useEffect(() => {
+    if (localStorage.getItem("activeRp")) {
+      let activeRpId =
+        JSON.parse(localStorage.getItem("activeRp"))?._id || null;
+      console.log("ac rp id", activeRpId);
+      if (activeRpId) {
+        setRpid(activeRpId);
+      }
+    } else {
+      console.log("rp id not found in the local storage");
+      alert("Resource person is not logged in yet.");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 5);
+    }
+  }, []);
 
   const handleUploadTutorail = (e) => {
     e.preventDefault();
