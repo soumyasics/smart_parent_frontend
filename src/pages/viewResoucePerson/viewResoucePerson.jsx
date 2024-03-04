@@ -64,7 +64,7 @@ const ViewResourcePerson = () => {
       </p>
 
       <div
-        className=" mx-auto p-3 d-flex flex-wrap gap-4 ps-5"
+        className="justify-content-center mx-auto p-3 d-flex flex-wrap gap-5 ps-5"
         style={{
           minHeight: "500px",
           width: "95%",

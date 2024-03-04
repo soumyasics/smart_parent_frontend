@@ -11,6 +11,7 @@ import isParentLoggedIn from "../../customHooks/checkParentLoggedIn";
 import { Button } from "react-bootstrap";
 import manImgPlaceholder from "../../Assets/illustrators/man-placeholder.jpg";
 import BASE_URL from "../../apis/baseUrl";
+import ReactStars from "react-rating-stars-component";
 
 import ResoucePersonSubscribeModel from "./subscribeModel";
 const ResoucePersonDetails = () => {
@@ -132,6 +133,10 @@ const ResoucePersonDetails = () => {
       console.log(error);
     }
   }
+
+  const ratingChanged = (newRating) => {
+    console.log("new rating", newRating);
+  };
   return (
     <div>
       <ResoucePersonSubscribeModel
@@ -177,8 +182,19 @@ const ResoucePersonDetails = () => {
                     Experience Years: {rpDetails?.experienceYear}
                   </Card.Text>
                   <Card.Text>
-                    Description: I have a lot of experience in this field. I can
-                    help you with your Childs tasks and needs. Subscribes Me.
+                    <div className="d-flex ps-0">
+                      <p className="mt-2">Rating:</p>
+                      <div className="ms-3">
+                        <ReactStars
+                          count={5}
+                          edit={false}
+                          value={rpDetails?.rating}
+                          onChange={ratingChanged}
+                          size={24}
+                          activeColor="#ffd700"
+                        />
+                      </div>
+                    </div>
                   </Card.Text>
                 </Card.Body>
               )}

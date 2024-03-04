@@ -3,7 +3,12 @@ import Navbar from "../../pages/commonHomePage/Components/Comp1";
 import Footer from "../../pages/commonHomePage/Components/commonFooter";
 import { Table } from "react-bootstrap";
 import axiosInstance from "../../apis/axiosInstance";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
+import BASE_URL from "../../apis/baseUrl";
+import manPlaceHolderImg from "../../Assets/illustrators/man-placeholder-2.jpg";
 const MySubscriptions = () => {
   const [allSubscription, setAllSubscription] = useState([]);
   const navigate = useNavigate();
@@ -26,9 +31,7 @@ const MySubscriptions = () => {
       console.log("Parent data not available in the Local storage");
     }
   }, []);
-  function redirectRpTask(id) {
-    console.log("rpid", id);
-  }
+
   function getActiveUserId() {
     let activeParent = JSON.parse(localStorage.getItem("parentData")) || null;
     if (activeParent && activeParent._id) {
@@ -44,7 +47,8 @@ const MySubscriptions = () => {
       );
       let rpData = res?.data?.data || null;
       if (rpData) {
-        setAllSubscription(rpData);
+        let reversedRpData = rpData.reverse();
+        setAllSubscription(reversedRpData);
       } else {
         console.log("can't fetch parent subscription details");
       }
@@ -53,9 +57,9 @@ const MySubscriptions = () => {
     }
   }
 
-  useEffect(() => {
-    console.log("alls ", allSubscription);
-  }, [allSubscription]);
+  const ratingChanged = (newRating) => {
+    console.log("new rating", newRating);
+  };
   return (
     <div>
       <Navbar />
@@ -75,36 +79,82 @@ const MySubscriptions = () => {
           </div>
 
           {allSubscription.length > 0 && (
-            <Table className="shadow" striped bordered hover>
-              <thead>
-                <tr>
-                  <th>No.</th>
-                  <th>Resouce Person Name</th>
-                  <th>Contact</th>
-                  <th>Email</th>
-                  <th>Experience Year</th>
-                </tr>
-              </thead>
-              <tbody>
-                {allSubscription.length > 0 &&
-                  allSubscription.map((item, index) => {
-                    console.log("it,", item);
-                    return (
-                      <tr key={item._id}>
-                        <td>{index + 1}</td>
-                        <td>{item?.resourcePersonId?.name}</td>
-                        <td>{item?.resourcePersonId?.contact}</td>
-                        <td>{item?.resourcePersonId?.email}</td>
-                        <td>{item?.resourcePersonId?.experienceYear}</td>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-            </Table>
+            <div className="parent-subscription-container">
+              {allSubscription.map((item, index) => {
+                console.log("ti", item);
+                let profilePictureUrl = manPlaceHolderImg;
+                if (item?.resourcePersonId?.profilePicture) {
+                  let filename =
+                    item?.resourcePersonId?.profilePicture?.filename || null;
+                  console.log("filename");
+                  if (filename) {
+                    profilePictureUrl = BASE_URL + filename;
+                  }
+                }
+                console.log("pro pic", profilePictureUrl);
+                return (
+                  <Card key={index} className="mt-5">
+                    <Card.Header>Resource Person</Card.Header>
+                    <Card.Body className="">
+                      <div
+                        style={{
+                          display: "inline-block",
+                          position: "absolute",
+                          right: "25px",
+                        }}
+                        className="mt-3"
+                      >
+                        <Card.Img
+                          className="rounded-circle"
+                          variant="top"
+                          src={profilePictureUrl}
+                          style={{
+                            width: "160px",
+                            height: "160px",
+                            boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                          }}
+                        />
+                      </div>
+                      <Card.Title>
+                        Name: {item?.resourcePersonId?.name || "John Doe"}
+                      </Card.Title>
+                      <Card.Text>
+                        Age: {item?.resourcePersonId?.age || 20}
+                      </Card.Text>
+                      <Card.Text>
+                        Experience Year:{" "}
+                        {item?.resourcePersonId?.experienceYear || 5}
+                      </Card.Text>
+                      <Card.Text>
+                        Contact: {item?.resourcePersonId?.contact}
+                      </Card.Text>
+                      <Button variant="primary">View More</Button>
+                    </Card.Body>
+                    <Card.Footer className="text-muted">
+                      <div className="d-flex ps-0">
+                        <p className="mt-2">Rating:</p>
+                        <div className="ms-3">
+                          <ReactStars
+                            count={5}
+                            edit={false}
+                            value={item?.resourcePersonId?.rating || 0}
+                            onChange={ratingChanged}
+                            size={24}
+                            activeColor="#ffd700"
+                          />
+                        </div>
+                      </div>
+                    </Card.Footer>
+                  </Card>
+                );
+              })}
+            </div>
           )}
         </div>
       </div>
-      <Footer />
+      <div className="mt-5">
+        <Footer />
+      </div>
     </div>
   );
 };
