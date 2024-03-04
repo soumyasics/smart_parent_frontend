@@ -10,6 +10,8 @@ function Comp1() {
   useEffect(() => {
     if (localStorage.getItem("parentData")) {
       setActiveUser(JSON.parse(localStorage.getItem("parentData")));
+    }else {
+      console.log("Parent data not found in the local storage");
     }
   }, []);
   console.log("ac", activeUser);

@@ -8,8 +8,19 @@ import { useParams } from "react-router-dom";
 
 const ViewResourcePerson = () => {
   const navigate = useNavigate();
-
   const [rpLists, setRpLists] = useState([]);
+
+  const [activeUser, setActiveUser] = useState(null);
+  useEffect(() => {
+    if (localStorage.getItem("parentData")) {
+      setActiveUser(JSON.parse(localStorage.getItem("parentData")));
+    } else {
+      console.log("Parent data not found in the local storage");
+      alert("Please login first");
+      navigate("/sign_in");
+    }
+  }, []);
+
   useEffect(() => {
     getData();
   }, []);
