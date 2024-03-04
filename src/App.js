@@ -49,8 +49,9 @@ import ViewResoucePerson from "./pages/viewResoucePerson/viewResoucePerson";
 import ViewResourcePersonDetails from "./pages/viewResoucePerson/resoucePersonDetails";
 import SubscribePaymentPage from "./pages/subscribePaymentPage/subscribePaymentPage";
 import AdminDashboard from "./Components/user/pages/Admin/AdminDashboard";
-import './App.css'
+import "./App.css";
 import TutorailWatch from "./pages/resouce-person/rp-view-tutorial/tuturial-watch";
+import SubscribedRp from "./pages/mySubscriptions/subscribedRp";
 
 function App() {
   return (
@@ -80,6 +81,7 @@ function App() {
             element={<SubscribePaymentPage />}
           />
           <Route path="/user-my-subscription" element={<SubscriptionTable />} />
+          <Route path="/subscribed-rp/:id" element={<SubscribedRp />} />
           {/* Counselor */}
 
           <Route path="/counselor_signup" element={<Counsellorsignup />} />

@@ -10,7 +10,7 @@ function Comp1() {
   useEffect(() => {
     if (localStorage.getItem("parentData")) {
       setActiveUser(JSON.parse(localStorage.getItem("parentData")));
-    }else {
+    } else {
       console.log("Parent data not found in the local storage");
     }
   }, []);
@@ -85,7 +85,18 @@ function Comp1() {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse " id="navbarNav">
-          <ul class="navbar-nav a1" style={{ marginRight: "51px" }}>
+          <ul class="navbar-nav a1 gap-4" style={{ marginRight: "60px" }}>
+            <li
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                navigate("/");
+              }}
+              class="nav-item"
+            >
+              <a class="nav-link active text-white" aria-current="page">
+                Home
+              </a>
+            </li>
             <li
               style={{ cursor: "pointer" }}
               onClick={redirectResourcePerson}
@@ -93,6 +104,15 @@ function Comp1() {
             >
               <a class="nav-link active text-white" aria-current="page">
                 Resource Person
+              </a>
+            </li>
+            <li
+              class="nav-item"
+              onClick={redirectSubscription}
+              style={{ cursor: "pointer" }}
+            >
+              <a class="nav-link active text-white" href="#" id="a3">
+                Subscriptions
               </a>
             </li>
             <li
@@ -104,20 +124,12 @@ function Comp1() {
                 Councilors
               </a>
             </li>
-            {/* <li class="nav-item" onClick={() => navigate("/parent_home")}>
-              <a class="nav-link active text-white" href="#" id="a2">
-                Parent
-              </a>
-            </li> */}
-            <li
-              class="nav-item"
-              onClick={redirectSubscription}
-              style={{ cursor: "pointer" }}
-            >
-              <a class="nav-link active text-white" href="#" id="a3">
-                Subscriptions
+            <li style={{ cursor: "pointer" }} class="nav-item">
+              <a class="nav-link active text-white" aria-current="page">
+                Profile
               </a>
             </li>
+
             {activeUser ? (
               <li
                 class="nav-item"

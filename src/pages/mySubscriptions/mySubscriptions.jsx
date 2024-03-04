@@ -40,6 +40,17 @@ const MySubscriptions = () => {
       return null;
     }
   }
+
+  const redirectSubscribedRp = (id) => {
+    if (activeUser) {
+      navigate("/subscribed-rp/" + id);
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/sign_in");
+      }, 1500);
+    }
+  };
   async function getData(id) {
     try {
       let res = await axiosInstance.get(
@@ -91,7 +102,6 @@ const MySubscriptions = () => {
                     profilePictureUrl = BASE_URL + filename;
                   }
                 }
-                console.log("pro pic", profilePictureUrl);
                 return (
                   <Card key={index} className="mt-5">
                     <Card.Header>Resource Person</Card.Header>
@@ -128,7 +138,14 @@ const MySubscriptions = () => {
                       <Card.Text>
                         Contact: {item?.resourcePersonId?.contact}
                       </Card.Text>
-                      <Button variant="primary">View More</Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => {
+                          redirectSubscribedRp(item?._id);
+                        }}
+                      >
+                        View More
+                      </Button>
                     </Card.Body>
                     <Card.Footer className="text-muted">
                       <div className="d-flex ps-0">
