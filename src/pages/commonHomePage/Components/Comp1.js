@@ -20,6 +20,37 @@ function Comp1() {
     }
     navigate("/sign_in");
   };
+
+  function redirectResourcePerson() {
+    if (activeUser) {
+      navigate("/view-resouce-person");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/sign_in");
+      }, 1500);
+    }
+  }
+  function redirectSubscription() {
+    if (activeUser) {
+      navigate("/user-my-subscription");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/sign_in");
+      }, 1500);
+    }
+  }
+  function redirectCouncilar() {
+    if (activeUser) {
+      navigate("/counsellor");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/sign_in");
+      }, 1500);
+    }
+  }
   return (
     <nav
       id="common-home-navbar"
@@ -27,6 +58,7 @@ function Comp1() {
     >
       <div className="container-fluid text-white">
         <img
+          style={{ cursor: "pointer" }}
           src={logo}
           onClick={() => navigate("/")}
           alt="Logo"
@@ -36,7 +68,9 @@ function Comp1() {
           id="logo"
         />
         &nbsp;&nbsp;
-        <b onClick={() => navigate("/")}>SmartParent.</b>
+        <b style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
+          SmartParent.
+        </b>
         <button
           className="navbar-toggler"
           type="button"
@@ -52,7 +86,7 @@ function Comp1() {
           <ul class="navbar-nav a1" style={{ marginRight: "51px" }}>
             <li
               style={{ cursor: "pointer" }}
-              onClick={() => navigate("/view-resouce-person")}
+              onClick={redirectResourcePerson}
               class="nav-item"
             >
               <a class="nav-link active text-white" aria-current="page">
@@ -61,24 +95,25 @@ function Comp1() {
             </li>
             <li
               style={{ cursor: "pointer" }}
-              onClick={() => navigate("/counsellor")}
+              onClick={redirectCouncilar}
               class="nav-item"
             >
               <a class="nav-link active text-white" aria-current="page">
                 Councilors
               </a>
             </li>
-            <li class="nav-item" onClick={() => navigate("/parent_home")}>
+            {/* <li class="nav-item" onClick={() => navigate("/parent_home")}>
               <a class="nav-link active text-white" href="#" id="a2">
                 Parent
               </a>
-            </li>
+            </li> */}
             <li
               class="nav-item"
-              onClick={() => navigate("/user-my-subscription")}
+              onClick={redirectSubscription}
+              style={{ cursor: "pointer" }}
             >
               <a class="nav-link active text-white" href="#" id="a3">
-                My Subscriptions
+                Subscriptions
               </a>
             </li>
             {activeUser ? (
@@ -86,10 +121,11 @@ function Comp1() {
                 class="nav-item"
                 style={{ cursor: "pointer" }}
                 onClick={handleLogout}
+                className="bg-danger text-white"
               >
                 <a
                   style={{ color: "red", fontWeight: "800" }}
-                  className="nav-link active text-danger"
+                  className="nav-link active text-white"
                   id="a5"
                 >
                   Logout
@@ -100,6 +136,7 @@ function Comp1() {
                 class="nav-item"
                 style={{ cursor: "pointer" }}
                 onClick={() => navigate("/sign_up")}
+                className="bg-success"
               >
                 <a class="nav-link active text-white" id="a5">
                   Signup
