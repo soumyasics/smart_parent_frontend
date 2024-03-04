@@ -1,5 +1,6 @@
 import React from "react";
 import "../../../parent/parenthome.css";
+import CommonFooter from "../../../../pages/commonHomePage/Components/commonFooter.jsx";
 
 function ResourcePersonHome() {
   return (
@@ -14,17 +15,7 @@ function ResourcePersonHome() {
             <button className="parent_home_button  me-5">Get Started</button>
           </div>
         </div>
-        <div className="row" id="parent_home_seconddiv">
-          <div class="col" id="img4">
-            <h1 className="heading">Parenting Skills</h1>
-          </div>
-          <div class="col" id="img5">
-            <h1 className="heading">Games & Activities</h1>
-          </div>
-          <div class="col" id="img6">
-            <h1 className="heading">Parenting programe</h1>
-          </div>
-        </div>
+
         <div className="parent_home_thirddiv">
           <h3 className="text-center pb-3">
             {" "}
@@ -81,6 +72,17 @@ function ResourcePersonHome() {
                 prioritizing quality time for bonding and nurturing growth"
               </div>
             </div>
+            <div className="row" id="parent_home_seconddiv">
+              <div class="col" id="img4">
+                <h1 className="heading">Parenting Skills</h1>
+              </div>
+              <div class="col" id="img5">
+                <h1 className="heading">Games & Activities</h1>
+              </div>
+              <div class="col" id="img6">
+                <h1 className="heading">Parenting programe</h1>
+              </div>
+            </div>
             <div className="col">
               <img
                 src="https://sf.ezoiccdn.com/ezoimgfmt/momscove.com/wp-content/uploads/2023/11/mother-taking-care-her-autistic-son-home.jpg?ezimgfmt=ng:webp/ngcb3"
@@ -91,18 +93,17 @@ function ResourcePersonHome() {
           </div>
         </div>
         <div className="container text-center p-5">
-         <h1>Teaching Family Model (TFM) </h1> 
-         The Teaching Family Model (TFM) is a
-          philosophy and practice of care and treatment that prioritizes
-          therapeutic relationships with caregivers as the primary conduit of
-          effective treatment in supportive family-style settings. The TFM is an
-          evidence-based approach which is fully integrated at both the
-          individual and the organizational level. It provides effective,
-          individualized and trauma-informed treatment services to children,
-          youth, adults, and families. The model is rooted in social learning
-          theory and through peer-reviewed research and clinical practice, the
-          Teaching Family Model is recognized to be cost-effective, replicable,
-          and highly effective for all participants.
+          <h1>Teaching Family Model (TFM) </h1>
+          The Teaching Family Model (TFM) is a philosophy and practice of care
+          and treatment that prioritizes therapeutic relationships with
+          caregivers as the primary conduit of effective treatment in supportive
+          family-style settings. The TFM is an evidence-based approach which is
+          fully integrated at both the individual and the organizational level.
+          It provides effective, individualized and trauma-informed treatment
+          services to children, youth, adults, and families. The model is rooted
+          in social learning theory and through peer-reviewed research and
+          clinical practice, the Teaching Family Model is recognized to be
+          cost-effective, replicable, and highly effective for all participants.
         </div>
 
         <div className="parent_home_fifthdiv container">
@@ -130,6 +131,7 @@ function ResourcePersonHome() {
         </div>
       </div>
       <div className="mt-5"></div>
+      <CommonFooter />
     </div>
   );
 }
