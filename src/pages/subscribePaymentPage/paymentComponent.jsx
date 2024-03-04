@@ -37,6 +37,15 @@ const PaymentForm = () => {
         }
       } catch (error) {
         console.log("error from subscription", error);
+        if (error.response.status === 500) {
+          alert("Server error. Please try again later");
+          return;
+        }
+        if (error.response.status === 400) {
+          let errorMsg = error.response?.data?.message || "Payment Failed";
+          alert(errorMsg);
+          return;
+        }
       }
     } else {
       console.log("active parent not found, login again");

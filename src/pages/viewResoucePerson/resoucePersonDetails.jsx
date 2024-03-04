@@ -9,7 +9,9 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import isParentLoggedIn from "../../customHooks/checkParentLoggedIn";
 import { Button } from "react-bootstrap";
+import manImgPlaceholder from "../../Assets/illustrators/man-placeholder.jpg";
 import BASE_URL from "../../apis/baseUrl";
+import ReactStars from "react-rating-stars-component";
 
 import ResoucePersonSubscribeModel from "./subscribeModel";
 const ResoucePersonDetails = () => {
@@ -19,6 +21,7 @@ const ResoucePersonDetails = () => {
   const [tutorial, setTutorial] = useState(null);
   const [videoUrl, setVideoUrl] = useState(null);
   const [watchFree, setWatchFree] = useState(false);
+  const [profilePictureUrl, setProfilePictureUrl] = useState(manImgPlaceholder);
 
   useEffect(() => {
     getData();
@@ -26,8 +29,17 @@ const ResoucePersonDetails = () => {
   }, []);
 
   useEffect(() => {
-    console.log("rps video", tutorial);
-  }, [tutorial]);
+    let filePath = rpDetails?.profilePicture?.filename || null;
+
+    console.log("rpdd", filePath);
+    if (filePath) {
+      let url = `${BASE_URL}${filePath}`;
+      if (rpDetails) {
+        setProfilePictureUrl(url);
+      }
+    }
+  }, [rpDetails]);
+
   function handleWatchFree() {
     setWatchFree(!watchFree);
   }
@@ -121,6 +133,10 @@ const ResoucePersonDetails = () => {
       console.log(error);
     }
   }
+
+  const ratingChanged = (newRating) => {
+    console.log("new rating", newRating);
+  };
   return (
     <div>
       <ResoucePersonSubscribeModel
@@ -151,7 +167,7 @@ const ResoucePersonDetails = () => {
                     height: "200px",
                     borderRadius: "50%",
                   }}
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQovxwCOZFk-Misb-JaZkfCoxWc6HCK9yIjdUc4u-19Mw&s"
+                  src={profilePictureUrl}
                 />
               </div>
               {!watchFree && (
@@ -166,8 +182,19 @@ const ResoucePersonDetails = () => {
                     Experience Years: {rpDetails?.experienceYear}
                   </Card.Text>
                   <Card.Text>
-                    Description: I have a lot of experience in this field. I can
-                    help you with your Childs tasks and needs. Subscribes Me.
+                    <div className="d-flex ps-0">
+                      <p className="mt-2">Rating:</p>
+                      <div className="ms-3">
+                        <ReactStars
+                          count={5}
+                          edit={false}
+                          value={rpDetails?.rating}
+                          onChange={ratingChanged}
+                          size={24}
+                          activeColor="#ffd700"
+                        />
+                      </div>
+                    </div>
                   </Card.Text>
                 </Card.Body>
               )}
@@ -186,6 +213,18 @@ const ResoucePersonDetails = () => {
                     allowfullscreen
                   ></iframe>
                   <p>{tutorial?.description}</p>
+                </div>
+              )}
+
+              {watchFree && !videoUrl && (
+                <div
+                  style={{ minHeight: "300px" }}
+                  className="d-flex justify-content-center align-items-center"
+                >
+                  <h2 className="text-center text-black">
+                    {" "}
+                    Sorry there are no free videos
+                  </h2>
                 </div>
               )}
 
