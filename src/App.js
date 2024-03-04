@@ -49,6 +49,7 @@ import ViewResoucePerson from "./pages/viewResoucePerson/viewResoucePerson";
 import ViewResourcePersonDetails from "./pages/viewResoucePerson/resoucePersonDetails";
 import SubscribePaymentPage from "./pages/subscribePaymentPage/subscribePaymentPage";
 import AdminDashboard from "./Components/user/pages/Admin/AdminDashboard";
+import './App.css'
 import TutorailWatch from "./pages/resouce-person/rp-view-tutorial/tuturial-watch";
 
 function App() {
@@ -114,7 +115,7 @@ function App() {
           <Route path="/admin_home" element={<AdminHome />} />
           <Route
             path="/resource_person_home"
-            element={[<Rpnav />, <ResourcePersonHome />, <Footer />]}
+            element={[<Rpnav />, <ResourcePersonHome />]}
           />
           <Route path="/parent_home" element={<ParentHome />} />
 
