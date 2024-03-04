@@ -8,8 +8,20 @@ import img4 from "../../../../Assets/img4.png";
 import img5 from "../../../../Assets/img5.png";
 import Navbar from "../../../../pages/commonHomePage/Components/Comp1";
 import Footer from "../../../../pages/commonHomePage/Components/commonFooter";
-
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 function Counselor() {
+  const navigate = useNavigate();
+  const [activeUser, setActiveUser] = useState(null);
+  useEffect(() => {
+    if (localStorage.getItem("parentData")) {
+      setActiveUser(JSON.parse(localStorage.getItem("parentData")));
+    } else {
+      console.log("Parent data not found in the local storage");
+      alert("Please login first");
+      navigate("/sign_in");
+    }
+  }, []);
   return (
     <div>
       <Navbar />

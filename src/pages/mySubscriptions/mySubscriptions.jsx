@@ -3,8 +3,20 @@ import Navbar from "../../pages/commonHomePage/Components/Comp1";
 import Footer from "../../pages/commonHomePage/Components/commonFooter";
 import { Table } from "react-bootstrap";
 import axiosInstance from "../../apis/axiosInstance";
+import { useNavigate } from "react-router-dom";
 const MySubscriptions = () => {
   const [allSubscription, setAllSubscription] = useState([]);
+  const navigate = useNavigate();
+  const [activeUser, setActiveUser] = useState(null);
+  useEffect(() => {
+    if (localStorage.getItem("parentData")) {
+      setActiveUser(JSON.parse(localStorage.getItem("parentData")));
+    } else {
+      console.log("Parent data not found in the local storage");
+      alert("Please login first");
+      navigate("/sign_in");
+    }
+  }, []);
 
   useEffect(() => {
     let id = getActiveUserId();
