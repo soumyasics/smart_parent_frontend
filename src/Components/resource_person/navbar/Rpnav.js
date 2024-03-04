@@ -7,18 +7,55 @@ function Rpnav() {
   const navigate = useNavigate();
   const [activeUser, setActiveUser] = useState(null);
   useEffect(() => {
-    if (localStorage.getItem("parentData")) {
-      setActiveUser(JSON.parse(localStorage.getItem("parentData")));
+    if (localStorage.getItem("activeRp")) {
+      setActiveUser(JSON.parse(localStorage.getItem("activeRp")));
+    } else {
+      console.log("rp not logged in");
     }
   }, []);
-  console.log("ac", activeUser);
+
+  function isRpLoggedIn() {
+    if (localStorage.getItem("activeRp")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   const handleLogout = () => {
     if (localStorage.getItem("parentData")) {
       localStorage.removeItem("parentData");
     }
-    navigate("/sign_in");
+    if (localStorage.getItem("activeRp")) {
+      localStorage.removeItem("activeRp");
+    }
+    setTimeout(() => {
+      navigate("/admin");
+    }, 1500);
   };
+
+  const redirectViewTutorials = () => {
+    if (isRpLoggedIn()) {
+      navigate("/rp-view-tutorials");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    }
+  };
+  console.log("act user", activeUser);
+
+  function navigateTutorials() {
+    if (isRpLoggedIn()) {
+      navigate("/rp-add-tutorial");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    }
+  }
 
   return (
     <div>
@@ -29,7 +66,7 @@ function Rpnav() {
         <div className="container-fluid text-white">
           <img
             src="http://localhost:3000/static/media/logo.02ba8ea67b2b7903e412.png"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/resource_person_home")}
             alt="Logo"
             width="60"
             height="60"
@@ -37,7 +74,7 @@ function Rpnav() {
             id="logo"
           />
           &nbsp;&nbsp;
-          <b onClick={() => navigate("/")}>SmartParent.</b>
+          <b onClick={() => navigate("/resource_person_home")}>SmartParent.</b>
           <button
             className="navbar-toggler"
             type="button"
@@ -53,7 +90,7 @@ function Rpnav() {
             <ul class="navbar-nav a1" style={{ marginRight: "51px" }}>
               <li
                 style={{ cursor: "pointer" }}
-                onClick={() => navigate("/view-resouce-person")}
+                onClick={navigateTutorials}
                 class="nav-item"
               >
                 <a class="nav-link active text-white" aria-current="page">
@@ -62,24 +99,21 @@ function Rpnav() {
               </li>
               <li
                 style={{ cursor: "pointer" }}
-                onClick={() => navigate("/counsellor")}
+                onClick={redirectViewTutorials}
                 class="nav-item"
               >
                 <a class="nav-link active text-white" aria-current="page">
-                Blogs
+                  View
                 </a>
               </li>
-              <li class="nav-item" onClick={() => navigate("/parent_home")}>
+              <li class="nav-item">
                 <a class="nav-link active text-white" href="#" id="a2">
-                Subscribers
+                  Subscribers
                 </a>
               </li>
-              <li
-                class="nav-item"
-                onClick={() => navigate("/user-my-subscription")}
-              >
+              <li class="nav-item">
                 <a class="nav-link active text-white" href="#" id="a3">
-                Tasks
+                  Tasks
                 </a>
               </li>
               {activeUser ? (
@@ -93,10 +127,24 @@ function Rpnav() {
                     className="nav-link active text-danger"
                     id="a5"
                   >
-                  profile
+                    Logout
                   </a>
                 </li>
-              ) : ''}
+              ) : (
+                <li
+                  class="nav-item"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/admin")}
+                >
+                  <a
+                    style={{ color: "red", fontWeight: "800" }}
+                    className="nav-link active text-danger"
+                    id="a5"
+                  >
+                    Login
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </div>

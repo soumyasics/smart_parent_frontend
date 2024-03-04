@@ -39,7 +39,7 @@ import Rprofile from "./Components/resource_person/RP_Pages/Profile/Rprofile";
 import Rpsubscribers from "./Components/resource_person/RP_Pages/Subscribers/Rpsubscribers";
 import Rpnav from "./Components/resource_person/navbar/Rpnav";
 import Editprofile from "./Components/user/User_Pages/Profile/Editprofile";
-
+import RpViewTutorial from "./pages/resouce-person/rp-view-tutorial/rp-view-tutorial";
 import RPLIst from "./Components/user/pages/Admin/RPLIst";
 import Sidebar from "./Components/user/pages/Admin/Sidebar";
 import Counselorlist from "./Components/user/pages/Admin/Councilrs_list";
@@ -49,7 +49,11 @@ import ViewResoucePerson from "./pages/viewResoucePerson/viewResoucePerson";
 import ViewResourcePersonDetails from "./pages/viewResoucePerson/resoucePersonDetails";
 import SubscribePaymentPage from "./pages/subscribePaymentPage/subscribePaymentPage";
 import AdminDashboard from "./Components/user/pages/Admin/AdminDashboard";
+<<<<<<< HEAD
 import './App.css'
+=======
+import TutorailWatch from "./pages/resouce-person/rp-view-tutorial/tuturial-watch";
+>>>>>>> b34ee9354fec63849513fe152f6955a98e2c3268
 
 function App() {
   return (
@@ -100,8 +104,9 @@ function App() {
             path="/resourceperson_subscribers"
             element={<Rpsubscribers />}
           />
-          <Route path="/rp-add-tutorial" element={<RpAddTutorial />}/>
-
+          <Route path="/rp-add-tutorial" element={<RpAddTutorial />} />
+          <Route path="/rp-view-tutorials" element={<RpViewTutorial />} />
+          <Route path="/watch-tutorial/:id" element={<TutorailWatch />} />
           <Route path="/view-resouce-person" element={<ViewResoucePerson />} />
           <Route
             path="/view-resource-person-details/:id"
@@ -116,6 +121,7 @@ function App() {
             element={[<Rpnav />, <ResourcePersonHome />]}
           />
           <Route path="/parent_home" element={<ParentHome />} />
+
           <Route path="/rp_list" element={<RPLIst />} />
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/counsiler_list" element={<Counselorlist />} />

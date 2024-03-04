@@ -4,17 +4,22 @@ import addTutorialImg from "../../../Assets/illustrators/add-tutorial-img.jpg";
 import { useState, useEffect, useContext } from "react";
 import { Col, Form, Row, Button, Modal } from "react-bootstrap";
 import "./rp-add-tutorial.css";
+import RpNav from "../../../Components/resource_person/navbar/Rpnav";
 import axiosInstance from "../../../apis/axiosInstance";
+import { useNavigate } from "react-router";
 import axiosMultipartInstance from "../../../apis/axiosMultipartInstance";
 const ResourceUploadForm = () => {
-  const [title, setTitle] = useState("vid tit");
-  const [description, setDescription] = useState("vid des");
+  const navigate = useNavigate();
+  const [title, setTitle] = useState("Learn How to Code");
+  const [description, setDescription] = useState(
+    "Learn how to code this video help your child"
+  );
   const [thumbnail, setThumbnail] = useState(null);
   const [video, setVideo] = useState(null);
   const [rpid, setRpid] = useState("65dc8ef9c5a825fd60e37b07");
   const [validated, setValidated] = useState(false);
-  const [target, setTarget] = useState("");
-  const [duration, setDuration] = useState("");
+  const [target, setTarget] = useState("3");
+  const [duration, setDuration] = useState("20");
 
   const handleUploadTutorail = (e) => {
     e.preventDefault();
@@ -66,6 +71,9 @@ const ResourceUploadForm = () => {
       console.log("vid", res);
       if (res.status === 200) {
         alert("Tutorial uploaded successfully");
+        setTimeout(() => {
+          navigate("/rp-view-tutorials");
+        }, 1000);
       } else {
         alert("Something went wrong");
       }
@@ -79,7 +87,7 @@ const ResourceUploadForm = () => {
   }, [title, description, thumbnail, video]);
   return (
     <>
-      <h3> Navbar here </h3>
+      <RpNav />
       <div className="mt-5">
         <h2 className="text-center">Upload Tutorials</h2>
 
@@ -97,8 +105,11 @@ const ResourceUploadForm = () => {
               validated={validated}
               onSubmit={handleUploadTutorail}
             >
-              <h4 className="text-center text-dark"> Upload Tutorial </h4>
-              <p className="text-center text-dark">Tutorail details</p>
+              <h4 className="text-center text-dark"> Tutorial Upload Form </h4>
+              <p className="text-center text-dark">
+                {" "}
+                <i>Upload tutorial videos here.. </i>
+              </p>
               <Row>
                 <Col>
                   <Form.Group
@@ -128,7 +139,7 @@ const ResourceUploadForm = () => {
                       onChange={(e) => setTarget(e.target.value)}
                       value={target}
                       type="text"
-                      placeholder="Video Target "
+                      placeholder="Video Target age Eg: 3"
                       required
                     />
                     <Form.Control.Feedback type="invalid">
