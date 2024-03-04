@@ -13,10 +13,10 @@ function SignUp() {
 
   const [signup, setSignup] = useState({
     name: "Abcd",
-    email: "abc@gmail.com",
+    email: "",
     date: "",
     contact: "45454545455",
-    password: "5454545455",
+    password: "12341234",
   });
 
   const [errors, setErrors] = useState({

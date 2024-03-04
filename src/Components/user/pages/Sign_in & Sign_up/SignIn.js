@@ -59,7 +59,7 @@ function SignIn() {
             if (msg) {
               localStorage.setItem("parentData", JSON.stringify(res.data.data));
               alert(msg);
-              navigate("/parent_home");
+              navigate("/");
               return;
             }
           } else if (res.data.status == 500) {
