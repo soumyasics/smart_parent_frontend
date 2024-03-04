@@ -49,11 +49,8 @@ import ViewResoucePerson from "./pages/viewResoucePerson/viewResoucePerson";
 import ViewResourcePersonDetails from "./pages/viewResoucePerson/resoucePersonDetails";
 import SubscribePaymentPage from "./pages/subscribePaymentPage/subscribePaymentPage";
 import AdminDashboard from "./Components/user/pages/Admin/AdminDashboard";
-<<<<<<< HEAD
 import './App.css'
-=======
 import TutorailWatch from "./pages/resouce-person/rp-view-tutorial/tuturial-watch";
->>>>>>> b34ee9354fec63849513fe152f6955a98e2c3268
 
 function App() {
   return (
