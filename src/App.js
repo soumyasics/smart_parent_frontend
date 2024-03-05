@@ -53,6 +53,7 @@ import "./App.css";
 import TutorailWatch from "./pages/resouce-person/rp-view-tutorial/tuturial-watch";
 import SubscribedRp from "./pages/mySubscriptions/subscribedRp";
 import ParentTutorialWatch from "./pages/parent/parent-tutorial-watch/parent-tutorial-watch";
+import ParentList from "./Components/user/pages/Admin/ParentList";
 
 function App() {
   return (
@@ -132,6 +133,8 @@ function App() {
           <Route path="/user_nav" element={<Usernav />} />
           <Route path="/admin_dashboard" element={<AdminDashboard />} />
           <Route path="/rpnav" element={<Rpnav />} />
+          <Route path="/parent_list" element={<ParentList />} />
+
         </Routes>
       </Router>
     </div>
