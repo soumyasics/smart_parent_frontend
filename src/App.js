@@ -46,6 +46,7 @@ import Counselorlist from "./Components/user/pages/Admin/Councilrs_list";
 import SubscriptionTable from "./pages/mySubscriptions/mySubscriptions";
 import CommonHomePage from "./pages/commonHomePage/commonHomePage";
 import ViewResoucePerson from "./pages/viewResoucePerson/viewResoucePerson";
+import Rpblog from "./Components/resource_person/RP_Pages/Blog/Rpblog";
 import ViewResourcePersonDetails from "./pages/viewResoucePerson/resoucePersonDetails";
 import SubscribePaymentPage from "./pages/subscribePaymentPage/subscribePaymentPage";
 import AdminDashboard from "./Components/user/pages/Admin/AdminDashboard";
@@ -113,6 +114,11 @@ function App() {
           <Route path="/rp-view-tutorials" element={<RpViewTutorial />} />
           <Route path="/watch-tutorial/:id" element={<TutorailWatch />} />
           <Route path="/view-resouce-person" element={<ViewResoucePerson />} />
+          <Route path="/view-resource-person-details/:id" element={<ViewResourcePersonDetails />} />
+          <Route path="/resourceperson_blog" element={<Rpblog />}/>
+
+            {/*ajeena*/}
+
           <Route
             path="/view-resource-person-details/:id"
             element={<ViewResourcePersonDetails />}
