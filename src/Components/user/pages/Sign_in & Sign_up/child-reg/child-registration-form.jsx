@@ -4,12 +4,13 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
+import { useNavigate } from "react-router-dom";
 import "./child-registration.css";
 import axiosInstance from "../../../../../apis/axiosInstance";
 
 const ChildRegistrationForm = ({ parentData }) => {
   const [validated, setValidated] = useState(false);
-
+  const navigate = useNavigate();
   const [childData, setChildData] = useState({
     childName: "child1",
     childAge: "90",
@@ -60,13 +61,12 @@ const ChildRegistrationForm = ({ parentData }) => {
         console.log("stat", res.data.data);
         if (status) {
           let userData = res?.data?.data || null;
-          if (userData) {
-            localStorage.setItem("parentData", JSON.stringify(userData));
-          }
+
           alert("Registration successfull.");
 
           setTimeout(() => {
             // here redirect parent login page
+            navigate("/sign_in");
           }, 1500);
         }
       })
@@ -195,8 +195,11 @@ const ChildRegistrationForm = ({ parentData }) => {
             </Form.Control.Feedback>
           </Form.Group>
         </Row>
-
-        <Button type="submit">Submit form</Button>
+        <div className="d-flex justify-content-center mt-5">
+          <Button type="submit" className="btn btn-primary w-50">
+            Sign Up
+          </Button>
+        </div>
       </Form>
     </div>
   );

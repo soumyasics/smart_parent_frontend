@@ -1,11 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../Assets/logo.png";
 import "./Navitem.css";
 import { useNavigate } from "react-router-dom";
 import "./Logo.css";
+
 function Comp1() {
   const navigate = useNavigate();
+  const [activeUser, setActiveUser] = useState(null);
+  useEffect(() => {
+    if (localStorage.getItem("parentData")) {
+      setActiveUser(JSON.parse(localStorage.getItem("parentData")));
+    } else {
+      console.log("Parent data not found in the local storage");
+    }
+  }, []);
+  console.log("ac", activeUser);
 
+  const handleLogout = () => {
+    if (localStorage.getItem("parentData")) {
+      localStorage.removeItem("parentData");
+    }
+    navigate("/sign_in");
+  };
+
+  function redirectResourcePerson() {
+    if (activeUser) {
+      navigate("/view-resouce-person");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/sign_in");
+      }, 1500);
+    }
+  }
+  function redirectSubscription() {
+    if (activeUser) {
+      navigate("/user-my-subscription");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/sign_in");
+      }, 1500);
+    }
+  }
+  function redirectCouncilar() {
+    if (activeUser) {
+      navigate("/counsellor");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/sign_in");
+      }, 1500);
+    }
+  }
   return (
     <nav
       id="common-home-navbar"
@@ -13,6 +60,7 @@ function Comp1() {
     >
       <div className="container-fluid text-white">
         <img
+          style={{ cursor: "pointer" }}
           src={logo}
           onClick={() => navigate("/")}
           alt="Logo"
@@ -22,7 +70,9 @@ function Comp1() {
           id="logo"
         />
         &nbsp;&nbsp;
-        <b onClick={() => navigate("/")}>SmartParent.</b>
+        <b style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
+          SmartParent.
+        </b>
         <button
           className="navbar-toggler"
           type="button"
@@ -35,10 +85,21 @@ function Comp1() {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse " id="navbarNav">
-          <ul class="navbar-nav a1" style={{ marginRight: "51px" }}>
+          <ul class="navbar-nav a1 gap-4" style={{ marginRight: "60px" }}>
             <li
               style={{ cursor: "pointer" }}
-              onClick={() => navigate("/view-resouce-person")}
+              onClick={() => {
+                navigate("/");
+              }}
+              class="nav-item"
+            >
+              <a class="nav-link active text-white" aria-current="page">
+                Home
+              </a>
+            </li>
+            <li
+              style={{ cursor: "pointer" }}
+              onClick={redirectResourcePerson}
               class="nav-item"
             >
               <a class="nav-link active text-white" aria-current="page">
@@ -46,34 +107,56 @@ function Comp1() {
               </a>
             </li>
             <li
+              class="nav-item"
+              onClick={redirectSubscription}
               style={{ cursor: "pointer" }}
-              onClick={() => navigate("/counsellor")}
+            >
+              <a class="nav-link active text-white" href="#" id="a3">
+                Subscriptions
+              </a>
+            </li>
+            <li
+              style={{ cursor: "pointer" }}
+              onClick={redirectCouncilar}
               class="nav-item"
             >
               <a class="nav-link active text-white" aria-current="page">
                 Councilors
               </a>
             </li>
-            <li class="nav-item" onClick={() => navigate("/parent_home")}>
-              <a class="nav-link active text-white" href="#" id="a2">
-                Parent
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active text-white" href="#" id="a3">
-                About Us
+            <li style={{ cursor: "pointer" }} class="nav-item">
+              <a class="nav-link active text-white" aria-current="page">
+                Profile
               </a>
             </li>
 
-            <li
-              class="nav-item"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/sign_up")}
-            >
-              <a class="nav-link active text-white" id="a5">
-                SignUp
-              </a>
-            </li>
+            {activeUser ? (
+              <li
+                class="nav-item"
+                style={{ cursor: "pointer" }}
+                onClick={handleLogout}
+                className="bg-danger text-white"
+              >
+                <a
+                  style={{ color: "red", fontWeight: "800" }}
+                  className="nav-link active text-white"
+                  id="a5"
+                >
+                  Logout
+                </a>
+              </li>
+            ) : (
+              <li
+                class="nav-item"
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate("/sign_up")}
+                className="bg-success"
+              >
+                <a class="nav-link active text-white" id="a5">
+                  Signup
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>

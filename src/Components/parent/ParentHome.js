@@ -4,7 +4,7 @@ import Navbar from "../../pages/commonHomePage/Components/Comp1";
 import Footer from "../../pages/commonHomePage/Components/commonFooter";
 function ParentHome() {
   return (
-    <>
+    <div>
       <Navbar />
 
       <div>
@@ -29,7 +29,7 @@ function ParentHome() {
           </div>
         </div>
         <div className="parent_home_thirddiv">
-          {/* <h4>
+          <h4>
             What is Smarter Parenting?
             <h2></h2>
             Children learn so much from their parents, but parenting doesn’t
@@ -40,7 +40,7 @@ function ParentHome() {
             tools available to parents. On our parenting website you’ll find
             lessons, resources, and examples that help you navigate practical
             parenting skills.
-          </h4> */}
+          </h4> 
         </div>
         <div className="parent_home_fourthdiv">
           <div className="row">
@@ -105,7 +105,7 @@ function ParentHome() {
       <div className="mt-5">
         <Footer />
       </div>
-    </>
+    </div>
   );
 }
 

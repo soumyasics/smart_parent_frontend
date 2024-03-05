@@ -25,10 +25,10 @@ function AdminSignin() {
       formValid = false;
       return `${fieldName} is required`;
     }
-    if (formData.email && formData.password){
+    if (formData.email && formData.password) {
       formValid = true;
     }
-     return "";
+    return "";
   };
 
   const Navigate = useNavigate();
@@ -89,25 +89,38 @@ function AdminSignin() {
           alert("Please enter correct data");
         }
       } else {
-        const response = await axios.post(loginURL, formData);
-        console.log(response, "o");
+        try {
+          const response = await axios.post(loginURL, formData);
+          console.log(response, "o");
 
-        if (response.data) {
+          if (response.data) {
+            if (selectedButton === "button2") {
+              //handle login sucess - resource
+              alert(response.data.message);
+              console.log("rp resp data", response.data.rp);
+
+              localStorage.setItem("activeRp", JSON.stringify(response.data.rp));
+              setTimeout(() => {
+                Navigate("/resource_person_home");
+              }, 1000);
+            }
+            if (selectedButton === "button3") {
+              //handle login sucess - counsiler
+              alert(response.data.message);
+              Navigate("/counsellor");
+            }
+          } else {
+          }
+          console.log("Login successful:", response.data);
+        } catch (error) {
           if (selectedButton === "button2") {
-            //handle login sucess - resource
-            alert(response.data.message);
-            Navigate("/resource_person_home");
+            console.log("error on resouoce person login", error);
+            let errorMsg =
+              error?.response?.data?.message ||
+              "Please check your email id and password";
+            alert(errorMsg);
           }
-          if (selectedButton === "button3") {
-            //handle login sucess - counsiler
-            alert(response.data.message);
-            Navigate("/counsellor");
-          }
-        } else {
-          alert(response.data.message);
-          Navigate("/");
         }
-        console.log("Login successful:", response.data);
       }
       // Handle successful login, such as setting user authentication token, redirecting, etc.
     } catch (error) {
@@ -193,14 +206,14 @@ function AdminSignin() {
                     <span>
                       {" "}
                       {selectedButton == "button2" ? (
-                        <Link to>Forgot Passwort ?</Link>
+                        <Link>Forgot Passwort ?</Link>
                       ) : (
                         <Link>Forgot Passwort ?</Link>
                       )}
                     </span>
                     <span className="ms-5">
                       {selectedButton == "button2" ? (
-                        <Link to="">Sign Up</Link>
+                        <Link to="/resourceperson_signup">Sign Up</Link>
                       ) : (
                         <Link>Sign Up</Link>
                       )}

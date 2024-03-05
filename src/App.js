@@ -9,13 +9,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import SignIn from "./Components/user/pages/Sign_in & Sign_up/SignIn";
 import SignUp from "./Components/user/pages/Sign_in & Sign_up/SignUp";
-import Footer from "./Components/user/footer/Footer";
+import Footer from "../src/pages/commonHomePage/Components/Footer";
 import ResetPass from "./Components/user/pages/Sign_in & Sign_up/ResetPass";
 import Counselor from "./Components/user/pages/counsellor/Counselor";
+import RpAddTutorial from "./pages/resouce-person/rp-add-tutorial/rp-add-tutorial";
 
 import AdminSignin from "./Components/user/pages/Sign_in & Sign_up/AdminSignin";
 import AdminHome from "./Components/user/pages/Admin/AdminHome";
-import Resource_Person_Home from "./Components/user/pages/Resource_person/ResourcePersonHome";
 import ResourcePersonHome from "./Components/user/pages/Resource_person/ResourcePersonHome";
 import ParentHome from "./Components/parent/ParentHome";
 
@@ -39,14 +39,23 @@ import Rprofile from "./Components/resource_person/RP_Pages/Profile/Rprofile";
 import Rpsubscribers from "./Components/resource_person/RP_Pages/Subscribers/Rpsubscribers";
 import Rpnav from "./Components/resource_person/navbar/Rpnav";
 import Editprofile from "./Components/user/User_Pages/Profile/Editprofile";
-
+import RpViewTutorial from "./pages/resouce-person/rp-view-tutorial/rp-view-tutorial";
 import RPLIst from "./Components/user/pages/Admin/RPLIst";
 import Sidebar from "./Components/user/pages/Admin/Sidebar";
 import Counselorlist from "./Components/user/pages/Admin/Councilrs_list";
+import SubscriptionTable from "./pages/mySubscriptions/mySubscriptions";
 import CommonHomePage from "./pages/commonHomePage/commonHomePage";
 import ViewResoucePerson from "./pages/viewResoucePerson/viewResoucePerson";
-import ViewResourcePersonDetails from "./pages/viewResoucePerson/resoucePersonDetails"
 import Rpblog from "./Components/resource_person/RP_Pages/Blog/Rpblog";
+import ViewResourcePersonDetails from "./pages/viewResoucePerson/resoucePersonDetails";
+import SubscribePaymentPage from "./pages/subscribePaymentPage/subscribePaymentPage";
+import AdminDashboard from "./Components/user/pages/Admin/AdminDashboard";
+import "./App.css";
+import TutorailWatch from "./pages/resouce-person/rp-view-tutorial/tuturial-watch";
+import SubscribedRp from "./pages/mySubscriptions/subscribedRp";
+import ParentTutorialWatch from "./pages/parent/parent-tutorial-watch/parent-tutorial-watch";
+import ParentList from "./Components/user/pages/Admin/ParentList";
+
 function App() {
   return (
     <div className="appjs">
@@ -70,7 +79,16 @@ function App() {
           <Route path="/user_chat" element={<Userchat />} />
           <Route path="/user_profile" element={<Userprofile />} />
           <Route path="/user_editprofile" element={<Editprofile />} />
-
+          <Route
+            path="/user-payment/:rpId"
+            element={<SubscribePaymentPage />}
+          />
+          <Route path="/user-my-subscription" element={<SubscriptionTable />} />
+          <Route path="/subscribed-rp/:id" element={<SubscribedRp />} />
+          <Route
+            path="/parent-tutorial-watch/:id"
+            element={<ParentTutorialWatch />}
+          />
           {/* Counselor */}
 
           <Route path="/counselor_signup" element={<Counsellorsignup />} />
@@ -92,24 +110,37 @@ function App() {
             path="/resourceperson_subscribers"
             element={<Rpsubscribers />}
           />
-
+          <Route path="/rp-add-tutorial" element={<RpAddTutorial />} />
+          <Route path="/rp-view-tutorials" element={<RpViewTutorial />} />
+          <Route path="/watch-tutorial/:id" element={<TutorailWatch />} />
           <Route path="/view-resouce-person" element={<ViewResoucePerson />} />
           <Route path="/view-resource-person-details/:id" element={<ViewResourcePersonDetails />} />
           <Route path="/resourceperson_blog" element={<Rpblog />}/>
 
             {/*ajeena*/}
 
+          <Route
+            path="/view-resource-person-details/:id"
+            element={<ViewResourcePersonDetails />}
+          />
+          {/* <Route path="" element={< />}/> */}
+          {/*ajeena*/}
           <Route path="/admin" element={<AdminSignin />} />
           <Route path="/admin_home" element={<AdminHome />} />
           <Route
             path="/resource_person_home"
-            element={<ResourcePersonHome />}
+            element={[<Rpnav />, <ResourcePersonHome />]}
           />
           <Route path="/parent_home" element={<ParentHome />} />
+
           <Route path="/rp_list" element={<RPLIst />} />
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/counsiler_list" element={<Counselorlist />} />
           <Route path="/user_nav" element={<Usernav />} />
+          <Route path="/admin_dashboard" element={<AdminDashboard />} />
+          <Route path="/rpnav" element={<Rpnav />} />
+          <Route path="/parent_list" element={<ParentList />} />
+
         </Routes>
       </Router>
     </div>

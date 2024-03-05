@@ -1,32 +1,156 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import logo from "../../../Assets/logo.png"
-import "./Rpnav.css"
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./Rpnav.css";
+import { useNavigate } from "react-router-dom";
 
 function Rpnav() {
+  const navigate = useNavigate();
+  const [activeUser, setActiveUser] = useState(null);
+  useEffect(() => {
+    if (localStorage.getItem("activeRp")) {
+      setActiveUser(JSON.parse(localStorage.getItem("activeRp")));
+    } else {
+      console.log("rp not logged in");
+    }
+  }, []);
+
+  function isRpLoggedIn() {
+    if (localStorage.getItem("activeRp")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  const handleLogout = () => {
+    if (localStorage.getItem("parentData")) {
+      localStorage.removeItem("parentData");
+    }
+    if (localStorage.getItem("activeRp")) {
+      localStorage.removeItem("activeRp");
+    }
+    setTimeout(() => {
+      navigate("/admin");
+    }, 1500);
+  };
+
+  const redirectViewTutorials = () => {
+    if (isRpLoggedIn()) {
+      navigate("/rp-view-tutorials");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    }
+  };
+  console.log("act user", activeUser);
+
+  function navigateTutorials() {
+    if (isRpLoggedIn()) {
+      navigate("/rp-add-tutorial");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    }
+  }
+
   return (
-    <nav className='navbar'>
-
-    <div className='nav-heading'>
-
-      <img src={logo} alt='logo' />
-      <p>Navigating the digital world together</p>
-      <h1>Smart Parent</h1>
-
+    <div>
+      <nav
+        id="common-home-navbar"
+        className="navbar navbar-expand-lg bg-body-tertiary pe-5"
+      >
+        <div className="container-fluid text-white">
+          <img
+            src="http://localhost:3000/static/media/logo.02ba8ea67b2b7903e412.png"
+            onClick={() => navigate("/resource_person_home")}
+            alt="Logo"
+            width="60"
+            height="60"
+            class="d-inline-block align-text-top"
+            id="logo"
+          />
+          &nbsp;&nbsp;
+          <b onClick={() => navigate("/resource_person_home")}>SmartParent.</b>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse " id="navbarNav">
+            <ul class="navbar-nav a1" style={{ marginRight: "51px" }}>
+              <li
+                style={{ cursor: "pointer" }}
+                onClick={navigateTutorials}
+                class="nav-item"
+              >
+                <a class="nav-link active text-white" aria-current="page">
+                  Tutorials
+                </a>
+              </li>
+              <li
+                style={{ cursor: "pointer" }}
+                onClick={redirectViewTutorials}
+                class="nav-item"
+              >
+                <a class="nav-link active text-white" aria-current="page">
+                  View
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-white" href="#" id="a2">
+                  Subscribers
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active text-white" href="#" id="a3">
+                  Tasks
+                </a>
+              </li>
+              {activeUser ? (
+                <li
+                  class="nav-item"
+                  style={{ cursor: "pointer" }}
+                  onClick={handleLogout}
+                >
+                  <a
+                    style={{ color: "red", fontWeight: "800" }}
+                    className="nav-link active text-danger"
+                    id="a5"
+                  >
+                    Logout
+                  </a>
+                </li>
+              ) : (
+                <li
+                  class="nav-item"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/admin")}
+                >
+                  <a
+                    style={{ color: "red", fontWeight: "800" }}
+                    className="nav-link active text-danger"
+                    id="a5"
+                  >
+                    Login
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
-
-    <ul className='rplist'>
-
-      <li> <Link to="/" >Home</Link></li>
-      <li> <Link to="/resourceperson_chat" >Chat</Link></li>
-      <li> <Link to="/resourceperson_task" >Task</Link></li>
-      <li> <Link to="/resourceperson_subscribers" >Subscription</Link></li>
-      <li> <Link to="/resourceperson_profile" >Profile</Link></li>
-      
-    </ul>
-
-  </nav>
-  )
+  );
 }
 
-export default Rpnav
+export default Rpnav;

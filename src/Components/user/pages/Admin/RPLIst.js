@@ -2,6 +2,7 @@ import "./rplist.css";
 import Sidebar from "./Sidebar";
 import axiosInstance from "../../../../apis/axiosInstance";
 import { useState, useEffect } from "react";
+import { Table } from "react-bootstrap";
 
 function RPLIst() {
   const [rpLists, setRpLists] = useState([]);
@@ -18,13 +19,15 @@ function RPLIst() {
         const filterPendingReqs = allRps.filter(
           (rp) => rp?.isAdminApproved == "pending"
         );
-
+        console.log(filterPendingReqs, "data");
         setRpLists(filterPendingReqs);
       })
       .catch((err) => {
         console.log("err", err);
       });
   }
+
+  console.log(rpLists, "list");
   function handleRejectClick(id) {
     console.log(id);
     axiosInstance
@@ -71,7 +74,6 @@ function RPLIst() {
       <div className="row">
         <div className="col-2">
           <Sidebar />
-          <Sidebar />
         </div>
         <div style={{ maxWidth: "77%" }} className="container">
           {rpLists.length === 0 && (
@@ -79,9 +81,15 @@ function RPLIst() {
           )}
           {rpLists.length > 0 && (
             <div>
-              <h3 className="mt-5">All Resource person Requests</h3>
-              <table style={{ width: "100%" }}>
-                <thead>
+              <h3 className="mt-5 ms-3">All Resource person Requests</h3>
+              <Table
+                striped
+                bordered
+                hover
+                className="mt-5 ms-3"
+                style={{ width: "100%" }}
+              >
+                <thead style={{ height: "50px" }}>
                   <tr>
                     <th>No</th>
                     <th>Name</th>
@@ -96,7 +104,7 @@ function RPLIst() {
                 <tbody>
                   {rpLists.map((rp, index) => {
                     return (
-                      <tr key={index}>
+                      <tr key={index} className="mt-4">
                         <td>{index + 1}</td>
                         <td>{rp.name}</td>
                         <td>{rp.email}</td>
@@ -127,7 +135,7 @@ function RPLIst() {
                     );
                   })}
                 </tbody>
-              </table>
+              </Table>
             </div>
           )}
         </div>

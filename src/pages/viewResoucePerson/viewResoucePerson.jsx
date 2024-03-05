@@ -5,11 +5,26 @@ import { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import manPlaceholderImg from "../../Assets/illustrators/man-placeholder.jpg";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import { Row } from "react-bootstrap";
+import BASE_URL from "../../apis/baseUrl";
 const ViewResourcePerson = () => {
   const navigate = useNavigate();
-  
-
   const [rpLists, setRpLists] = useState([]);
+
+  const [activeUser, setActiveUser] = useState(null);
+  useEffect(() => {
+    if (localStorage.getItem("parentData")) {
+      setActiveUser(JSON.parse(localStorage.getItem("parentData")));
+    } else {
+      console.log("Parent data not found in the local storage");
+      alert("Please login first");
+      navigate("/sign_in");
+    }
+  }, []);
+
   useEffect(() => {
     getData();
   }, []);
@@ -48,53 +63,49 @@ const ViewResourcePerson = () => {
         <i>From here you can subscribe resouce persons and get tasks.</i>
       </p>
 
-      <div style={{ minHeight: "500px" }}>
-        <Table
-          striped
-          bordered
-          hover
-          style={{ width: "75%" }}
-          className="mx-auto"
-        >
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Experience Year</th>
-              <th>Age</th>
-              <th>Phone Number</th>
-              <th>View</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rpLists.map((rp, index) => {
-              return (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{rp.name}</td>
-                  <td>{rp.email}</td>
-                  <td>{rp.experienceYear}</td>
-                  <td>{rp.age}</td>
-                  <td>{rp.contact}</td>
-                  <td>
-                    <button
-                      className="btn btn-primary rp-request-handls-btn"
-                      onClick={() => {
-                        handleViewRp(rp._id);
-                      }}
-                    >
-                      View More
-                    </button>
-                  </td>
-                  <td></td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+      <div
+        className="justify-content-center mx-auto p-3 d-flex flex-wrap gap-5 ps-5"
+        style={{
+          minHeight: "500px",
+          width: "95%",
+          boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+        }}
+      >
+        {rpLists.map((rp) => {
+          let profilePicture = manPlaceholderImg;
+          const pathName = rp.profilePicture?.filename || null;
+          if (pathName) {
+            profilePicture = BASE_URL + pathName;
+          }
+          return (
+            <Card
+              style={{
+                width: "18rem",
+                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+              }}
+            >
+              <Card.Img className="h-50" variant="top" src={profilePicture} />
+              <Card.Body className="text-center">
+                <Card.Title>{rp?.name} </Card.Title>
+                <Card.Text>Email: {rp?.email}</Card.Text>
+                <Card.Text>Contact {rp?.contact}</Card.Text>
+                <Card.Text>Experience Year {rp?.experienceYear}</Card.Text>
+                <button
+                  className="btn btn-primary rp-request-handls-btn mx-auto"
+                  onClick={() => {
+                    handleViewRp(rp._id);
+                  }}
+                >
+                  View More
+                </button>
+              </Card.Body>
+            </Card>
+          );
+        })}
       </div>
-      <Footer />
+      <div className="mt-5">
+        <Footer />
+      </div>
     </div>
   );
 };
