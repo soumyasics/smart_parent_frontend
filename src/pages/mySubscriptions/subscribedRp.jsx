@@ -15,20 +15,30 @@ import Image from "react-bootstrap/Image";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import isParentLoggedIn from "../../customHooks/checkParentLoggedIn";
+import ViewAllTutorials from "./viewAllTutorials";
 const SubscribedRp = () => {
   const { id } = useParams();
   const [rpDetails, setRpDetails] = useState(null);
   const [modalShow, setModalShow] = useState(false);
-  const [tutorial, setTutorial] = useState(null);
+  const [tutorial, setTutorial] = useState([]);
   const [videoUrl, setVideoUrl] = useState(null);
   const [watchFree, setWatchFree] = useState(false);
   const [profilePictureUrl, setProfilePictureUrl] = useState(manImgPlaceholder);
-
+  const [resourcePersonId, setResourcePersonId] = useState(null);
   useEffect(() => {
     getData();
-    getVideoTutorials();
   }, []);
+  useEffect(() => {
+    if (rpDetails && rpDetails._id) {
+      getVideoTutorials(rpDetails._id);
+    } else {
+      console.log("can't get the rp details");
+    }
+  }, [rpDetails]);
 
+  useEffect(() => {
+    console.log("tuto", tutorial);
+  }, [tutorial]);
   useEffect(() => {
     let filePath = rpDetails?.profilePicture?.filename || null;
 
@@ -79,20 +89,17 @@ const SubscribedRp = () => {
     }
   }, [tutorial]);
 
-  async function getVideoTutorials() {
-    if (!id) {
-      console.log("id not found");
-      return;
-    }
+  async function getVideoTutorials(rpId) {
     try {
       let rpTutorials = await axiosInstance.get(
-        "smart_parent/viewTutorialByRpId/" + id
+        "smart_parent/viewTutorialByRpId/" + rpId
       );
       let rpTutorialsData = rpTutorials?.data?.data || null;
-
+      console.log("rp tuto data", rpTutorialsData);
       if (rpTutorialsData.length > 0) {
-        setTutorial(rpTutorialsData[0]);
+        setTutorial(rpTutorialsData);
       } else {
+        setTutorial([]);
         console.log("can't fetch rp details");
       }
     } catch (error) {
@@ -109,7 +116,6 @@ const SubscribedRp = () => {
     setModalShow(true);
   };
 
-  console.log("rp", rpDetails);
   function getData() {
     if (!id) {
       console.log("id not found");
@@ -122,7 +128,7 @@ const SubscribedRp = () => {
           console.log("res", res);
           let rpData = res?.data?.data || null;
           if (rpData) {
-            setRpDetails(rpData.resourcePersonId);
+            setRpDetails(rpData.resourcePersonId || null);
           } else {
             console.log("can't fetch rp details");
           }
@@ -181,7 +187,7 @@ const SubscribedRp = () => {
                       Experience Years: {rpDetails?.experienceYear}
                     </Card.Text>
                     <Card.Text>
-                      <div className="d-flex ps-0">
+                      <div className="d-flex align-items-center ps-0">
                         <p style={{ fontSize: "20px" }} className="mt-2">
                           Add Your Rating:
                         </p>
@@ -196,7 +202,13 @@ const SubscribedRp = () => {
                           />
                         </div>
 
-                        <Button style={{ marginLeft: "30px" }}>
+                        <Button
+                          style={{
+                            marginLeft: "30px",
+                            height: "38px",
+                            width: "184px",
+                          }}
+                        >
                           {" "}
                           Confirm Rating{" "}
                         </Button>
@@ -216,16 +228,48 @@ const SubscribedRp = () => {
         </div>
       </div>
 
-      <div>
-        <h1> View Tutorial</h1>
+      <div
+        className="mt-5 mx-auto "
+        style={{
+          minHeight: "600px",
+          width: "95%",
+          boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+        }}
+      >
+        <h1 style={{ top: "25px" }} className="text-center position-relative">
+          {" "}
+          Watch Tutorials
+        </h1>
+        <ViewAllTutorials allTutorials={tutorial} />
       </div>
 
-      <div>
+      <div
+        className="mt-5 mx-auto "
+        style={{
+          minHeight: "600px",
+          width: "95%",
+          boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+        }}
+      >
         {" "}
-        <h1> View Tasks</h1>{" "}
+        <h1 style={{ top: "25px" }} className="text-center position-relative">
+          {" "}
+          View Tasks
+        </h1>{" "}
       </div>
-      <div>
-        <h1> View Blogs </h1>
+      <div
+        className="mt-5 mx-auto "
+        style={{
+          minHeight: "600px",
+          width: "95%",
+          boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+        }}
+      >
+        <div className="d-flex justify-content-center gap-5"></div>
+        <h1 style={{ top: "25px" }} className="text-center position-relative">
+          {" "}
+          View Blogs{" "}
+        </h1>
       </div>
       <div className="mt-5">
         <Footer />

@@ -52,6 +52,7 @@ import AdminDashboard from "./Components/user/pages/Admin/AdminDashboard";
 import "./App.css";
 import TutorailWatch from "./pages/resouce-person/rp-view-tutorial/tuturial-watch";
 import SubscribedRp from "./pages/mySubscriptions/subscribedRp";
+import ParentTutorialWatch from "./pages/parent/parent-tutorial-watch/parent-tutorial-watch";
 
 function App() {
   return (
@@ -82,6 +83,10 @@ function App() {
           />
           <Route path="/user-my-subscription" element={<SubscriptionTable />} />
           <Route path="/subscribed-rp/:id" element={<SubscribedRp />} />
+          <Route
+            path="/parent-tutorial-watch/:id"
+            element={<ParentTutorialWatch />}
+          />
           {/* Counselor */}
 
           <Route path="/counselor_signup" element={<Counsellorsignup />} />
