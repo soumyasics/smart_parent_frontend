@@ -1,11 +1,12 @@
-import Rpnav from "../../../Components/resource_person/navbar/Rpnav";
+import Navbar from "../../commonHomePage/Components/Comp1";
 import Footer from "../../commonHomePage/Components/commonFooter";
 import { useParams, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import axiosInstance from "../../../apis/axiosInstance";
 import BASE_URL from "../../../apis/baseUrl";
 import { Image } from "react-bootstrap";
-const TutorailWatch = () => {
+
+const ParentTutorialWatch = () => {
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -13,13 +14,13 @@ const TutorailWatch = () => {
   const [videoUrl, setVideoUrl] = useState(null);
 
   useEffect(() => {
-    let id = findActiveResourcePerson();
+    let id = findActiveParent();
     if (id) {
       getData(id);
     } else {
-      alert("Resource Person not logged in");
+      alert("Parent not logged in Please Log in Again");
       setTimeout(() => {
-        navigate("/admin");
+        navigate("/sign_in");
       }, 5);
       console.log("Parent data not available in the Local storage");
     }
@@ -86,15 +87,15 @@ const TutorailWatch = () => {
       console.log("error get all video tutorials", error);
     }
   }
-  function findActiveResourcePerson() {
-    let activeRp;
-    if (localStorage.getItem("activeRp")) {
-      activeRp = JSON.parse(localStorage.getItem("activeRp")) || null;
+  function findActiveParent() {
+    let activeParent;
+    if (localStorage.getItem("parentData")) {
+      activeParent = JSON.parse(localStorage.getItem("parentData")) || null;
     } else {
       return null;
     }
-    if (activeRp && activeRp._id) {
-      return activeRp._id;
+    if (activeParent && activeParent._id) {
+      return activeParent._id;
     } else {
       return null;
     }
@@ -102,7 +103,7 @@ const TutorailWatch = () => {
 
   return (
     <div>
-      <Rpnav />
+      <Navbar />
       <div style={{ minHeight: "700px" }} className="p-5">
         <h3 className="text-center">Watch Video Tutorials</h3>
         <div className="mt-5 d-flex gap-5 ">
@@ -137,5 +138,4 @@ const TutorailWatch = () => {
     </div>
   );
 };
-
-export default TutorailWatch;
+export default ParentTutorialWatch;
