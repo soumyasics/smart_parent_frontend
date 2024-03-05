@@ -46,6 +46,7 @@ import Counselorlist from "./Components/user/pages/Admin/Councilrs_list";
 import CommonHomePage from "./pages/commonHomePage/commonHomePage";
 import ViewResoucePerson from "./pages/viewResoucePerson/viewResoucePerson";
 import ViewResourcePersonDetails from "./pages/viewResoucePerson/resoucePersonDetails"
+import Rpblog from "./Components/resource_person/RP_Pages/Blog/Rpblog";
 function App() {
   return (
     <div className="appjs">
@@ -93,8 +94,11 @@ function App() {
           />
 
           <Route path="/view-resouce-person" element={<ViewResoucePerson />} />
-        <Route path="/view-resource-person-details/:id" element={<ViewResourcePersonDetails />} />
-          {/*ajeena*/}
+          <Route path="/view-resource-person-details/:id" element={<ViewResourcePersonDetails />} />
+          <Route path="/resourceperson_blog" element={<Rpblog />}/>
+
+            {/*ajeena*/}
+
           <Route path="/admin" element={<AdminSignin />} />
           <Route path="/admin_home" element={<AdminHome />} />
           <Route
