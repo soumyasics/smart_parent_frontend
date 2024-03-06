@@ -1,42 +1,41 @@
-.Rpblog{
-    padding-top:30px;
-    padding-bottom:90px
+.Rpblog {
+    padding-top: 30px;
+    padding-bottom: 90px
 }
 
-.blogbutton{
-    padding-top:50px
+.blogbutton {
+    padding-top: 50px
 }
 
-.blogbutton button{
-    color:#fff;
+.blogbutton button {
+    color: #fff;
     background-color: #1E90FF;
-    height:35px;
-    width:100px;
-    margin-left:400px;
-    border:none;
+    height: 35px;
+    width: 100px;
+    margin-left: 400px;
+    border: none;
 }
 
-.rpblogheading{
-text-align:center;
-
-}
-
-.rpblogform{
-    padding:0 430px;
-    padding-top:20px;
+.rpblogheading {
+    text-align: center;
 
 }
 
-.bloglabel{
-    
-  padding: 0 10px;
-  padding-bottom:3px
+.rpblogform {
+    padding: 0 430px;
+    padding-top: 20px;
 
+}
+
+.bloglabel {
+
+    padding: 0 10px;
+    padding-bottom: 3px
 }
 
 
 
-.rpbloginputs input{
+.rpbloginputs input {
     height: 35px;
     width: 500px;
     outline: none;
@@ -47,11 +46,11 @@ text-align:center;
     border-top-width: 1.9px;
     border-radius: 6px;
     transition: all 0.3s ease;
-    
-    
+
+
 }
 
-.rpblogarea textarea{
+.rpblogarea textarea {
     height: 100px;
     width: 500px;
     outline: none;
@@ -64,8 +63,8 @@ text-align:center;
     transition: all 0.3s ease;
 }
 
-.blogfiles input{
-      height: 100%;
+.blogfiles input {
+    height: 100%;
     width: 100%;
     outline: none;
     font-size: 17px;
@@ -75,10 +74,10 @@ text-align:center;
     transition: all 0.3s ease;
 }
 
-.rpblogfield{
-    padding-top:15px
+.rpblogfield {
+    padding-top: 15px
 }
 
-.rpimg1{
-    padding-bottom:15px
+.rpimg1 {
+    padding-bottom: 15px
 }
