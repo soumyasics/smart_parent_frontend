@@ -31,7 +31,7 @@ const ViewResourcePerson = () => {
 
   function getData() {
     axiosInstance
-      .get("smart_parent/view-all-rp")
+      .get("view-all-rp")
       .then((res) => {
         console.log("res", res);
         let allRps = res?.data?.data || [];

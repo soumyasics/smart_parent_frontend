@@ -10,7 +10,7 @@ function Counselorlist() {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axiosInstance.get('smart_parent/viewAllCouncilars');
+            const response = await axiosInstance.get('viewAllCouncilars');
             setUserData(response.data.data); 
             console.log(response.data.data); 
 

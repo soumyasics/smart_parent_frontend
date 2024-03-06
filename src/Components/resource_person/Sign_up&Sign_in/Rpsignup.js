@@ -119,7 +119,7 @@ function Rpsignup() {
       console.log('rp form ', formData)
       
       axiosInstance
-        .post("smart_parent/registerRp", formData, {
+        .post("registerRp", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },})

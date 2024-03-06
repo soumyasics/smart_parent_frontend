@@ -11,7 +11,7 @@ function AdminDashboard() {
 
   function RPData() {
     axiosInstance
-      .get("smart_parent/view-all-rp")
+      .get("view-all-rp")
       .then((res) => {
         console.log("res", res);
         let allRps = res?.data?.data || [];
@@ -28,7 +28,7 @@ function AdminDashboard() {
   const CounselorData = async () => {
     try {
       const response = await axiosInstance.get(
-        "smart_parent/viewAllCouncilars"
+        "viewAllCouncilars"
       );
       setUserData(response.data.data);
       console.log(response.data.data);
@@ -39,7 +39,7 @@ function AdminDashboard() {
 
   const parentData = async () => {
     try {
-      const response = await axiosInstance.post("smart_parent/viewParents");
+      const response = await axiosInstance.post("viewParents");
       setParentList(response.data.data);
       console.log(response.data.data, "parent");
     } catch (error) {

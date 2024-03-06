@@ -44,6 +44,27 @@ function Rpnav() {
       }, 1500);
     }
   };
+  const handleRedirectTask = () => {
+    if (isRpLoggedIn()) {
+      navigate("/rp-add-task");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    }
+  };
+
+  function redirectSubscribers() {
+    if (isRpLoggedIn()) {
+      navigate("/rp-view-subscribers");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    }
+  }
   console.log("act user", activeUser);
 
   function navigateTutorials() {
@@ -84,10 +105,10 @@ function Rpnav() {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse " id="navbarNav">
-            <ul class="navbar-nav a1" style={{ marginRight: "51px" }}>
+          <div className="collapse navbar-collapse " id="navbarNav">
+            <ul className="navbar-nav a1 gap-4" style={{ marginRight: "51px" }}>
               <li
                 style={{ cursor: "pointer" }}
                 onClick={navigateTutorials}
@@ -100,31 +121,44 @@ function Rpnav() {
               <li
                 style={{ cursor: "pointer" }}
                 onClick={redirectViewTutorials}
-                class="nav-item"
+                className="nav-item"
               >
-                <a class="nav-link active text-white" aria-current="page">
+                <a className="nav-link active text-white" aria-current="page">
                   View
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active text-white" href="#" id="a2">
+              <li
+                className="nav-item"
+                style={{ cursor: "pointer" }}
+                onClick={redirectSubscribers}
+              >
+                <a className="nav-link active text-white" id="a2">
                   Subscribers
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active text-white" href="#" id="a3">
+              <li
+                className="nav-item"
+                style={{ cursor: "pointer" }}
+                onClick={handleRedirectTask}
+              >
+                <a className="nav-link active text-white" id="a3">
                   Tasks
+                </a>
+              </li>
+              <li className="nav-item" style={{ cursor: "pointer" }}>
+                <a className="nav-link active text-white" id="a3">
+                  Profile
                 </a>
               </li>
               {activeUser ? (
                 <li
-                  class="nav-item"
+                  className="nav-item bg-danger"
                   style={{ cursor: "pointer" }}
                   onClick={handleLogout}
                 >
                   <a
                     style={{ color: "red", fontWeight: "800" }}
-                    className="nav-link active text-danger"
+                    className="nav-link active text-white"
                     id="a5"
                   >
                     Logout
@@ -132,13 +166,13 @@ function Rpnav() {
                 </li>
               ) : (
                 <li
-                  class="nav-item"
+                  className="nav-item bg-success"
                   style={{ cursor: "pointer" }}
                   onClick={() => navigate("/admin")}
                 >
                   <a
                     style={{ color: "red", fontWeight: "800" }}
-                    className="nav-link active text-danger"
+                    className="nav-link active text-white"
                     id="a5"
                   >
                     Login
