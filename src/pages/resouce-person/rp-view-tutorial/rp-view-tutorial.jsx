@@ -27,7 +27,7 @@ const RpViewTutorials = () => {
   }, [allTutorials]);
   async function getData() {
     try {
-      const res = await axiosInstance.get("smart_parent/viewAllTutorials");
+      const res = await axiosInstance.get("viewAllTutorials");
       let rpData = res?.data?.data || null;
       if (rpData) {
         let reverseRpData = rpData.reverse();

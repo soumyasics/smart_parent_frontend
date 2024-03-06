@@ -61,7 +61,7 @@ const ParentTutorialWatch = () => {
   }
   async function getData() {
     try {
-      const res = await axiosInstance.get("smart_parent/getTutorialById/" + id);
+      const res = await axiosInstance.get("getTutorialById/" + id);
       console.log("res", res);
       let tutorial = res?.data?.data || null;
       if (tutorial) {

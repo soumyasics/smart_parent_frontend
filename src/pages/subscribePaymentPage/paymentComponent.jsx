@@ -27,7 +27,7 @@ const PaymentForm = () => {
       };
       try {
         const subscriptionData = await axiosInstance.post(
-          "/smart_parent/new-subscription",
+          "new-subscription",
           requiredData
         );
         console.log("data:", subscriptionData);
