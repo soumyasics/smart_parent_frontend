@@ -55,6 +55,8 @@ import TutorailWatch from "./pages/resouce-person/rp-view-tutorial/tuturial-watc
 import SubscribedRp from "./pages/mySubscriptions/subscribedRp";
 import ParentTutorialWatch from "./pages/parent/parent-tutorial-watch/parent-tutorial-watch";
 import ParentList from "./Components/user/pages/Admin/ParentList";
+import Rpresetpass from "./Components/resource_person/Sign_up&Sign_in/Rpresetpass";
+import Counselorresetpass from "./Components/counsellor/signup&signin/Counselorresetpass";
 
 function App() {
   return (
@@ -92,6 +94,7 @@ function App() {
           {/* Counselor */}
 
           <Route path="/counselor_signup" element={<Counsellorsignup />} />
+          <Route path="/counselor_resetpassword" element={<Counselorresetpass/>}/>
           <Route path="/counselor_blogs" element={<Counselorblogs />} />
           <Route path="/counselor_chat" element={<Counselorchat />} />
           <Route path="/counselor_profile" element={<Counselorprofile />} />
@@ -103,6 +106,7 @@ function App() {
           {/* Resource Person */}
 
           <Route path="/resourceperson_signup" element={<Rpsignup />} />
+          <Route path="/resourceperson_resetpassword" element={<Rpresetpass/>}/>
           <Route path="/resourceperson_task" element={<Rptask />} />
           <Route path="/resourceperson_chat" element={<Rpchat />} />
           <Route path="/resourceperson_profile" element={<Rprofile />} />
