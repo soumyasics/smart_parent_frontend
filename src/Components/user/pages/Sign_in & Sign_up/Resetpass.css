@@ -34,7 +34,18 @@
 }
 
 .resetbutton {
-    margin-left: 11px;
+    padding-top:20px;
+    margin-left: 160px;
+
+}
+
+.resetbutton button{
+    background-color: #1A728E;
+    color:#fff;
+    height:35px;
+    width:130px;
+    border:none;
+    border-radius:3px;
 }
 
 .resetbutton .icon {

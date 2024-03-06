@@ -27,7 +27,7 @@ function Sidebar() {
               </span>{" "}
               Counselor List 
             </Link>
-            <Link to="">
+            <Link to="/parent_list">
             <span className="fa-stack fa-lg pull-left">
               <i className="fa fa-dashboard fa-stack-1x " />
             </span>{" "}
