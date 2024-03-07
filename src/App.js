@@ -46,6 +46,7 @@ import Counselorlist from "./Components/user/pages/Admin/Councilrs_list";
 import SubscriptionTable from "./pages/mySubscriptions/mySubscriptions";
 import CommonHomePage from "./pages/commonHomePage/commonHomePage";
 import ViewResoucePerson from "./pages/viewResoucePerson/viewResoucePerson";
+import Rpblog from "./Components/resource_person/RP_Pages/Blog/Rpblog";
 import ViewResourcePersonDetails from "./pages/viewResoucePerson/resoucePersonDetails";
 import SubscribePaymentPage from "./pages/subscribePaymentPage/subscribePaymentPage";
 import AdminDashboard from "./Components/user/pages/Admin/AdminDashboard";
@@ -53,7 +54,12 @@ import "./App.css";
 import TutorailWatch from "./pages/resouce-person/rp-view-tutorial/tuturial-watch";
 import SubscribedRp from "./pages/mySubscriptions/subscribedRp";
 import ParentTutorialWatch from "./pages/parent/parent-tutorial-watch/parent-tutorial-watch";
+import RpAddTask from "./pages/resouce-person/rp-add-task/rp-add-task";
+import RpViewSubscribers from "./pages/resouce-person/view-subscribers/view-subscribers";
 import ParentList from "./Components/user/pages/Admin/ParentList";
+import Rpresetpass from "./Components/resource_person/Sign_up&Sign_in/Rpresetpass";
+import Counselorresetpass from "./Components/counsellor/signup&signin/Counselorresetpass";
+
 
 function App() {
   return (
@@ -91,6 +97,7 @@ function App() {
           {/* Counselor */}
 
           <Route path="/counselor_signup" element={<Counsellorsignup />} />
+          <Route path="/counselor_resetpassword" element={<Counselorresetpass/>}/>
           <Route path="/counselor_blogs" element={<Counselorblogs />} />
           <Route path="/counselor_chat" element={<Counselorchat />} />
           <Route path="/counselor_profile" element={<Counselorprofile />} />
@@ -102,6 +109,7 @@ function App() {
           {/* Resource Person */}
 
           <Route path="/resourceperson_signup" element={<Rpsignup />} />
+          <Route path="/resourceperson_resetpassword" element={<Rpresetpass/>}/>
           <Route path="/resourceperson_task" element={<Rptask />} />
           <Route path="/resourceperson_chat" element={<Rpchat />} />
           <Route path="/resourceperson_profile" element={<Rprofile />} />
@@ -113,10 +121,17 @@ function App() {
           <Route path="/rp-view-tutorials" element={<RpViewTutorial />} />
           <Route path="/watch-tutorial/:id" element={<TutorailWatch />} />
           <Route path="/view-resouce-person" element={<ViewResoucePerson />} />
+          <Route path="/view-resource-person-details/:id" element={<ViewResourcePersonDetails />} />
+          <Route path="/resourceperson_blog" element={<Rpblog />}/>
+
+            {/*ajeena*/}
+
           <Route
             path="/view-resource-person-details/:id"
             element={<ViewResourcePersonDetails />}
           />
+          <Route path="/rp-add-task" element={<RpAddTask />} />
+          <Route path="/rp-view-subscribers" element={<RpViewSubscribers />} />
           {/* <Route path="" element={< />}/> */}
           {/*ajeena*/}
           <Route path="/admin" element={<AdminSignin />} />

@@ -37,12 +37,8 @@ const SubscribedRp = () => {
   }, [rpDetails]);
 
   useEffect(() => {
-    console.log("tuto", tutorial);
-  }, [tutorial]);
-  useEffect(() => {
     let filePath = rpDetails?.profilePicture?.filename || null;
 
-    console.log("rpdd", filePath);
     if (filePath) {
       let url = `${BASE_URL}${filePath}`;
       if (rpDetails) {
@@ -75,7 +71,7 @@ const SubscribedRp = () => {
 
     if (tutorialVideoLink) {
       let URL = `${BASE_URL}${tutorialVideoLink}`;
-      console.log("ur", URL);
+
       // validate if it's a valid video URL
       if (isValidVideoURL(URL)) {
         setVideoUrl(URL);
@@ -92,7 +88,7 @@ const SubscribedRp = () => {
   async function getVideoTutorials(rpId) {
     try {
       let rpTutorials = await axiosInstance.get(
-        "smart_parent/viewTutorialByRpId/" + rpId
+        "viewTutorialByRpId/" + rpId
       );
       let rpTutorialsData = rpTutorials?.data?.data || null;
       console.log("rp tuto data", rpTutorialsData);
@@ -123,7 +119,7 @@ const SubscribedRp = () => {
     }
     try {
       axiosInstance
-        .get("smart_parent/get-subscription-by-id/" + id)
+        .get("get-subscription-by-id/" + id)
         .then((res) => {
           console.log("res", res);
           let rpData = res?.data?.data || null;
@@ -155,7 +151,7 @@ const SubscribedRp = () => {
           className="p-5 d-flex"
           style={{ minHeight: "500px" }}
         >
-          <div className="rp-details-right w-50">
+          <div className="rp-details-right" style={{ width: "60%" }}>
             <Col>
               <Card className="mb-3 d-flex justify-content-center">
                 <div className="d-flex justify-content-center">
@@ -219,8 +215,12 @@ const SubscribedRp = () => {
               </Card>
             </Col>
           </div>
-          <div className="rp-details-left">
+          <div
+            style={{ width: "38%" }}
+            className="rp-details-left d-flex p-0 align-items-center"
+          >
             <Image
+              className="w-100"
               src="https://img.freepik.com/free-vector/caring-adoptive-fathers-abstract-concept-vector-illustration-foster-care-father-adoption-happy-interracial-family-having-fun-together-home-childless-couple-abstract-metaphor_335657-1385.jpg"
               alt="rp"
             />

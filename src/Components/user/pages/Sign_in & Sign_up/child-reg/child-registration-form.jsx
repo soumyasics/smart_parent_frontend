@@ -54,7 +54,7 @@ const ChildRegistrationForm = ({ parentData }) => {
     let obj = { ...childData, ...parentData };
     console.log("obj", obj);
     axiosInstance
-      .post(`smart_parent/registerParent`, obj)
+      .post(`registerParent`, obj)
       .then((res) => {
         console.log("res", res);
         let status = res?.data?.msg == "Inserted successfully";

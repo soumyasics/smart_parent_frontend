@@ -12,7 +12,7 @@ function RPLIst() {
   }, []);
   function getData() {
     axiosInstance
-      .get("smart_parent/view-all-rp")
+      .get("view-all-rp")
       .then((res) => {
         console.log("res", res);
         let allRps = res?.data?.data || [];
@@ -31,7 +31,7 @@ function RPLIst() {
   function handleRejectClick(id) {
     console.log(id);
     axiosInstance
-      .post("smart_parent/rejectRpRegistration/" + id)
+      .post("rejectRpRegistration/" + id)
       .then((res) => {
         console.log("res", res);
         if (res.status === 200) {
@@ -52,7 +52,7 @@ function RPLIst() {
   function handleAcceptClick(id) {
     console.log("id", id);
     axiosInstance
-      .post("smart_parent/acceptRpRegistration/" + id)
+      .post("acceptRpRegistration/" + id)
       .then((res) => {
         console.log("res", res);
         if (res.status === 200) {
