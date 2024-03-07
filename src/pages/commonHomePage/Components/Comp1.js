@@ -14,7 +14,6 @@ function Comp1() {
       console.log("Parent data not found in the local storage");
     }
   }, []);
-  console.log("ac", activeUser);
 
   const handleLogout = () => {
     if (localStorage.getItem("parentData")) {
