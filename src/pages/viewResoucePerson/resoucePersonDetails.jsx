@@ -85,7 +85,7 @@ const ResoucePersonDetails = () => {
     }
     try {
       let rpTutorials = await axiosInstance.get(
-        "smart_parent/viewTutorialByRpId/" + id
+        "viewTutorialByRpId/" + id
       );
       let rpTutorialsData = rpTutorials?.data?.data || null;
 
@@ -116,7 +116,7 @@ const ResoucePersonDetails = () => {
     }
     try {
       axiosInstance
-        .get("smart_parent/view-rp-by-id/" + id)
+        .get("view-rp-by-id/" + id)
         .then((res) => {
           console.log("res", res);
           let rpData = res?.data?.data || null;
