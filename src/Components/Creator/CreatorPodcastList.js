@@ -32,6 +32,9 @@ function CreatorPodcastList({ data }) {
   const gotoEpisode=(id)=>{
     navigate(`/creatorepisodadd/${id}`)
   }
+  const gotoPayment=(id)=>{
+    navigate(`/paymentform/${id}`)
+  }
   return (
     <div className="podcast_list_main">
       <div class="container ">
@@ -54,7 +57,7 @@ function CreatorPodcastList({ data }) {
                     <h6 class="card-text col">{a.creatorname}</h6>
                     <h6 class="card-text">{a.description}</h6>
                     <h6 class="card-text">{a.price}</h6>
-                    {data.role === 'creator' ? '' : <button>Subscribe</button>}
+                    {data.role === 'creator' ? '' : <button onClick={()=>gotoPayment(a._id)} >Subscribe</button>}
                     {data.role === 'creator'?<button onClick={()=>gotoEpisode(a._id + ',' + a.podcastname)} className="episodebtn">Add Episode
                       <FaPlus  />
                     </button>:""}

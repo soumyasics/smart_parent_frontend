@@ -28,6 +28,7 @@ import CreatorUploadPoadcastEdit from "./Components/Creator/CreatorUploadPoadcas
 import CreatorEpisodeAdd from "./Components/Creator/CreatorEpisodeAdd";
 import CreatorSubscription from "./Components/Creator/CreatorSubscription";
 import CreatorPodcastList from "./Components/Creator/CreatorPodcastList";
+import Paymentform from "./Pages/payment/Paymentform";
 
 function App() {
 
@@ -72,6 +73,7 @@ function App() {
         <Route path="/adminhome" element={<AdminLandingPage />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/paymentform/:id" element={<Paymentform />} />
 
       </Routes>
     </BrowserRouter>
