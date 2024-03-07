@@ -60,6 +60,7 @@ import ParentList from "./Components/user/pages/Admin/ParentList";
 import Rpresetpass from "./Components/resource_person/Sign_up&Sign_in/Rpresetpass";
 import Counselorresetpass from "./Components/counsellor/signup&signin/Counselorresetpass";
 import ConselorHome from "./Components/counsellor/counselor_pages/ConselorHome";
+import ViewAllTasks from "./pages/mySubscriptions/viewAllTasks";
 
 
 function App() {
@@ -95,6 +96,7 @@ function App() {
             path="/parent-tutorial-watch/:id"
             element={<ParentTutorialWatch />}
           />
+          <Route path="view-all-tasks/:rpId" element={<ViewAllTasks/>} />
           {/* Counselor */}
 
           <Route path="/counselor_signup" element={<Counsellorsignup />} />
