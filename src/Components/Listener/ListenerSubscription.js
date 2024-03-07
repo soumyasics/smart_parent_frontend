@@ -7,20 +7,18 @@ function ListenerSubscription({ data }) {
   const navigate=useNavigate()
 
   useEffect(() => {
-    if (localStorage.getItem("listenerid") !== null) {
-      navigate("/listenersubscription");
-    } else {
+    if (localStorage.getItem("listenerid") == null) {
       navigate("/");
-    }
+    } 
   }, []);
     const [creatorpodcast, setCreatorpodcast] = useState([]);
   useEffect(() => {
     axiosInstance
-      .post("/getAllPodcastByCreator", {
-        id: localStorage.getItem("creatorid"),
+      .post("/viewSubscriptionByListenerId", {
+        id: localStorage.getItem("listenerid"),
       })
       .then((response) => {
-        console.log(response.data.data, "ajeena");
+        console.log(response, "ajeena");
         setCreatorpodcast(response.data.data, "ajeena");
       })
       .catch((error) => {
@@ -45,19 +43,21 @@ function ListenerSubscription({ data }) {
                 <div  className="card col-3" id="podcastlist_card">
                   <div class="podcastlist_card_img">
                     <img
-                    src={data.url + a.coverimage.filename}
+                    src={data.url + a.podcastid.coverimage.filename}
                     class="card-img-top"
                       id="adminclub"
                       alt="..."
                     />
                   </div>
                   <div class="podcastlist_card_content">
-                    <h4 class="card-title mt-3 mb-2t">{a.podcastname}</h4>
-                    <h6 class="card-text col">{a.creatorname}</h6>
-                    <h6 class="card-text">{a.description}</h6>
-                    {data.role === 'listener' ? '' : <button>Subscribe</button>}
-                    <button onClick={()=>handleSubscribe(a._id + ',' + a.podcastname)} className="episodebtn">Subscribe
-                    </button>
+                    <h4 class="card-title mt-3 mb-2t">{a.podcastid.podcastname}</h4>
+                    <h6 class="card-text col">{a.podcastid.creatorname}</h6>
+                    <h6 class="card-text">{a.podcastid.description}</h6>
+                    <audio controls className="w-100">
+                    <source src={a.podcastid.audio ? data.url + a.podcastid.audio.filename : ''} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                  </audio>
+                    {data.role === 'listener' ? '' : <button  onClick={()=>handleSubscribe(a._id + ',' + a.podcastname)}>Subscribe</button>}
                   </div>
                 </div>
               );
