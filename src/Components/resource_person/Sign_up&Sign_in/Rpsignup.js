@@ -30,6 +30,7 @@ function Rpsignup() {
     certificateImg: "",
   });
   let formValid = true;
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setRpsignup({ ...rpsignup, [name]: value });

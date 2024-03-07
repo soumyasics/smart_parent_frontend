@@ -3,6 +3,7 @@ import "./Resetpass.css"
 import { Link } from 'react-router-dom'
 import { Icon } from '@iconify-icon/react'
 import axios from 'axios'
+import axiosInstance from '../../../../apis/axiosInstance'
 
 
 
@@ -63,7 +64,7 @@ function ResetPass() {
 
 
     if (formValid) {
-      axios.post("http://localhost:4009/smart_parent/forgotPwdParent", resetpass)
+      axiosInstance.post("/forgotPwdParent", resetpass)
         .then((res) => {
           console.log("data", res);
 
