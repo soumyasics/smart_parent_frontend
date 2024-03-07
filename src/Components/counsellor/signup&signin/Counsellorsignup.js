@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Icon } from '@iconify-icon/react'
-import axiosMultipartInstance from '../../../apis/axiosMultipartInstance'
+
+import axiosInstance from '../../../apis/axiosInstance'
 
 function Counsellorsignup() {
 
@@ -104,7 +105,7 @@ function Counsellorsignup() {
 
             console.log('d', counselorsignup)
 
-            axiosMultipartInstance.post("/smart_parent/registerCouncilar", counselorsignup)
+            axiosInstance.post("/registerCouncilar", counselorsignup)
                 .then((res) => {
                     console.log("response", res);
                     alert("Waiting for Admin approval..");

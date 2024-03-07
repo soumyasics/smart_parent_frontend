@@ -54,9 +54,12 @@ import "./App.css";
 import TutorailWatch from "./pages/resouce-person/rp-view-tutorial/tuturial-watch";
 import SubscribedRp from "./pages/mySubscriptions/subscribedRp";
 import ParentTutorialWatch from "./pages/parent/parent-tutorial-watch/parent-tutorial-watch";
+import RpAddTask from "./pages/resouce-person/rp-add-task/rp-add-task";
+import RpViewSubscribers from "./pages/resouce-person/view-subscribers/view-subscribers";
 import ParentList from "./Components/user/pages/Admin/ParentList";
 import Rpresetpass from "./Components/resource_person/Sign_up&Sign_in/Rpresetpass";
 import Counselorresetpass from "./Components/counsellor/signup&signin/Counselorresetpass";
+
 
 function App() {
   return (
@@ -127,6 +130,8 @@ function App() {
             path="/view-resource-person-details/:id"
             element={<ViewResourcePersonDetails />}
           />
+          <Route path="/rp-add-task" element={<RpAddTask />} />
+          <Route path="/rp-view-subscribers" element={<RpViewSubscribers />} />
           {/* <Route path="" element={< />}/> */}
           {/*ajeena*/}
           <Route path="/admin" element={<AdminSignin />} />

@@ -83,7 +83,7 @@ const ResourceUploadForm = () => {
     formData.append("target", videoObj.target);
     try {
       let res = await axiosMultipartInstance.post(
-        "smart_parent/addTutorial",
+        "addTutorial",
         formData
       );
       console.log("vid", res);

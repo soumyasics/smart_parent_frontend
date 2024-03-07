@@ -54,7 +54,7 @@ const MySubscriptions = () => {
   async function getData(id) {
     try {
       let res = await axiosInstance.get(
-        "/smart_parent/get-all-subscriptions-by-parent-id/" + id
+        "get-all-subscriptions-by-parent-id/" + id
       );
       let rpData = res?.data?.data || null;
       if (rpData) {
