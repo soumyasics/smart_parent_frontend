@@ -126,8 +126,9 @@ function SignIn() {
               </h5>
             </div>
 
-            <div className="inbutton">
-              <button id="signupbtn" type="submit">
+            <div className="inbutton d-flex justify-content-center rpbtn">
+              <button id="signupbtn" type="submit"
+                className="btn btn-primary icon">
                 Sign in <Icon icon="grommet-icons:connect" className="icon" />
               </button>
             </div>

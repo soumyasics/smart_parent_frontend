@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Icon } from '@iconify-icon/react'
+import axiosInstance from '../../../apis/axiosInstance'
 
 function Rpresetpass() {
 
@@ -58,7 +59,12 @@ function Rpresetpass() {
     setErrors(errors)
 
     if (formValid) {
-      alert("Form is Submitted")
+      // alert("Form is Submitted")
+
+axiosInstance.post("",rpreset)
+.then((res)=>{console.log(res,"data");})
+.catch((err)=>{console.log(err,"err");})
+
     }
     else {
       console.log("form", formValid);
