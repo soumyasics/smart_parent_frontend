@@ -92,8 +92,6 @@ function AdminSignin() {
       } else {
         try {
           const response = await axios.post(loginURL, formData);
-          console.log(response, "o");
-
           if (response.data) {
             if (selectedButton === "button2") {
               //handle login sucess - resource
