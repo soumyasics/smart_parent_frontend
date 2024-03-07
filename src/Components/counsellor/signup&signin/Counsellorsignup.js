@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Icon } from '@iconify-icon/react'
-import axios from "axios"
+import axiosMultipartInstance from '../../../apis/axiosMultipartInstance'
 
 function Counsellorsignup() {
 
@@ -31,6 +31,8 @@ function Counsellorsignup() {
         certificateImg: "",
         profilePicture: ""
     })
+
+    const navigate = useNavigate()
 
     const changefn = (e) => {
         const { name, value } = e.target
@@ -102,18 +104,18 @@ function Counsellorsignup() {
 
             console.log('d', counselorsignup)
 
-            axios.post("http://localhost:4009/smart_parent/registerCouncilar", counselorsignup
-            , {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            }
-            )
-                .then((res) => { console.log("response", res); alert("Form is submitted") })
+            axiosMultipartInstance.post("/smart_parent/registerCouncilar", counselorsignup)
+                .then((res) => {
+                    console.log("response", res);
+                    alert("Waiting for Admin approval..");
+                    setTimeout(() => {
+                        navigate("/admin");
+                    }, 1500);
+                })
                 .catch((err) => {
-                     console.log("error", err); 
+                    console.log("error", err);
                     alert(err.response.data.message)
-            })
+                })
 
         }
         else { console.log("form", formValid) }
@@ -203,7 +205,7 @@ function Counsellorsignup() {
                     </div>
 
 
-                     <div className='files' >
+                    <div className='files' >
                         <div className='label'> <label>Certificate</label>  </div>
                         <input type='file' name="certificateImg" value={counselorsignup.certificateImg} onChange={changefn} />
 
@@ -218,16 +220,21 @@ function Counsellorsignup() {
 
                         {errors.profilePicture && <div className="text-danger errortext">{errors.profilePicture}</div>}
 
-                    </div> 
-
-
-                    <div className="text">
-                        <h5>Already have an account? <Link to="">Login now</Link></h5>
                     </div>
 
 
-                    <div className="inbutton">
-                        <button type="submit">Sign up  <Icon icon="grommet-icons:connect" className='icon' /></button>
+                    <div className="text">
+                        <h5>Already have an account? <Link to="/admin">Login now</Link></h5>
+                    </div>
+
+
+                    <div className="inbutton d-flex justify-content-center rpbtn">
+                        <button type="submit"
+                            className="btn btn-primary icon"
+                            variant="primary">
+                            Sign up
+                            <Icon icon="grommet-icons:connect" className='icon' />
+                        </button>
                     </div>
 
 
