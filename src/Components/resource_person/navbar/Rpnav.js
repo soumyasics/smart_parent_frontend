@@ -146,23 +146,45 @@ function Rpnav() {
                 </a>
               </li>
               <li className="nav-item" style={{ cursor: "pointer" }}>
-                <a className="nav-link active text-white" id="a3">
+                <a href="#m" className="nav-link active text-white" id="a3">
                   Profile
                 </a>
               </li>
               {activeUser ? (
-                <li
-                  className="nav-item bg-danger"
-                  style={{ cursor: "pointer" }}
-                  onClick={handleLogout}
-                >
-                  <a
-                    style={{ color: "red", fontWeight: "800" }}
-                    className="nav-link active text-white"
-                    id="a5"
-                  >
-                    Logout
-                  </a>
+                <li>
+                  <div class="dropdown">
+                  <img
+                    alt="img"
+                    className="parentimage dropdown-toggle" 
+                    src={
+                      "http://localhost:4009/" +
+                      (activeUser.profilePicture
+                        ? activeUser.profilePicture.originalname
+                        : "")
+                    }
+                  ></img>
+                    <ul
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton1"
+                    >
+                      <li>
+                        <a class="dropdown-item" href="#">
+                          Action
+                        </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">
+                          Another action
+                        </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">
+                          Something else here
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  
                 </li>
               ) : (
                 <li

@@ -59,6 +59,7 @@ import RpViewSubscribers from "./pages/resouce-person/view-subscribers/view-subs
 import ParentList from "./Components/user/pages/Admin/ParentList";
 import Rpresetpass from "./Components/resource_person/Sign_up&Sign_in/Rpresetpass";
 import Counselorresetpass from "./Components/counsellor/signup&signin/Counselorresetpass";
+import ConselorHome from "./Components/counsellor/counselor_pages/ConselorHome";
 
 
 function App() {
@@ -153,6 +154,8 @@ function App() {
           path="/view_counsiler_details/:id"
           element={<ViewResourcePersonDetails />}
         />
+        <Route path="/counsillor_home" element={<ConselorHome />} />
+
         </Routes>
       </Router>
     </div>
