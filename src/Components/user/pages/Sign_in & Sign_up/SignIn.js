@@ -6,6 +6,7 @@ import axios from "axios";
 import Navbar from "../../../../pages/commonHomePage/Components/Comp1";
 import Footer from "../../../../pages/commonHomePage/Components/commonFooter";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../../../apis/axiosInstance";
 function SignIn() {
   const [signin, setSignin] = useState({
     email: "",
@@ -49,8 +50,8 @@ function SignIn() {
     }
 
     if (formValid) {
-      axios
-        .post("http://localhost:4009/smart_parent/loginParent", signin)
+      axiosInstance
+        .post("/loginParent", signin)
         .then((res) => {
           console.log("data", res.data.data);
 
