@@ -75,7 +75,7 @@ function SignIn() {
   };
 
   return (
-    <>
+    <div>
       <Navbar />
       <div className="signup">
         <h1>Sign In</h1>
@@ -136,7 +136,7 @@ function SignIn() {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

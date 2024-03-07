@@ -1,8 +1,21 @@
 import React from "react";
-import './sidebar.css'
-import {Link} from "react-router-dom"
+import "./sidebar.css";
+import { useNavigate, Link } from "react-router-dom";
 
 function Sidebar() {
+  const navigate = useNavigate();
+
+  const handleLogout = (e) => {
+    console.log("pp");
+    try {
+      localStorage.removeItem("loggedUser");
+      navigate("/admin");
+      window.location.href = "/admin";
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <div id="wrapper">
@@ -22,20 +35,19 @@ function Sidebar() {
                 Resource person List
               </Link>
               <Link to="/counsiler_list">
-              <span className="fa-stack fa-lg pull-left">
-                <i className="fa fa-dashboard fa-stack-1x " />
-              </span>{" "}
-              Counselor List 
-            </Link>
-            <Link to="/parent_list">
-            <span className="fa-stack fa-lg pull-left">
-              <i className="fa fa-dashboard fa-stack-1x " />
-            </span>{" "}
-            Parents List
-          </Link>
-              
+                <span className="fa-stack fa-lg pull-left">
+                  <i className="fa fa-dashboard fa-stack-1x " />
+                </span>{" "}
+                Counselor List
+              </Link>
+              <Link to="/parent_list">
+                <span className="fa-stack fa-lg pull-left">
+                  <i className="fa fa-dashboard fa-stack-1x " />
+                </span>{" "}
+                Parents List
+              </Link>
             </li>
-            <li> 
+            <li>
               <a href="#">
                 <span className="fa-stack fa-lg pull-left">
                   <i className="fa fa-youtube-play fa-stack-1x " />
@@ -59,11 +71,14 @@ function Sidebar() {
                 Contact
               </a>
               <Link to="">
-              <span className="fa-stack fa-lg pull-left">
-                <i className="fa fa-flag fa-stack-1x " />
-              </span>
-              Logout
-            </Link>
+                <span className="fa-stack fa-lg pull-left">
+                  <i className="fa fa-flag fa-stack-1x " />
+                </span>
+                <div onClick={handleLogout}>
+                  <button></button>
+                  Logout
+                </div>
+              </Link>
             </li>
           </ul>
         </div>
