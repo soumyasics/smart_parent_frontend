@@ -83,8 +83,9 @@ function AdminSignin() {
           Adminemail == formData.email &&
           Adminpassword == formData.password
         ) {
+          localStorage.setItem("loggedUser", Adminemail);
           alert("Admin login Sucessfully");
-          Navigate("/admin_home");
+          Navigate("/admin_dashboard");
         } else {
           alert("Please enter correct data");
         }
@@ -99,7 +100,10 @@ function AdminSignin() {
               alert(response.data.message);
               console.log("rp resp data", response.data.rp);
 
-              localStorage.setItem("activeRp", JSON.stringify(response.data.rp));
+              localStorage.setItem(
+                "activeRp",
+                JSON.stringify(response.data.rp)
+              );
               setTimeout(() => {
                 Navigate("/resource_person_home");
               }, 1000);
