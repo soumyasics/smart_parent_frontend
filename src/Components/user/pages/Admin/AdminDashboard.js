@@ -7,7 +7,7 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Table from 'react-bootstrap/Table'; 
+import Table from "react-bootstrap/Table";
 
 function AdminDashboard() {
   const [rpLists, setRpLists] = useState([]);
@@ -169,36 +169,34 @@ function AdminDashboard() {
           <div className="row">
             <div className="col-2"></div>
             <div className="col-8 ms-5 container w-75">
-          <h3 className="mt-5">All Counselor Requests</h3>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th scope="col">profilePicture</th>
-                <th scope="col">name</th>
-                <th scope="col">experienceYear</th>
-                <th scope="col">age</th>
-                <th scope="col">Email</th>
-                
-              </tr>
-            </thead>
-            <tbody>
-              {userData.map((data) => {
-                return (
+              <h3 className="mt-5">All Counselor Requests</h3>
+              <Table striped bordered hover>
+                <thead>
                   <tr>
-                    <td scope="row">
-                      <img src={data.profilePicture} alt=""></img>
-                    </td>
-                    <td>{data.name}</td>
-                    <td>{data.experienceYear}</td>
-                    <td>{data.age}</td>
-                    <td>{data.email}</td>
-                    
+                    <th scope="col">profilePicture</th>
+                    <th scope="col">name</th>
+                    <th scope="col">experienceYear</th>
+                    <th scope="col">age</th>
+                    <th scope="col">Email</th>
                   </tr>
-                );
-              })}
-            </tbody>
-          </Table>{" "}
-        </div>
+                </thead>
+                <tbody>
+                  {userData.map((data) => {
+                    return (
+                      <tr>
+                        <td scope="row">
+                          <img src={data.profilePicture} alt=""></img>
+                        </td>
+                        <td>{data.name}</td>
+                        <td>{data.experienceYear}</td>
+                        <td>{data.age}</td>
+                        <td>{data.email}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>{" "}
+            </div>
           </div>
         </div>
       </div>
@@ -253,12 +251,12 @@ function AdminDashboard() {
         <div className="col-2"></div>
         <div className="col-6 ms-5 container w-75">
           <h3 className="mt-5">All Parents</h3>
-          <Table striped bordered hover >
+          <Table striped bordered hover>
             <thead>
               <tr>
-                <th scope="col">profilePicture</th>
+                {" "}
                 <th scope="col">name</th>
-                <th scope="col">age</th>
+                <th scope="col">Contact</th>
                 <th scope="col">Email</th>
               </tr>
             </thead>
@@ -266,11 +264,8 @@ function AdminDashboard() {
               {parentlist.map((data) => {
                 return (
                   <tr>
-                    <td scope="row">
-                      <img src={data.profilePicture} alt=""></img>
-                    </td>
                     <td>{data.name}</td>
-                    <td>{data.age}</td>
+                    <td>{data.contact}</td>
                     <td>{data.email}</td>
                   </tr>
                 );

@@ -134,7 +134,10 @@ function App() {
           <Route path="/admin_dashboard" element={<AdminDashboard />} />
           <Route path="/rpnav" element={<Rpnav />} />
           <Route path="/parent_list" element={<ParentList />} />
-
+          <Route
+          path="/view_counsiler_details/:id"
+          element={<ViewResourcePersonDetails />}
+        />
         </Routes>
       </Router>
     </div>

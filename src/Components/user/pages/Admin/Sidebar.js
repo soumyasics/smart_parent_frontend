@@ -1,8 +1,22 @@
 import React from "react";
 import './sidebar.css'
-import {Link} from "react-router-dom"
+import {useNavigate, Link} from "react-router-dom"
 
 function Sidebar() {
+
+  const navigate = useNavigate();
+
+  const handleLogout=(e)=>{
+    console.log("pp")
+    try {
+      localStorage.removeItem("loggedUser"); 
+      navigate("/admin");
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
+
   return (
     <div>
       <div id="wrapper">
@@ -62,7 +76,9 @@ function Sidebar() {
               <span className="fa-stack fa-lg pull-left">
                 <i className="fa fa-flag fa-stack-1x " />
               </span>
-              Logout
+              <div onClick={handleLogout}>
+              <button ></button>
+              Logout</div>
             </Link>
             </li>
           </ul>
