@@ -65,7 +65,6 @@ function Rpnav() {
       }, 1500);
     }
   }
-  console.log("act user", activeUser);
 
   function navigateTutorials() {
     if (isRpLoggedIn()) {
@@ -78,6 +77,16 @@ function Rpnav() {
     }
   }
 
+  function redirectBlog() {
+    if (isRpLoggedIn()) {
+      navigate("/resourceperson_blog");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    }
+  }
   return (
     <div>
       <nav
@@ -128,6 +137,15 @@ function Rpnav() {
                 </a>
               </li>
               <li
+                style={{ cursor: "pointer" }}
+                onClick={redirectBlog}
+                className="nav-item"
+              >
+                <a className="nav-link active text-white" aria-current="page">
+                  Blog
+                </a>
+              </li>
+              <li
                 className="nav-item"
                 style={{ cursor: "pointer" }}
                 onClick={redirectSubscribers}
@@ -153,19 +171,17 @@ function Rpnav() {
               {activeUser ? (
                 <li>
                   <div class="dropdown">
-                  <img
-                    alt="img"
-                    className="parentimage dropdown-toggle" 
-                    src={
-                      "http://localhost:4009/" +
-                      (activeUser.profilePicture
-                        ? activeUser.profilePicture.originalname
-                        : "")
-                    }
-                  ></img>
-                    
+                    <img
+                      alt="img"
+                      className="parentimage dropdown-toggle"
+                      src={
+                        "http://localhost:4009/" +
+                        (activeUser.profilePicture
+                          ? activeUser.profilePicture.originalname
+                          : "")
+                      }
+                    ></img>
                   </div>
-                  
                 </li>
               ) : (
                 <li
