@@ -25,7 +25,6 @@ const ViewAllTasks = () => {
 
   useEffect(() => {
     let parentId = JSON.parse(localStorage.getItem("parentData")) || null;
-    console.log("parnt id", parentId);
     if (parentId) {
       setAnswerData({ ...answerData, parentid: parentId._id });
       if (taskId) {
@@ -41,7 +40,7 @@ const ViewAllTasks = () => {
     }
   }, []);
   useEffect(() => {
-    console.log("ans", answerData);
+    // console.log("ans", answerData);
   }, [answerData]);
   async function getTaskData() {
     try {
