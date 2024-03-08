@@ -92,8 +92,6 @@ function AdminSignin() {
       } else {
         try {
           const response = await axios.post(loginURL, formData);
-          console.log(response, "o");
-
           if (response.data) {
             if (selectedButton === "button2") {
               //handle login sucess - resource
@@ -110,16 +108,12 @@ function AdminSignin() {
             }
             if (selectedButton === "button3") {
               //handle login sucess - counsiler
-              alert(response.data.message);
-              console.log("councilar resp data", response.data.councilar);
-
+              alert(response.data);
               localStorage.setItem(
-                "activecouncilar",
-                JSON.stringify(response.data.councilar)
+                "activecouncilor",
+                JSON.stringify(response.data.message)
               );
-              setTimeout(() => {
-                Navigate("/counsillor_home");
-              }, 1000);
+              Navigate("/counsillor_home");
             }
           } else {
           }

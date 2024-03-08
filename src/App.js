@@ -60,6 +60,7 @@ import ParentList from "./Components/user/pages/Admin/ParentList";
 import Rpresetpass from "./Components/resource_person/Sign_up&Sign_in/Rpresetpass";
 import Counselorresetpass from "./Components/counsellor/signup&signin/Counselorresetpass";
 import ConselorHome from "./Components/counsellor/counselor_pages/ConselorHome";
+import ViewAllTasks from "./pages/mySubscriptions/viewTaskDetails";
 import Counseloraddtutorials from "./Components/counsellor/counselor_pages/Tutorials/Counseloraddtutorials";
 
 
@@ -97,10 +98,14 @@ function App() {
             path="/parent-tutorial-watch/:id"
             element={<ParentTutorialWatch />}
           />
+          <Route path="view-task-details/:taskId" element={<ViewAllTasks />} />
           {/* Counselor */}
 
           <Route path="/counselor_signup" element={<Counsellorsignup />} />
-          <Route path="/counselor_resetpassword" element={<Counselorresetpass/>}/>
+          <Route
+            path="/counselor_resetpassword"
+            element={<Counselorresetpass />}
+          />
           <Route path="/counselor_blogs" element={<Counselorblogs />} />
           <Route path="/counselor_chat" element={<Counselorchat />} />
           <Route path="/counselor_profile" element={<Counselorprofile />} />
@@ -112,7 +117,10 @@ function App() {
           {/* Resource Person */}
 
           <Route path="/resourceperson_signup" element={<Rpsignup />} />
-          <Route path="/resourceperson_resetpassword" element={<Rpresetpass/>}/>
+          <Route
+            path="/resourceperson_resetpassword"
+            element={<Rpresetpass />}
+          />
           <Route path="/resourceperson_task" element={<Rptask />} />
           <Route path="/resourceperson_chat" element={<Rpchat />} />
           <Route path="/resourceperson_profile" element={<Rprofile />} />
@@ -124,10 +132,13 @@ function App() {
           <Route path="/rp-view-tutorials" element={<RpViewTutorial />} />
           <Route path="/watch-tutorial/:id" element={<TutorailWatch />} />
           <Route path="/view-resouce-person" element={<ViewResoucePerson />} />
-          <Route path="/view-resource-person-details/:id" element={<ViewResourcePersonDetails />} />
-          <Route path="/resourceperson_blog" element={<Rpblog />}/>
+          <Route
+            path="/view-resource-person-details/:id"
+            element={<ViewResourcePersonDetails />}
+          />
+          <Route path="/resourceperson_blog" element={<Rpblog />} />
 
-            {/*ajeena*/}
+          {/*ajeena*/}
 
           <Route
             path="/view-resource-person-details/:id"
@@ -153,11 +164,10 @@ function App() {
           <Route path="/rpnav" element={<Rpnav />} />
           <Route path="/parent_list" element={<ParentList />} />
           <Route
-          path="/view_counsiler_details/:id"
-          element={<ViewResourcePersonDetails />}
-        />
-        <Route path="/counsillor_home" element={<ConselorHome />} />
-
+            path="/view_counsiler_details/:id"
+            element={<ViewResourcePersonDetails />}
+          />
+          <Route path="/counsillor_home" element={<ConselorHome />} />
         </Routes>
       </Router>
     </div>

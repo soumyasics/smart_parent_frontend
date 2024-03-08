@@ -1,250 +1,346 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { Icon } from '@iconify-icon/react'
-
-import axiosInstance from '../../../apis/axiosInstance'
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Icon } from "@iconify-icon/react";
+import axios from "axios";
+import axiosInstance from "../../../apis/axiosInstance";
 
 function Counsellorsignup() {
+  const navigate = useNavigate();
 
-    const [counselorsignup, setCounselorsignup] = useState({
+  const [counselorsignup, setCounselorsignup] = useState({
+    name: "",
+    age: "",
+    email: "",
+    contact: "",
+    qualification: "",
+    experienceYear: "",
+    password: "",
+    certificateImg: null,
+    profilePicture: null,
+  });
 
-        name: "",
-        age: "",
-        email: "",
-        contact: "",
-        qualification: "",
-        experienceYear: "",
-        password: "",
-        certificateImg: "",
-        profilePicture: ""
+  const [errors, setErrors] = useState({
+    name: "",
+    age: "",
+    email: "",
+    contact: "",
+    qualification: "",
+    experienceYear: "",
+    password: "",
+    certificateImg: "",
+    profilePicture: "",
+  });
+  let formValid = true;
 
-    })
+  const changefn = (e) => {
+    const { name, value } = e.target;
+    setCounselorsignup({ ...counselorsignup, [name]: value });
+  };
 
-    const [errors, setErrors] = useState({
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    setCounselorsignup({ ...counselorsignup, [name]: files[0] });
+  };
 
-        name: "",
-        age: "",
-        email: "",
-        contact: "",
-        qualification: "",
-        experienceYear: "",
-        password: "",
-        certificateImg: "",
-        profilePicture: ""
-    })
+  const submitfn = (e) => {
+    e.preventDefault();
 
-    const navigate = useNavigate()
+    let errors = {};
 
-    const changefn = (e) => {
-        const { name, value } = e.target
-        setCounselorsignup(preData => ({ ...preData, [name]: value }))
-        setErrors(preErrors => ({ ...preErrors, [name]: "" }))
+    if (!counselorsignup.name.trim()) {
+      formValid = false;
+      errors.name = "Name is required";
     }
 
-    let formValid = true
+    if (!counselorsignup.age.trim()) {
+      formValid = false;
+      errors.age = "Age is required";
+    }
 
-    const submitfn = (e) => {
-        e.preventDefault();
+    if (!counselorsignup.email.trim()) {
+      formValid = false;
+      errors.email = "Email is required";
+    }
 
-        let errors = {}
+    if (!counselorsignup.contact.trim()) {
+      formValid = false;
+      errors.contact = "Contact number is required";
+    } else if (counselorsignup.contact.length < 10) {
+      errors.contact = "Enter valid number";
+    }
 
-        if (!counselorsignup.name.trim()) {
-            formValid = false
-            errors.name = "Name is required"
-        }
+    if (!counselorsignup.qualification.trim()) {
+      formValid = false;
+      errors.qualification = "Qualification field is required";
+    }
 
-        if (!counselorsignup.age.trim()) {
-            formValid = false
-            errors.age = "Age is required"
-        }
+    if (!counselorsignup.experienceYear.trim()) {
+      formValid = false;
+      errors.experienceYear = "Experience field is required";
+    }
 
-        if (!counselorsignup.email.trim()) {
-            formValid = false
-            errors.email = "Email is required"
-        }
-
-        if (!counselorsignup.contact.trim()) {
-            formValid = false
-            errors.contact = "Contact number is required"
-        }
-        else if (counselorsignup.contact.length < 10) {
-            errors.contact = "Enter valid number"
-        }
-
-        if (!counselorsignup.qualification.trim()) {
-            formValid = false
-            errors.qualification = "Qualification field is required"
-        }
-
-        if (!counselorsignup.experienceYear.trim()) {
-            formValid = false
-            errors.experienceYear = "Experience field is required"
-        }
-
-        if (!counselorsignup.password.trim()) {
-            formValid = false
-            errors.password = "Password is required"
-        }
-        else if (counselorsignup.password.length < 5) {
-            errors.password = "Password should be atleast 6 characters"
-        }
-
-        if (!counselorsignup.certificateImg.trim()) {
-            formValid = false
-            errors.certificateImg = "No files choosen"
-        }
-
-        if (!counselorsignup.profilePicture.trim()) {
-            formValid = false
-            errors.profilePicture = "No files choosen"
-        }
-
-        setErrors(errors)
-
-        if (formValid) {
-
-            console.log('d', counselorsignup)
-
-            axiosInstance.post("/registerCouncilar", counselorsignup)
-                .then((res) => {
-                    console.log("response", res);
-                    alert("Waiting for Admin approval..");
-                    setTimeout(() => {
-                        navigate("/admin");
-                    }, 1500);
-                })
-                .catch((err) => {
-                    console.log("error", err);
-                    alert(err.response.data.message)
-                })
-
-        }
-        else { console.log("form", formValid) }
-
+    if (!counselorsignup.password.trim()) {
+      formValid = false;
+      errors.password = "Password is required";
+    } else if (counselorsignup.password.length < 5) {
+      errors.password = "Password should be atleast 6 characters";
     }
 
 
-    return (
-        <div className='signup'>
+    setErrors(errors);
+    // registerCouncilar
 
-            <h1>Counselor Sign up</h1>
+    if (
+      counselorsignup.name &&
+      counselorsignup.age &&
+      counselorsignup.email &&
+      counselorsignup.contact &&
+      counselorsignup.qualification &&
+      counselorsignup.experienceYear &&
+      counselorsignup.password
+    ) {
+      formValid = true;
+    }
+    if (formValid) {
+      // sendDataToServer();
 
-            <div className='regform'>
+      e.preventDefault();
 
-                <form onSubmit={submitfn} >
+      const formData = new FormData();
+      formData.append("name", counselorsignup.name);
+      formData.append("age", counselorsignup.age);
+      formData.append("email", counselorsignup.email);
+      formData.append("contact", counselorsignup.contact);
+      formData.append("qualification", counselorsignup.qualification);
+      formData.append("experienceYear", counselorsignup.experienceYear);
+      formData.append("password", counselorsignup.password);
+      formData.append("files", counselorsignup.profilePicture);
+      formData.append("files", counselorsignup.certificateImg);
 
-                    <div className="input-box">
-                        <div className='label'> <label>Name</label>  </div>
-                        <input type="text" placeholder="Username" name="name" value={counselorsignup.name} onChange={changefn} />
+      console.log("counselor form ", formData);
 
-                        {errors.name && <div className="text-danger errortext">{errors.name}</div>}
+      axiosInstance
+        .post("/registerCouncilar", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          console.log("Response:", res);
+          alert("counsilor registred successfully");
+          setTimeout(() => {
+            navigate("/admin");
+          }, 1500);
+        })
+        .catch((err) => {
+          console.error("Error:", err);
+          let msg = err?.response?.data?.message || "Error occurred";
+          alert(msg);
+        });
+    } else {
+      console.log("form is not valid", formValid);
+      console.log("data entered", counselorsignup);
+    }
+  };
 
-                    </div>
+  return (
+    <div className="signup">
+      <h1>Counselor Sign up</h1>
 
+      <div className="regform">
+        <form onSubmit={submitfn}>
+          <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>Name</label>{" "}
+            </div>
+            <input
+              type="text"
+              placeholder="Username"
+              name="name"
+              value={counselorsignup.name}
+              onChange={changefn}
+            />
 
-                    <div className="input-box">
-                        <div className='label'> <label>Age</label>  </div>
-                        <input type="text" placeholder="Age" name="age" value={counselorsignup.age} onChange={changefn} />
+            {errors.name && (
+              <div className="text-danger errortext">{errors.name}</div>
+            )}
+          </div>
 
-                        {errors.age && <div className="text-danger errortext">{errors.age}</div>}
+          <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>Age</label>{" "}
+            </div>
+            <input
+              type="text"
+              placeholder="Age"
+              name="age"
+              value={counselorsignup.age}
+              onChange={changefn}
+            />
 
-                    </div>
+            {errors.age && (
+              <div className="text-danger errortext">{errors.age}</div>
+            )}
+          </div>
 
+          <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>Email</label>{" "}
+            </div>
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={counselorsignup.email}
+              onChange={changefn}
+            />
 
-                    <div className="input-box">
-                        <div className='label'> <label>Email</label>  </div>
-                        <input type="email" placeholder="Email" name="email" value={counselorsignup.email} onChange={changefn} />
+            {errors.email && (
+              <div className="text-danger errortext">{errors.email}</div>
+            )}
+          </div>
 
-                        {errors.email && <div className="text-danger errortext">{errors.email}</div>}
+          <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>Contact</label>{" "}
+            </div>
+            <input
+              type="text"
+              placeholder="Contact Number"
+              name="contact"
+              value={counselorsignup.contact}
+              onChange={changefn}
+            />
 
-                    </div>
+            {errors.contact && (
+              <div className="text-danger errortext">{errors.contact}</div>
+            )}
+          </div>
 
-
-                    <div className="input-box">
-                        <div className='label'> <label>Contact</label>  </div>
-                        <input type="text" placeholder="Contact Number" name="contact" value={counselorsignup.contact} onChange={changefn} />
-
-                        {errors.contact && <div className="text-danger errortext">{errors.contact}</div>}
-
-                    </div>
-
-
-                    <div className='input-box'>
-                        <div className='label'> <label>Qualification</label>  </div>
-
-                        <select name='qualification' value={counselorsignup.qualification} onChange={changefn}>
-                            <option selected>Select One</option>
-                            <option value="No formal education" >No formal education</option>
-                            <option value="Primary education" >Primary education</option>
-                            <option value="Secondary education or high school" >Secondary education or high school</option>
-                            <option value="Vocational qualification" >Vocational qualification</option>
-                            <option value="Bachelor's degree" >Bachelor's degree</option>
-                            <option value="Master's degree" >Master's degree</option>
-                            <option value="Doctorate or higher" >Doctorate or higher</option>
-                        </select>
-
-                        {errors.qualification && <div className="text-danger errortext">{errors.qualification}</div>}
-
-                    </div>
-
-
-                    <div className="input-box">
-                        <div className='label'> <label>Experience</label>  </div>
-                        <input type="text" placeholder="Experience" name="experienceYear" value={counselorsignup.experienceYear} onChange={changefn} />
-
-                        {errors.experienceYear && <div className="text-danger errortext">{errors.experienceYear}</div>}
-
-                    </div>
-
-
-                    <div className="input-box">
-                        <div className='label'> <label>Password</label>  </div>
-                        <input type="password" placeholder="Password" name="password" value={counselorsignup.password} onChange={changefn} />
-
-                        {errors.password && <div className="text-danger errortext">{errors.password}</div>}
-
-                    </div>
-
-
-                    <div className='files' >
-                        <div className='label'> <label>Certificate</label>  </div>
-                        <input type='file' name="certificateImg" value={counselorsignup.certificateImg} onChange={changefn} />
-
-                        {errors.certificateImg && <div className="text-danger errortext">{errors.certificateImg}</div>}
-
-                    </div>
-
-
-                    <div className='files'>
-                        <div className='label'> <label>Profile Picture</label>  </div>
-                        <input type='file' name="profilePicture" value={counselorsignup.profilePicture} onChange={changefn} />
-
-                        {errors.profilePicture && <div className="text-danger errortext">{errors.profilePicture}</div>}
-
-                    </div>
-
-
-                    <div className="text">
-                        <h5>Already have an account? <Link to="/admin">Login now</Link></h5>
-                    </div>
-
-
-                    <div className="inbutton d-flex justify-content-center rpbtn">
-                        <button type="submit"
-                            className="btn btn-primary icon"
-                            variant="primary">
-                            Sign up
-                            <Icon icon="grommet-icons:connect" className='icon' />
-                        </button>
-                    </div>
-
-
-                </form>
-
+          <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>Qualification</label>{" "}
             </div>
 
-        </div>
-    )
+            <select
+              name="qualification"
+              value={counselorsignup.qualification}
+              onChange={changefn}
+            >
+              <option selected>Select One</option>
+              <option value="No formal education">No formal education</option>
+              <option value="Primary education">Primary education</option>
+              <option value="Secondary education or high school">
+                Secondary education or high school
+              </option>
+              <option value="Vocational qualification">
+                Vocational qualification
+              </option>
+              <option value="Bachelor's degree">Bachelor's degree</option>
+              <option value="Master's degree">Master's degree</option>
+              <option value="Doctorate or higher">Doctorate or higher</option>
+            </select>
+
+            {errors.qualification && (
+              <div className="text-danger errortext">
+                {errors.qualification}
+              </div>
+            )}
+          </div>
+
+          <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>Experience</label>{" "}
+            </div>
+            <input
+              type="text"
+              placeholder="Experience"
+              name="experienceYear"
+              value={counselorsignup.experienceYear}
+              onChange={changefn}
+            />
+
+            {errors.experienceYear && (
+              <div className="text-danger errortext">
+                {errors.experienceYear}
+              </div>
+            )}
+          </div>
+
+          <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>Password</label>{" "}
+            </div>
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={counselorsignup.password}
+              onChange={changefn}
+            />
+
+            {errors.password && (
+              <div className="text-danger errortext">{errors.password}</div>
+            )}
+          </div>
+
+          <div className="files">
+            <div className="label">
+              {" "}
+              <label>Certificate</label>{" "}
+            </div>
+            <input
+              type="file"
+              name="certificateImg"
+              accept="image/*"
+              onChange={handleFileChange}            />
+
+            {errors.certificateImg && (
+              <div className="text-danger errortext">
+                {errors.certificateImg}
+              </div>
+            )}
+          </div>
+
+          <div className="files">
+            <div className="label">
+              {" "}
+              <label>Profile Picture</label>{" "}
+            </div>
+            <input
+              type="file"
+              name="profilePicture"
+              onChange={handleFileChange}            />
+
+            {errors.profilePicture && (
+              <div className="text-danger errortext">
+                {errors.profilePicture}
+              </div>
+            )}
+          </div>
+
+          <div className="text">
+            <h5>
+              Already have an account? <Link to="">Login now</Link>
+            </h5>
+          </div>
+
+          <div className="inbutton">
+            <button type="submit">
+              Sign up <Icon icon="grommet-icons:connect" className="icon" />
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 }
 
-export default Counsellorsignup
+export default Counsellorsignup;

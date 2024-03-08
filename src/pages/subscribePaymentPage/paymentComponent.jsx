@@ -3,8 +3,10 @@ import { Col, Form, Row, Button, Modal } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import useParentLoggedIn from "../../customHooks/checkParentLoggedIn";
 import axiosInstance from "../../apis/axiosInstance";
+import { useNavigate } from "react-router-dom";
 import "./payment-page.css";
 const PaymentForm = () => {
+  const navigate = useNavigate();
   const { rpId } = useParams();
   const [validated, setValidated] = useState(false);
   const isParentLoggedin = useParentLoggedIn();
@@ -34,6 +36,10 @@ const PaymentForm = () => {
         if (subscriptionData.status === 201) {
           console.log("payment success");
           alert("Payment Successful.");
+
+          setTimeout(() => {
+            navigate("/user-my-subscription");
+          }, 1500);
         }
       } catch (error) {
         console.log("error from subscription", error);
