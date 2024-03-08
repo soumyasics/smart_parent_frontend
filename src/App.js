@@ -60,6 +60,7 @@ import ParentList from "./Components/user/pages/Admin/ParentList";
 import Rpresetpass from "./Components/resource_person/Sign_up&Sign_in/Rpresetpass";
 import Counselorresetpass from "./Components/counsellor/signup&signin/Counselorresetpass";
 import ConselorHome from "./Components/counsellor/counselor_pages/ConselorHome";
+import Counseloraddtutorials from "./Components/counsellor/counselor_pages/Tutorials/Counseloraddtutorials";
 
 
 
@@ -105,8 +106,8 @@ function App() {
           <Route path="/counselor_profile" element={<Counselorprofile />} />
           <Route
             path="/counselor_subscribers"
-            element={<Counselorsubscribers />}
-          />
+            element={<Counselorsubscribers />}/>
+            <Route path="/counselor-add-tutorial" element={<Counseloraddtutorials/>}/>
 
           {/* Resource Person */}
 

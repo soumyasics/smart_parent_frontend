@@ -8,13 +8,13 @@ import "./Rpsignup.css"
 function Rpsignup() {
   const navigate = useNavigate();
   const [rpsignup, setRpsignup] = useState({
-    name: "rp name",
-    age: "20",
-    email: "rp@gmail.com",
-    contact: "1234597890",
-    qualification: "No formal education",
-    experienceYear: "20",
-    password: "12341234",
+    name: "",
+    age: "",
+    email: "",
+    contact: "",
+    qualification: "",
+    experienceYear: "",
+    password: "",
     certificateImg: null,
     profilePicture: null,
   });
@@ -142,7 +142,7 @@ function Rpsignup() {
       console.log("data entered", rpsignup);
     }
 
-
+console.log(rpsignup);
 
 
   };

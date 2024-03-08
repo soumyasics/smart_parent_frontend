@@ -111,7 +111,15 @@ function AdminSignin() {
             if (selectedButton === "button3") {
               //handle login sucess - counsiler
               alert(response.data.message);
-              Navigate("/counsellor");
+              console.log("councilar resp data", response.data.councilar);
+
+              localStorage.setItem(
+                "activecouncilar",
+                JSON.stringify(response.data.councilar)
+              );
+              setTimeout(() => {
+                Navigate("/counsillor_home");
+              }, 1000);
             }
           } else {
           }
@@ -210,16 +218,16 @@ function AdminSignin() {
                     <span>
                       {" "}
                       {selectedButton == "button2" ? (
-                        <Link>Forgot Passwort ?</Link>
+                        <Link to="/resourceperson_resetpassword">Forgot Passwort ?</Link>
                       ) : (
-                        <Link>Forgot Passwort ?</Link>
+                        <Link to="/counselor_resetpassword">Forgot Passwort ?</Link>
                       )}
                     </span>
                     <span className="ms-5">
                       {selectedButton == "button2" ? (
                         <Link to="/resourceperson_signup">Sign Up</Link>
                       ) : (
-                        <Link>Sign Up</Link>
+                        <Link to="/counselor_signup">Sign Up</Link>
                       )}
                     </span>
                   </label>

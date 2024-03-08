@@ -67,12 +67,12 @@ function Counselorresetpass() {
       axiosInstance.post("/updatePassword", counresetpass)
         .then((res) => {
           console.log(res, "data");
-          if (res.data.status == 200) {
-            alert(res.data.msg)
+          if (res.status == 200) {
+            alert(res.data.message)
             navigate("/admin")
           }
-          else if (res.data.status == 500) {
-            alert(res.data.msg)
+          else if (res.status == 500) {
+            alert(res.data.message)
           }
         })
         .catch((err) => { console.log(err, "error"); })
