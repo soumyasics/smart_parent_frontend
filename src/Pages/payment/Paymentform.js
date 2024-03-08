@@ -12,12 +12,14 @@ function Paymentform() {
   const [creaditcardnumber, setCredictcardnumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [CVV, setCVV] = useState("");
+
   const [creditcard,setCredictcard]=useState({
     no:123456789012,
     cvv:111,
     date:"2024-01",
     name:"ajeena"
   })
+  
   const { id } = useParams();
   const navigate = useNavigate();
 
