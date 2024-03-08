@@ -62,6 +62,7 @@ import Counselorresetpass from "./Components/counsellor/signup&signin/Counselorr
 import ConselorHome from "./Components/counsellor/counselor_pages/ConselorHome";
 import ViewAllTasks from "./pages/mySubscriptions/viewTaskDetails";
 import RpViewBlog from "./pages/resouce-person/view-blog/rp-view-blog";
+import ParentViewBlogDetails from "./pages/mySubscriptions/parent-view-blog-details";
 
 function App() {
   return (
@@ -98,6 +99,7 @@ function App() {
           />
           <Route path="view-task-details/:taskId" element={<ViewAllTasks />} />
           <Route path="view-blog-details/:blogId" element={<RpViewBlog />} />
+          <Route path="parent-view-blog-details/:blogId" element={<ParentViewBlogDetails />} />
           {/* Counselor */}
 
           <Route path="/counselor_signup" element={<Counsellorsignup />} />
