@@ -27,6 +27,7 @@ const SubscribedRp = () => {
   const [profilePictureUrl, setProfilePictureUrl] = useState(manImgPlaceholder);
   const [resourcePersonId, setResourcePersonId] = useState(null);
   const [tasks, setTasks] = useState([]);
+  const [allBlogs, setAllBlogs] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,6 +37,7 @@ const SubscribedRp = () => {
     if (rpDetails && rpDetails._id) {
       getVideoTutorials(rpDetails._id);
       getTasks(rpDetails._id);
+      getBlogs(rpDetails._id);
     } else {
       console.log("can't get the rp details");
     }
@@ -57,6 +59,21 @@ const SubscribedRp = () => {
   function handleWatchFree() {
     setWatchFree(!watchFree);
   }
+  async function getBlogs(id) {
+    try {
+      const res = await axiosInstance.get("viewMyBlogsByRpid/" + id);
+      let blogs = res?.data?.data || null;
+      if (blogs) {
+        let reverseRpData = blogs.reverse();
+        setAllBlogs(reverseRpData);
+      } else {
+        console.log("can't fetch resource person blogs details");
+      }
+    } catch (error) {
+      console.log("error get all blog ", error);
+    }
+  }
+
   async function getVideoTutorials(rpId) {
     try {
       let rpTutorials = await axiosInstance.get("viewTutorialByRpId/" + rpId);
@@ -146,7 +163,13 @@ const SubscribedRp = () => {
     }
     setModalShow(true);
   };
-
+  function viewBlogDetails(id) {
+    if (!id) {
+      alert("Tutorial id not found");
+      return;
+    }
+    navigate("/parent-view-blog-details/" + id);
+  }
   function getData() {
     if (!id) {
       console.log("id not found");
@@ -180,7 +203,7 @@ const SubscribedRp = () => {
     navigate(`/view-task-details/${taskId}`);
   }
   return (
-    <div>
+    <>
       <div>
         <Navbar />
       </div>
@@ -327,24 +350,78 @@ const SubscribedRp = () => {
         <br />
         <br />
       </div>
-      <div
-        className="mt-5 mx-auto "
-        style={{
-          minHeight: "600px",
-          width: "95%",
-          boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-        }}
-      >
-        <div className="d-flex justify-content-center gap-5"></div>
-        <h1 style={{ top: "25px" }} className="text-center position-relative">
-          {" "}
-          View Blogs{" "}
-        </h1>
-      </div>
+
+      {allBlogs.length === 0 && (
+        <h1 className="text-center mt-5"> No Blogs </h1>
+      )}
+      {allBlogs.length > 0 && <h1 className="text-center mt-5"> My Blogs </h1>}
+      {allBlogs.length > 0 && (
+        <div
+          style={{
+            width: "95%",
+            minHeight: "500px",
+            boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+          }}
+          className=" video-tutorials mx-auto d-flex flex-wrap justify-content-center mt-4 p-4 gap-3"
+        >
+          {allBlogs?.map((blog, index) => {
+            console.log("blog", blog);
+
+            let blogImg =
+              "https://media.istockphoto.com/id/1253922154/vector/blog-authors-writing-articles.jpg?s=612x612&w=0&k=20&c=rfl7LAg3NoD2fYlPXTBvnXexaq2cFTZLxt7ronsBsWk=";
+
+            let pathname = blog.img?.filename || null;
+
+            console.log("pat", pathname);
+
+            if (pathname) {
+              if (/\.(jpeg|jpg|gif|png)$/.test(pathname)) {
+                blogImg = `${BASE_URL}${pathname}`;
+              }
+            }
+
+            let description = blog?.para1
+              ? blog.para1.length > 50
+                ? blog.para1.substring(0, 50) + "..."
+                : blog.para1
+              : "Description";
+
+            let title = blog?.title
+              ? blog.title.length > 50
+                ? blog.title.substring(0, 50) + "..."
+                : blog.title
+              : "Title";
+
+            return (
+              <Card key={index} style={{ width: "18rem", maxHeight: "400px" }}>
+                <Card.Img
+                  style={{ maxHeight: "50%" }}
+                  className="h-50"
+                  variant="top"
+                  src={blogImg}
+                  alt="blog"
+                />
+                <Card.Body className="text-center">
+                  <Card.Title>{title || "Title"}</Card.Title>
+                  <Card.Text>{description || "Description"}</Card.Text>
+
+                  <Button
+                    variant="primary"
+                    onClick={() => viewBlogDetails(blog?._id)}
+                  >
+                    Read{" "}
+                  </Button>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </div>
+      )}
+
       <div className="mt-5">
         <Footer />
       </div>
-    </div>
+    </>
   );
 };
 

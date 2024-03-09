@@ -64,7 +64,11 @@ import ViewAllTasks from "./pages/mySubscriptions/viewTaskDetails";
 import Counseloraddtutorials from "./Components/counsellor/counselor_pages/Tutorials/Counseloraddtutorials";
 import RpMain from "./Components/user/pages/Admin/RpMain";
 import RpViewBlog from "./pages/resouce-person/view-blog/rp-view-blog";
+<<<<<<< HEAD
 import BlogList from "./Components/user/pages/Admin/BlogList.js";
+=======
+import ParentViewBlogDetails from "./pages/mySubscriptions/parent-view-blog-details";
+>>>>>>> 366a608b77b1d91c531c099efb87b837785d900d
 
 
 function App() {
@@ -102,6 +106,7 @@ function App() {
           />
           <Route path="view-task-details/:taskId" element={<ViewAllTasks />} />
           <Route path="view-blog-details/:blogId" element={<RpViewBlog />} />
+          <Route path="parent-view-blog-details/:blogId" element={<ParentViewBlogDetails />} />
           {/* Counselor */}
 
           <Route path="/counselor_signup" element={<Counsellorsignup />} />
