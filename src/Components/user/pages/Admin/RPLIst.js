@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar";
 import axiosInstance from "../../../../apis/axiosInstance";
 import { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
+import BASE_URL from "../../../../apis/baseUrl";
 
 function RPLIst() {
   const [rpLists, setRpLists] = useState([]);
@@ -92,6 +93,7 @@ function RPLIst() {
                 <thead style={{ height: "50px" }}>
                   <tr>
                     <th>No</th>
+                    <th>Profile</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Experience Year</th>
@@ -106,6 +108,17 @@ function RPLIst() {
                     return (
                       <tr key={index} className="mt-4">
                         <td>{index + 1}</td>
+                        <td>
+                        <img
+                          className="parentimage"
+                          src={
+                           BASE_URL +
+                            (rp.profilePicture
+                              ? rp.profilePicture.originalname
+                              : "")
+                          }
+                        ></img>
+                      </td>
                         <td>{rp.name}</td>
                         <td>{rp.email}</td>
                         <td>{rp.experienceYear}</td>

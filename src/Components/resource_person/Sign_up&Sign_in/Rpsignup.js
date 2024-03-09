@@ -3,17 +3,18 @@ import { Link } from "react-router-dom";
 import { Icon } from "@iconify-icon/react";
 import axiosInstance from "../../../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
+import "./Rpsignup.css"
 
 function Rpsignup() {
   const navigate = useNavigate();
   const [rpsignup, setRpsignup] = useState({
-    name: "rp name",
-    age: "20",
-    email: "rp@gmail.com",
-    contact: "1234597890",
-    qualification: "No formal education",
-    experienceYear: "20",
-    password: "12341234",
+    name: "akshay",
+    age: "22",
+    email: "akshay@gmail.com",
+    contact: "9074018563",
+    qualification: "Bachelor's degree",
+    experienceYear: "3",
+    password: "1234567",
     certificateImg: null,
     profilePicture: null,
   });
@@ -30,7 +31,7 @@ function Rpsignup() {
     certificateImg: "",
   });
   let formValid = true;
-  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setRpsignup({ ...rpsignup, [name]: value });
@@ -116,14 +117,15 @@ function Rpsignup() {
       formData.append("password", rpsignup.password);
       formData.append("files", rpsignup.profilePicture);
       formData.append("files", rpsignup.certificateImg);
-  
+
       console.log('rp form ', formData)
-      
+
       axiosInstance
         .post("registerRp", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
-          },})
+          },
+        })
         .then((res) => {
           console.log("Response:", res);
           alert("Waiting for Admin approval..");
@@ -141,205 +143,205 @@ function Rpsignup() {
       console.log("data entered", rpsignup);
     }
 
+    console.log(rpsignup);
 
 
-  
   };
 
   return (
     <div className="signup">
-    <h1>Resource Person Sign up</h1>
+      <h1>Resource Person Sign up</h1>
 
-    <div className="regform">
-      <form onSubmit={handleSubmit}>
-        <div className="input-box">
-          <div className="label">
-            {" "}
-            <label>Name</label>{" "}
-          </div>
-          <input
-            type="text"
-            placeholder="Name"
-            value={rpsignup.name}
-            name="name"
-            onChange={handleInputChange}
-          />
-
-          {errors.name && (
-            <div className="text-danger errortext">{errors.name}</div>
-          )}
-        </div>
-
-        <div className="input-box">
-          <div className="label">
-            {" "}
-            <label>Age</label>{" "}
-          </div>
-          <input
-            type="text"
-            placeholder="Age"
-            name="age"
-            value={rpsignup.age}
-            onChange={handleInputChange}
-          />
-
-          {errors.age && (
-            <div className="text-danger errortext">{errors.age}</div>
-          )}
-        </div>
-
-        <div className="input-box">
-          <div className="label">
-            {" "}
-            <label>Email</label>{" "}
-          </div>
-          <input
-            type="email"
-            value={rpsignup.email}
-            placeholder="Email"
-            name="email"
-            onChange={handleInputChange}
-          />
-
-          {errors.email && (
-            <div className="text-danger errortext">{errors.email}</div>
-          )}
-        </div>
-
-        <div className="input-box">
-          <div className="label">
-            {" "}
-            <label>Contact</label>{" "}
-          </div>
-          <input
-            type="text"
-            value={rpsignup.contact}
-            placeholder="Contact Number"
-            name="contact"
-            onChange={handleInputChange}
-          />
-
-          {errors.contact && (
-            <div className="text-danger errortext">{errors.contact}</div>
-          )}
-        </div>
-
-        <div className="input-box">
-          <div className="label">
-            {" "}
-            <label>Qualification</label>{" "}
-          </div>
-          <select
-            name="qualification"
-            onChange={handleInputChange}
-            value={rpsignup.qualification}
-          >
-            <option selected>Select One</option>
-            <option value="No formal education">No formal education</option>
-            <option value="Primary education">Primary education</option>
-            <option value="Secondary education or high school">
-              Secondary education or high school
-            </option>
-            <option value="Vocational qualification">
-              Vocational qualification
-            </option>
-            <option value="Bachelor's degree">Bachelor's degree</option>
-            <option value="Master's degree">Master's degree</option>
-            <option value="Doctorate or higher">Doctorate or higher</option>
-          </select>
-
-          {errors.qualification && (
-            <div className="text-danger errortext">
-              {errors.qualification}
+      <div className="regform">
+        <form onSubmit={handleSubmit}>
+          <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>Name</label>{" "}
             </div>
-          )}
-        </div>
+            <input
+              type="text"
+              placeholder="Name"
+              value={rpsignup.name}
+              name="name"
+              onChange={handleInputChange}
+            />
 
-        <div className="input-box">
-          <div className="label">
-            {" "}
-            <label>Experience</label>{" "}
+            {errors.name && (
+              <div className="text-danger errortext">{errors.name}</div>
+            )}
           </div>
-          <input
-            type="text"
-            placeholder="Experience"
-            name="experienceYear"
-            value={rpsignup.experienceYear}
-            onChange={handleInputChange}
-          />
 
-          {errors.experienceYear && (
-            <div className="text-danger errortext">
-              {errors.experienceYear}
+          <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>Age</label>{" "}
             </div>
-          )}
-        </div>
+            <input
+              type="text"
+              placeholder="Age"
+              name="age"
+              value={rpsignup.age}
+              onChange={handleInputChange}
+            />
 
-        <div className="input-box">
-          <div className="label">
-            {" "}
-            <label>Password</label>{" "}
+            {errors.age && (
+              <div className="text-danger errortext">{errors.age}</div>
+            )}
           </div>
-          <input
-            type="password"
-            placeholder="Password"
-            value={rpsignup.password}
-            name="password"
-            onChange={handleInputChange}
-          />
 
-          {errors.password && (
-            <div className="text-danger errortext">{errors.password}</div>
-          )}
-        </div>
-
-        <div className="files">
-          <div className="label">
-            {" "}
-            <label>Certificate</label>{" "}
-          </div>
-          <input type="file" name="certificateImg" accept="image/*" onChange={handleFileChange} />
-
-          {errors.certificateImg && (
-            <div className="text-danger errortext">
-              {errors.img}
+          <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>Email</label>{" "}
             </div>
-          )}
-        </div>
+            <input
+              type="email"
+              value={rpsignup.email}
+              placeholder="Email"
+              name="email"
+              onChange={handleInputChange}
+            />
 
-        <div className="files">
-          <div className="label">
-            {" "}
-            <label>Profile Picture</label>{" "}
+            {errors.email && (
+              <div className="text-danger errortext">{errors.email}</div>
+            )}
           </div>
-          <input type="file" name="profilePicture" onChange={handleFileChange} />
 
-          {errors.profilePicture && (
-            <div className="text-danger errortext">
-              {errors.profilePicture}
+          <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>Contact</label>{" "}
             </div>
-          )}
-        </div>
+            <input
+              type="text"
+              value={rpsignup.contact}
+              placeholder="Contact Number"
+              name="contact"
+              onChange={handleInputChange}
+            />
 
-        <div className="text">
-          <h5>
-            Already have an account? <Link to="/admin">Login now</Link>
-          </h5>
-        </div>
+            {errors.contact && (
+              <div className="text-danger errortext">{errors.contact}</div>
+            )}
+          </div>
 
-        <div className="inbutton d-flex justify-content-center">
-          <button
-            type="submit"
-            className="btn btn-primary icon"
-            variant="primary"
-          >
-            Sign up <Icon icon="grommet-icons:connect" />
-          </button>
-        </div>
-      </form>
+          <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>Qualification</label>{" "}
+            </div>
+            <select
+              name="qualification"
+              onChange={handleInputChange}
+              value={rpsignup.qualification}
+            >
+              <option selected>Select One</option>
+              <option value="No formal education">No formal education</option>
+              <option value="Primary education">Primary education</option>
+              <option value="Secondary education or high school">
+                Secondary education or high school
+              </option>
+              <option value="Vocational qualification">
+                Vocational qualification
+              </option>
+              <option value="Bachelor's degree">Bachelor's degree</option>
+              <option value="Master's degree">Master's degree</option>
+              <option value="Doctorate or higher">Doctorate or higher</option>
+            </select>
+
+            {errors.qualification && (
+              <div className="text-danger errortext">
+                {errors.qualification}
+              </div>
+            )}
+          </div>
+
+          <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>Experience</label>{" "}
+            </div>
+            <input
+              type="text"
+              placeholder="Experience"
+              name="experienceYear"
+              value={rpsignup.experienceYear}
+              onChange={handleInputChange}
+            />
+
+            {errors.experienceYear && (
+              <div className="text-danger errortext">
+                {errors.experienceYear}
+              </div>
+            )}
+          </div>
+
+          <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>Password</label>{" "}
+            </div>
+            <input
+              type="password"
+              placeholder="Password"
+              value={rpsignup.password}
+              name="password"
+              onChange={handleInputChange}
+            />
+
+            {errors.password && (
+              <div className="text-danger errortext">{errors.password}</div>
+            )}
+          </div>
+
+          <div className="files">
+            <div className="label">
+              {" "}
+              <label>Certificate</label>{" "}
+            </div>
+            <input type="file" name="certificateImg" accept="image/*" onChange={handleFileChange} />
+
+            {errors.certificateImg && (
+              <div className="text-danger errortext">
+                {errors.img}
+              </div>
+            )}
+          </div>
+
+          <div className="files">
+            <div className="label">
+              {" "}
+              <label>Profile Picture</label>{" "}
+            </div>
+            <input type="file" name="profilePicture" onChange={handleFileChange} />
+
+            {errors.profilePicture && (
+              <div className="text-danger errortext">
+                {errors.profilePicture}
+              </div>
+            )}
+          </div>
+
+          <div className="text">
+            <h5>
+              Already have an account? <Link to="/admin">Login now</Link>
+            </h5>
+          </div>
+
+          <div className="inbutton d-flex justify-content-center rpbtn">
+            <button
+              type="submit"
+              className="btn btn-primary icon"
+
+            >
+              Sign up <Icon icon="grommet-icons:connect" />
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default Rpsignup;

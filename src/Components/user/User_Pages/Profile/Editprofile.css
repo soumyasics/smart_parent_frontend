@@ -1,61 +1,98 @@
-h5{
+h5 {
 
-    
-    color : #1E90FF;
-    
+
+    color: #1E90FF;
+
 }
 
 
-.edituserprofile{
+.edituserprofile {
     padding: 0 50px;
     padding-top: 50px;
     padding-bottom: 80px;
 }
 
-.editmain-heading{
-    border-bottom: 1px solid #C7BEBE;
-    width: 50%;
+.editmain-heading {
+    border-bottom: 1px solid lightblue;
+    width: 100%;
 }
 
 
-.editprofile{
+.editprofile {
     padding-bottom: 25px;
 }
 
-.editprofile p{
+.editprofile p {
     padding-top: 18px;
 }
 
-.editmain-sub{
+.editmain-sub {
+    padding-top: 30px;
     display: flex;
 }
 
 
 
-.editprofileimg{
+.editprofileimg {
     margin-top: 30px;
     border: 2px solid;
     border: none;
     border-radius: 50%;
     width: 10%;
     height: 110px;
-    
+
 }
 
-.editprofileimg img{
+.editprofileimg img {
 
     height: 106px;
     width: 120px;
     object-fit: contain;
-   
-    
+
+
 }
 
+.editprofile input {
+    height: 35px;
+    width: 100%;
+    outline: none;
+    padding: 0 20px;
 
-.editmain button{
+    margin-top: 28px;
+    font-size: 17px;
+    font-weight: 400;
+    color: #333;
+    border: 1.5px solid #c7bebe;
+    border-top-width: 1.9px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
 
-    padding-left: 5px;
+.editmain button {
+    font-weight: 600;
+    font-size: 10px;
     margin-top: 53px;
-    width: 200px;
+    margin-left: 40px;
+    width: 70px;
+    height: 30px;
+    border: none;
+    background-color: #1E90FF;
+    color: #fff;
 
+}
+
+.editprofilebtn button {
+    font-weight: 600;
+    font-size: 15px;
+    margin-top: 1px;
+    margin-left: 515px;
+    width: 70px;
+    height: 30px;
+    border: none;
+    background-color: #1E90FF;
+    color: #fff;
+}
+
+.profilebg {
+    margin-top: 190px;
 }

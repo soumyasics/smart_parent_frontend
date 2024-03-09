@@ -61,8 +61,11 @@ import Rpresetpass from "./Components/resource_person/Sign_up&Sign_in/Rpresetpas
 import Counselorresetpass from "./Components/counsellor/signup&signin/Counselorresetpass";
 import ConselorHome from "./Components/counsellor/counselor_pages/ConselorHome";
 import ViewAllTasks from "./pages/mySubscriptions/viewTaskDetails";
+import Counseloraddtutorials from "./Components/counsellor/counselor_pages/Tutorials/Counseloraddtutorials";
+import RpMain from "./Components/user/pages/Admin/RpMain";
 import RpViewBlog from "./pages/resouce-person/view-blog/rp-view-blog";
 import ParentViewBlogDetails from "./pages/mySubscriptions/parent-view-blog-details";
+
 
 function App() {
   return (
@@ -112,8 +115,8 @@ function App() {
           <Route path="/counselor_profile" element={<Counselorprofile />} />
           <Route
             path="/counselor_subscribers"
-            element={<Counselorsubscribers />}
-          />
+            element={<Counselorsubscribers />} />
+          <Route path="/counselor-add-tutorial" element={<Counseloraddtutorials />} />
 
           {/* Resource Person */}
 
@@ -124,7 +127,7 @@ function App() {
           />
           <Route path="/resourceperson_task" element={<Rptask />} />
           <Route path="/resourceperson_chat" element={<Rpchat />} />
-          <Route path="/resourceperson_profile" element={<Rprofile />} />
+          <Route path="/resourceperson_profile/:id" element={[<Rpnav/>,<Rprofile />]} />
           <Route
             path="/resourceperson_subscribers"
             element={<Rpsubscribers />}
@@ -157,7 +160,8 @@ function App() {
           />
           <Route path="/parent_home" element={<ParentHome />} />
 
-          <Route path="/rp_list" element={<RPLIst />} />
+          <Route path="/rp_list" element={<RpMain />} />
+          <Route path="/rp_pendinglist" element={<RPLIst />} />
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/counsiler_list" element={<Counselorlist />} />
           <Route path="/user_nav" element={<Usernav />} />

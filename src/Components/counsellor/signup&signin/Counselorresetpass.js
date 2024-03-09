@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Icon } from '@iconify-icon/react'
+import axiosInstance from '../../../apis/axiosInstance'
 
 function Counselorresetpass() {
 
@@ -19,6 +20,8 @@ function Counselorresetpass() {
     confirmpassword: ""
 
   })
+
+  const navigate = useNavigate()
 
   const changefn = (e) => {
     const { name, value } = e.target
@@ -59,7 +62,20 @@ function Counselorresetpass() {
     setErrors(errors)
 
     if (formValid) {
-      alert("Form is Submitted")
+      // alert("Form is Submitted")
+      console.log(counresetpass);
+      axiosInstance.post("/updatePassword", counresetpass)
+        .then((res) => {
+          console.log(res, "data");
+          if (res.status == 200) {
+            alert(res.data.message)
+            navigate("/admin")
+          }
+          else if (res.status == 500) {
+            alert(res.data.message)
+          }
+        })
+        .catch((err) => { console.log(err, "error"); })
     }
     else {
       console.log("form", formValid);
@@ -104,7 +120,7 @@ function Counselorresetpass() {
           </div>
 
           <div className="resettext">
-            <h6>Don't have an account? <Link to={""}>Register</Link></h6>
+            <h6>Don't have an account? <Link to={"/counselor_signup"}>Register</Link></h6>
           </div>
 
           <div className="resetbutton">
