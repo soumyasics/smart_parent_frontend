@@ -317,7 +317,7 @@ function Counsellorsignup() {
             <input
               type="file"
               name="profilePicture"
-              onChange={handleFileChange}            />
+              onChange={handleFileChange}/>
 
             {errors.profilePicture && (
               <div className="text-danger errortext">
