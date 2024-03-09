@@ -115,10 +115,10 @@ const MySubscriptions = () => {
                         className="mt-3"
                       >
                         <Card.Img
-                          className="rounded-circle"
                           variant="top"
                           src={profilePictureUrl}
                           style={{
+                            borderRadius: "50%",
                             width: "160px",
                             height: "160px",
                             boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",

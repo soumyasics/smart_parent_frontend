@@ -109,7 +109,6 @@ function AdminSignin() {
             if (selectedButton === "button3") {
               //handle login sucess - counsiler
               alert(response.data.message);
-              console.log(response.data.data,"hh");
               localStorage.setItem(
                 "activecouncilor",
                 JSON.stringify(response.data.data)
@@ -213,9 +212,13 @@ function AdminSignin() {
                     <span>
                       {" "}
                       {selectedButton == "button2" ? (
-                        <Link to="/resourceperson_resetpassword">Forgot Passwort ?</Link>
+                        <Link to="/resourceperson_resetpassword">
+                          Forgot Passwort ?
+                        </Link>
                       ) : (
-                        <Link to="/counselor_resetpassword">Forgot Passwort ?</Link>
+                        <Link to="/counselor_resetpassword">
+                          Forgot Passwort ?
+                        </Link>
                       )}
                     </span>
                     <span className="ms-5">
