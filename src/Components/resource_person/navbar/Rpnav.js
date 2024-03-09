@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Rpnav.css";
 import { useNavigate } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import BASE_URL from "../../../apis/baseUrl";
 
 function Rpnav() {
   const navigate = useNavigate();
@@ -75,6 +78,10 @@ function Rpnav() {
         navigate("/admin");
       }, 1500);
     }
+  }
+
+  const handleProfile=()=>{
+    navigate("/resourceperson_profile/"+activeUser._id)
   }
 
   function redirectBlog() {
@@ -171,16 +178,32 @@ function Rpnav() {
               {activeUser ? (
                 <li>
                   <div class="dropdown">
-                    <img
-                      alt="img"
-                      className="parentimage dropdown-toggle"
-                      src={
-                        "http://localhost:4009/" +
-                        (activeUser.profilePicture
-                          ? activeUser.profilePicture.originalname
-                          : "")
-                      }
-                    ></img>
+                    <Dropdown>
+                      <Dropdown.Toggle
+                        className="bg-dark"
+                        id="dropdown-basic"
+                        style={{
+                          backgroundColor: "rgba(1, 30, 73, 0.97)",
+                          border: "none",
+                        }}
+                      >
+                        <img
+                          alt="img"
+                          className="parentimage dropdown-toggle"
+                          src={
+                            BASE_URL +
+                            (activeUser.profilePicture
+                              ? activeUser.profilePicture.originalname
+                              : "")
+                          }
+                        ></img>
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item onClick={handleProfile}>Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={handleLogout} >Logout</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+
                   </div>
                 </li>
               ) : (
