@@ -68,7 +68,6 @@ function Rpnav() {
       }, 1500);
     }
   }
-  console.log("act user", activeUser);
 
   function navigateTutorials() {
     if (isRpLoggedIn()) {
@@ -83,6 +82,17 @@ function Rpnav() {
 
   const handleProfile=()=>{
     navigate("/resourceperson_profile/"+activeUser._id)
+  }
+
+  function redirectBlog() {
+    if (isRpLoggedIn()) {
+      navigate("/resourceperson_blog");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    }
   }
   return (
     <div>
@@ -131,6 +141,15 @@ function Rpnav() {
               >
                 <a className="nav-link active text-white" aria-current="page">
                   View
+                </a>
+              </li>
+              <li
+                style={{ cursor: "pointer" }}
+                onClick={redirectBlog}
+                className="nav-item"
+              >
+                <a className="nav-link active text-white" aria-current="page">
+                  Blog
                 </a>
               </li>
               <li
@@ -184,6 +203,7 @@ function Rpnav() {
                         <Dropdown.Item onClick={handleLogout} >Logout</Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
+
                   </div>
                 </li>
               ) : (

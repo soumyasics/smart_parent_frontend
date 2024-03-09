@@ -16,6 +16,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import isParentLoggedIn from "../../customHooks/checkParentLoggedIn";
 import ViewAllTutorials from "./viewAllTutorials";
+import ViewAllTasks from "./viewTaskDetails";
 const SubscribedRp = () => {
   const { id } = useParams();
   const [rpDetails, setRpDetails] = useState(null);
@@ -25,16 +26,22 @@ const SubscribedRp = () => {
   const [watchFree, setWatchFree] = useState(false);
   const [profilePictureUrl, setProfilePictureUrl] = useState(manImgPlaceholder);
   const [resourcePersonId, setResourcePersonId] = useState(null);
+  const [tasks, setTasks] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
     getData();
   }, []);
   useEffect(() => {
     if (rpDetails && rpDetails._id) {
       getVideoTutorials(rpDetails._id);
+      getTasks(rpDetails._id);
     } else {
       console.log("can't get the rp details");
     }
   }, [rpDetails]);
+
+  console.log("get task", tasks);
 
   useEffect(() => {
     let filePath = rpDetails?.profilePicture?.filename || null;
@@ -49,6 +56,36 @@ const SubscribedRp = () => {
 
   function handleWatchFree() {
     setWatchFree(!watchFree);
+  }
+  async function getVideoTutorials(rpId) {
+    try {
+      let rpTutorials = await axiosInstance.get("viewTutorialByRpId/" + rpId);
+      let rpTutorialsData = rpTutorials?.data?.data || null;
+      console.log("", rpTutorialsData);
+      if (rpTutorialsData.length > 0) {
+        setTutorial(rpTutorialsData);
+      } else {
+        setTutorial([]);
+        console.log("can't fetch rp details");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function getTasks(rpId) {
+    try {
+      let tasks = await axiosInstance.get("viewTaskQnByRPId/" + rpId);
+      let activeTasks = tasks?.data?.data || null;
+      console.log("activ tasks", activeTasks);
+      if (activeTasks.length > 0) {
+        setTasks(activeTasks);
+      } else {
+        setTasks([]);
+        console.log("can't fetch rp details");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
   const isValidVideoURL = (url) => {
     const videoExtensions = [
@@ -87,9 +124,7 @@ const SubscribedRp = () => {
 
   async function getVideoTutorials(rpId) {
     try {
-      let rpTutorials = await axiosInstance.get(
-        "viewTutorialByRpId/" + rpId
-      );
+      let rpTutorials = await axiosInstance.get("viewTutorialByRpId/" + rpId);
       let rpTutorialsData = rpTutorials?.data?.data || null;
       console.log("rp tuto data", rpTutorialsData);
       if (rpTutorialsData.length > 0) {
@@ -140,6 +175,10 @@ const SubscribedRp = () => {
   const ratingChanged = (newRating) => {
     console.log("new rating", newRating);
   };
+
+  function redirectTaskDetails(taskId) {
+    navigate(`/view-task-details/${taskId}`);
+  }
   return (
     <div>
       <div>
@@ -254,8 +293,39 @@ const SubscribedRp = () => {
         {" "}
         <h1 style={{ top: "25px" }} className="text-center position-relative">
           {" "}
-          View Tasks
+          Active Tasks
         </h1>{" "}
+        <div className="d-flex flex-wrap justify-content-center gap-5 mt-5 pt-3 ">
+          {tasks.map((task, index) => {
+            console.log("tas", task);
+            return (
+              <Card key={index} border="info" style={{ width: "18rem" }}>
+                <Card.Header>Task </Card.Header>
+                <Card.Body>
+                  <Card.Title>
+                    {task.title || "Task for your children"}
+                  </Card.Title>
+                  <Card.Text>
+                    {task.description ||
+                      "This task for your children. please attend based on your result we provide the scores"}
+                  </Card.Text>
+                  <div className="d-flex justify-content-center">
+                    <Button
+                      variant="primary"
+                      onClick={() => {
+                        redirectTaskDetails(task._id);
+                      }}
+                    >
+                      View Task
+                    </Button>
+                  </div>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </div>
+        <br />
+        <br />
       </div>
       <div
         className="mt-5 mx-auto "
