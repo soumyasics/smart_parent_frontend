@@ -62,6 +62,7 @@ import Counselorresetpass from "./Components/counsellor/signup&signin/Counselorr
 import ConselorHome from "./Components/counsellor/counselor_pages/ConselorHome";
 import ViewAllTasks from "./pages/mySubscriptions/viewTaskDetails";
 import Counseloraddtutorials from "./Components/counsellor/counselor_pages/Tutorials/Counseloraddtutorials";
+import RpMain from "./Components/user/pages/Admin/RpMain";
 
 
 
@@ -111,8 +112,8 @@ function App() {
           <Route path="/counselor_profile" element={<Counselorprofile />} />
           <Route
             path="/counselor_subscribers"
-            element={<Counselorsubscribers />}/>
-            <Route path="/counselor-add-tutorial" element={<Counseloraddtutorials/>}/>
+            element={<Counselorsubscribers />} />
+          <Route path="/counselor-add-tutorial" element={<Counseloraddtutorials />} />
 
           {/* Resource Person */}
 
@@ -156,7 +157,8 @@ function App() {
           />
           <Route path="/parent_home" element={<ParentHome />} />
 
-          <Route path="/rp_list" element={<RPLIst />} />
+          <Route path="/rp_list" element={<RpMain />} />
+          <Route path="/rp_pendinglist" element={<RPLIst />} />
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/counsiler_list" element={<Counselorlist />} />
           <Route path="/user_nav" element={<Usernav />} />
