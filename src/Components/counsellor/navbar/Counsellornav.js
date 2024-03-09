@@ -8,7 +8,7 @@ import BASE_URL from "../../../apis/baseUrl";
 function Counsellornav() {
   const navigate = useNavigate();
 
-  const [activeUser, setActiveUser] = useState(null);
+  const [activeUser, setActiveUser] = useState({});
 
   useEffect(() => {
     if (localStorage.getItem("activecouncilor")) {
@@ -30,6 +30,7 @@ function Counsellornav() {
     if (localStorage.getItem("parentData")) {
       localStorage.removeItem("parentData");
     }
+
     if (localStorage.getItem("activecouncilor")) {
       localStorage.removeItem("activecouncilor");
     }
@@ -88,6 +89,7 @@ function Counsellornav() {
     }
   }
 
+  console.log(activeUser.profilePicture,"kk");
   return (
     <div>
     <nav
