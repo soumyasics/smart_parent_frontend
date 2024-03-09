@@ -113,7 +113,7 @@ function App() {
           <Route path="/resourceperson_resetpassword" element={<Rpresetpass/>}/>
           <Route path="/resourceperson_task" element={<Rptask />} />
           <Route path="/resourceperson_chat" element={<Rpchat />} />
-          <Route path="/resourceperson_profile" element={<Rprofile />} />
+          <Route path="/resourceperson_profile/:id" element={[<Rpnav/>,<Rprofile />]} />
           <Route
             path="/resourceperson_subscribers"
             element={<Rpsubscribers />}
