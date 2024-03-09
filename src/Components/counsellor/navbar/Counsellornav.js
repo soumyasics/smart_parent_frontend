@@ -87,7 +87,7 @@ function Counsellornav() {
       }, 1500);
     }
   }
-  
+
   return (
     <div>
     <nav
@@ -97,7 +97,7 @@ function Counsellornav() {
       <div className="container-fluid text-white">
         <img
           src="http://localhost:3000/static/media/logo.02ba8ea67b2b7903e412.png"
-          onClick={() => navigate("/counsillor_home")}
+          onClick={() => navigate("/counsellor_home")}
           alt="Logo"
           width="60"
           height="60"
@@ -105,7 +105,7 @@ function Counsellornav() {
           id="logo"
         />
         &nbsp;&nbsp;
-        <b onClick={() => navigate("/counsillor_home")}>SmartParent.</b>
+        <b onClick={() => navigate("/counsellor_home")}>SmartParent.</b>
         <button
           className="navbar-toggler"
           type="button"
