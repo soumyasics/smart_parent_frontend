@@ -111,9 +111,9 @@ function AdminSignin() {
               alert(response.data.message);
               localStorage.setItem(
                 "activecouncilor",
-                JSON.stringify(response.data.message)
+                JSON.stringify(response.data.data)
               );
-              Navigate("/counsillor_home");
+              Navigate("/counsellor_home");
             }
           } else {
           }
