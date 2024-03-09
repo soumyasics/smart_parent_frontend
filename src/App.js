@@ -145,6 +145,7 @@ function App() {
           />
           <Route path="/rp-add-task" element={<RpAddTask />} />
           <Route path="/rp-view-subscribers" element={<RpViewSubscribers />} />
+          
           {/* <Route path="" element={< />}/> */}
           {/*ajeena*/}
           <Route path="/admin" element={<AdminSignin />} />
@@ -160,7 +161,7 @@ function App() {
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/counsiler_list" element={<Counselorlist />} />
           <Route path="/user_nav" element={<Usernav />} />
-          <Route path="/admin_dashboard" element={<AdminDashboard />} />
+          <Route path="/admin_dashboard" element={[<AdminDashboard />,<Footer/>]} />
           <Route path="/rpnav" element={<Rpnav />} />
           <Route path="/parent_list" element={<ParentList />} />
           <Route
@@ -169,9 +170,9 @@ function App() {
           />
           <Route path="/counsellor_home" element={[<Counsellornav/>,<ConselorHome />,<Footer/>]} />
           <Route path="/counsellor_nav" element={<Counsellornav />} />
-          <Route path="/counselor_profile/:id" element={[<Counsellornav />,<Counselorprofile />]} />
-          <Route path="/counselor_blogs" element={[<Counsellornav/>,<Counselorblogs />]} />
-          <Route path="/counselor_chat" element={[<Counsellornav/>,<Counselorchat />]} />
+          <Route path="/counselor_profile/:id" element={[<Counsellornav />,<Counselorprofile />,<Footer/>]} />
+          <Route path="/counselor_blogs" element={[<Counsellornav/>,<Counselorblogs />,<Footer/>]} />
+          <Route path="/counselor_chat" element={[<Counsellornav/>,<Counselorchat />,<Footer/>]} />
           <Route path="/parent_list" element={<Footer />} />
 
         </Routes>
