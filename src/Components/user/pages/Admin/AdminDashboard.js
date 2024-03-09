@@ -14,9 +14,6 @@ function AdminDashboard() {
   const [resourcepersoncount, setResourcepersoncount] = useState(0);
   const [counsellorCount, setCounsellorCount] = useState(0);
 
- 
-  
-
   const parentCollectionCount = async () => {
     try {
       const response = await axiosInstance.post(
