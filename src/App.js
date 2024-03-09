@@ -107,7 +107,7 @@ function App() {
           />
           <Route path="/counselor_blogs" element={<Counselorblogs />} />
           <Route path="/counselor_chat" element={<Counselorchat />} />
-          <Route path="/counselor_profile" element={<Counselorprofile />} />
+          <Route path="/counselor_profile/:id" element={<Counselorprofile />} />
           <Route
             path="/counselor_subscribers"
             element={<Counselorsubscribers />}
@@ -166,7 +166,8 @@ function App() {
             path="/view_counsiler_details/:id"
             element={<ViewResourcePersonDetails />}
           />
-          <Route path="/counsillor_home" element={<ConselorHome />} />
+          <Route path="/counsillor_home" element={[<Counsellornav />,<ConselorHome />]} />
+          <Route path="/counsillor_nav" element={<Counsellornav />} />
         </Routes>
       </Router>
     </div>
