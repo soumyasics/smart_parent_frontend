@@ -108,12 +108,13 @@ function AdminSignin() {
             }
             if (selectedButton === "button3") {
               //handle login sucess - counsiler
-              alert(response.data);
+              alert(response.data.message);
+              console.log(response.data.data,"hh");
               localStorage.setItem(
                 "activecouncilor",
-                JSON.stringify(response.data.message)
+                JSON.stringify(response.data.data)
               );
-              Navigate("/counsillor_home");
+              Navigate("/counsellor_home");
             }
           } else {
           }

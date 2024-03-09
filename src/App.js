@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import SignIn from "./Components/user/pages/Sign_in & Sign_up/SignIn";
 import SignUp from "./Components/user/pages/Sign_in & Sign_up/SignUp";
-import Footer from "../src/pages/commonHomePage/Components/Footer";
+import Footer from "../src/pages/commonHomePage/Components/commonFooter.jsx";
 import ResetPass from "./Components/user/pages/Sign_in & Sign_up/ResetPass";
 import Counselor from "./Components/user/pages/counsellor/Counselor";
 import RpAddTutorial from "./pages/resouce-person/rp-add-tutorial/rp-add-tutorial";
@@ -108,9 +108,6 @@ function App() {
             path="/counselor_resetpassword"
             element={<Counselorresetpass />}
           />
-          <Route path="/counselor_blogs" element={<Counselorblogs />} />
-          <Route path="/counselor_chat" element={<Counselorchat />} />
-          <Route path="/counselor_profile" element={<Counselorprofile />} />
           <Route
             path="/counselor_subscribers"
             element={<Counselorsubscribers />} />
@@ -170,7 +167,13 @@ function App() {
             path="/view_counsiler_details/:id"
             element={<ViewResourcePersonDetails />}
           />
-          <Route path="/counsillor_home" element={<ConselorHome />} />
+          <Route path="/counsellor_home" element={[<Counsellornav/>,<ConselorHome />,<Footer/>]} />
+          <Route path="/counsellor_nav" element={<Counsellornav />} />
+          <Route path="/counselor_profile/:id" element={[<Counsellornav />,<Counselorprofile />]} />
+          <Route path="/counselor_blogs" element={[<Counsellornav/>,<Counselorblogs />]} />
+          <Route path="/counselor_chat" element={[<Counsellornav/>,<Counselorchat />]} />
+          <Route path="/parent_list" element={<Footer />} />
+
         </Routes>
       </Router>
     </div>
