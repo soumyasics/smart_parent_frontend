@@ -72,17 +72,7 @@ function ResourcePersonHome() {
                 prioritizing quality time for bonding and nurturing growth"
               </div>
             </div>
-            <div className="row" id="parent_home_seconddiv">
-              <div class="col" id="img4">
-                <h1 className="heading">Parenting Skills</h1>
-              </div>
-              <div class="col" id="img5">
-                <h1 className="heading">Games & Activities</h1>
-              </div>
-              <div class="col" id="img6">
-                <h1 className="heading">Parenting programe</h1>
-              </div>
-            </div>
+            
             <div className="col">
               <img
                 src="https://sf.ezoiccdn.com/ezoimgfmt/momscove.com/wp-content/uploads/2023/11/mother-taking-care-her-autistic-son-home.jpg?ezimgfmt=ng:webp/ngcb3"
@@ -105,7 +95,17 @@ function ResourcePersonHome() {
           clinical practice, the Teaching Family Model is recognized to be
           cost-effective, replicable, and highly effective for all participants.
         </div>
-
+        <div className="row" id="parent_home_seconddiv">
+        <div class="col" id="img4">
+          <h1 className="heading">Parenting Skills</h1>
+        </div>
+        <div class="col" id="img5">
+          <h1 className="heading">Games & Activities</h1>
+        </div>
+        <div class="col" id="img6">
+          <h1 className="heading">Parenting programe</h1>
+        </div>
+      </div>
         <div className="parent_home_fifthdiv container">
           <h1 className="text-center p-5 ">Meet Our Sponsors</h1>
           <div className="row mb-5 ">

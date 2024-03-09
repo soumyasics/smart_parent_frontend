@@ -63,7 +63,7 @@ import ConselorHome from "./Components/counsellor/counselor_pages/ConselorHome";
 import ViewAllTasks from "./pages/mySubscriptions/viewTaskDetails";
 import Counseloraddtutorials from "./Components/counsellor/counselor_pages/Tutorials/Counseloraddtutorials";
 import RpMain from "./Components/user/pages/Admin/RpMain";
-
+import RpViewBlog from "./pages/resouce-person/view-blog/rp-view-blog";
 
 
 function App() {
@@ -100,6 +100,7 @@ function App() {
             element={<ParentTutorialWatch />}
           />
           <Route path="view-task-details/:taskId" element={<ViewAllTasks />} />
+          <Route path="view-blog-details/:blogId" element={<RpViewBlog />} />
           {/* Counselor */}
 
           <Route path="/counselor_signup" element={<Counsellorsignup />} />
@@ -124,7 +125,7 @@ function App() {
           />
           <Route path="/resourceperson_task" element={<Rptask />} />
           <Route path="/resourceperson_chat" element={<Rpchat />} />
-          <Route path="/resourceperson_profile" element={<Rprofile />} />
+          <Route path="/resourceperson_profile/:id" element={[<Rpnav/>,<Rprofile />]} />
           <Route
             path="/resourceperson_subscribers"
             element={<Rpsubscribers />}

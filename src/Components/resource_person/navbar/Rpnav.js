@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Rpnav.css";
 import { useNavigate } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import BASE_URL from "../../../apis/baseUrl";
 
 function Rpnav() {
   const navigate = useNavigate();
@@ -65,7 +68,6 @@ function Rpnav() {
       }, 1500);
     }
   }
-  console.log("act user", activeUser);
 
   function navigateTutorials() {
     if (isRpLoggedIn()) {
@@ -78,6 +80,20 @@ function Rpnav() {
     }
   }
 
+  const handleProfile=()=>{
+    navigate("/resourceperson_profile/"+activeUser._id)
+  }
+
+  function redirectBlog() {
+    if (isRpLoggedIn()) {
+      navigate("/resourceperson_blog");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    }
+  }
   return (
     <div>
       <nav
@@ -128,6 +144,15 @@ function Rpnav() {
                 </a>
               </li>
               <li
+                style={{ cursor: "pointer" }}
+                onClick={redirectBlog}
+                className="nav-item"
+              >
+                <a className="nav-link active text-white" aria-current="page">
+                  Blog
+                </a>
+              </li>
+              <li
                 className="nav-item"
                 style={{ cursor: "pointer" }}
                 onClick={redirectSubscribers}
@@ -153,19 +178,33 @@ function Rpnav() {
               {activeUser ? (
                 <li>
                   <div class="dropdown">
-                  <img
-                    alt="img"
-                    className="parentimage dropdown-toggle" 
-                    src={
-                      "http://localhost:4009/" +
-                      (activeUser.profilePicture
-                        ? activeUser.profilePicture.originalname
-                        : "")
-                    }
-                  ></img>
-                    
+                    <Dropdown>
+                      <Dropdown.Toggle
+                        className="bg-dark"
+                        id="dropdown-basic"
+                        style={{
+                          backgroundColor: "rgba(1, 30, 73, 0.97)",
+                          border: "none",
+                        }}
+                      >
+                        <img
+                          alt="img"
+                          className="parentimage dropdown-toggle"
+                          src={
+                            BASE_URL +
+                            (activeUser.profilePicture
+                              ? activeUser.profilePicture.originalname
+                              : "")
+                          }
+                        ></img>
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item onClick={handleProfile}>Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={handleLogout} >Logout</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+
                   </div>
-                  
                 </li>
               ) : (
                 <li

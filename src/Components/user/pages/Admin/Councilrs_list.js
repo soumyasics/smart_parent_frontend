@@ -3,17 +3,16 @@ import Sidebar from "./Sidebar";
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../../apis/axiosInstance";
 import Table from "react-bootstrap/Table";
+import BASE_URL from "../../../../apis/baseUrl";
+import profileimg from "../../../../Assets/illustrators/man-placeholder.jpg";
 
 function Counselorlist() {
   const [userData, setUserData] = useState([]);
 
-
   useEffect(() => {
-    const fetchData = async () => {
+    const CounselorData = async () => {
       try {
-        const response = await axiosInstance.get(
-          "smart_parent/viewAllCouncilars"
-        );
+        const response = await axiosInstance.get("viewAllCouncilars");
         setUserData(response.data.data);
         console.log(response.data.data);
       } catch (error) {
@@ -21,9 +20,8 @@ function Counselorlist() {
       }
     };
 
-    fetchData();
+    CounselorData();
   }, []);
-
   return (
     <div>
       <div className="row">
@@ -45,11 +43,20 @@ function Counselorlist() {
               </tr>
             </thead>
             <tbody>
-              {userData.map((data) => {
+              {userData.map((data, index) => {
+                let profilePictureUrl = profileimg;
+                let pathname = data?.profilePicture?.originalname || null;
+                if (pathname) {
+                  profilePictureUrl = BASE_URL + pathname;
+                }
                 return (
-                  <tr>
+                  <tr key={index}>
                     <td scope="row">
-                      <img src={data.profilePicture} alt=""></img>
+                      <img
+                        className="parentimage"
+                        alt="img"
+                        src={profilePictureUrl}
+                      ></img>{" "}
                     </td>
                     <td>{data.name}</td>
                     <td>{data.experienceYear}</td>

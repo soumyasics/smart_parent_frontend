@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "./Admin.css";
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect } from "react";
+import axiosInstance from "../../../../apis/axiosInstance";
 
 function AdminSignin() {
   useEffect(() => {
@@ -53,10 +53,10 @@ function AdminSignin() {
         setloginURL("admin");
         break;
       case "button2":
-        setloginURL("http://localhost:4009/smart_parent/loginRp");
+        setloginURL("/loginRp");
         break;
       case "button3":
-        setloginURL("http://localhost:4009/smart_parent/loginCouncilar");
+        setloginURL("/loginCouncilar");
         break;
       default:
         console.error("Invalid action");
@@ -91,7 +91,7 @@ function AdminSignin() {
         }
       } else {
         try {
-          const response = await axios.post(loginURL, formData);
+          const response = await axiosInstance.post(loginURL, formData);
           if (response.data) {
             if (selectedButton === "button2") {
               //handle login sucess - resource

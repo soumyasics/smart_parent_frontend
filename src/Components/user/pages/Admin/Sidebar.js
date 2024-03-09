@@ -60,29 +60,29 @@ function Sidebar() {
 
             </li>
             <li>
-              <a href="#">
+              <Link >
                 <span className="fa-stack fa-lg pull-left">
                   <i className="fa fa-youtube-play fa-stack-1x " />
                 </span>
-                About
-              </a>
+                Subscriptions
+              </Link>
             </li>
             <li>
-              <a href="#">
+              <Link>
                 <span className="fa-stack fa-lg pull-left">
                   <i className="fa fa-wrench fa-stack-1x " />
                 </span>
-                Services
-              </a>
+                Tutorials
+              </Link>
             </li>
             <li>
-              <a href="#">
+              <Link>
                 <span className="fa-stack fa-lg pull-left">
                   <i className="fa fa-server fa-stack-1x " />
                 </span>
-                Contact
-              </a>
-
+    
+                Blogs
+              </Link>
               <Link to="">
                 <span className="fa-stack fa-lg pull-left">
                   <i className="fa fa-flag fa-stack-1x " />

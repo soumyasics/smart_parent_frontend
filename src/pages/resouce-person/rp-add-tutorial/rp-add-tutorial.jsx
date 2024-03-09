@@ -11,16 +11,14 @@ import axiosMultipartInstance from "../../../apis/axiosMultipartInstance";
 
 const ResourceUploadForm = () => {
   const navigate = useNavigate();
-  const [title, setTitle] = useState("Learn How to Code");
-  const [description, setDescription] = useState(
-    "Learn how to code this video help your child"
-  );
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [thumbnail, setThumbnail] = useState(null);
   const [video, setVideo] = useState(null);
   const [rpid, setRpid] = useState("");
   const [validated, setValidated] = useState(false);
-  const [target, setTarget] = useState("3");
-  const [duration, setDuration] = useState("20");
+  const [target, setTarget] = useState("");
+  const [duration, setDuration] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("activeRp")) {
@@ -82,10 +80,7 @@ const ResourceUploadForm = () => {
     formData.append("duration", videoObj.duration);
     formData.append("target", videoObj.target);
     try {
-      let res = await axiosMultipartInstance.post(
-        "addTutorial",
-        formData
-      );
+      let res = await axiosMultipartInstance.post("addTutorial", formData);
       console.log("vid", res);
       if (res.status === 200) {
         alert("Tutorial uploaded successfully");
