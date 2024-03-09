@@ -64,6 +64,7 @@ import ViewAllTasks from "./pages/mySubscriptions/viewTaskDetails";
 import Counseloraddtutorials from "./Components/counsellor/counselor_pages/Tutorials/Counseloraddtutorials";
 import RpMain from "./Components/user/pages/Admin/RpMain";
 import RpViewBlog from "./pages/resouce-person/view-blog/rp-view-blog";
+import BlogList from "./Components/user/pages/Admin/BlogList.js";
 
 
 function App() {
@@ -145,7 +146,7 @@ function App() {
           />
           <Route path="/rp-add-task" element={<RpAddTask />} />
           <Route path="/rp-view-subscribers" element={<RpViewSubscribers />} />
-          
+
           {/* <Route path="" element={< />}/> */}
           {/*ajeena*/}
           <Route path="/admin" element={<AdminSignin />} />
@@ -161,7 +162,7 @@ function App() {
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/counsiler_list" element={<Counselorlist />} />
           <Route path="/user_nav" element={<Usernav />} />
-          <Route path="/admin_dashboard" element={[<AdminDashboard />,<Footer/>]} />
+          <Route path="/admin_dashboard" element={[<AdminDashboard />]} />
           <Route path="/rpnav" element={<Rpnav />} />
           <Route path="/parent_list" element={<ParentList />} />
           <Route
@@ -174,6 +175,7 @@ function App() {
           <Route path="/counselor_blogs" element={[<Counsellornav/>,<Counselorblogs />,<Footer/>]} />
           <Route path="/counselor_chat" element={[<Counsellornav/>,<Counselorchat />,<Footer/>]} />
           <Route path="/parent_list" element={<Footer />} />
+          <Route path="/blog_list" element={<BlogList />} />
 
         </Routes>
       </Router>

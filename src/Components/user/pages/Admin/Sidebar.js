@@ -48,6 +48,13 @@ function Sidebar() {
                 <span className="fa-stack fa-lg pull-left">
                   <i className="fa fa-dashboard fa-stack-1x " />
                 </span>{" "}
+                Counselor Request List
+              </Link>
+
+              <Link to="/counsiler_list">
+                <span className="fa-stack fa-lg pull-left">
+                  <i className="fa fa-dashboard fa-stack-1x " />
+                </span>{" "}
                 Counselor List
               </Link>
 
