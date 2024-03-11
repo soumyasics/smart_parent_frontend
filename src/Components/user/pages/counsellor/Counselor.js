@@ -11,11 +11,17 @@ import Footer from "../../../../pages/commonHomePage/Components/commonFooter";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../../../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
+import BASE_URL from "../../../../apis/baseUrl";
+import placeholderImg from "../../../../Assets/illustrators/man-placeholder-2.jpg";
+import { Button } from "react-bootstrap";
+
 function Counselor() {
   const navigate = useNavigate();
   const [activeUser, setActiveUser] = useState(null);
   const [allCo, setAllCo] = useState([]);
-  console.log("all", allCo);
+  const [searchCo, setSearchCo] = useState("");
+  const [fixedCo, setFixedCo] = useState([]);
+
   useEffect(() => {
     if (localStorage.getItem("parentData")) {
       setActiveUser(JSON.parse(localStorage.getItem("parentData")));
@@ -50,12 +56,24 @@ function Counselor() {
       let coData = res?.data?.data || null;
       if (coData) {
         setAllCo(coData);
+        setFixedCo(coData);
       }
     } catch (error) {
       console.log("error on get all councilors", error);
     }
   }
 
+  function handleSearch() {
+    if (!searchCo) {
+      setAllCo(fixedCo);
+      return;
+    }
+    let filteredCo = fixedCo.filter((co) => {
+      return co?.name.toLowerCase().includes(searchCo.toLowerCase());
+    });
+    console.log("fil", filteredCo);
+    setAllCo(filteredCo);
+  }
   return (
     <div>
       <Navbar />
@@ -66,19 +84,36 @@ function Counselor() {
         <div className="search">
           <input
             type="text"
+            value={searchCo}
+            className="search_icon_input w-50"
+            onChange={(e) => setSearchCo(e.target.value)}
             placeholder="Search for a Counsellor"
-            className="search_icon_input"
+            style={{ width: "50%" }}
           />
+          <Button className="ms-3" onClick={handleSearch}>
+            {" "}
+            Search Councilor
+          </Button>
         </div>
 
         <div className="listout">
           <h5>Top rated Counsellor</h5>
 
           {allCo.map((co, index) => {
-            console.log("co", co);
+            let profilePicUrl = placeholderImg;
+            let filename = co?.profilePicture?.filename || null;
+            if (co.profilePicture.filename) {
+              profilePicUrl = `${BASE_URL}${filename}`;
+            }
+
             return (
               <div className="professionals">
-                <img src={img1} alt="img1" />
+                <img
+                  className="mt-3"
+                  style={{ height: "50px", width: "50px", borderRadius: "50%" }}
+                  src={profilePicUrl}
+                  alt="img1"
+                />
 
                 <div className="para">
                   {" "}
