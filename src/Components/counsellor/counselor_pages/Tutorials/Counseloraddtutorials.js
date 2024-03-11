@@ -1,10 +1,102 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Form, Row, Button, Modal } from "react-bootstrap";
 import { Image } from "react-bootstrap";
 import Footer from '../../../../pages/commonHomePage/Components/commonFooter';
 import countutimg from "../../../../Assets/countutorialimg2.jpg"
+import { useNavigate } from 'react-router-dom';
+import axiosMultipartInstance from '../../../../apis/axiosMultipartInstance';
 
 function Counseloraddtutorials() {
+  const navigate = useNavigate();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [thumbnail, setThumbnail] = useState(null);
+  const [video, setVideo] = useState(null);
+  const [councilorid, setCouncilorid] = useState("");
+  const [validated, setValidated] = useState(false);
+  const [target, setTarget] = useState("");
+  const [duration, setDuration] = useState("");
+
+  useEffect(() => {
+    if (localStorage.getItem("activecouncilor")) {
+      let activecouncilorId =
+        JSON.parse(localStorage.getItem("activecouncilor"))?._id || null;
+      console.log("ac councilor id", activecouncilorId);
+      if (activecouncilorId) {
+        setCouncilorid(activecouncilorId);
+      }
+    } else {
+      console.log("Councilor id not found in the local storage");
+      alert("Councilor is not logged in yet.");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 5);
+    }
+  }, []);
+
+  const handleUploadTutorail = (e) => {
+    e.preventDefault();
+    setValidated(true);
+    if (e.currentTarget.checkValidity() === false) {
+      e.stopPropagation();
+    }
+
+    if (
+      !title ||
+      !description ||
+      !thumbnail ||
+      !video ||
+      !councilorid ||
+      !duration ||
+      !target
+    ) {
+      console.log("all fields are required.");
+      return;
+    }
+
+    let videoObj = {
+      title,
+      description,
+      thumbnail,
+      video,
+      councilorid,
+      duration,
+      target,
+    };
+
+    sendDataToServer(videoObj);
+  };
+
+  const sendDataToServer = async (videoObj) => {
+    const formData = new FormData();
+    formData.append("title", videoObj.title);
+    formData.append("description", videoObj.description);
+    formData.append("files", videoObj.thumbnail);
+    formData.append("files", videoObj.video);
+    formData.append("councilorid", videoObj.councilorid);
+    formData.append("duration", videoObj.duration);
+    formData.append("target", videoObj.target);
+    try {
+      let res = await axiosMultipartInstance.post("counselloraddTutorial", formData);
+      console.log("vid", res);
+      if (res.status === 200) {
+        alert("Tutorial uploaded successfully");
+        // setTimeout(() => {
+        //   navigate("");
+        // }, 1000);
+      } else {
+        alert("Something went wrong");
+      }
+    } catch (error) {
+      console.log("err on upload video", error);
+    }
+  };
+
+  
+  useEffect(() => {
+    console.log(title, description, thumbnail, video, "data");
+  }, [title, description, thumbnail, video]);
+
   return (
     <>
     
@@ -21,6 +113,9 @@ function Counseloraddtutorials() {
         <div className="p-3">
           <Form
             className="rp-video-upload-form p-5"
+            noValidate
+            validated={validated}
+            onSubmit={handleUploadTutorail}
 
           
           >
@@ -38,12 +133,13 @@ function Counseloraddtutorials() {
                   <Form.Label>Tutorial Title</Form.Label>
                   <Form.Control
                   
-                    name="title"
-                    
-                    type="text"
-                    placeholder="Tutorial Title"
-                    autoFocus
-                    required
+                  onChange={(e) => setTitle(e.target.value)}
+                  name="title"
+                  value={title}
+                  type="text"
+                  placeholder="Tutorial Title"
+                  autoFocus
+                  required
                   />
                   <Form.Control.Feedback type="invalid">
                     Please Tutorial title
@@ -55,7 +151,8 @@ function Counseloraddtutorials() {
                   <Form.Label>Tutorial Target</Form.Label>
                   <Form.Control
                     name="target"
-                    
+                    onChange={(e) => setTarget(e.target.value)}
+                    value={target}
                     type="text"
                     placeholder="Video Target age Eg: 3"
                     required
@@ -72,12 +169,14 @@ function Counseloraddtutorials() {
                   <Form.Label>Tutorial Duration in mins</Form.Label>
                   <Form.Control
                     
+                    onChange={(e) => setDuration(e.target.value)}
                     name="duration"
-                    
+                    value={duration}
                     type="text"
                     placeholder="Tutorial Duration Eg: 3"
                     autoFocus
                     required
+
                   />
                   <Form.Control.Feedback type="invalid">
                     Please Provide Tutorial Duration
@@ -89,10 +188,11 @@ function Counseloraddtutorials() {
                   <Form.Label>Tutorial Description</Form.Label>
                   <Form.Control
                     name="description"
-                    
-                    type="text"
-                    placeholder="Tutorial Description"
-                    required
+                      onChange={(e) => setDescription(e.target.value)}
+                      value={description}
+                      type="text"
+                      placeholder="Tutorial Description"
+                      required
                   />
                   <Form.Control.Feedback type="invalid">
                     Please provide tutorial description
@@ -112,6 +212,7 @@ function Counseloraddtutorials() {
                     name="thumbnail"
                     type="file"
                     required
+                    onChange={(e) => setThumbnail(e.target.files[0])}
                   
                   />
                   <Form.Control.Feedback type="invalid">
@@ -123,6 +224,9 @@ function Counseloraddtutorials() {
                 <Form.Group className="mb-3">
                   <Form.Label>Tutorial Video</Form.Label>
                   <Form.Control
+                     onChange={(e) => {
+                      setVideo(e.target.files[0]);
+                    }}
                     name="video"
                     type="file"
                     required
