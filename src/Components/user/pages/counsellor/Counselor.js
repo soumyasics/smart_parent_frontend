@@ -9,10 +9,13 @@ import img5 from "../../../../Assets/img5.png";
 import Navbar from "../../../../pages/commonHomePage/Components/Comp1";
 import Footer from "../../../../pages/commonHomePage/Components/commonFooter";
 import { useEffect, useState } from "react";
+import axiosInstance from "../../../../apis/axiosInstance";
 import { useNavigate } from "react-router-dom";
 function Counselor() {
   const navigate = useNavigate();
   const [activeUser, setActiveUser] = useState(null);
+  const [allCo, setAllCo] = useState([]);
+  console.log("all", allCo);
   useEffect(() => {
     if (localStorage.getItem("parentData")) {
       setActiveUser(JSON.parse(localStorage.getItem("parentData")));
@@ -22,154 +25,80 @@ function Counselor() {
       navigate("/sign_in");
     }
   }, []);
+
+  useEffect(() => {
+    let id = getActiveUserId();
+    if (id) {
+      getData(id);
+    } else {
+      console.log("Parent data not available in the Local storage");
+    }
+  }, []);
+
+  function getActiveUserId() {
+    let activeParent = JSON.parse(localStorage.getItem("parentData")) || null;
+    if (activeParent && activeParent._id) {
+      return activeParent._id;
+    } else {
+      return null;
+    }
+  }
+
+  async function getData(id) {
+    try {
+      let res = await axiosInstance.get("viewAllCouncilars");
+      let coData = res?.data?.data || null;
+      if (coData) {
+        setAllCo(coData);
+      }
+    } catch (error) {
+      console.log("error on get all councilors", error);
+    }
+  }
+
   return (
     <div>
       <Navbar />
 
       <div className="counsellor">
-        <h1>Choose Counselor</h1>
+        <h1>Choose Counsellor</h1>
 
         <div className="search">
           <input
             type="text"
-            placeholder="Search for a professional"
+            placeholder="Search for a Counsellor"
             className="search_icon_input"
           />
         </div>
 
         <div className="listout">
-          <h5>Top rated professionals</h5>
+          <h5>Top rated Counsellor</h5>
 
-          <div className="professionals">
-            <img src={img1} alt="img1" />
+          {allCo.map((co, index) => {
+            console.log("co", co);
+            return (
+              <div className="professionals">
+                <img src={img1} alt="img1" />
 
-            <div className="para">
-              {" "}
-              <p1>Andrew M.</p1>{" "}
-            </div>
+                <div className="para">
+                  {" "}
+                  <p>Name: {co.name}</p>{" "}
+                </div>
 
-            <div className="d-flex">
-              <p>Topic</p>
-              <div className="dot">
-                <Icon icon="fluent-mdl2:location-dot" />
+                <div className="d-flex">
+                  <p>Email: {co.email}</p>
+                  <div className="dot">
+                    <Icon icon="fluent-mdl2:location-dot" />
+                  </div>
+
+                  <p>Contact: {co.contact}</p>
+                  <div className="dot">
+                    <Icon icon="fluent-mdl2:location-dot" />
+                  </div>
+                </div>
               </div>
-
-              <p>Skills</p>
-              <div className="dot">
-                <Icon icon="fluent-mdl2:location-dot" />
-              </div>
-
-              <p>Exp</p>
-            </div>
-
-            <div className="rating">
-              <h6>4.96</h6>
-            </div>
-          </div>
-          <div className="professionals">
-            <img src={img2} alt="img2" />
-
-            <div className="para">
-              {" "}
-              <p1>Jessie M.</p1>{" "}
-            </div>
-
-            <div className="d-flex">
-              <p>Topic</p>
-              <div className="dot">
-                <Icon icon="fluent-mdl2:location-dot" />
-              </div>
-
-              <p>Skills</p>
-              <div className="dot">
-                <Icon icon="fluent-mdl2:location-dot" />
-              </div>
-
-              <p>Exp</p>
-            </div>
-
-            <div className="rating">
-              <h6>4.98</h6>
-            </div>
-          </div>
-          <div className="professionals">
-            <img src={img3} alt="img3" />
-
-            <div className="para">
-              {" "}
-              <p1>Megan B.</p1>{" "}
-            </div>
-
-            <div className="d-flex">
-              <p>Topic</p>
-              <div className="dot">
-                <Icon icon="fluent-mdl2:location-dot" />
-              </div>
-
-              <p>Skills</p>
-              <div className="dot">
-                <Icon icon="fluent-mdl2:location-dot" />
-              </div>
-
-              <p>Exp</p>
-            </div>
-
-            <div className="rating">
-              <h6>4.97</h6>
-            </div>
-          </div>
-          <div className="professionals">
-            <img src={img4} alt="img4" />
-
-            <div className="para">
-              {" "}
-              <p1>Jessie M.</p1>{" "}
-            </div>
-
-            <div className="d-flex">
-              <p>Topic</p>
-              <div className="dot">
-                <Icon icon="fluent-mdl2:location-dot" />
-              </div>
-
-              <p>Skills</p>
-              <div className="dot">
-                <Icon icon="fluent-mdl2:location-dot" />
-              </div>
-
-              <p>Exp</p>
-            </div>
-
-            <div className="rating">
-              <h6>4.98</h6>
-            </div>
-          </div>
-          <div className="professionals">
-            <img src={img5} alt="img5" />
-
-            <div className="para">
-              {" "}
-              <p1>Gwen S.</p1>{" "}
-            </div>
-
-            <div className="d-flex">
-              <p>Topic</p>
-              <div className="dot">
-                <Icon icon="fluent-mdl2:location-dot" />
-              </div>
-
-              <p>Skills</p>
-              <div className="dot">
-                <Icon icon="fluent-mdl2:location-dot" />
-              </div>
-
-              <p>Exp</p>
-            </div>
-
-            <div className="rating">
-              <h6>4.97</h6>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
       <Footer />

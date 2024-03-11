@@ -170,11 +170,7 @@ function Rpnav() {
                   Tasks
                 </a>
               </li>
-              <li className="nav-item" style={{ cursor: "pointer" }}>
-                <a href="#m" className="nav-link active text-white" id="a3">
-                  Profile
-                </a>
-              </li>
+              
               {activeUser ? (
                 <li>
                   <div class="dropdown">
