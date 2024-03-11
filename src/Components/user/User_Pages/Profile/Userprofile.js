@@ -1,13 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Userprofile.css"
 import Profileimg from "../../../../Assets/profile.jpg"
 import imagebg from "../../../../Assets/parentbg.avif"
-
+import { Link } from 'react-router-dom'
+import axiosInstance from '../../../../apis/axiosInstance'
+import Navbar from "../../../../pages/commonHomePage/Components/Comp1";
+import Footer from "../../../../pages/commonHomePage/Components/commonFooter";
 
 function Userprofile() {
+  const [profile,setProfile]=useState({date:''})
+
+  const id = localStorage.getItem("userdetails")
+
+useEffect(()=>{
+  axiosInstance.post(`/viewParentById/${id}`)
+  .then((res)=>{console.log(res,"data") ; setProfile(res.data.data)})
+  .catch((err)=>{console.log(err,"error");})
+  console.log(id);
+},[])
+
+
   return (
 
     <>
+
+ <Navbar />
 
     <div className='row'>
 
@@ -26,7 +43,7 @@ function Userprofile() {
               <div className='profileimg'>
                 <img src={Profileimg} alt='profile' />
               </div>
-              <p>Name</p>
+             
             </div>
           </div>
         </div>
@@ -37,7 +54,7 @@ function Userprofile() {
             <div className='main-heading'>
               <h5>Username</h5>
             </div>
-            <p>name</p>
+            <p>{profile.name}</p>
           </div>
         </div>
 
@@ -47,7 +64,7 @@ function Userprofile() {
             <div className='main-heading'>
               <h5>Email Address</h5>
             </div >
-            <p>Address</p>
+            <p>{profile.email}</p>
           </div>
         </div>
 
@@ -56,7 +73,7 @@ function Userprofile() {
             <div className='main-heading'>
               <h5>DOB</h5>
             </div>
-            <p>date of birth</p>
+            <p>{profile.date.slice(0,10)}</p>
           </div>
         </div>
 
@@ -65,8 +82,14 @@ function Userprofile() {
             <div className='main-heading'>
               <h5>Contact Number</h5>
             </div>
-            <p>923456789</p>
+            <p>{profile.contact}</p>
           </div>
+        </div>
+
+        <div className='userprofilebtn'>
+
+          <Link to="/user_editprofile"><button >Edit</button></Link>
+
         </div>
 
 
@@ -77,7 +100,7 @@ function Userprofile() {
       </div>
 
     </div>
-
+    <Footer />
     </>
   )
 }

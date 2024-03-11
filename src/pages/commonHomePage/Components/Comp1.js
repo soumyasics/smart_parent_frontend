@@ -52,6 +52,16 @@ function Comp1() {
       }, 1500);
     }
   }
+  function redirectProfile() {
+    if (activeUser) {
+      navigate("/user_profile");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/sign_in");
+      }, 1500);
+    }
+  }
   return (
     <nav
       id="common-home-navbar"
@@ -123,7 +133,7 @@ function Comp1() {
                 Councilors
               </a>
             </li>
-            <li style={{ cursor: "pointer" }} class="nav-item">
+            <li style={{ cursor: "pointer" }} onClick={redirectProfile} class="nav-item">
               <a class="nav-link active text-white" aria-current="page">
                 Profile
               </a>
