@@ -52,16 +52,27 @@ h5 {
 }
 
 
-.main p {
+/* .main p {
 
     padding-left: 70px;
     margin-top: 53px;
 
 
-}
+} */
 
 .mainprofilebg {
 
     margin-top: 165px;
 
+}
+
+.userprofilebtn button{
+    font-weight: 600;
+    font-size: 15px;
+    margin-left: 520px;
+    width: 70px;
+    height: 30px;
+    border: none;
+    background-color: #1E90FF;
+    color: #fff;
 }
