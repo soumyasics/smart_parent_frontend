@@ -1,0 +1,83 @@
+.userchat{
+    
+
+        padding: 0 30px;
+       padding-top: 30px;
+        background-color: #F0F2F5
+     
+}
+
+.chatsearch {
+padding-top: 30px;
+}
+
+.chatsearch input{
+    
+    height: 40px;
+    width: 100%;
+    outline: none;
+    padding: 0 40px;
+    font-size: 17px;
+    font-weight: 400;
+    color: #637587;
+    font-weight: 400;
+    background-color: #fff;
+    border: 1.5px solid #C7BEBE;
+    border-top-width: 1.9px;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.chatprofile h1{
+    font-weight: 700;
+    font-size: 20px;
+    color: #0d6efd;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.chatprofile p{
+    font-weight: 400;
+    color: black;
+    margin-top: 29px;
+    margin-left: -162px;
+}
+
+.chatfriends {
+    display: flex;
+    padding-top: 40px;
+}
+
+.chatfriends img{
+    border: 2px solid;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    
+    object-fit: contain;
+}
+
+.chatfriends h2{
+    font-weight: 700;
+    font-size: 15px;
+    color: #0d6efd;
+    margin-top: 2px;
+    margin-left: 15px;
+}
+
+.chatimage img{
+    
+    border: 2px solid;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    
+    object-fit: contain;
+}
+
+.chatprofile {
+    display: flex;
+}
+  
