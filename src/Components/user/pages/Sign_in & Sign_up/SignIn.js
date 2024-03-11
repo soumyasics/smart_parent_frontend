@@ -55,7 +55,7 @@ function SignIn() {
         .then((res) => {
           console.log("data", res.data.data);
 
-          localStorage.setItem("userdetails",res.data.data._id)
+          localStorage.setItem("userdetails", res.data.data._id)
 
           if (res.data.status == 200) {
             let msg = res?.data?.msg || null;

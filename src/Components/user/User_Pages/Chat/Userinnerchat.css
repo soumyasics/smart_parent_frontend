@@ -1,0 +1,68 @@
+.innerchat{
+    padding: 0 30px;
+    padding-top: 30px;
+}
+
+.innerchathead{
+    border-bottom: 2px solid black;
+    
+}
+
+
+.innersubhead {
+    display: flex;
+padding-bottom: 10px;
+}
+   
+.innerchatprofile img{
+ border: 2px solid;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    
+    object-fit: contain;
+}
+
+.innerchathead h1{
+    font-weight: 500;
+    font-size: 20px;
+    color: black;
+    margin-top: 7px;
+    margin-left: 15px;
+}
+
+.innerchatmsg{
+    
+    padding-top: 10px;
+    
+    color:blue;
+}
+
+.inneruserchatmsg{
+    
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.innerchatsearch{
+    padding-top: 300px;
+}
+
+.innerchatsearch input{
+    height: 40px;
+    width: 100%;
+    outline: none;
+    padding: 0 40px;
+
+    font-size: 17px;
+    font-weight: 400;
+    color: #637587;
+    font-weight: 400;
+    background-color: #fff;
+    border: 1.5px solid #C7BEBE;
+    border-top-width: 1.9px;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.3s ease;
+}
