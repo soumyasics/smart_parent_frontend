@@ -236,7 +236,10 @@ const SubscribedRp = () => {
         let res = await axiosInstance.post("addRating/" + rpDetails._id, {
           rating: newRating,
         });
-        console.log("updated rating", res);
+        if (res.status === 200) {
+          alert("Rating added successfully");
+          console.log("updated rating", res);
+        }
       } catch (error) {
         console.log("error on add rating", error);
       } finally {
