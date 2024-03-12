@@ -17,6 +17,8 @@ import Row from "react-bootstrap/Row";
 import isParentLoggedIn from "../../customHooks/checkParentLoggedIn";
 import ViewAllTutorials from "./viewAllTutorials";
 import ViewAllTasks from "./viewTaskDetails";
+import axios from "axios";
+import { Spinner } from "react-bootstrap";
 const SubscribedRp = () => {
   const { id } = useParams();
   const [rpDetails, setRpDetails] = useState(null);
@@ -28,11 +30,31 @@ const SubscribedRp = () => {
   const [resourcePersonId, setResourcePersonId] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [allBlogs, setAllBlogs] = useState([]);
+  const [newRating, setNewRating] = useState(null);
+  const [currentRating, setCurrentRating] = useState(0);
+  const [ratingLoading, setRatingLoading] = useState(false);
   const navigate = useNavigate();
 
+  const [activeUser, setActiveUser] = useState(null);
+  useEffect(() => {
+    if (localStorage.getItem("parentData")) {
+      setActiveUser(JSON.parse(localStorage.getItem("parentData")));
+    } else {
+      console.log("Parent data not found in the local storage");
+      alert("Please login first");
+      navigate("/sign_in");
+    }
+  }, []);
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    if (rpDetails && rpDetails.rating) {
+      setCurrentRating(rpDetails.rating);
+    } else {
+      console.log("can't find rp rating.");
+    }
+  }, [rpDetails]);
   useEffect(() => {
     if (rpDetails && rpDetails._id) {
       getVideoTutorials(rpDetails._id);
@@ -42,8 +64,6 @@ const SubscribedRp = () => {
       console.log("can't get the rp details");
     }
   }, [rpDetails]);
-
-  console.log("get task", tasks);
 
   useEffect(() => {
     let filePath = rpDetails?.profilePicture?.filename || null;
@@ -93,7 +113,6 @@ const SubscribedRp = () => {
     try {
       let tasks = await axiosInstance.get("viewTaskQnByRPId/" + rpId);
       let activeTasks = tasks?.data?.data || null;
-      console.log("activ tasks", activeTasks);
       if (activeTasks.length > 0) {
         setTasks(activeTasks);
       } else {
@@ -143,7 +162,6 @@ const SubscribedRp = () => {
     try {
       let rpTutorials = await axiosInstance.get("viewTutorialByRpId/" + rpId);
       let rpTutorialsData = rpTutorials?.data?.data || null;
-      console.log("rp tuto data", rpTutorialsData);
       if (rpTutorialsData.length > 0) {
         setTutorial(rpTutorialsData);
       } else {
@@ -179,7 +197,6 @@ const SubscribedRp = () => {
       axiosInstance
         .get("get-subscription-by-id/" + id)
         .then((res) => {
-          console.log("res", res);
           let rpData = res?.data?.data || null;
           if (rpData) {
             setRpDetails(rpData.resourcePersonId || null);
@@ -197,10 +214,39 @@ const SubscribedRp = () => {
 
   const ratingChanged = (newRating) => {
     console.log("new rating", newRating);
+    setNewRating(newRating);
   };
 
   function redirectTaskDetails(taskId) {
     navigate(`/view-task-details/${taskId}`);
+  }
+  async function addNewRating() {
+    if (!newRating) {
+      alert("Please add rating");
+      return;
+    }
+    if (!rpDetails) {
+      console.log("rp details not found");
+      return;
+    }
+    if (rpDetails && rpDetails._id) {
+      console.log("rpdetai id", rpDetails._id);
+      setRatingLoading(true);
+      try {
+        let res = await axiosInstance.post("addRating/" + rpDetails._id, {
+          rating: newRating,
+        });
+        console.log("updated rating", res);
+      } catch (error) {
+        console.log("error on add rating", error);
+      } finally {
+        setTimeout(() => {
+          setRatingLoading(false);
+        }, 1000);
+      }
+    } else {
+      console.log("rp details not found");
+    }
   }
   return (
     <>
@@ -250,26 +296,66 @@ const SubscribedRp = () => {
                           Add Your Rating:
                         </p>
                         <div className="ms-3">
-                          <ReactStars
-                            count={5}
-                            edit={true}
-                            value={rpDetails?.rating}
-                            onChange={ratingChanged}
-                            size={30}
-                            activeColor="#ffd700"
-                          />
+                          {rpDetails?.rating ? (
+                            <ReactStars
+                              count={5}
+                              edit={true}
+                              value={
+                                parseFloat(rpDetails?.rating).toFixed(1) || 0
+                              }
+                              onChange={ratingChanged}
+                              size={30}
+                              isHalf={true}
+                              emptyIcon={<i className="far fa-star"></i>}
+                              halfIcon={<i className="fa fa-star-half-alt"></i>}
+                              fullIcon={<i className="fa fa-star"></i>}
+                              activeColor="#ffd700"
+                            />
+                          ) : (
+                            <ReactStars
+                              count={5}
+                              edit={true}
+                              value={0}
+                              onChange={ratingChanged}
+                              size={30}
+                              isHalf={true}
+                              emptyIcon={<i className="far fa-star"></i>}
+                              halfIcon={<i className="fa fa-star-half-alt"></i>}
+                              fullIcon={<i className="fa fa-star"></i>}
+                              activeColor="#ffd700"
+                            />
+                          )}
                         </div>
-
-                        <Button
-                          style={{
-                            marginLeft: "30px",
-                            height: "38px",
-                            width: "184px",
-                          }}
-                        >
-                          {" "}
-                          Confirm Rating{" "}
-                        </Button>
+                        {ratingLoading && (
+                          <Button
+                            variant="primary"
+                            size="xl"
+                            className="w-25 ms-4"
+                            disabled
+                          >
+                            <Spinner
+                              as="span"
+                              animation="border"
+                              size="sm"
+                              role="status"
+                              aria-hidden="true"
+                            />
+                            <span className="visually-hidden">Loading...</span>
+                          </Button>
+                        )}
+                        {!ratingLoading && (
+                          <Button
+                            style={{
+                              marginLeft: "30px",
+                              height: "38px",
+                              width: "184px",
+                            }}
+                            onClick={addNewRating}
+                          >
+                            {" "}
+                            Confirm Rating{" "}
+                          </Button>
+                        )}
                       </div>
                     </Card.Text>
                   </Card.Body>
@@ -320,7 +406,6 @@ const SubscribedRp = () => {
         </h1>{" "}
         <div className="d-flex flex-wrap justify-content-center gap-5 mt-5 pt-3 ">
           {tasks.map((task, index) => {
-            console.log("tas", task);
             return (
               <Card key={index} border="info" style={{ width: "18rem" }}>
                 <Card.Header>Task </Card.Header>
@@ -365,14 +450,10 @@ const SubscribedRp = () => {
           className=" video-tutorials mx-auto d-flex flex-wrap justify-content-center mt-4 p-4 gap-3"
         >
           {allBlogs?.map((blog, index) => {
-            console.log("blog", blog);
-
             let blogImg =
               "https://media.istockphoto.com/id/1253922154/vector/blog-authors-writing-articles.jpg?s=612x612&w=0&k=20&c=rfl7LAg3NoD2fYlPXTBvnXexaq2cFTZLxt7ronsBsWk=";
 
             let pathname = blog.img?.filename || null;
-
-            console.log("pat", pathname);
 
             if (pathname) {
               if (/\.(jpeg|jpg|gif|png)$/.test(pathname)) {

@@ -12,12 +12,12 @@ const ChildRegistrationForm = ({ parentData }) => {
   const [validated, setValidated] = useState(false);
   const navigate = useNavigate();
   const [childData, setChildData] = useState({
-    childName: "child1",
-    childAge: "90",
-    childHobbies: "playing",
-    childGender: "male",
-    childHeight: "120",
-    childWeight: "50",
+    childName: "",
+    childAge: "",
+    childHobbies: "",
+    childGender: "",
+    childHeight: "",
+    childWeight: "",
   });
   const handleSubmit = (event) => {
     event.preventDefault();
