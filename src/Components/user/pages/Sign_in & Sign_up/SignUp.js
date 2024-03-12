@@ -14,19 +14,19 @@ function SignUp() {
   const [signup, setSignup] = useState({
     name: "",
     email: "",
-    date: "",
+  
     contact: "",
     password: "",
-    profilePicture:null
+    profilePicture: null
   });
 
   const [errors, setErrors] = useState({
     name: "",
     email: "",
-    date: "",
+  
     contact: "",
     password: "",
-    profilePicture:""
+    profilePicture: ""
   });
 
   const changefn = (e) => {
@@ -61,12 +61,12 @@ function SignUp() {
 
     errors.name = formValidating("Name", signup.name);
     errors.email = formValidating("Email", signup.email);
-    errors.date = formValidating("Date", signup.date);
+  
     errors.contact = formValidating("Contact Number", signup.contact);
     errors.password = formValidating("Password", signup.password);
-    errors.profilePicture = formValidating("Image",signup.profilePicture)
+    errors.profilePicture = formValidating("Image", signup.profilePicture)
 
-    if (signup.name && signup.email && signup.date && signup.contact) {
+    if (signup.name && signup.email && signup.contact) {
       formValid = true;
     }
 
@@ -125,22 +125,7 @@ function SignUp() {
                   )}
                 </div>
 
-                <div className="input-box">
-                  <div className="label">
-                    {" "}
-                    <label>DOB</label>{" "}
-                  </div>
-                  <input
-                    type="date"
-                    name="date"
-                    value={signup.date}
-                    onChange={changefn}
-                  />
-
-                  {errors.date && (
-                    <div className="text-danger">{errors.date}</div>
-                  )}
-                </div>
+               
 
                 <div className="input-box">
                   <div className="label">
@@ -176,20 +161,20 @@ function SignUp() {
                     <div className="text-danger">{errors.password}</div>
                   )}
                 </div>
-             
-          <div className="files">
-            <div className="label">
-              {" "}
-              <label>Profile Picture</label>{" "}
-            </div>
-            <input type="file" name="profilePicture" onChange={changefn} />
 
-            {errors.profilePicture && (
-              <div className="text-danger errortext">
-                {errors.profilePicture}
-              </div>
-            )}
-          </div>
+                <div className="files">
+                  <div className="label">
+                    {" "}
+                    <label>Profile Picture</label>{" "}
+                  </div>
+                  <input type="file" name="profilePicture" onChange={changefn} />
+
+                  {errors.profilePicture && (
+                    <div className="text-danger errortext">
+                      {errors.profilePicture}
+                    </div>
+                  )}
+                </div>
 
                 <div className="text">
                   <h5>
@@ -215,7 +200,7 @@ function SignUp() {
           <div className="page-switch-btn-container">
             {!isChildPageActive && (
               <button
-            
+
                 onClick={handlechildBtnClick}
                 className="register-child-btn"
               >

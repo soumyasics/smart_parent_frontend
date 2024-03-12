@@ -11,7 +11,7 @@ function Navbar() {
 
         <img src={logo} alt='logo' />
 
-        
+
         <p>Navigating the digital world together</p>
         <h1>Smart Parent</h1>
 
