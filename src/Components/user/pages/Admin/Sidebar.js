@@ -51,7 +51,7 @@ function Sidebar() {
                 Counselor Request List
               </Link>
 
-              <Link to="/counsiler_list">
+              <Link to="/counsiler_accepted">
                 <span className="fa-stack fa-lg pull-left">
                   <i className="fa fa-dashboard fa-stack-1x " />
                 </span>{" "}
@@ -83,7 +83,7 @@ function Sidebar() {
               </Link>
             </li>
             <li>
-              <Link>
+              <Link to="/blog_list">
                 <span className="fa-stack fa-lg pull-left">
                   <i className="fa fa-server fa-stack-1x " />
                 </span>

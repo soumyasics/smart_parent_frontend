@@ -64,11 +64,9 @@ import ViewAllTasks from "./pages/mySubscriptions/viewTaskDetails";
 import Counseloraddtutorials from "./Components/counsellor/counselor_pages/Tutorials/Counseloraddtutorials";
 import RpMain from "./Components/user/pages/Admin/RpMain";
 import RpViewBlog from "./pages/resouce-person/view-blog/rp-view-blog";
-<<<<<<< HEAD
 import BlogList from "./Components/user/pages/Admin/BlogList.js";
-=======
 import ParentViewBlogDetails from "./pages/mySubscriptions/parent-view-blog-details";
->>>>>>> 366a608b77b1d91c531c099efb87b837785d900d
+import CounselorAccepted from "./Components/user/pages/Admin/counselor_Accepted.js";
 
 
 function App() {
@@ -166,6 +164,7 @@ function App() {
           <Route path="/rp_pendinglist" element={<RPLIst />} />
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/counsiler_list" element={<Counselorlist />} />
+          <Route path="/counsiler_accepted" element={<CounselorAccepted />} />
           <Route path="/user_nav" element={<Usernav />} />
           <Route path="/admin_dashboard" element={[<AdminDashboard />]} />
           <Route path="/rpnav" element={<Rpnav />} />

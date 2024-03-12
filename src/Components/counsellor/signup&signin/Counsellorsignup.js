@@ -332,8 +332,8 @@ function Counsellorsignup() {
             </h5>
           </div>
 
-          <div className="inbutton">
-            <button type="submit">
+          <div className="text-center inbutton">
+            <button className="btn btn-primary" type="submit">
               Sign up <Icon icon="grommet-icons:connect" className="icon" />
             </button>
           </div>
