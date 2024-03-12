@@ -12,11 +12,12 @@ function SignUp() {
   const [isChildPageActive, setIsChildPageActive] = useState(false);
 
   const [signup, setSignup] = useState({
-    name: "Abcd",
+    name: "",
     email: "",
     date: "",
-    contact: "45454545455",
-    password: "12341234",
+    contact: "",
+    password: "",
+    profilePicture: null
   });
 
   const [errors, setErrors] = useState({
@@ -25,6 +26,7 @@ function SignUp() {
     date: "",
     contact: "",
     password: "",
+    profilePicture: ""
   });
 
   const changefn = (e) => {
@@ -62,6 +64,7 @@ function SignUp() {
     errors.date = formValidating("Date", signup.date);
     errors.contact = formValidating("Contact Number", signup.contact);
     errors.password = formValidating("Password", signup.password);
+    errors.profilePicture = formValidating("Image", signup.profilePicture)
 
     if (signup.name && signup.email && signup.date && signup.contact) {
       formValid = true;
@@ -174,6 +177,20 @@ function SignUp() {
                   )}
                 </div>
 
+                <div className="files">
+                  <div className="label">
+                    {" "}
+                    <label>Profile Picture</label>{" "}
+                  </div>
+                  <input type="file" name="profilePicture" onChange={changefn} />
+
+                  {errors.profilePicture && (
+                    <div className="text-danger errortext">
+                      {errors.profilePicture}
+                    </div>
+                  )}
+                </div>
+
                 <div className="text">
                   <h5>
                     Already have an account?{" "}
@@ -198,6 +215,7 @@ function SignUp() {
           <div className="page-switch-btn-container">
             {!isChildPageActive && (
               <button
+
                 onClick={handlechildBtnClick}
                 className="register-child-btn"
               >

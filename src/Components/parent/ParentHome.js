@@ -40,7 +40,7 @@ function ParentHome() {
             tools available to parents. On our parenting website you’ll find
             lessons, resources, and examples that help you navigate practical
             parenting skills.
-          </h4> 
+          </h4>
         </div>
         <div className="parent_home_fourthdiv">
           <div className="row">

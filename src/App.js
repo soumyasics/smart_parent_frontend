@@ -67,6 +67,7 @@ import RpViewBlog from "./pages/resouce-person/view-blog/rp-view-blog";
 import BlogList from "./Components/user/pages/Admin/BlogList.js";
 import ParentViewBlogDetails from "./pages/mySubscriptions/parent-view-blog-details";
 import CounselorAccepted from "./Components/user/pages/Admin/counselor_Accepted.js";
+import Userchatmain from "./Components/user/User_Pages/Chat/Userchatmain.js";
 
 
 function App() {
@@ -89,7 +90,7 @@ function App() {
           <Route path="/user_counselor" element={<Usercounselor />} />
           <Route path="/user_subscription" element={<Usersubscription />} />
           <Route path="/user_task" element={<Usertask />} />
-          <Route path="/user_chat" element={<Userchat />} />
+          <Route path="/user_chat" element={<Userchatmain />} />
           <Route path="/user_profile" element={<Userprofile />} />
           <Route path="/user_editprofile" element={<Editprofile />} />
           <Route
@@ -126,7 +127,7 @@ function App() {
           />
           <Route path="/resourceperson_task" element={<Rptask />} />
           <Route path="/resourceperson_chat" element={<Rpchat />} />
-          <Route path="/resourceperson_profile/:id" element={[<Rpnav/>,<Rprofile />]} />
+          <Route path="/resourceperson_profile/:id" element={[<Rpnav />, <Rprofile />]} />
           <Route
             path="/resourceperson_subscribers"
             element={<Rpsubscribers />}
@@ -166,18 +167,18 @@ function App() {
           <Route path="/counsiler_list" element={<Counselorlist />} />
           <Route path="/counsiler_accepted" element={<CounselorAccepted />} />
           <Route path="/user_nav" element={<Usernav />} />
-          <Route path="/admin_dashboard" element={[<AdminDashboard />]} />
+          <Route path="/admin_dashboard" element={[<AdminDashboard />, <Footer />]} />
           <Route path="/rpnav" element={<Rpnav />} />
           <Route path="/parent_list" element={<ParentList />} />
           <Route
             path="/view_counsiler_details/:id"
             element={<ViewResourcePersonDetails />}
           />
-          <Route path="/counsellor_home" element={[<Counsellornav/>,<ConselorHome />,<Footer/>]} />
+          <Route path="/counsellor_home" element={[<Counsellornav />, <ConselorHome />, <Footer />]} />
           <Route path="/counsellor_nav" element={<Counsellornav />} />
-          <Route path="/counselor_profile/:id" element={[<Counsellornav />,<Counselorprofile />,<Footer/>]} />
-          <Route path="/counselor_blogs" element={[<Counsellornav/>,<Counselorblogs />,<Footer/>]} />
-          <Route path="/counselor_chat" element={[<Counsellornav/>,<Counselorchat />,<Footer/>]} />
+          <Route path="/counselor_profile/:id" element={[<Counsellornav />, <Counselorprofile />, <Footer />]} />
+          <Route path="/counselor_blogs" element={[<Counsellornav />, <Counselorblogs />, <Footer />]} />
+          <Route path="/counselor_chat" element={[<Counsellornav />, <Counselorchat />, <Footer />]} />
           <Route path="/parent_list" element={<Footer />} />
           <Route path="/blog_list" element={<BlogList />} />
 
