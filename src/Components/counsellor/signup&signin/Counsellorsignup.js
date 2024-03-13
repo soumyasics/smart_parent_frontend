@@ -127,7 +127,7 @@ function Counsellorsignup() {
         })
         .then((res) => {
           console.log("Response:", res);
-          alert("counsilor registred successfully");
+          alert("Waiting for Admin approval..");
           setTimeout(() => {
             navigate("/admin");
           }, 1500);

@@ -167,7 +167,7 @@ function App() {
           <Route path="/counsiler_list" element={<Counselorlist />} />
           <Route path="/counsiler_accepted" element={<CounselorAccepted />} />
           <Route path="/user_nav" element={<Usernav />} />
-          <Route path="/admin_dashboard" element={[<AdminDashboard />, <Footer />]} />
+          <Route path="/admin_dashboard" element={<AdminDashboard />} />
           <Route path="/rpnav" element={<Rpnav />} />
           <Route path="/parent_list" element={<ParentList />} />
           <Route

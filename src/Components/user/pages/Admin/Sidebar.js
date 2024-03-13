@@ -22,84 +22,32 @@ function Sidebar() {
         <div id="sidebar-wrapper">
           <ul className="sidebar-nav nav-pills nav-stacked" id="menu">
             <li className="active">
+              <Link to="/admin_dashboard">Dashboard</Link>
 
-              <Link to="/admin_dashboard">
-                <span className="fa-stack fa-lg pull-left">
-                  <i className="fa fa-dashboard fa-stack-1x " />
-                </span>{" "}
-                Dashboard
-              </Link>
+              <Link to="/rp_list">Resource person List</Link>
 
-              <Link to="/rp_list">
-                <span className="fa-stack fa-lg pull-left">
-                  <i className="fa fa-dashboard fa-stack-1x " />
-                </span>{" "}
-                Resource person List
-              </Link>
+              <Link to="/rp_pendinglist">Resource person pending List</Link>
 
-              <Link to="/rp_pendinglist">
-                <span className="fa-stack fa-lg pull-left">
-                  <i className="fa fa-dashboard fa-stack-1x " />
-                </span>{" "}
-                Resource person pending List
-              </Link>
+              <Link to="/counsiler_list">Counselor Request List</Link>
 
-              <Link to="/counsiler_list">
-                <span className="fa-stack fa-lg pull-left">
-                  <i className="fa fa-dashboard fa-stack-1x " />
-                </span>{" "}
-                Counselor Request List
-              </Link>
+              <Link to="/counsiler_accepted">Counselor List</Link>
 
-              <Link to="/counsiler_accepted">
-                <span className="fa-stack fa-lg pull-left">
-                  <i className="fa fa-dashboard fa-stack-1x " />
-                </span>{" "}
-                Counselor List
-              </Link>
-
-              <Link to="/parent_list">
-                <span className="fa-stack fa-lg pull-left">
-                  <i className="fa fa-dashboard fa-stack-1x " />
-                </span>{" "}
-                Parents List
-              </Link>
-
+              <Link to="/parent_list">Parents List</Link>
             </li>
             <li>
-              <Link >
-                <span className="fa-stack fa-lg pull-left">
-                  <i className="fa fa-youtube-play fa-stack-1x " />
-                </span>
-                Subscriptions
-              </Link>
+              <Link>Subscriptions</Link>
             </li>
             <li>
-              <Link>
-                <span className="fa-stack fa-lg pull-left">
-                  <i className="fa fa-wrench fa-stack-1x " />
-                </span>
-                Tutorials
-              </Link>
+              <Link>Tutorials</Link>
             </li>
             <li>
-              <Link to="/blog_list">
-                <span className="fa-stack fa-lg pull-left">
-                  <i className="fa fa-server fa-stack-1x " />
-                </span>
-    
-                Blogs
-              </Link>
+              <Link to="/blog_list">Blogs</Link>
               <Link to="">
-                <span className="fa-stack fa-lg pull-left">
-                  <i className="fa fa-flag fa-stack-1x " />
-                </span>
                 <div onClick={handleLogout}>
                   <button></button>
                   Logout
                 </div>
               </Link>
-
             </li>
           </ul>
         </div>

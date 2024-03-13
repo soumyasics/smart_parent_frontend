@@ -18,9 +18,9 @@ function Counselorlist() {
       .get("viewAllCouncilars")
       .then((res) => {
         console.log(res, "data");
-        let allRps = res?.data?.data || [];
-        const filterPendingReqs = allRps.filter(
-          (rp) => rp?.isAdminApproved == "pending"
+        let allCouncilars = res?.data?.data || [];
+        const filterPendingReqs = allCouncilars.filter(
+          (councilar) => councilar?.isAdminApproved == "pending"
         );
         console.log(filterPendingReqs, "data");
         setUserData(filterPendingReqs);
@@ -33,13 +33,13 @@ function Counselorlist() {
   function handleRejectClick(id) {
     console.log(id);
     axiosInstance
-      .post("rejectRpRegistration/" + id)
+      .post("crejectRpRegistration/" + id)
       .then((res) => {
         console.log("res", res);
         if (res.status === 200) {
           let msg =
             res?.data?.message ||
-            "Resource Person Registration Request Rejected";
+            "Counseller Registration Request Rejected";
           alert(msg);
           getData();
         } else {
@@ -54,13 +54,13 @@ function Counselorlist() {
   function handleAcceptClick(id) {
     console.log("id", id);
     axiosInstance
-      .post("acceptRpRegistration/" + id)
+      .post("cacceptRpRegistration/" + id)
       .then((res) => {
         console.log("res", res);
         if (res.status === 200) {
           let msg =
             res?.data?.message ||
-            "Resource Person Registration Request Accepted";
+            "Counseller Registration Request Accepted";
           alert(msg);
           getData();
         } else {
@@ -83,7 +83,7 @@ function Counselorlist() {
           )}
           {userData.length > 0 && (
             <div>
-              <h3 className="mt-5 ms-3">All Resource person Requests</h3>
+              <h3 className="mt-5 ms-3">All Counseller Requests</h3>
               <Table
                 striped
                 bordered
