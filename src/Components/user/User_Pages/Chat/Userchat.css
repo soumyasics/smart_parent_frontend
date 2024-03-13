@@ -1,18 +1,17 @@
-.userchat{
-    
+.userchat {
 
-        padding: 0 30px;
-       padding-top: 30px;
-        background-color: #F0F2F5
-     
+    min-height: 100vh;
+    padding: 30px 30px;
+    /* padding-top: 30px; */
+    background-color: #F0F2F5
 }
 
 .chatsearch {
-padding-top: 30px;
+    padding-top: 30px;
 }
 
-.chatsearch input{
-    
+.chatsearch input {
+
     height: 40px;
     width: 100%;
     outline: none;
@@ -29,14 +28,15 @@ padding-top: 30px;
     transition: all 0.3s ease;
 }
 
-.chatprofile h1{
+.chatprofile h1 {
     font-weight: 700;
     font-size: 20px;
     color: #0d6efd;
     margin-top: 10px;
     margin-left: 15px;
 }
-.chatprofile p{
+
+.chatprofile p {
     font-weight: 400;
     color: black;
     margin-top: 29px;
@@ -44,21 +44,21 @@ padding-top: 30px;
 }
 
 .chatfriends {
-    display: flex;
+    /* display: flex; */
     padding-top: 40px;
 }
 
-.chatfriends img{
+.chatfriends img {
     border: 2px solid;
     border: none;
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    
-    object-fit: contain;
+
+    object-fit: cover;
 }
 
-.chatfriends h2{
+.chatfriends h2 {
     font-weight: 700;
     font-size: 15px;
     color: #0d6efd;
@@ -66,18 +66,56 @@ padding-top: 30px;
     margin-left: 15px;
 }
 
-.chatimage img{
-    
+.chatimage img {
+
     border: 2px solid;
     border: none;
     border-radius: 50%;
     width: 60px;
     height: 60px;
-    
-    object-fit: contain;
+
+    object-fit: cover;
 }
 
 .chatprofile {
     display: flex;
 }
-  
+
+.userchatDiv1 {
+    width: 500px;
+    padding: 10px;
+    margin: 10px;
+    ;
+    border: #637587 1px solid
+}
+
+
+.list_view {
+    width: 100%;
+    /* background-color: #637587; */
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-bottom: 2px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid white; */
+
+}
+
+.list_view:hover {
+    background-color: #ffff;
+}
+
+.list_view img{
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin: 0 10px 0;
+    object-fit: cover;
+}
+
+.list_view_title{
+    font-size: 20px;
+    font-weight: 500;
+}
