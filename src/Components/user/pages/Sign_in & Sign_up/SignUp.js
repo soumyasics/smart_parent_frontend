@@ -14,7 +14,7 @@ function SignUp() {
   const [signup, setSignup] = useState({
     name: "",
     email: "",
-    date: "",
+  
     contact: "",
     password: "",
     profilePicture: null
@@ -23,7 +23,7 @@ function SignUp() {
   const [errors, setErrors] = useState({
     name: "",
     email: "",
-    date: "",
+  
     contact: "",
     password: "",
     profilePicture: ""
@@ -61,12 +61,12 @@ function SignUp() {
 
     errors.name = formValidating("Name", signup.name);
     errors.email = formValidating("Email", signup.email);
-    errors.date = formValidating("Date", signup.date);
+  
     errors.contact = formValidating("Contact Number", signup.contact);
     errors.password = formValidating("Password", signup.password);
     errors.profilePicture = formValidating("Image", signup.profilePicture)
 
-    if (signup.name && signup.email && signup.date && signup.contact) {
+    if (signup.name && signup.email && signup.contact) {
       formValid = true;
     }
 
@@ -125,22 +125,7 @@ function SignUp() {
                   )}
                 </div>
 
-                <div className="input-box">
-                  <div className="label">
-                    {" "}
-                    <label>DOB</label>{" "}
-                  </div>
-                  <input
-                    type="date"
-                    name="date"
-                    value={signup.date}
-                    onChange={changefn}
-                  />
-
-                  {errors.date && (
-                    <div className="text-danger">{errors.date}</div>
-                  )}
-                </div>
+               
 
                 <div className="input-box">
                   <div className="label">

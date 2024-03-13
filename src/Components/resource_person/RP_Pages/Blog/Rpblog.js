@@ -46,7 +46,6 @@ function Rpblog() {
   }, [blogData]);
 
   const handleSubmit = () => {
-    console.log(blogData);
     const { title, para1, para2, img } = blogData;
     if (!title || !para1 || !para2 || !img) {
       alert("Please fill all the fields");
@@ -67,6 +66,10 @@ function Rpblog() {
       let res = await axiosMultipartInstance.post("addBlog", formData);
       if (res.status === 200) {
         alert("Blog posted successfully");
+        
+        setTimeout(() => {
+          navigate('/rp-view-tutorials');
+        }, 1500)
       }
     } catch (error) {
       console.log("error on get task data", error);

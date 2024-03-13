@@ -49,12 +49,14 @@ function Counselor() {
       return null;
     }
   }
+  
 
   async function getData(id) {
     try {
       let res = await axiosInstance.get("viewAllCouncilars");
       let coData = res?.data?.data || null;
       if (coData) {
+        coData = coData.filter((co) => co?.isAdminApproved == true);
         setAllCo(coData);
         setFixedCo(coData);
       }
