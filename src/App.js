@@ -96,7 +96,7 @@ function App() {
           <Route
             path="/user-payment/:rpId"
             element={<SubscribePaymentPage />}
-          />
+          />  
           <Route path="/user-my-subscription" element={<SubscriptionTable />} />
           <Route path="/subscribed-rp/:id" element={<SubscribedRp />} />
           <Route
