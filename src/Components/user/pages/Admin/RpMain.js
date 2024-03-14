@@ -3,7 +3,7 @@ import Sidebar from "./Sidebar";
 import axiosInstance from "../../../../apis/axiosInstance";
 import { Table } from "react-bootstrap";
 import BASE_URL from "../../../../apis/baseUrl";
-
+import img from "../../../../Assets/illustrators/man-placeholder.jpg"
 function RpMain() {
   const [rpmain, setRpmain] = useState([]);
 
@@ -68,10 +68,9 @@ function RpMain() {
                         <img
                           className="parentimage"
                           src={
-                           BASE_URL +
-                            (rp.profilePicture
-                              ? rp.profilePicture.originalname
-                              : "")
+                            rp.profilePicture
+                              ? BASE_URL + rp.profilePicture.originalname
+                              : img
                           }
                         ></img>
                       </td>

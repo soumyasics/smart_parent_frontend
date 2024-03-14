@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import BASE_URL from "../../../apis/baseUrl";
+import img from "../../../Assets/illustrators/man-placeholder-2.jpg"
 
 function Rpnav() {
   const navigate = useNavigate();
@@ -187,11 +188,11 @@ function Rpnav() {
                           alt="img"
                           className="parentimage dropdown-toggle"
                           src={
-                            BASE_URL +
-                            (activeUser.profilePicture
-                              ? activeUser.profilePicture.originalname
-                              : "")
+                            activeUser.profilePicture
+                              ? BASE_URL + activeUser.profilePicture.originalname
+                              : img
                           }
+                          
                         ></img>
                       </Dropdown.Toggle>
                       <Dropdown.Menu>

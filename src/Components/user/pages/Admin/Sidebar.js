@@ -35,10 +35,10 @@ function Sidebar() {
               <Link to="/parent_list">Parents List</Link>
             </li>
             <li>
-              <Link>Subscriptions</Link>
+              <Link to="/subscription_list">Subscriptions</Link>
             </li>
             <li>
-              <Link>Tutorials</Link>
+              <Link to="/tutorials_list">Tutorials</Link>
             </li>
             <li>
               <Link to="/blog_list">Blogs</Link>

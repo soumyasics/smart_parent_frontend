@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../../apis/axiosInstance";
 import Table from "react-bootstrap/Table";
 import BASE_URL from "../../../../apis/baseUrl";
-import profileimg from "../../../../Assets/illustrators/man-placeholder.jpg";
+import img from "../../../../Assets/illustrators/man-placeholder.jpg"
 
 function CounselorAccepted() {
   const [counsellor, setCounsellor] = useState([]);
@@ -72,10 +72,9 @@ function CounselorAccepted() {
                             className="parentimage"
                             alt="img"
                             src={
-                              BASE_URL +
-                              (councilar.profilePicture
-                                ? councilar.profilePicture.originalname
-                                : "")
+                              councilar.profilePicture
+                                ? BASE_URL + councilar.profilePicture.originalname
+                                : img
                             }
                           ></img>
                         </td>

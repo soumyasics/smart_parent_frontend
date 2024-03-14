@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../../apis/axiosInstance";
 import Table from "react-bootstrap/Table";
 import BASE_URL from "../../../../apis/baseUrl";
-import profileimg from "../../../../Assets/illustrators/man-placeholder.jpg";
+import img from "../../../../Assets/illustrators/man-placeholder.jpg"
 
 function Counselorlist() {
   const [userData, setUserData] = useState([]);
@@ -105,7 +105,7 @@ function Counselorlist() {
                   </tr>
                 </thead>
                 <tbody>
-                  {userData.map((rp, index) => {
+                  {userData.map((councilar, index) => {
                     return (
                       <tr key={index} className="mt-4">
                         <td>{index + 1}</td>
@@ -113,23 +113,22 @@ function Counselorlist() {
                           <img
                             className="parentimage"
                             src={
-                              BASE_URL +
-                              (rp.profilePicture
-                                ? rp.profilePicture.originalname
-                                : "")
+                              councilar.profilePicture
+                                ? BASE_URL + councilar.profilePicture.originalname
+                                : img
                             }
                           ></img>
                         </td>
-                        <td>{rp.name}</td>
-                        <td>{rp.email}</td>
-                        <td>{rp.experienceYear}</td>
-                        <td>{rp.age}</td>
-                        <td>{rp.contact}</td>
+                        <td>{councilar.name}</td>
+                        <td>{councilar.email}</td>
+                        <td>{councilar.experienceYear}</td>
+                        <td>{councilar.age}</td>
+                        <td>{councilar.contact}</td>
                         <td>
                           <button
                             className="btn btn-success rp-request-handls-btn"
                             onClick={() => {
-                              handleAcceptClick(rp._id);
+                              handleAcceptClick(councilar._id);
                             }}
                           >
                             Accept
@@ -139,7 +138,7 @@ function Counselorlist() {
                           <button
                             className="btn btn-danger rp-request-handls-btn"
                             onClick={() => {
-                              handleRejectClick(rp._id);
+                              handleRejectClick(councilar._id);
                             }}
                           >
                             Reject

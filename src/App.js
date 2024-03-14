@@ -68,6 +68,8 @@ import BlogList from "./Components/user/pages/Admin/BlogList.js";
 import ParentViewBlogDetails from "./pages/mySubscriptions/parent-view-blog-details";
 import CounselorAccepted from "./Components/user/pages/Admin/counselor_Accepted.js";
 import Userchatmain from "./Components/user/User_Pages/Chat/Userchatmain.js";
+import SubscriptionList from "./Components/user/pages/Admin/SubscriptionList.js";
+import TutorialList from "./Components/user/pages/Admin/TutorialList.js";
 
 
 function App() {
@@ -181,7 +183,8 @@ function App() {
           <Route path="/counselor_chat" element={[<Counsellornav />, <Counselorchat />, <Footer />]} />
           <Route path="/parent_list" element={<Footer />} />
           <Route path="/blog_list" element={<BlogList />} />
-
+          <Route path="/subscription_list" element={<SubscriptionList />} />
+          <Route path="/tutorials_list" element={<TutorialList/>} />
         </Routes>
       </Router>
     </div>
