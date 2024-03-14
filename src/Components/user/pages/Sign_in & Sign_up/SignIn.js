@@ -55,19 +55,16 @@ function SignIn() {
         .then((res) => {
           console.log("data", res.data.data);
 
-          localStorage.setItem("userdetails", res.data.data._id)
-
           if (res.data.status == 200) {
             let msg = res?.data?.msg || null;
-            if (msg) {
-              localStorage.setItem("parentData", JSON.stringify(res.data.data));
-              alert(msg);
-              navigate("/");
-              return;
-            }
-          } else if (res.data.status == 500) {
-            alert(res.data.msg);
-          } else alert("User doesnt exist");
+            console.log("res data chec", res.data.data);
+            localStorage.setItem("parentData", JSON.stringify(res.data.data));
+            alert(msg);
+            navigate("/");
+            return;
+          } else {
+            alert("Please check your email id and password.");
+          }
         })
         .catch((err) => {
           console.log("error", err);
@@ -130,8 +127,11 @@ function SignIn() {
             </div>
 
             <div className="inbutton d-flex justify-content-center rpbtn">
-              <button id="signupbtn" type="submit"
-                className="btn btn-primary icon">
+              <button
+                id="signupbtn"
+                type="submit"
+                className="btn btn-primary icon"
+              >
                 Sign in <Icon icon="grommet-icons:connect" className="icon" />
               </button>
             </div>
