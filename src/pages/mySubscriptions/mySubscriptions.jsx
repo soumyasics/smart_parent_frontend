@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import BASE_URL from "../../apis/baseUrl";
 import manPlaceHolderImg from "../../Assets/illustrators/man-placeholder-2.jpg";
+
 const MySubscriptions = () => {
   const [allSubscription, setAllSubscription] = useState([]);
   const navigate = useNavigate();
