@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import "./rplist.css";
 import Sidebar from "./Sidebar";
+import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../../apis/axiosInstance";
-import { Table } from "react-bootstrap";
+import Table from "react-bootstrap/Table";
 import BASE_URL from "../../../../apis/baseUrl";
 import img from "../../../../Assets/illustrators/man-placeholder.jpg"
-function RpMain() {
-  const [rpmain, setRpmain] = useState([]);
+
+function CounselorAccepted() {
+  const [counsellor, setCounsellor] = useState([]);
 
   useEffect(() => {
     getData();
@@ -13,15 +15,16 @@ function RpMain() {
 
   function getData() {
     axiosInstance
-      .get("view-all-rp")
+      .get("viewAllCouncilars")
       .then((res) => {
         console.log("res", res);
-        let allRps = res?.data?.data || [];
-        const filterRplist = allRps.filter(
-          (rp) => rp?.isAdminApproved == "accepted"
+
+        let allCouncilars = res?.data?.data || [];
+        const filterCounselor = allCouncilars.filter(
+          (councilar) => councilar?.isAdminApproved == "accepted"
         );
-        console.log(filterRplist, "data");
-        setRpmain(filterRplist);
+        console.log(filterCounselor, "data");
+        setCounsellor(filterCounselor);
       })
       .catch((err) => {
         console.log("err", err);
@@ -35,12 +38,12 @@ function RpMain() {
           <Sidebar />
         </div>
         <div style={{ maxWidth: "77%" }} className="container">
-          {rpmain.length === 0 && (
-            <h1 className="mt-5"> No Resource Person Found</h1>
+          {counsellor.length === 0 && (
+            <h1 className="mt-5"> No counsellor Found</h1>
           )}
-          {rpmain.length > 0 && (
+          {counsellor.length > 0 && (
             <div>
-              <h3 className="mt-5 ms-3">All Resource person List</h3>
+              <h3 className="mt-5 ms-3">All counsellor List</h3>
               <Table
                 striped
                 bordered
@@ -60,25 +63,26 @@ function RpMain() {
                   </tr>
                 </thead>
                 <tbody>
-                  {rpmain.map((rp, index) => {
+                  {counsellor.map((councilar, index) => {
                     return (
                       <tr key={index} className="mt-4">
                         <td>{index + 1}</td>
                         <td>
-                        <img
-                          className="parentimage"
-                          src={
-                            rp.profilePicture
-                              ? BASE_URL + rp.profilePicture.originalname
-                              : img
-                          }
-                        ></img>
-                      </td>
-                        <td>{rp.name}</td>
-                        <td>{rp.email}</td>
-                        <td>{rp.experienceYear}</td>
-                        <td>{rp.age}</td>
-                        <td>{rp.contact}</td>
+                          <img
+                            className="parentimage"
+                            alt="img"
+                            src={
+                              councilar.profilePicture
+                                ? BASE_URL + councilar.profilePicture.originalname
+                                : img
+                            }
+                          ></img>
+                        </td>
+                        <td>{councilar.name}</td>
+                        <td>{councilar.email}</td>
+                        <td>{councilar.experienceYear}</td>
+                        <td>{councilar.age}</td>
+                        <td>{councilar.contact}</td>
                       </tr>
                     );
                   })}
@@ -92,4 +96,4 @@ function RpMain() {
   );
 }
 
-export default RpMain;
+export default CounselorAccepted;

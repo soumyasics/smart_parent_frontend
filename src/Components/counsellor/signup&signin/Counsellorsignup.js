@@ -127,7 +127,7 @@ function Counsellorsignup() {
         })
         .then((res) => {
           console.log("Response:", res);
-          alert("counsilor registred successfully");
+          alert("Waiting for Admin approval..");
           setTimeout(() => {
             navigate("/admin");
           }, 1500);
@@ -332,8 +332,8 @@ function Counsellorsignup() {
             </h5>
           </div>
 
-          <div className="inbutton">
-            <button type="submit">
+          <div className="text-center inbutton">
+            <button className="btn btn-primary" type="submit">
               Sign up <Icon icon="grommet-icons:connect" className="icon" />
             </button>
           </div>
