@@ -26,7 +26,7 @@ function Userchat({ onSelectRecipient }) {
     axiosInstance.post(`/viewChatRecipientsforParentId/${id}`)
       .then((res) => {
         console.log(res, "data");
-        if (res.data.data.length > 0)
+        if (res.data?.data?.length > 0)
           setRecipients(res.data.data);
         else
           setRecipients([]);
@@ -46,7 +46,7 @@ function Userchat({ onSelectRecipient }) {
             <div className='chatimage'>
               <img src={chatimg} alt='' />
             </div>
-            <h1>{profile.name}</h1>
+            <h1>{profile?.name}</h1>
           </div>
           <div className="chatsearch">
             <input
