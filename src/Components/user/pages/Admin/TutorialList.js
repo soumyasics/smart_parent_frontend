@@ -23,18 +23,37 @@ function TutorialList() {
   console.log(tutoriallist, "pp");
 
   return (
-    <div>
       <div className="row">
         <div className="col-2">
           <Sidebar />
         </div>
         <div className="col-8">
           {tutoriallist.map((item, index) => (
-            <div></div>
+            <div className="tutorial_page">
+            <div className="card p-2  mt-5">
+              <div className="row">
+                <div className="col-3">
+                  <iframe
+                    width="100%"
+                    height="200px"
+                    src={item.video ? BASE_URL + item.video.originalname : ""}
+                    title="YouTube video player"
+                    frameborder="0"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <div className="col-8">
+                  <div className="fs-5">Tutorial Title : {item.title}</div>
+                  <div className="fs-5">Tutorial Target : {item.target}</div>
+                  <div className="fs-5">Tutorial Description : {item.description}</div>
+                  <div className="fs-5">Tutorial duration : {item.duration}</div>
+                  <div className="fs-5">Tutorial By : {item.rpid.name}</div>
+                </div>
+              </div>
+            </div></div>
           ))}
         </div>
       </div>
-    </div>
   );
 }
 

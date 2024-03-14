@@ -3,9 +3,13 @@ import Sidebar from "./Sidebar";
 import axiosInstance from "../../../../apis/axiosInstance";
 import react, { useState, useEffect } from "react";
 import BASE_URL from "../../../../apis/baseUrl";
+import { Col, Form, Row, Button, Modal, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function BlogList() {
   const [blogList, setBlogList] = useState([]);
+
+  const navigate = useNavigate();
 
   const CounselorData = async () => {
     try {
@@ -17,37 +21,90 @@ function BlogList() {
     }
   };
 
-
   useEffect(() => {
     CounselorData();
   }, []);
-console.log(blogList,"pp");
+  console.log(blogList, "pp");
+
+  function viewBlogDetails(id) {
+    if (!id) {
+      alert("Tutorial id not found");
+      return;
+    }
+    navigate("/show_blog_content/" + id);
+  }
+
   return (
-    <div>
-      <div className="row">
-        <div className="col-2">
-          <Sidebar />
-        </div>
-        <div className="col-8">
-        { blogList.map((item,index)=>{
-            return (
-            <div className="card m-5">
-              <div className="row">
-                <div className="col-2">
-                  <img className="blogimg" src={BASE_URL + item.img.originalname} alt="img"></img>
+    <div className="row">
+      <div className="col-2">
+        <Sidebar />
+      </div>
+      <div className="col-10">
+        {blogList.length > 0 && (
+          <div
+            style={{
+              width: "90%",
+              minHeight: "500px",
+              boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+            }}
+            className=" video-tutorials mx-auto d-flex flex-wrap justify-content-center mt-4 p-4 gap-3"
+          >
+            {blogList?.map((blog, index) => {
+              console.log("blog", blog);
+
+              let blogImg =
+                "https://media.istockphoto.com/id/1253922154/vector/blog-authors-writing-articles.jpg?s=612x612&w=0&k=20&c=rfl7LAg3NoD2fYlPXTBvnXexaq2cFTZLxt7ronsBsWk=";
+
+              let pathname = blog.img?.filename || null;
+
+              console.log("pat", pathname);
+
+              if (pathname) {
+                if (/\.(jpeg|jpg|gif|png)$/.test(pathname)) {
+                  blogImg = `${BASE_URL}${pathname}`;
+                }
+              }
+
+              let title = blog?.title
+                ? blog.title.length > 50
+                  ? blog.title.substring(0, 50) + "..."
+                  : blog.title
+                : "Title";
+
+              let BlogBy = blog?.title
+                ? blog.rpid.name.length > 50
+                  ? blog.rpid.name.substring(0, 50) + "..."
+                  : blog.rpid.name
+                : "Blog By ";
+
+              return (
+                <div
+                  className="card"
+                  key={index}
+                  style={{ width: "18rem", maxHeight: "400px" }}
+                >
+                  <Card.Img
+                    style={{ maxHeight: "50%" }}
+                    className="h-50"
+                    variant="top"
+                    src={blogImg}
+                    alt="blog"
+                  />
+                  <Card.Body className="text-center">
+                    <Card.Title>Blog Title :{title || "Title"}</Card.Title>
+                    <Card.Text>Blog By : {BlogBy || "BlogBy"}</Card.Text>
+                    <Button
+                      variant="primary"
+                      onClick={() => viewBlogDetails(blog?._id)}
+                    >
+                      Read{" "}
+                    </Button>
+                  </Card.Body>
                 </div>
-                <div className="col-5 p-4">
-               
-                  
-                  <div>Blog By : {item.rpid.name}</div>
-                  <div>Blog Title : {item.title}</div>
-                  <div>Blog content : {item.para1}</div>
-                  <div>Blog Conclusion : {item.para2}</div>
-                </div>
-              </div>
+              );
+            })}
           </div>
-          )})}
-          </div>
+        )}
       </div>
     </div>
   );

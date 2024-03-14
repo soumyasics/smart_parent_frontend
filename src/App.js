@@ -70,6 +70,8 @@ import CounselorAccepted from "./Components/user/pages/Admin/counselor_Accepted.
 import Userchatmain from "./Components/user/User_Pages/Chat/Userchatmain.js";
 import SubscriptionList from "./Components/user/pages/Admin/SubscriptionList.js";
 import TutorialList from "./Components/user/pages/Admin/TutorialList.js";
+import ShowBlogContent from "./pages/mySubscriptions/showBlogContent.jsx";
+import ShowOneBlog from "./Components/user/pages/Admin/ShowOneBlog.js";
 
 
 function App() {
@@ -185,6 +187,8 @@ function App() {
           <Route path="/blog_list" element={<BlogList />} />
           <Route path="/subscription_list" element={<SubscriptionList />} />
           <Route path="/tutorials_list" element={<TutorialList/>} />
+          <Route path="/show_blog_content/:blogId" element={<ShowOneBlog/>} />
+
         </Routes>
       </Router>
     </div>

@@ -50,7 +50,7 @@ const ViewResourcePerson = () => {
 
   function handleViewRp(id) {
     console.log(id);
-    navigate("/view-resource-person-details/" + id);
+    navigate("//" + id);
   }
 
   return (
