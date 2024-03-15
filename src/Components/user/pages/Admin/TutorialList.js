@@ -23,13 +23,13 @@ function TutorialList() {
   console.log(tutoriallist, "pp");
 
   return (
-      <div className="row">
-        <div className="col-2">
-          <Sidebar />
-        </div>
-        <div className="col-8">
-          {tutoriallist.map((item, index) => (
-            <div className="tutorial_page">
+    <div className="row">
+      <div className="col-2">
+        <Sidebar />
+      </div>
+      <div className="col-8">
+        {tutoriallist.map((item, index) => (
+          <div className="tutorial_page">
             <div className="card p-2  mt-5">
               <div className="row">
                 <div className="col-3">
@@ -45,15 +45,20 @@ function TutorialList() {
                 <div className="col-8">
                   <div className="fs-5">Tutorial Title : {item.title}</div>
                   <div className="fs-5">Tutorial Target : {item.target}</div>
-                  <div className="fs-5">Tutorial Description : {item.description}</div>
-                  <div className="fs-5">Tutorial duration : {item.duration}</div>
+                  <div className="fs-5">
+                    Tutorial Description : {item.description}
+                  </div>
+                  <div className="fs-5">
+                    Tutorial duration : {item.duration}
+                  </div>
                   <div className="fs-5">Tutorial By : {item.rpid.name}</div>
                 </div>
               </div>
-            </div></div>
-          ))}
-        </div>
+            </div>
+          </div>
+        ))}
       </div>
+    </div>
   );
 }
 
