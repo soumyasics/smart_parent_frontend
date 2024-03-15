@@ -2,19 +2,16 @@ import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../../apis/axiosInstance";
 import BASE_URL from "../../../../apis/baseUrl";
 import "./rpProfile.css";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 function Rprofile() {
   const [userData, setUserData] = useState("");
-  
+
   const { id } = useParams();
 
-  const rpData = async (req,res) => {
+  const rpData = async (req, res) => {
     try {
-      const response = await axiosInstance.get(
-        "view-rp-by-id/"
-        +id
-      );
+      const response = await axiosInstance.get("view-rp-by-id/" + id);
       console.log(response.data.data);
       setUserData(response.data.data);
     } catch (error) {
@@ -32,33 +29,70 @@ function Rprofile() {
   }, []);
   return (
     <div>
-      <div className="main main-raised">
-        <div className="profile-content">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-6 ml-auto mr-auto">
-                <div className="profile">
-                  <div className="avatar">
-                    <img
-                      src={profilePictureUrl}
-                      alt="Circle Image"
-                      className="img-raised rounded-circle img-fluid"
-                    />
-                  </div>
-                  <div className="name">
-                    <h3 className="title">{userData.name}</h3>
-                    <h6>{userData.email}</h6>
-                    <h6>{ userData.age}</h6>
-                    <h6>{userData.contact}</h6>
-                    <h6> Age : {userData.age}</h6>
-                    <h6>Experience : {userData.experienceYear}</h6>
-                  </div>
-                </div>
+      <div className="row">
+        <div className="userprofile col-6">
+          <h1>My Profile</h1>
+          <p>Manage your Profile settings</p>
+
+          <div className="profile">
+            <div className="username">
+              <div className="main-heading">
+                <h5>Username</h5>
               </div>
+              <p>{userData.name}</p>
             </div>
           </div>
+
+          <div className="profile">
+            <div className="Email">
+              <div className="main-heading">
+                <h5>Email Address</h5>
+              </div>
+              <p>{userData.email}</p>
+            </div>
+          </div>
+
+          <div className="profile">
+            <div className="contact">
+              <div className="main-heading">
+                <h5>Contact Number</h5>
+              </div>
+              <p>{userData.contact}</p>
+            </div>
+          </div>
+
+          <div className="profile">
+            <div className="contact">
+              <div className="main-heading">
+                <h5>Age</h5>
+              </div>
+              <p>{userData.age}</p>
+            </div>
+          </div>
+          <div className="profile">
+            <div className="contact">
+              <div className="main-heading">
+                <h5>Experience</h5>
+              </div>
+              <p>{userData.experienceYear}</p>
+            </div>
+          </div>
+
+          <div className="userprofilebtn">
+            <Link to="/user_editprofile">
+              <button>Edit</button>
+            </Link>
+          </div>
         </div>
+        <div className="mainprofilebg col-6">
+        <img
+          src={profilePictureUrl}
+          alt="Circle Image"
+          className="img-raised rounded-circle img-fluid"
+        />{" "}
       </div>
+      </div>
+      
     </div>
   );
 }
