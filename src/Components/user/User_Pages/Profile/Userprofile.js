@@ -12,6 +12,7 @@ function Userprofile() {
 
   const id = localStorage.getItem("userdetails")
 
+
   useEffect(() => {
     axiosMultipartInstance.post(`/viewParentById/${id}`)
       .then((res) => { console.log(res, "data"); setProfile(res.data.data) })
