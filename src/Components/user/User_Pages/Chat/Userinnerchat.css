@@ -53,6 +53,10 @@
 .user_chat::-webkit-scrollbar {
   display: none;
 }
+.innerchat {
+  padding: 20px;
+  box-sizing: border-box;
+}
 
 .innerchatsearch {
   display: flex;
@@ -103,6 +107,9 @@
   padding: 10px 0;
   flex-direction: column;
   position: relative;
+  overflow-y: scroll;
+  overflow-y: auto; /* Use 'auto' instead of 'scroll' to display scrollbar only when necessary */
+  max-height: 550px;
 }
 
 .parent-chat-section,

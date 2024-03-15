@@ -136,9 +136,9 @@ function Userinnerchat({ activeRpId }) {
   }
 
   return (
-    <div className="innerchat ">
-      <div className="innerchathead">
-        <div className="innersubhead ps-3">
+    <div className="innerchat">
+      <div className="innerchathead ">
+        <div className="innersubhead  ps-3">
           <div className="innerchatprofile">
             <img src={rpProfilePicture} alt="Resource_person" />
           </div>
