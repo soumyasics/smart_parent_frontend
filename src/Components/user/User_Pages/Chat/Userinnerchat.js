@@ -1,337 +1,192 @@
-// import React, { useEffect, useRef, useState } from 'react'; import "./Userinnerchat.css"
-// import innerchatimg from "../../../../Assets/test.jpg"
-// import axiosInstance from "../../../../apis/axiosInstance";
-// import { IoSend } from "react-icons/io5";
-// import { CiTimer } from "react-icons/ci";
-
-// function Userinnerchat({ selectedRecipient }) {
-
-//   const id = localStorage.getItem("userdetails");
-
-//   const [data,setdata]=useState(false)
-
-//   const [ids, setIds] = useState({
-//     rpid: '',
-//     parentid: id
-//   });
-//   useEffect(() => {
-//     if (selectedRecipient != null)
-//       setIds({ ...ids, rpid: selectedRecipient._id })
-//   }, [selectedRecipient])
-
-
-//   console.log('ids', ids);
-// const [message,setMessage]=useState({
-//     rpid: '',
-//     parentid: id,
-//     content: '',
-//     sender:"parent"
-
-// })
-
-// useEffect(() => {
-//   if (selectedRecipient != null)
-//     setMessage({ ...message, rpid: selectedRecipient._id })
-// }, [selectedRecipient])
-
-//   const [profile, setProfile] = useState({});
-//   const [chats, setChats] = useState([]);
-//   console.log(chats);
-
-//   useEffect(() => {
-//     console.log("ids", ids);
-//     axiosInstance.post(`/viewChatBerweenParentAndRp`, ids)
-//       .then((res) => {
-//         if (res.data.status == 200) {
-//           setChats(res.data.data);  
-//         } else {
-//           setChats([])
-//         }
-//         console.log(res, "data");
-
-//       })
-//       .catch((err) => {
-//         console.log(err, "error");
-//       });
-//     console.log(id);
-//   }, [ids,data]);
-
-
-//   const handleInputChange = (e) => {
-//     const { name, value } = e.target;
-//     setMessage({ ...message, [name]: value });
-//     console.log(message);
-//   };
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-
-//     console.log('mesg', message)
-
-//       axiosInstance
-//         .post("/chattingParentRp", message)
-//         .then((res) => {
-//           console.log("Response:", res);
-//           setdata(prev=>!prev)
-//           setMessage({ ...message, content: '' }); 
-
-//           scrollToBottom();
-//           // setTimeout(() => {
-//           //   navigate("/admin");
-//           // }, 1500);
-//         })
-//         .catch((err) => {
-//           console.error("Error:", err);
-//         });
-
-//       }
-//       const messagesEndRef = useRef(null);
-
-//       const scrollToBottom = () => {
-//         messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-//       };
-
-//   console.log("data", selectedRecipient);
-//   return (
-//     <div className='innerchat'>
-
-//       <div className='innerchathead'>
-//         <div className='innersubhead'>
-//           <div className='innerchatprofile'>
-//             <img src={innerchatimg} alt='' />
-//           </div>
-//           <h1>Adrian Gomez</h1>
-//         </div>
-//       </div>
-
-//       <div className='user_chat '>
-//         <div className='row chat_view' >
-//           {
-//             chats.length ? chats.map((e) => {
-//               // chattingParentRp
-//               return (
-//                 <>
-//                   <div className='innerchatmsg col-6'>
-//                     <p>{e.sender === 'rp' ? e.content : ''}</p>
-//                     <small>
-//                       {e.sender === 'rp' ? <><CiTimer /> {e.createdAt.slice(11, 16)}</> : ''}
-//                     </small>
-//                   </div>
-//                   <div className='inneruserchatmsg col-6'>
-//                     <p className='parent_chat_box'>{e.sender === 'parent' ? e.content : ''}</p>
-//                     <small className={e.sender === 'parent' ? 'time-right' : ''}>
-//                       {e.sender === 'parent' ? <><CiTimer /> {e.createdAt.slice(11, 16)}</> : ''}
-//                     </small>
-//                   </div>
-//                 </>
-//               );
-              
-//             }) : ''
-//           }
-
-//         </div>
-
-
-
-
-//       </div>
-
-
-//       <div className="row innerchatsearch ">
-//         <div className='col-10' >
-//           <input
-//             type="text"
-//             placeholder="write Something"
-//             className=""
-//             name="content"
-//             value={message.content}
-//             onChange={handleInputChange}
-//           />
-//         </div>
-//         <div className='col-2 chat_send_button' >
-//           <button onClick={handleSubmit}><IoSend /></button>
-
-//         </div>
-//       </div>
-
-
-
-//     </div>
-
-//   )
-// }
-
-// export default Userinnerchat
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import React, { useEffect, useState, useRef } from 'react';
-import "./Userinnerchat.css"
-import innerchatimg from "../../../../Assets/test.jpg"
+import React, { useEffect, useState, useRef } from "react";
+import innerchatimg from "../../../../Assets/test.jpg";
 import axiosInstance from "../../../../apis/axiosInstance";
 import { IoSend } from "react-icons/io5";
 import { CiTimer } from "react-icons/ci";
-
-function Userinnerchat({ selectedRecipient }) {
-
-  const id = localStorage.getItem("userdetails");
-
-  const [data, setData] = useState(false)
-
-  const [ids, setIds] = useState({
-    rpid: '',
-    parentid: id
+import { useNavigate } from "react-router-dom";
+import chatIllus from "../../../../Assets/illustrators/chat-2.jpg";
+import manPlaceholder from "../../../../Assets/illustrators/man-placeholder.jpg";
+import "./Userinnerchat.css";
+import BASE_URL from "../../../../apis/baseUrl";
+function Userinnerchat({ activeRpId }) {
+  const [activeParent, setActiveParent] = useState(null);
+  const [activeRpData, setActiveRpData] = useState(null);
+  const [rpProfilePicture, setRpProfilePicture] = useState(manPlaceholder);
+  const [chatHistory, setChatHistory] = useState([]);
+  const navigate = useNavigate();
+  const [message, setMessage] = useState({
+    rpid: "",
+    parentid: "",
+    content: "",
+    sender: "parent",
   });
 
+  const [rpAndParentIds, setRpAndParentIds] = useState({
+    parentid: null,
+    rpid: null,
+  });
+
+  // get parent data from LS
   useEffect(() => {
-    if (selectedRecipient != null)
-      setIds({ ...ids, rpid: selectedRecipient._id })
-  }, [selectedRecipient])
+    let parentData = JSON.parse(localStorage.getItem("parentData")) || null;
+    if (parentData) {
+      setActiveParent(parentData);
+    } else {
+      console.log("Parent not logged in.");
+      setActiveParent(null);
+      navigate("/sign_in");
+    }
+  }, []);
 
-  console.log('ids', ids);
-
-  const [message, setMessage] = useState({
-    rpid: '',
-    parentid: id,
-    content: '',
-    sender: "parent"
-  })
-
+  // update parent id
   useEffect(() => {
-    if (selectedRecipient != null)
-      setMessage({ ...message, rpid: selectedRecipient._id })
-  }, [selectedRecipient])
+    let parentId = activeParent?._id || null;
 
-  const [profile, setProfile] = useState({});
-  const [chats, setChats] = useState([]);
-  console.log(chats);
+    if (parentId) {
+      setMessage({ ...message, parentid: parentId });
+      setRpAndParentIds({ ...rpAndParentIds, parentid: parentId });
+    }
+  }, [activeParent]);
 
+  // update rp id & get rp data
   useEffect(() => {
-    console.log("ids", ids);
-    axiosInstance.post(`/viewChatBerweenParentAndRp`, ids)
-      .then((res) => {
-        if (res.data.status == 200) {
-          setChats(res.data.data);
-        } else {
-          setChats([])
+    if (activeRpId) {
+      setMessage({ ...message, rpid: activeRpId });
+      setRpAndParentIds({ ...rpAndParentIds, rpid: activeRpId });
+      getRpData();
+    }
+  }, [activeRpId]);
+
+  // get all chats
+  useEffect(() => {
+    if (rpAndParentIds.parentid && rpAndParentIds.rpid) {
+      getChatHistory();
+    }
+  }, [rpAndParentIds]);
+
+  async function getChatHistory() {
+    try {
+      let res = await axiosInstance.post(
+        "get-chat-between-parent-and-rp",
+        rpAndParentIds
+      );
+      let data = res?.data?.data || null;
+      if (data) {
+        console.log("hist data", data);
+        setChatHistory(data);
+      } else {
+        console.log("Data not found on get chat history");
+        setChatHistory([]);
+      }
+    } catch (error) {
+      console.log("Error on getting chats", error);
+    }
+  }
+  async function getRpData() {
+    try {
+      let res = await axiosInstance.get("view-rp-by-id/" + activeRpId);
+      let data = res?.data?.data || null;
+      if (data) {
+        setActiveRpData(data);
+        let filename = data?.profilePicture?.filename || null;
+        if (filename) {
+          let url = `${BASE_URL}${filename}`;
+          setRpProfilePicture(url);
         }
-        console.log(res, "data");
-
-      })
-      .catch((err) => {
-        console.log(err, "error");
-      });
-    console.log(id);
-  }, [ids, data]);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setMessage({ ...message, [name]: value });
-    console.log(message);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    console.log('mesg', message)
-
-    axiosInstance
-      .post("/chattingParentRp", message)
-      .then((res) => {
-        console.log("Response:", res);
-        setData(prev => !prev);
-        setMessage({ ...message, content: '' }); // Clear the content field
-        // scrollToBottom(); // Scroll to the bottom after sending message
-        if (scrollRef.current) {
-          scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-        }
-        // setTimeout(() => {
-        //   navigate("/admin");
-        // }, 1500);
-      })
-      .catch((err) => {
-        console.error("Error:", err);
-      });
+      } else {
+        console.log("Data not found on get rp data");
+      }
+    } catch (error) {
+      console.log("error on getting rp data", error);
+    }
   }
 
-  const scrollRef = useRef(null);
+  function handleSubmit() {
+    if (message.content) {
+      sendMessage();
+    }
+  }
 
- 
+  function handleKeyDown(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if (message.content) {
+        sendMessage();
+      }
+    }
+  }
+  async function sendMessage() {
+    try {
+      let res = await axiosInstance.post("chattingParentRp", message);
+      if (res.status === 200) {
+        getChatHistory();
+        setMessage({ ...message, content: "" });
+      }
+    } catch (error) {
+      console.log("error on sending message", error);
+    }
+  }
+  if (!activeRpId) {
+    return (
+      <div className="w-100 mx-auto mt-5 d-flex flex-column justify-content-center">
+        <h2 className="text-center"> Chat With Subscribed Resouce Persons</h2>
+        <img className="w-50 mx-auto mt-5" src={chatIllus} alt="chat" />
+      </div>
+    );
+  }
 
-
-  console.log("data", selectedRecipient);
   return (
-    <div className='innerchat'>
-
-      <div className='innerchathead'>
-        <div className='innersubhead'>
-          <div className='innerchatprofile'>
-            <img src={innerchatimg} alt='' />
+    <div className="innerchat ">
+      <div className="innerchathead">
+        <div className="innersubhead ps-3">
+          <div className="innerchatprofile">
+            <img src={rpProfilePicture} alt="Resource_person" />
           </div>
-          <h1>Adrian Gomez</h1>
+          <h1>{activeRpData?.name || ""}</h1>
         </div>
       </div>
 
-      <div className='user_chat ' ref={scrollRef}>
-        <div className='row chat_view' >
-          {
-            chats.length ? chats.map((e) => {
-              return (
-                <>
-                  <div className='innerchatmsg col-6'>
-                    <p>{e.sender === 'rp' ? e.content : ''}</p>
-                    <small>
-                      {e.sender === 'rp' ? <><CiTimer /> {e.createdAt.slice(11, 16)}</> : ''}
-                    </small>
-                  </div>
-                  <div className='inneruserchatmsg col-6'>
-                    <p className='parent_chat_box'>{e.sender === 'parent' ? e.content : ''}</p>
-                    <small className={e.sender === 'parent' ? 'time-right' : ''}>
-                      {e.sender === 'parent' ? <><CiTimer /> {e.createdAt.slice(11, 16)}</> : ''}
-                    </small>
-                  </div>
-                </>
-              );
-            }) : ''
-          }
-       
-        </div>
+      <div className="user_chat rounded" style={{ height: "550px" }}>
+        {chatHistory?.map((chat) => {
+          return (
+            <div
+              className={
+                chat.sender === "parent"
+                  ? "parent-chat-section"
+                  : "rp-chat-section"
+              }
+              key={chat?._id}
+            >
+              <p className="m-0" style={{ height: "auto" }}>
+                {chat.content}
+              </p>
+            </div>
+          );
+        })}
       </div>
 
-      <div className="row innerchatsearch ">
-        <div className='col-10' >
+      <div className="row innerchatsearch">
+        <div className="col-11">
           <input
             type="text"
-            placeholder="write Something"
+            placeholder="Ask Something.."
             className=""
             name="content"
             value={message.content}
-            onChange={handleInputChange}
+            onChange={(e) => {
+              setMessage({ ...message, content: e.target.value });
+            }}
+            onKeyDown={handleKeyDown}
           />
         </div>
-        <div className='col-2 chat_send_button' >
-          <button onClick={handleSubmit}><IoSend /></button>
+        <div className="col-1 chat_send_button">
+          <button onClick={handleSubmit}>
+            <IoSend />
+          </button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Userinnerchat;

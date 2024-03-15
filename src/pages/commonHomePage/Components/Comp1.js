@@ -22,6 +22,7 @@ function Comp1() {
     navigate("/sign_in");
   };
 
+  
   function redirectResourcePerson() {
     if (activeUser) {
       navigate("/view-resouce-person");
@@ -62,6 +63,16 @@ function Comp1() {
       }, 1500);
     }
   }
+  function redirectToChat () {
+    if (activeUser) {
+      navigate("/user_chat");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/sign_in");
+      }, 1500);
+    }
+  }
   return (
     <nav
       id="common-home-navbar"
@@ -75,7 +86,7 @@ function Comp1() {
           alt="Logo"
           width="60"
           height="60"
-          class="d-inline-block align-text-top"
+          className="d-inline-block align-text-top"
           id="logo"
         />
         &nbsp;&nbsp;
@@ -91,60 +102,72 @@ function Comp1() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse " id="navbarNav">
-          <ul class="navbar-nav a1 gap-4" style={{ marginRight: "60px" }}>
+        <div className="collapse navbar-collapse " id="navbarNav">
+          <ul className="navbar-nav a1 gap-4" style={{ marginRight: "60px" }}>
             <li
               style={{ cursor: "pointer" }}
               onClick={() => {
                 navigate("/");
               }}
-              class="nav-item"
+              className="nav-item"
             >
-              <a class="nav-link active text-white" aria-current="page">
+              <a className="nav-link active text-white" aria-current="page">
                 Home
               </a>
             </li>
             <li
               style={{ cursor: "pointer" }}
               onClick={redirectResourcePerson}
-              class="nav-item"
+              className="nav-item"
             >
-              <a class="nav-link active text-white" aria-current="page">
+              <a className="nav-link active text-white" aria-current="page">
                 Resource Person
               </a>
             </li>
             <li
-              class="nav-item"
+              className="nav-item"
               onClick={redirectSubscription}
               style={{ cursor: "pointer" }}
             >
-              <a class="nav-link active text-white" href="#" id="a3">
+              <a className="nav-link active text-white" href="#" id="a3">
                 Subscriptions
               </a>
             </li>
             <li
               style={{ cursor: "pointer" }}
               onClick={redirectCouncilar}
-              class="nav-item"
+              className="nav-item"
             >
-              <a class="nav-link active text-white" aria-current="page">
+              <a className="nav-link active text-white" aria-current="page">
                 Councilors
               </a>
             </li>
-            <li style={{ cursor: "pointer" }} onClick={redirectProfile} class="nav-item">
-              <a class="nav-link active text-white" aria-current="page">
+            <li
+              style={{ cursor: "pointer" }}
+              onClick={redirectToChat}
+              className="nav-item"
+            >
+              <a className="nav-link active text-white" aria-current="page">
+                Chat
+              </a>
+            </li>
+            <li
+              style={{ cursor: "pointer" }}
+              onClick={redirectProfile}
+              className="nav-item"
+            >
+              <a className="nav-link active text-white" aria-current="page">
                 Profile
               </a>
             </li>
 
             {activeUser ? (
               <li
-                class="nav-item"
+                className="bg-danger text-white nav-item"
                 style={{ cursor: "pointer" }}
                 onClick={handleLogout}
-                className="bg-danger text-white"
               >
                 <a
                   style={{ color: "red", fontWeight: "800" }}
@@ -156,12 +179,11 @@ function Comp1() {
               </li>
             ) : (
               <li
-                class="nav-item"
+                className="bg-success nav-item"
                 style={{ cursor: "pointer" }}
                 onClick={() => navigate("/sign_up")}
-                className="bg-success"
               >
-                <a class="nav-link active text-white" id="a5">
+                <a className="nav-link active text-white" id="a5">
                   Signup
                 </a>
               </li>
