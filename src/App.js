@@ -87,7 +87,6 @@ function App() {
           <Route path="/sign_in" element={<SignIn />} />
           <Route path="/reset_password" element={<ResetPass />} />
           <Route path="/counsellor" element={<Counselor />} />
-          <Route path="/user-chat2" element={<Userchat />} />
 
           {/* User  */}
 
