@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Icon } from '@iconify-icon/react'
 import axiosInstance from '../../../apis/axiosInstance'
 
@@ -16,6 +16,8 @@ function Rpresetpass() {
     password: "",
     confirmpassword: ""
   })
+
+  const navigate = useNavigate()
 
   const changefn = (e) => {
     const { name, value } = e.target
@@ -61,9 +63,20 @@ function Rpresetpass() {
     if (formValid) {
       // alert("Form is Submitted")
 
-axiosInstance.post("",rpreset)
-.then((res)=>{console.log(res,"data");})
-.catch((err)=>{console.log(err,"err");})
+      axiosInstance.post("/rpforgotPwd", rpreset)
+        .then((res) => {
+          console.log(res, "data");
+
+          if (res.status == 200) {
+            alert(res.data.msg)
+            navigate("/admin")
+          }
+          else if (res.status == 500) {
+            alert(res.data.msg)
+          }
+
+        })
+        .catch((err) => { console.log(err, "err"); })
 
     }
     else {
