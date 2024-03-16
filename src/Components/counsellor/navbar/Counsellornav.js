@@ -4,6 +4,7 @@ import "./Counselornav.css"
 import { useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import BASE_URL from "../../../apis/baseUrl";
+import img from "../../../Assets/illustrators/man-placeholder-2.jpg"
 
 function Counsellornav() {
   const navigate = useNavigate();
@@ -165,10 +166,9 @@ function Counsellornav() {
                         alt="img"
                         className="parentimage dropdown-toggle"
                         src={
-                          BASE_URL +
-                          (activeUser.profilePicture
-                            ? activeUser.profilePicture.originalname
-                            : "")
+                          activeUser.profilePicture
+                            ? BASE_URL + activeUser.profilePicture.originalname
+                            : img
                         }
                       ></img>
                     </Dropdown.Toggle>
