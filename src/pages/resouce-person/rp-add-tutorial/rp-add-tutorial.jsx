@@ -24,7 +24,6 @@ const ResourceUploadForm = () => {
     if (localStorage.getItem("activeRp")) {
       let activeRpId =
         JSON.parse(localStorage.getItem("activeRp"))?._id || null;
-      console.log("ac rp id", activeRpId);
       if (activeRpId) {
         setRpid(activeRpId);
       }

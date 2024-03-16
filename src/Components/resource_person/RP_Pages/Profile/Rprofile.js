@@ -85,14 +85,13 @@ function Rprofile() {
           </div>
         </div>
         <div className="mainprofilebg col-6">
-        <img
-          src={profilePictureUrl}
-          alt="Circle Image"
-          className="img-raised rounded-circle img-fluid"
-        />{" "}
+          <img
+            src={profilePictureUrl}
+            alt="Circle Image"
+            className="img-raised rounded-circle img-fluid"
+          />{" "}
+        </div>
       </div>
-      </div>
-      
     </div>
   );
 }

@@ -73,7 +73,6 @@ import TutorialList from "./Components/user/pages/Admin/TutorialList.js";
 import ShowBlogContent from "./pages/mySubscriptions/showBlogContent.jsx";
 import ShowOneBlog from "./Components/user/pages/Admin/ShowOneBlog.js";
 
-
 function App() {
   return (
     <div className="appjs">
@@ -100,7 +99,7 @@ function App() {
           <Route
             path="/user-payment/:rpId"
             element={<SubscribePaymentPage />}
-          />  
+          />
           <Route path="/user-my-subscription" element={<SubscriptionTable />} />
           <Route path="/subscribed-rp/:id" element={<SubscribedRp />} />
           <Route
@@ -109,7 +108,10 @@ function App() {
           />
           <Route path="view-task-details/:taskId" element={<ViewAllTasks />} />
           <Route path="view-blog-details/:blogId" element={<RpViewBlog />} />
-          <Route path="parent-view-blog-details/:blogId" element={<ParentViewBlogDetails />} />
+          <Route
+            path="parent-view-blog-details/:blogId"
+            element={<ParentViewBlogDetails />}
+          />
           {/* Counselor */}
 
           <Route path="/counselor_signup" element={<Counsellorsignup />} />
@@ -119,8 +121,12 @@ function App() {
           />
           <Route
             path="/counselor_subscribers"
-            element={<Counselorsubscribers />} />
-          <Route path="/counselor-add-tutorial" element={<Counseloraddtutorials />} />
+            element={<Counselorsubscribers />}
+          />
+          <Route
+            path="/counselor-add-tutorial"
+            element={<Counseloraddtutorials />}
+          />
 
           {/* Resource Person */}
 
@@ -131,7 +137,10 @@ function App() {
           />
           <Route path="/resourceperson_task" element={<Rptask />} />
           <Route path="/resourceperson_chat" element={<Rpchat />} />
-          <Route path="/resourceperson_profile/:id" element={[<Rpnav />, <Rprofile />]} />
+          <Route
+            path="/resourceperson_profile/:id"
+            element={[<Rpnav />, <Rprofile />]}
+          />
           <Route
             path="/resourceperson_subscribers"
             element={<Rpsubscribers />}
@@ -178,17 +187,28 @@ function App() {
             path="/view_counsiler_details/:id"
             element={<ViewResourcePersonDetails />}
           />
-          <Route path="/counsellor_home" element={[<Counsellornav />, <ConselorHome />, <Footer />]} />
+          <Route
+            path="/counsellor_home"
+            element={[<Counsellornav />, <ConselorHome />, <Footer />]}
+          />
           <Route path="/counsellor_nav" element={<Counsellornav />} />
-          <Route path="/counselor_profile/:id" element={[<Counsellornav />, <Counselorprofile />, <Footer />]} />
-          <Route path="/counselor_blogs" element={[<Counsellornav />, <Counselorblogs />, <Footer />]} />
-          <Route path="/counselor_chat" element={[<Counsellornav />, <Counselorchat />, <Footer />]} />
+          <Route
+            path="/counselor_profile/:id"
+            element={[<Counsellornav />, <Counselorprofile />, <Footer />]}
+          />
+          <Route
+            path="/counselor_blogs"
+            element={[<Counsellornav />, <Counselorblogs />, <Footer />]}
+          />
+          <Route
+            path="/counselor_chat"
+            element={[<Counsellornav />, <Counselorchat />, <Footer />]}
+          />
           <Route path="/parent_list" element={<Footer />} />
           <Route path="/blog_list" element={<BlogList />} />
           <Route path="/subscription_list" element={<SubscriptionList />} />
-          <Route path="/tutorials_list" element={<TutorialList/>} />
-          <Route path="/show_blog_content/:blogId" element={<ShowOneBlog/>} />
-
+          <Route path="/tutorials_list" element={<TutorialList />} />
+          <Route path="/show_blog_content/:blogId" element={<ShowOneBlog />} />
         </Routes>
       </Router>
     </div>
