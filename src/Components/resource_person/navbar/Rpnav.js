@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import BASE_URL from "../../../apis/baseUrl";
-import img from "../../../Assets/illustrators/man-placeholder-2.jpg"
+import img from "../../../Assets/illustrators/man-placeholder-2.jpg";
 
 function Rpnav() {
   const navigate = useNavigate();
@@ -81,13 +81,23 @@ function Rpnav() {
     }
   }
 
-  const handleProfile=()=>{
-    navigate("/resourceperson_profile/"+activeUser._id)
-  }
+  const handleProfile = () => {
+    navigate("/resourceperson_profile/" + activeUser._id);
+  };
 
   function redirectBlog() {
     if (isRpLoggedIn()) {
       navigate("/resourceperson_blog");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    }
+  }
+  function redirectChat() {
+    if (isRpLoggedIn()) {
+      navigate("/rp_chat");
     } else {
       alert("Please login first");
       setTimeout(() => {
@@ -146,6 +156,15 @@ function Rpnav() {
               </li>
               <li
                 style={{ cursor: "pointer" }}
+                onClick={redirectChat}
+                className="nav-item"
+              >
+                <a className="nav-link active text-white" aria-current="page">
+                  Chat
+                </a>
+              </li>
+              <li
+                style={{ cursor: "pointer" }}
                 onClick={redirectBlog}
                 className="nav-item"
               >
@@ -171,7 +190,7 @@ function Rpnav() {
                   Tasks
                 </a>
               </li>
-              
+
               {activeUser ? (
                 <li>
                   <div class="dropdown">
@@ -189,18 +208,21 @@ function Rpnav() {
                           className="parentimage dropdown-toggle"
                           src={
                             activeUser.profilePicture
-                              ? BASE_URL + activeUser.profilePicture.originalname
+                              ? BASE_URL +
+                                activeUser.profilePicture.originalname
                               : img
                           }
-                          
                         ></img>
                       </Dropdown.Toggle>
                       <Dropdown.Menu>
-                        <Dropdown.Item onClick={handleProfile}>Profile</Dropdown.Item>
-                        <Dropdown.Item onClick={handleLogout} >Logout</Dropdown.Item>
+                        <Dropdown.Item onClick={handleProfile}>
+                          Profile
+                        </Dropdown.Item>
+                        <Dropdown.Item onClick={handleLogout}>
+                          Logout
+                        </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
-
                   </div>
                 </li>
               ) : (

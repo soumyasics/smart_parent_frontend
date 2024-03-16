@@ -1,6 +1,11 @@
+import React, { useEffect, useState } from "react";
+import "./Userchat.css";
+// import chatimg from "../../../../Assets/test.jpg";
+import axiosInstance from "../../../../apis/axiosInstance";
 import chatimg from "../../../../Assets/illustrators/man-placeholder.jpg";
 import BASE_URL from "../../../../apis/baseUrl";
-import "./Userchat.css";
+import Userinnerchat from "./Userinnerchat";
+import { Link } from "react-router-dom";
 
 function Userchat({ onSelectRecipient, subscribers }) {
   return (
@@ -9,7 +14,7 @@ function Userchat({ onSelectRecipient, subscribers }) {
         <input
           style={{ width: "95%" }}
           type="text"
-          placeholder="Search Resource Persons"
+          placeholder="Search Parents"
           className="search_icon_input ms-3"
         />
       </div>
@@ -18,24 +23,21 @@ function Userchat({ onSelectRecipient, subscribers }) {
         style={{ height: "600px" }}
       >
         <div className="friendsimg">
-          {subscribers?.map((rp, index) => {
-            let name = rp?.resourcePersonId?.name || "";
-            let rpId = rp?.resourcePersonId?._id || null;
-            let pathname =
-              rp?.resourcePersonId.profilePicture?.filename || null;
-            let mail = rp?.resourcePersonId?.email || "";
+          {subscribers?.map((parent, index) => {
+            let name = parent?.parentId?.name || "";
+            let mail = parent?.parentId?.email || "";
+            let parentId = parent?.parentId?._id || null;
             let rpProfilePicture = chatimg;
-            if (pathname) {
-              rpProfilePicture = BASE_URL + pathname;
-            }
+            
             return (
               <div
                 className="chat-persons list_view mb-3"
+                
                 style={{
                   cursor: "pointer",
                 }}
                 onClick={() => {
-                  onSelectRecipient(rpId);
+                  onSelectRecipient(parentId);
                 }}
                 key={index}
               >
