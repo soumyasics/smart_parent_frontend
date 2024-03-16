@@ -64,8 +64,14 @@ import ViewAllTasks from "./pages/mySubscriptions/viewTaskDetails";
 import Counseloraddtutorials from "./Components/counsellor/counselor_pages/Tutorials/Counseloraddtutorials";
 import RpMain from "./Components/user/pages/Admin/RpMain";
 import RpViewBlog from "./pages/resouce-person/view-blog/rp-view-blog";
+import BlogList from "./Components/user/pages/Admin/BlogList.js";
 import ParentViewBlogDetails from "./pages/mySubscriptions/parent-view-blog-details";
+import CounselorAccepted from "./Components/user/pages/Admin/counselor_Accepted.js";
 import Userchatmain from "./Components/user/User_Pages/Chat/Userchatmain.js";
+import SubscriptionList from "./Components/user/pages/Admin/SubscriptionList.js";
+import TutorialList from "./Components/user/pages/Admin/TutorialList.js";
+import ShowBlogContent from "./pages/mySubscriptions/showBlogContent.jsx";
+import ShowOneBlog from "./Components/user/pages/Admin/ShowOneBlog.js";
 
 
 function App() {
@@ -94,7 +100,7 @@ function App() {
           <Route
             path="/user-payment/:rpId"
             element={<SubscribePaymentPage />}
-          />
+          />  
           <Route path="/user-my-subscription" element={<SubscriptionTable />} />
           <Route path="/subscribed-rp/:id" element={<SubscribedRp />} />
           <Route
@@ -163,8 +169,9 @@ function App() {
           <Route path="/rp_pendinglist" element={<RPLIst />} />
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/counsiler_list" element={<Counselorlist />} />
+          <Route path="/counsiler_accepted" element={<CounselorAccepted />} />
           <Route path="/user_nav" element={<Usernav />} />
-          <Route path="/admin_dashboard" element={[<AdminDashboard />, <Footer />]} />
+          <Route path="/admin_dashboard" element={<AdminDashboard />} />
           <Route path="/rpnav" element={<Rpnav />} />
           <Route path="/parent_list" element={<ParentList />} />
           <Route
@@ -177,6 +184,10 @@ function App() {
           <Route path="/counselor_blogs" element={[<Counsellornav />, <Counselorblogs />, <Footer />]} />
           <Route path="/counselor_chat" element={[<Counsellornav />, <Counselorchat />, <Footer />]} />
           <Route path="/parent_list" element={<Footer />} />
+          <Route path="/blog_list" element={<BlogList />} />
+          <Route path="/subscription_list" element={<SubscriptionList />} />
+          <Route path="/tutorials_list" element={<TutorialList/>} />
+          <Route path="/show_blog_content/:blogId" element={<ShowOneBlog/>} />
 
         </Routes>
       </Router>

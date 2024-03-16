@@ -4,75 +4,153 @@ import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../../apis/axiosInstance";
 import Table from "react-bootstrap/Table";
 import BASE_URL from "../../../../apis/baseUrl";
-import profileimg from "../../../../Assets/illustrators/man-placeholder.jpg";
+import img from "../../../../Assets/illustrators/man-placeholder.jpg"
 
 function Counselorlist() {
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
-    const CounselorData = async () => {
-      try {
-        const response = await axiosInstance.get("viewAllCouncilars");
-        setUserData(response.data.data);
-        console.log(response.data.data);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    CounselorData();
+    getData();
   }, []);
+
+  function getData() {
+    axiosInstance
+      .get("viewAllCouncilars")
+      .then((res) => {
+        console.log(res, "data");
+        let allCouncilars = res?.data?.data || [];
+        const filterPendingReqs = allCouncilars.filter(
+          (councilar) => councilar?.isAdminApproved == "pending"
+        );
+        console.log(filterPendingReqs, "data");
+        setUserData(filterPendingReqs);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }
+
+  function handleRejectClick(id) {
+    console.log(id);
+    axiosInstance
+      .post("crejectRpRegistration/" + id)
+      .then((res) => {
+        console.log("res", res);
+        if (res.status === 200) {
+          let msg =
+            res?.data?.message ||
+            "Counseller Registration Request Rejected";
+          alert(msg);
+          getData();
+        } else {
+          console.log("err on reject request");
+        }
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }
+
+  function handleAcceptClick(id) {
+    console.log("id", id);
+    axiosInstance
+      .post("cacceptRpRegistration/" + id)
+      .then((res) => {
+        console.log("res", res);
+        if (res.status === 200) {
+          let msg =
+            res?.data?.message ||
+            "Counseller Registration Request Accepted";
+          alert(msg);
+          getData();
+        } else {
+          console.log("err on accept request");
+        }
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }
   return (
     <div>
       <div className="row">
         <div className="col-2">
           <Sidebar />
         </div>
-        <div className="col-8 ms-5 container">
-          <h3 className="mt-5">All Counselor Requests</h3>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th scope="col">profilePicture</th>
-                <th scope="col">name</th>
-                <th scope="col">experienceYear</th>
-                <th scope="col">age</th>
-                <th scope="col">Email</th>
-                <th scope="col">Accept</th>
-                <th scope="col">Reject</th>
-              </tr>
-            </thead>
-            <tbody>
-              {userData.map((data, index) => {
-                let profilePictureUrl = profileimg;
-                let pathname = data?.profilePicture?.originalname || null;
-                if (pathname) {
-                  profilePictureUrl = BASE_URL + pathname;
-                }
-                return (
-                  <tr key={index}>
-                    <td scope="row">
-                      <img
-                        className="parentimage"
-                        alt="img"
-                        src={profilePictureUrl}
-                      ></img>{" "}
-                    </td>
-                    <td>{data.name}</td>
-                    <td>{data.experienceYear}</td>
-                    <td>{data.age}</td>
-                    <td>{data.email}</td>
-                    <td>
-                      <button className="btn btn-success">Accept</button>
-                    </td>
-                    <td>
-                      <button className="btn btn-danger">Reject</button>
-                    </td>
+        <div style={{ maxWidth: "77%" }} className="container">
+          {userData.length === 0 && (
+            <h1 className="mt-5"> No Counselor Requests Found</h1>
+          )}
+          {userData.length > 0 && (
+            <div>
+              <h3 className="mt-5 ms-3">All Counseller Requests</h3>
+              <Table
+                striped
+                bordered
+                hover
+                className="mt-5 ms-3"
+                style={{ width: "100%" }}
+              >
+                <thead style={{ height: "50px" }}>
+                  <tr>
+                    <th>No</th>
+                    <th>Profile</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Experience Year</th>
+                    <th>Age</th>
+                    <th>Phone Number</th>
+                    <th>Accept</th>
+                    <th>Reject</th>
                   </tr>
-                );
-              })}
-            </tbody>
-          </Table>{" "}
+                </thead>
+                <tbody>
+                  {userData.map((councilar, index) => {
+                    return (
+                      <tr key={index} className="mt-4">
+                        <td>{index + 1}</td>
+                        <td>
+                          <img
+                            className="parentimage"
+                            src={
+                              councilar.profilePicture
+                                ? BASE_URL + councilar.profilePicture.originalname
+                                : img
+                            }
+                          ></img>
+                        </td>
+                        <td>{councilar.name}</td>
+                        <td>{councilar.email}</td>
+                        <td>{councilar.experienceYear}</td>
+                        <td>{councilar.age}</td>
+                        <td>{councilar.contact}</td>
+                        <td>
+                          <button
+                            className="btn btn-success rp-request-handls-btn"
+                            onClick={() => {
+                              handleAcceptClick(councilar._id);
+                            }}
+                          >
+                            Accept
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            className="btn btn-danger rp-request-handls-btn"
+                            onClick={() => {
+                              handleRejectClick(councilar._id);
+                            }}
+                          >
+                            Reject
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
+            </div>
+          )}
         </div>
       </div>
     </div>

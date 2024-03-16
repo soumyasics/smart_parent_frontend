@@ -4,6 +4,7 @@ import axiosInstance from "../../../../apis/axiosInstance";
 import { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import BASE_URL from "../../../../apis/baseUrl";
+import img from "../../../../Assets/illustrators/man-placeholder.jpg"
 
 function RPLIst() {
   const [rpLists, setRpLists] = useState([]);
@@ -29,6 +30,7 @@ function RPLIst() {
   }
 
   console.log(rpLists, "list");
+  
   function handleRejectClick(id) {
     console.log(id);
     axiosInstance
@@ -112,10 +114,9 @@ function RPLIst() {
                         <img
                           className="parentimage"
                           src={
-                           BASE_URL +
-                            (rp.profilePicture
-                              ? rp.profilePicture.originalname
-                              : "")
+                            rp.profilePicture
+                              ? BASE_URL + rp.profilePicture.originalname
+                              : img
                           }
                         ></img>
                       </td>

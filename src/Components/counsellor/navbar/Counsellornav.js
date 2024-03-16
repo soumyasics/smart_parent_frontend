@@ -54,7 +54,7 @@ function Counsellornav() {
 
   function navigateTutorials() {
     if (isactivecouncilorLoggedIn()) {
-      navigate("/rp-add-tutorial");
+      navigate("");
     } else {
       alert("Please login first");
       setTimeout(() => {

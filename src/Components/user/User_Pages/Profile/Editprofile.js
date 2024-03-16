@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Editprofile() {
 
-  const id = localStorage.getItem("userdetails")
+
   const navigate = useNavigate()
   const [useredit, setUseredit] = useState({
     name: "",
@@ -17,14 +17,28 @@ function Editprofile() {
     contact: ""
   })
 
+
   useEffect(() => {
-    axiosInstance.post(`/viewParentById/${id}`)
+    const parentData = JSON.parse(localStorage.getItem("parentData")) || null;
+    if (parentData && parentData._id) {
+      getUserdata(parentData._id);
+    }
+  }, []);
+
+  async function getUserdata (id) {
+try {
+  axiosInstance.post(`/viewParentById/${id}`)
       .then((res) => {
         console.log("response", res); setUseredit(res.data.data,);
 
       })
       .catch((err) => { console.log("error", err); })
-  }, [])
+} catch (error) {
+  console.log(error);
+}
+  }
+
+ 
 
   const changefn = (e) => {
     setUseredit({ ...useredit, [e.target.name]: e.target.value })
@@ -35,7 +49,16 @@ function Editprofile() {
     e.preventDefault(e);
     console.log("dtat", useredit);
 
-    axiosInstance
+
+
+    const parentData = JSON.parse(localStorage.getItem("parentData")) || null;
+    if (parentData && parentData._id) {
+      getUserdata(parentData._id);
+    }
+    async function getUserdata (id) {
+      try {
+
+        axiosInstance
       .post(`editParentById/${id}`, useredit, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -55,6 +78,13 @@ function Editprofile() {
       })
       .catch((err) => { console.log('err', err); })
 
+        
+      } catch (error) {
+        console.log(error);
+      }
+        }
+
+    
   }
   return (
     <>
