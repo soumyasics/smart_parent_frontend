@@ -8,9 +8,10 @@ import Footer from "../../../../pages/commonHomePage/Components/commonFooter";
 import axiosMultipartInstance from "../../../../apis/axiosMultipartInstance";
 
 function Userprofile() {
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState({})
 
-  const id = localStorage.getItem("userdetails");
+  const id = localStorage.getItem("userdetails")
+
 
   useEffect(() => {
     const parentData = JSON.parse(localStorage.getItem("parentData")) || null;
