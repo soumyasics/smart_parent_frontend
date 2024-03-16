@@ -69,7 +69,6 @@ function Userinnerchat({ activeRpId }) {
     if (chatContainerRef?.current) {
       chatContainerRef.current.scrollTop =
         chatContainerRef.current.scrollHeight;
-      console.log(chatContainerRef.current.scrollHeight, "he");
     }
   }, [chatHistory]);
 
