@@ -34,7 +34,6 @@ import Counselorchat from "./Components/counsellor/counselor_pages/Chat/Counselo
 import Counselorprofile from "./Components/counsellor/counselor_pages/Profile/Counselorprofile";
 import Counselorsubscribers from "./Components/counsellor/counselor_pages/Subscribers/Counselorsubscribers";
 import Rptask from "./Components/resource_person/RP_Pages/Task/Rptask";
-import Rpchat from "./Components/resource_person/RP_Pages/Chat/Rpchat";
 import Rprofile from "./Components/resource_person/RP_Pages/Profile/Rprofile";
 import Rpsubscribers from "./Components/resource_person/RP_Pages/Subscribers/Rpsubscribers";
 import Rpnav from "./Components/resource_person/navbar/Rpnav";
@@ -67,11 +66,13 @@ import RpViewBlog from "./pages/resouce-person/view-blog/rp-view-blog";
 import BlogList from "./Components/user/pages/Admin/BlogList.js";
 import ParentViewBlogDetails from "./pages/mySubscriptions/parent-view-blog-details";
 import CounselorAccepted from "./Components/user/pages/Admin/counselor_Accepted.js";
-import Userchatmain from "./Components/user/User_Pages/Chat/Userchatmain.js";
 import SubscriptionList from "./Components/user/pages/Admin/SubscriptionList.js";
 import TutorialList from "./Components/user/pages/Admin/TutorialList.js";
 import ShowBlogContent from "./pages/mySubscriptions/showBlogContent.jsx";
 import ShowOneBlog from "./Components/user/pages/Admin/ShowOneBlog.js";
+import Rpchatmain from "./Components/user/User_Pages/rpchat/Userchatmain.js";
+import Userchatmain from "./Components/user/User_Pages/Chat/Userchatmain.js";
+import Rpchat from "./Components/resource_person/RP_Pages/Chat/Rpchat";
 
 function App() {
   return (
@@ -131,12 +132,13 @@ function App() {
           {/* Resource Person */}
 
           <Route path="/resourceperson_signup" element={<Rpsignup />} />
+          <Route path="/resourceperson_chat" element={<Rpchat />} />
           <Route
             path="/resourceperson_resetpassword"
             element={<Rpresetpass />}
           />
           <Route path="/resourceperson_task" element={<Rptask />} />
-          <Route path="/resourceperson_chat" element={<Rpchat />} />
+          <Route path="/rp_chat" element={<Rpchatmain />} />
           <Route
             path="/resourceperson_profile/:id"
             element={[<Rpnav />, <Rprofile />]}
