@@ -79,8 +79,8 @@ import Userchatmain from "./Components/user/User_Pages/Chat/Userchatmain.js";
 import Rpchat from "./Components/resource_person/RP_Pages/Chat/Rpchat";
 import CounsellorViewTutorial from "./Components/counsellor/counselor_pages/View-Tutorials/counsellor-view-tutorial.jsx";
 import CounsellorWatchTutorial from "./Components/counsellor/counselor_pages/View-Tutorials/counsellor-tuturial-watch.jsx";
-
-
+import ViewCounsellorDeatils from "./Components/user/pages/counsellor/viewCouncellorDeatails.jsx";
+import ParentWatchCounselorTutorial from "./Components/user/pages/counsellor/View-Tutorials/counsellor-tuturial-watch.jsx";
 function App() {
   return (
     <div className="appjs">
@@ -94,6 +94,11 @@ function App() {
           <Route path="/sign_in" element={<SignIn />} />
           <Route path="/reset_password" element={<ResetPass />} />
           <Route path="/counsellor" element={<Counselor />} />
+          <Route
+            path="/view-counsellor/:id"
+            element={<ViewCounsellorDeatils />}
+          />
+          <Route path="/counselor-tutorial-video/:id" element={<ParentWatchCounselorTutorial />}/>
 
           {/* User  */}
 
@@ -226,12 +231,14 @@ function App() {
           <Route path="/tutorials_list" element={<TutorialList />} />
           <Route path="/show_blog_content/:blogId" element={<ShowOneBlog />} />
           <Route
-          path="/counsellor_profile_edit/:id"
-          element={[<Counsellornav />, <CounsellorProfileEdit />, <Footer />]}
-        />
-        <Route path="/rp_profile_edit/:id" element={[<Rpnav />,<RPprofileEdit />, <Footer />]} />
+            path="/counsellor_profile_edit/:id"
+            element={[<Counsellornav />, <CounsellorProfileEdit />, <Footer />]}
+          />
+          <Route
+            path="/rp_profile_edit/:id"
+            element={[<Rpnav />, <RPprofileEdit />, <Footer />]}
+          />
         </Routes>
-
       </Router>
     </div>
   );

@@ -55,9 +55,8 @@ function Counselor() {
       let res = await axiosInstance.get("viewAllCouncilars");
       let coData = res?.data?.data || null;
 
-      console.log(coData, "all coun");
       if (coData) {
-        coData = coData.filter((co) => co?.isAdminApproved == true);
+        coData = coData.filter((co) => co?.isAdminApproved == "accepted");
         setAllCo(coData);
         setFixedCo(coData);
       }
@@ -82,9 +81,9 @@ function Counselor() {
       <Navbar />
 
       <div className="counsellor">
-        <h1>Choose Counsellor</h1>
+        <h1>Our Counsellors</h1>
 
-        <div className="search">
+        <div className="search mb-5">
           <input
             type="text"
             value={searchCo}
@@ -100,17 +99,21 @@ function Counselor() {
         </div>
 
         <div className="listout">
-          <h5>Top rated Counsellor</h5>
-
           {allCo.map((co, index) => {
             let profilePicUrl = placeholderImg;
             let filename = co?.profilePicture?.filename || null;
-            if (co.profilePicture.filename) {
+            if (filename) {
               profilePicUrl = `${BASE_URL}${filename}`;
             }
 
             return (
-              <div className="professionals">
+              <div
+                key={co._id}
+                className="professionals"
+                onClick={() => {
+                  navigate(`/view-counsellor/${co._id}`);
+                }}
+              >
                 <img
                   className="mt-3"
                   style={{ height: "50px", width: "50px", borderRadius: "50%" }}

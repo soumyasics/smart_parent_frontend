@@ -125,6 +125,12 @@ function AdminSignin() {
               error?.response?.data?.message ||
               "Please check your email id and password";
             alert(errorMsg);
+          }else if (selectedButton === "button3") {
+            console.log("error on counsellor login", error);
+            let errorMsg =
+              error?.response?.data?.message ||
+              "Please check your email id and password";
+            alert(errorMsg);
           }
         }
       }

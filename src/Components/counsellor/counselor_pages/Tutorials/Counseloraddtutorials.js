@@ -82,9 +82,9 @@ function Counseloraddtutorials() {
       console.log("vid", res);
       if (res.status === 200) {
         alert("Tutorial uploaded successfully");
-        // setTimeout(() => {
-        //   navigate("");
-        // }, 1000);
+        setTimeout(() => {
+          navigate("/counselor-view-tutorial");
+        }, 1000);
       } else {
         alert("Something went wrong");
       }
