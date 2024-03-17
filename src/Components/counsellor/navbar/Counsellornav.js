@@ -40,29 +40,18 @@ function Counsellornav() {
     }, 1500);
   };
 
-  // const redirectViewTutorials = () => {
-  //   if (isactivecouncilorLoggedIn()) {
-  //     navigate("/rp-view-tutorials");
-  //   } else {
-  //     alert("Please login first");
-  //     setTimeout(() => {
-  //       navigate("/admin");
-  //     }, 1500);
-  //   }
-  // };
-
-
-
-  function navigateTutorials() {
+  const counsellorAddTutorial = () => {
     if (isactivecouncilorLoggedIn()) {
-      navigate("");
+      navigate("/counselor-add-tutorial");
     } else {
       alert("Please login first");
       setTimeout(() => {
         navigate("/admin");
-      }, 1500);
+      }, 1000);
     }
-  }
+  };
+
+
 
   const handleProfile=()=>{
     navigate("/counselor_profile/"+activeUser._id)
@@ -82,6 +71,16 @@ function Counsellornav() {
   function handleChat(){
     if (isactivecouncilorLoggedIn()) {
       navigate("/counselor_chat");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1500);
+    }
+  }
+  function redirectView(){
+    if (isactivecouncilorLoggedIn()) {
+      navigate("/counselor-view-tutorial");
     } else {
       alert("Please login first");
       setTimeout(() => {
@@ -124,7 +123,16 @@ function Counsellornav() {
           <ul className="navbar-nav a1 gap-4" style={{ marginRight: "51px" }}>
             <li
               style={{ cursor: "pointer" }}
-              onClick={navigateTutorials}
+              onClick={redirectView}
+              class="nav-item"
+            >
+              <a class="nav-link active text-white" aria-current="page">
+                View
+              </a>
+            </li>
+            <li
+              style={{ cursor: "pointer" }}
+              onClick={counsellorAddTutorial}
               class="nav-item"
             >
               <a class="nav-link active text-white" aria-current="page">

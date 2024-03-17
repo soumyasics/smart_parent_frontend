@@ -80,11 +80,10 @@ const ResourceUploadForm = () => {
     formData.append("target", videoObj.target);
     try {
       let res = await axiosMultipartInstance.post("addTutorial", formData);
-      console.log("vid", res);
       if (res.status === 200) {
         alert("Tutorial uploaded successfully");
         setTimeout(() => {
-          navigate("/");
+          navigate("rp-view-tutorials");
         }, 1000);
       } else {
         alert("Something went wrong");

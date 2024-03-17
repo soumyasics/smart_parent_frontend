@@ -75,6 +75,8 @@ import RPprofileEdit from "./Components/resource_person/RP_Pages/Profile/RPprofi
 import Rpchatmain from "./Components/user/User_Pages/rpchat/Userchatmain.js";
 import Userchatmain from "./Components/user/User_Pages/Chat/Userchatmain.js";
 import Rpchat from "./Components/resource_person/RP_Pages/Chat/Rpchat";
+import CounsellorViewTutorial from "./Components/counsellor/counselor_pages/View-Tutorials/counsellor-view-tutorial.jsx";
+import CounsellorWatchTutorial from "./Components/counsellor/counselor_pages/View-Tutorials/counsellor-tuturial-watch.jsx";
 
 function App() {
   return (
@@ -130,7 +132,35 @@ function App() {
             path="/counselor-add-tutorial"
             element={<Counseloraddtutorials />}
           />
-
+          <Route
+            path="/counselor-view-tutorial"
+            element={<CounsellorViewTutorial />}
+          />
+          <Route
+            path="/counselor-watch-tutorial/:id"
+            element={<CounsellorWatchTutorial />}
+          />
+          <Route
+            path="/view_counsiler_details/:id"
+            element={<ViewResourcePersonDetails />}
+          />
+          <Route
+            path="/counsellor_home"
+            element={[<Counsellornav />, <ConselorHome />, <Footer />]}
+          />
+          <Route path="/counsellor_nav" element={<Counsellornav />} />
+          <Route
+            path="/counselor_profile/:id"
+            element={[<Counsellornav />, <Counselorprofile />, <Footer />]}
+          />
+          <Route
+            path="/counselor_blogs"
+            element={[<Counsellornav />, <Counselorblogs />, <Footer />]}
+          />
+          <Route
+            path="/counselor_chat"
+            element={[<Counsellornav />, <Counselorchat />, <Footer />]}
+          />
           {/* Resource Person */}
 
           <Route path="/resourceperson_signup" element={<Rpsignup />} />
@@ -168,7 +198,6 @@ function App() {
           <Route path="/rp-add-task" element={<RpAddTask />} />
           <Route path="/rp-view-subscribers" element={<RpViewSubscribers />} />
 
-          {/* <Route path="" element={< />}/> */}
           {/*ajeena*/}
           <Route path="/admin" element={<AdminSignin />} />
           <Route path="/admin_home" element={<AdminHome />} />
@@ -187,27 +216,7 @@ function App() {
           <Route path="/admin_dashboard" element={<AdminDashboard />} />
           <Route path="/rpnav" element={<Rpnav />} />
           <Route path="/parent_list" element={<ParentList />} />
-          <Route
-            path="/view_counsiler_details/:id"
-            element={<ViewResourcePersonDetails />}
-          />
-          <Route
-            path="/counsellor_home"
-            element={[<Counsellornav />, <ConselorHome />, <Footer />]}
-          />
-          <Route path="/counsellor_nav" element={<Counsellornav />} />
-          <Route
-            path="/counselor_profile/:id"
-            element={[<Counsellornav />, <Counselorprofile />, <Footer />]}
-          />
-          <Route
-            path="/counselor_blogs"
-            element={[<Counsellornav />, <Counselorblogs />, <Footer />]}
-          />
-          <Route
-            path="/counselor_chat"
-            element={[<Counsellornav />, <Counselorchat />, <Footer />]}
-          />
+
           <Route path="/parent_list" element={<Footer />} />
           <Route path="/blog_list" element={<BlogList />} />
           <Route path="/subscription_list" element={<SubscriptionList />} />

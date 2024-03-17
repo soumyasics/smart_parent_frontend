@@ -35,7 +35,7 @@ function Counselor() {
   useEffect(() => {
     let id = getActiveUserId();
     if (id) {
-      getData(id);
+      getData();
     } else {
       console.log("Parent data not available in the Local storage");
     }
@@ -49,12 +49,13 @@ function Counselor() {
       return null;
     }
   }
-  
 
-  async function getData(id) {
+  async function getData() {
     try {
       let res = await axiosInstance.get("viewAllCouncilars");
       let coData = res?.data?.data || null;
+
+      console.log(coData, "all coun");
       if (coData) {
         coData = coData.filter((co) => co?.isAdminApproved == true);
         setAllCo(coData);
