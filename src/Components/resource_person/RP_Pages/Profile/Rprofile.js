@@ -86,7 +86,7 @@ function Rprofile() {
           </div>
         </div>
         <div className="mainprofilebg col-6">
-          <img
+          <img className="profileimgrp"
           src={
             userData.profilePicture
               ? BASE_URL + userData.profilePicture.originalname
