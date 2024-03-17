@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../../apis/axiosInstance";
 import BASE_URL from "../../../../apis/baseUrl";
 import "./cousellorprofile.css";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import img from "../../../../Assets/illustrators/man-placeholder-2.jpg"
 
 function Counselorprofile() {
   const [userData, setUserData] = useState("");
+
+  const Navigate=useNavigate()
 
   const { id } = useParams();
 
@@ -27,6 +29,10 @@ function Counselorprofile() {
   useEffect(() => {
     CounselorData();
   }, []);
+
+
+
+
   return (
     <div className="row">
       <div className="userprofile col-6">
@@ -78,7 +84,7 @@ function Counselorprofile() {
         </div>
 
         <div className="userprofilebtn">
-          <Link to="/user_editprofile">
+          <Link to={"/counsellor_profile_edit/"+userData._id}>
             <button>Edit</button>
           </Link>
         </div>
