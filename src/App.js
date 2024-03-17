@@ -140,6 +140,10 @@ function App() {
             element={<CounsellorViewTutorial />}
           />
           <Route
+            path="/counselor-watch-tutorial/:id"
+            element={<CounsellorWatchTutorial />}
+          />
+          <Route
             path="/view_counsiler_details/:id"
             element={<ViewResourcePersonDetails />}
           />

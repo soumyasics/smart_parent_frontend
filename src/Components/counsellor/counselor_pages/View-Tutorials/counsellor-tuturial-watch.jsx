@@ -77,7 +77,7 @@ const TutorailWatch = () => {
       }
 
       setTimeout(() => {
-        // navigate("/rp-view-tutorials");
+        navigate("/counselor-view-tutorial");
       }, 1500);
       let errorMsg = error?.response?.data?.message || error.message;
       console.log("error get all video tutorials", errorMsg);

@@ -75,7 +75,7 @@ const RpViewTutorials = () => {
       alert("Tutorial id not found");
       return;
     }
-    // navigate("/watch-tutorial/" + id);
+    navigate("/counselor-watch-tutorial/" + id);
   }
 
   function viewBlogDetails(id) {
@@ -172,14 +172,12 @@ const RpViewTutorials = () => {
             className=" video-tutorials mx-auto d-flex flex-wrap justify-content-center mt-4 p-4 gap-3"
           >
             {allBlogs?.map((blog, index) => {
-              console.log("blog", blog);
 
               let blogImg =
                 "https://media.istockphoto.com/id/1253922154/vector/blog-authors-writing-articles.jpg?s=612x612&w=0&k=20&c=rfl7LAg3NoD2fYlPXTBvnXexaq2cFTZLxt7ronsBsWk=";
 
               let pathname = blog.img?.filename || null;
 
-              console.log("pat", pathname);
 
               if (pathname) {
                 if (/\.(jpeg|jpg|gif|png)$/.test(pathname)) {
