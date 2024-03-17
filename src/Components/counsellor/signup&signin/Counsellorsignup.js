@@ -328,7 +328,7 @@ function Counsellorsignup() {
 
           <div className="text">
             <h5>
-              Already have an account? <Link to="">Login now</Link>
+              Already have an account? <Link to="/admin">Login now</Link>
             </h5>
           </div>
 
