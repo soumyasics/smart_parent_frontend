@@ -3,6 +3,7 @@ import axiosInstance from "../../../../apis/axiosInstance";
 import BASE_URL from "../../../../apis/baseUrl";
 import "./rpProfile.css";
 import { useParams, Link } from "react-router-dom";
+import img from "../../../../Assets/illustrators/man-placeholder-2.jpg"
 
 function Rprofile() {
   const [userData, setUserData] = useState("");
@@ -79,16 +80,18 @@ function Rprofile() {
           </div>
 
           <div className="userprofilebtn">
-            <Link to="/user_editprofile">
+            <Link to={"/rp_profile_edit/"+userData._id}>
               <button>Edit</button>
             </Link>
           </div>
         </div>
         <div className="mainprofilebg col-6">
           <img
-            src={profilePictureUrl}
-            alt="Circle Image"
-            className="img-raised rounded-circle img-fluid"
+          src={
+            userData.profilePicture
+              ? BASE_URL + userData.profilePicture.originalname
+              : img
+          }
           />{" "}
         </div>
       </div>

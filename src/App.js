@@ -70,11 +70,16 @@ import SubscriptionList from "./Components/user/pages/Admin/SubscriptionList.js"
 import TutorialList from "./Components/user/pages/Admin/TutorialList.js";
 import ShowBlogContent from "./pages/mySubscriptions/showBlogContent.jsx";
 import ShowOneBlog from "./Components/user/pages/Admin/ShowOneBlog.js";
+
+import CounsellorProfileEdit from "./Components/counsellor/counselor_pages/Profile/CounsellorProfileEdit.js";
+import RPprofileEdit from "./Components/resource_person/RP_Pages/Profile/RPprofileEdit.js";
+
 import Rpchatmain from "./Components/user/User_Pages/rpchat/Userchatmain.js";
 import Userchatmain from "./Components/user/User_Pages/Chat/Userchatmain.js";
 import Rpchat from "./Components/resource_person/RP_Pages/Chat/Rpchat";
 import CounsellorViewTutorial from "./Components/counsellor/counselor_pages/View-Tutorials/counsellor-view-tutorial.jsx";
 import CounsellorWatchTutorial from "./Components/counsellor/counselor_pages/View-Tutorials/counsellor-tuturial-watch.jsx";
+
 
 function App() {
   return (
@@ -216,7 +221,13 @@ function App() {
           <Route path="/subscription_list" element={<SubscriptionList />} />
           <Route path="/tutorials_list" element={<TutorialList />} />
           <Route path="/show_blog_content/:blogId" element={<ShowOneBlog />} />
+          <Route
+          path="/counsellor_profile_edit/:id"
+          element={[<Counsellornav />, <CounsellorProfileEdit />, <Footer />]}
+        />
+        <Route path="/rp_profile_edit/:id" element={[<Rpnav />,<RPprofileEdit />, <Footer />]} />
         </Routes>
+
       </Router>
     </div>
   );
