@@ -1,22 +1,20 @@
-import Footer from "../../commonHomePage/Components/commonFooter";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Rpnav from "../../../Components/resource_person/navbar/Rpnav";
+import Counsellornav from "../../navbar/Counsellornav";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../../apis/axiosInstance";
-import BASE_URL from "../../../apis/baseUrl";
+import BASE_URL from "../../../../apis/baseUrl";
+import axiosInstance from "../../../../apis/axiosInstance";
+import Footer from "../../../../pages/commonHomePage/Components/commonFooter";
 const RpViewTutorials = () => {
   const navigate = useNavigate();
   const [allTutorials, setAllTutorials] = useState([]);
   const [allBlogs, setAllBlogs] = useState([]);
-  const [allTasks, setAllTasks] = useState([]);
   useEffect(() => {
-    let id = findActiveResourcePerson();
+    let id = findActiveCounsellor();
     if (id) {
-      getData(id);
-      getBlogs(id);
-      getTasks(id);
+      getCounsellorTutorials(id);
+      // getBlogs(id);
     } else {
       alert("Resource Person not logged in");
       setTimeout(() => {
@@ -25,30 +23,14 @@ const RpViewTutorials = () => {
       console.log("Parent data not available in the Local storage");
     }
   }, []);
-  useEffect(() => {
-    console.log("alls ", allBlogs);
-  }, [allBlogs]);
-  async function getData(id) {
+  
+  async function getCounsellorTutorials(id) {
     try {
-      const res = await axiosInstance.get("viewTutorialByRpId/" + id);
-      let rpData = res?.data?.data || null;
-      if (rpData) {
-        let reverseRpData = rpData.reverse();
-        setAllTutorials(reverseRpData);
-      } else {
-        console.log("can't fetch resource person tutorial details");
-      }
-    } catch (error) {
-      console.log("error get all video tutorials", error);
-    }
-  }
-  async function getTasks(id) {
-    try {
-      const res = await axiosInstance.get("viewTaskQnByRPId/" + id);
-      let tasks = res?.data?.data || null;
-      if (tasks) {
-        let reverseRpData = tasks.reverse();
-        setAllTasks(reverseRpData);
+      const res = await axiosInstance.get("viewTutorialByCounsellorId/" + id);
+      let tutorials = res?.data?.data || null;
+      if (tutorials) {
+        let reverseTuto = tutorials.reverse();
+        setAllTutorials(reverseTuto);
       } else {
         console.log("can't fetch resource person tutorial details");
       }
@@ -57,9 +39,7 @@ const RpViewTutorials = () => {
     }
   }
 
-  async function redirectTaskDetails() {
-    navigate("/view-task-details");
-  }
+
   async function getBlogs(id) {
     try {
       const res = await axiosInstance.get("viewMyBlogsByRpid/" + id);
@@ -75,17 +55,16 @@ const RpViewTutorials = () => {
     }
   }
 
-  console.log("get bl", allBlogs);
 
-  function findActiveResourcePerson() {
-    let activeRp;
-    if (localStorage.getItem("activeRp")) {
-      activeRp = JSON.parse(localStorage.getItem("activeRp")) || null;
+  function findActiveCounsellor() {
+    let activeCounsellor;
+    if (localStorage.getItem("activecouncilor")) {
+      activeCounsellor = JSON.parse(localStorage.getItem("activecouncilor")) || null;
     } else {
       return null;
     }
-    if (activeRp && activeRp._id) {
-      return activeRp._id;
+    if (activeCounsellor && activeCounsellor._id) {
+      return activeCounsellor._id;
     } else {
       return null;
     }
@@ -96,7 +75,7 @@ const RpViewTutorials = () => {
       alert("Tutorial id not found");
       return;
     }
-    navigate("/watch-tutorial/" + id);
+    // navigate("/watch-tutorial/" + id);
   }
 
   function viewBlogDetails(id) {
@@ -108,7 +87,7 @@ const RpViewTutorials = () => {
   }
   return (
     <>
-      <Rpnav />
+      <Counsellornav />
       <div>
         {allTutorials.length > 0 && (
           <h1 className="text-center mt-5"> My Tutorials </h1>
@@ -174,33 +153,8 @@ const RpViewTutorials = () => {
           })}
         </div>
 
-        {allTasks.length === 0 && (
-          <h1 className="text-center mt-5"> No Tasks </h1>
-        )}
-        {allTasks.length > 0 && (
-          <h1 className="text-center mt-5"> My Tasks </h1>
-        )}
-        {allTasks.length > 0 && (
-          <div
-            style={{
-              width: "90%",
-              minHeight: "500px",
-              boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-            }}
-            className=" video-tutorials mx-auto d-flex flex-wrap justify-content-center mt-4 p-4 gap-3"
-          >
-            {allTasks?.map((task, index) => {
-              return (
-                <Card key={index} style={{ width: "18rem" }}>
-                  <Card.Body>
-                    <Card.Title>{task?.title}</Card.Title>
-                    <Card.Text>{task?.description}</Card.Text>
-                  </Card.Body>
-                </Card>
-              );
-            })}
-          </div>
-        )}
+       
+        
 
         {allBlogs.length === 0 && (
           <h1 className="text-center mt-5"> No Blogs </h1>

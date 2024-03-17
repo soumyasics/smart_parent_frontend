@@ -138,15 +138,6 @@ function Rpnav() {
             <ul className="navbar-nav a1 gap-4" style={{ marginRight: "51px" }}>
               <li
                 style={{ cursor: "pointer" }}
-                onClick={navigateTutorials}
-                class="nav-item"
-              >
-                <a class="nav-link active text-white" aria-current="page">
-                  Tutorials
-                </a>
-              </li>
-              <li
-                style={{ cursor: "pointer" }}
                 onClick={redirectViewTutorials}
                 className="nav-item"
               >
@@ -154,13 +145,14 @@ function Rpnav() {
                   View
                 </a>
               </li>
+
               <li
                 style={{ cursor: "pointer" }}
-                onClick={redirectChat}
-                className="nav-item"
+                onClick={navigateTutorials}
+                class="nav-item"
               >
-                <a className="nav-link active text-white" aria-current="page">
-                  Chat
+                <a class="nav-link active text-white" aria-current="page">
+                  Tutorials
                 </a>
               </li>
               <li
@@ -172,15 +164,7 @@ function Rpnav() {
                   Blog
                 </a>
               </li>
-              <li
-                className="nav-item"
-                style={{ cursor: "pointer" }}
-                onClick={redirectSubscribers}
-              >
-                <a className="nav-link active text-white" id="a2">
-                  Subscribers
-                </a>
-              </li>
+
               <li
                 className="nav-item"
                 style={{ cursor: "pointer" }}
@@ -188,6 +172,25 @@ function Rpnav() {
               >
                 <a className="nav-link active text-white" id="a3">
                   Tasks
+                </a>
+              </li>
+              <li
+                style={{ cursor: "pointer" }}
+                onClick={redirectChat}
+                className="nav-item"
+              >
+                <a className="nav-link active text-white" aria-current="page">
+                  Chat
+                </a>
+              </li>
+
+              <li
+                className="nav-item"
+                style={{ cursor: "pointer" }}
+                onClick={redirectSubscribers}
+              >
+                <a className="nav-link active text-white" id="a2">
+                  Subscribers
                 </a>
               </li>
 
