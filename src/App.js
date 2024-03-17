@@ -70,10 +70,8 @@ import SubscriptionList from "./Components/user/pages/Admin/SubscriptionList.js"
 import TutorialList from "./Components/user/pages/Admin/TutorialList.js";
 import ShowBlogContent from "./pages/mySubscriptions/showBlogContent.jsx";
 import ShowOneBlog from "./Components/user/pages/Admin/ShowOneBlog.js";
-
 import CounsellorProfileEdit from "./Components/counsellor/counselor_pages/Profile/CounsellorProfileEdit.js";
 import RPprofileEdit from "./Components/resource_person/RP_Pages/Profile/RPprofileEdit.js";
-
 import Rpchatmain from "./Components/user/User_Pages/rpchat/Userchatmain.js";
 import Userchatmain from "./Components/user/User_Pages/Chat/Userchatmain.js";
 import Rpchat from "./Components/resource_person/RP_Pages/Chat/Rpchat";
