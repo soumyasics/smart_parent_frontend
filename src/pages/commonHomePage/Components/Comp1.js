@@ -73,6 +73,18 @@ function Comp1() {
       }, 1500);
     }
   }
+  function redirectToAnswers
+  () {
+    if (activeUser) {
+      navigate("/parent_answers");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/sign_in");
+      }, 1500);
+    }
+  }
+
   return (
     <nav
       id="common-home-navbar"
@@ -151,6 +163,15 @@ function Comp1() {
             >
               <a className="nav-link active text-white" aria-current="page">
                 Chat
+              </a>
+            </li>
+            <li
+              style={{ cursor: "pointer" }}
+              onClick={redirectToAnswers}
+              className="nav-item"
+            >
+              <a className="nav-link active text-white" aria-current="page">
+                view Answers
               </a>
             </li>
             <li
