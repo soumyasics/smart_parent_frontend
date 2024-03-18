@@ -83,8 +83,10 @@ import ParentViewAnswer from "./Components/parent/ParentViewAnswer.js";
 import userNav from "./pages/commonHomePage/Components/Comp1.js"
 function App() {
   return (
+    
+
     <div className="appjs">
-      <Router>
+      <Router basename="/smart_parent">
         <Routes>
           <Route path="/" element={<CommonHomePage />} />
           <Route path="/about" element={<About />} />
@@ -245,6 +247,7 @@ function App() {
         /> 
         </Routes>
       </Router>
+
     </div>
   );
 }
