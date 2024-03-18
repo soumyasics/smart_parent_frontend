@@ -79,6 +79,8 @@ import CounsellorViewTutorial from "./Components/counsellor/counselor_pages/View
 import CounsellorWatchTutorial from "./Components/counsellor/counselor_pages/View-Tutorials/counsellor-tuturial-watch.jsx";
 import ViewCounsellorDeatils from "./Components/user/pages/counsellor/viewCouncellorDeatails.jsx";
 import ParentWatchCounselorTutorial from "./Components/user/pages/counsellor/View-Tutorials/counsellor-tuturial-watch.jsx";
+import ParentViewAnswer from "./Components/parent/ParentViewAnswer.js";
+import userNav from "./pages/commonHomePage/Components/Comp1.js"
 function App() {
   return (
     <div className="appjs">
@@ -130,7 +132,7 @@ function App() {
             path="/counselor_resetpassword"
             element={<Counselorresetpass />}
           />
-          
+
           <Route
             path="/counselor_subscribers"
             element={<Counselorsubscribers />}
@@ -237,6 +239,10 @@ function App() {
             path="/rp_profile_edit/:id"
             element={[<Rpnav />, <RPprofileEdit />, <Footer />]}
           />
+          <Route
+          path="/parent_answers"
+          element={[<userNav/>, <ParentViewAnswer />, <Footer />]}
+        /> 
         </Routes>
       </Router>
     </div>
