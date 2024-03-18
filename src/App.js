@@ -130,6 +130,7 @@ function App() {
             path="/counselor_resetpassword"
             element={<Counselorresetpass />}
           />
+          
           <Route
             path="/counselor_subscribers"
             element={<Counselorsubscribers />}
