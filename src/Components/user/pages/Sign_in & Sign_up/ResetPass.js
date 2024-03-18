@@ -1,139 +1,154 @@
-import React, { useState } from 'react'
-import "./Resetpass.css"
-import { Link } from 'react-router-dom'
-import { Icon } from '@iconify-icon/react'
-import axios from 'axios'
-import axiosInstance from '../../../../apis/axiosInstance'
-
-
-
+import React, { useState } from "react";
+import "./Resetpass.css";
+import { Link, useNavigate } from "react-router-dom";
+import { Icon } from "@iconify-icon/react";
+import axios from "axios";
+import axiosInstance from "../../../../apis/axiosInstance";
 
 function ResetPass() {
   const [resetpass, setResetpass] = useState({
     email: "",
     password: "",
-    confirmpassword: ""
-  })
-
+    confirmpassword: "",
+  });
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({
     email: "",
     password: "",
-    confirmpassword: ""
-  })
+    confirmpassword: "",
+  });
 
   const changefn = (e) => {
-    const { name, value } = e.target
-    setResetpass(preData => ({ ...preData, [name]: value }))
-    setErrors(preErrors => ({ ...preErrors, [name]: "" }))
-  }
+    const { name, value } = e.target;
+    setResetpass((preData) => ({ ...preData, [name]: value }));
+    setErrors((preErrors) => ({ ...preErrors, [name]: "" }));
+  };
 
-  let formValid = true
-
-
-
+  let formValid = true;
 
   const submitfn = (e) => {
     e.preventDefault();
 
-    let errors = {}
+    let errors = {};
     if (!resetpass.email.trim()) {
-      formValid = false
-      errors.email = "Email is required"
+      formValid = false;
+      errors.email = "Email is required";
     }
     if (!resetpass.password.trim()) {
-      formValid = false
-      errors.password = "Password is required"
+      formValid = false;
+      errors.password = "Password is required";
+    } else if (resetpass.password.length < 5) {
+      errors.password = "Password should be atleast 6 characters";
     }
-    else if (resetpass.password.length < 5) {
-      errors.password = "Password should be atleast 6 characters"
-    }
-
 
     if (resetpass.confirmpassword !== resetpass.password) {
-      formValid = false
-      errors.confirmpassword = "Password not matched"
+      formValid = false;
+      errors.confirmpassword = "Password not matched";
     }
 
     if (!resetpass.confirmpassword.trim()) {
-      formValid = false
-      errors.confirmpassword = "Confirm Password is required"
+      formValid = false;
+      errors.confirmpassword = "Confirm Password is required";
     }
 
-
-    setErrors(errors)
-
+    setErrors(errors);
 
     if (formValid) {
-      axiosInstance.post("/forgotPwdParent", resetpass)
+      axiosInstance
+        .post("/forgotPwdParent", resetpass)
         .then((res) => {
           console.log("data", res);
 
           if (res.data.status == 200) {
-            alert(res.data.msg)
-          }
-          else if (res.data.status == 500) {
-            alert(res.data.msg)
+            alert(res.data.msg);
+            navigate("/sign_in");
+          } else if (res.data.status == 500) {
+            alert(res.data.msg);
           }
         })
         .catch((err) => {
           console.log("error", err);
-        })
-    }
-    else {
+        });
+    } else {
       console.log("form", formValid);
     }
-
-  }
+  };
 
   return (
-    <div className='signup passreset'>
-
+    <div className="signup passreset">
       <h1>Reset-Password</h1>
 
-      <div className='resetform'>
-
-        <form onSubmit={submitfn} >
-
+      <div className="resetform">
+        <form onSubmit={submitfn}>
           <div className="input-box">
-            <div className='label'> <label>Email</label>  </div>
-            <input type="email" placeholder="Email" name="email" onChange={changefn} />
+            <div className="label">
+              {" "}
+              <label>Email</label>{" "}
+            </div>
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              onChange={changefn}
+            />
 
-            {errors.email && <div className="text-danger errortext">{errors.email}</div>}
-
+            {errors.email && (
+              <div className="text-danger errortext">{errors.email}</div>
+            )}
           </div>
 
           <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>New Password</label>{" "}
+            </div>
+            <input
+              type="password"
+              placeholder="New Password"
+              name="password"
+              onChange={changefn}
+            />
 
-            <div className='label'> <label>New Password</label>  </div>
-            <input type="password" placeholder="New Password" name="password" onChange={changefn} />
-
-            {errors.password && <div className="text-danger errortext">{errors.password}</div>}
-
+            {errors.password && (
+              <div className="text-danger errortext">{errors.password}</div>
+            )}
           </div>
 
           <div className="input-box">
+            <div className="label">
+              {" "}
+              <label>Confirm Password</label>{" "}
+            </div>
+            <input
+              type="password"
+              placeholder=" Confirm Password"
+              name="confirmpassword"
+              onChange={changefn}
+            />
 
-            <div className='label'> <label>Confirm Password</label>  </div>
-            <input type="password" placeholder=" Confirm Password" name="confirmpassword" onChange={changefn} />
-
-            {errors.confirmpassword && <div className="text-danger errortext">{errors.confirmpassword}</div>}
-
+            {errors.confirmpassword && (
+              <div className="text-danger errortext">
+                {errors.confirmpassword}
+              </div>
+            )}
           </div>
 
           <div className="resettext">
-            <h6>Don't have an account? <Link to={"/sign_up"}>Register</Link></h6>
+            <h6>
+              Don't have an account? <Link to={"/sign_up"}>Register</Link>
+            </h6>
           </div>
 
           <div className="resetbutton">
-            <button type="submit"> Change <Icon icon="grommet-icons:connect" className='icon' /></button>
+            <button type="submit">
+              {" "}
+              Change <Icon icon="grommet-icons:connect" className="icon" />
+            </button>
           </div>
-
         </form>
-
       </div>
-
     </div>
-  )
+  );
 }
 
-export default ResetPass
+export default ResetPass;
