@@ -74,6 +74,7 @@ import CounsellorProfileEdit from "./Components/counsellor/counselor_pages/Profi
 import RPprofileEdit from "./Components/resource_person/RP_Pages/Profile/RPprofileEdit.js";
 import Rpchatmain from "./Components/user/User_Pages/rpchat/Userchatmain.js";
 import Userchatmain from "./Components/user/User_Pages/Chat/Userchatmain.js";
+import UserCounsellorChat from "./Components/user/User_Pages/chat-to-counsellor/Userchatmain.js";
 import Rpchat from "./Components/resource_person/RP_Pages/Chat/Rpchat";
 import CounsellorViewTutorial from "./Components/counsellor/counselor_pages/View-Tutorials/counsellor-view-tutorial.jsx";
 import CounsellorWatchTutorial from "./Components/counsellor/counselor_pages/View-Tutorials/counsellor-tuturial-watch.jsx";
@@ -110,6 +111,8 @@ function App() {
           <Route path="/user_subscription" element={<Usersubscription />} />
           <Route path="/user_task" element={<Usertask />} />
           <Route path="/user_chat" element={<Userchatmain />} />
+          <Route path="/counsellor_chat" element={<UserCounsellorChat />} />
+
           <Route path="/user_profile" element={<Userprofile />} />
           <Route path="/user_editprofile" element={<Editprofile />} />
           <Route

@@ -1,0 +1,135 @@
+.innerchathead {
+  border-bottom: 2px solid black;
+  height: 80px;
+}
+
+.innersubhead {
+  display: flex;
+  padding: 10px 0;
+}
+
+.innerchatprofile img {
+  border: 2px solid;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.innerchathead h1 {
+  font-weight: 500;
+  font-size: 20px;
+  color: black;
+  margin-top: 7px;
+  margin-left: 15px;
+}
+
+.innerchatmsg {
+  padding-top: 10px;
+  color: blue;
+}
+
+.innerchatsearch {
+  height: 100px;
+}
+
+.innerchatsearch input {
+  height: 40px;
+  width: 100%;
+  outline: none;
+  padding: 0 40px;
+  font-size: 17px;
+  font-weight: 400;
+  color: #637587;
+  font-weight: 400;
+  background-color: #fff;
+  border: 1.5px solid #c7bebe;
+  border-top-width: 1.9px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.user_chat::-webkit-scrollbar {
+  display: none;
+}
+.innerchat {
+  padding: 20px;
+  box-sizing: border-box;
+
+  overflow-y: auto;
+}
+
+.innerchatsearch {
+  display: flex;
+  align-items: center;
+}
+
+.chat_view {
+  margin-top: auto;
+}
+
+.chat_view p {
+  font-size: 20px;
+  margin: 0;
+}
+
+.parent_chat_box {
+  padding: 5px;
+  text-align: right;
+}
+
+.chat_send_button button {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #0d6efd;
+  border: none;
+  color: #fff;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inneruserchatmsg small {
+  text-align: right;
+}
+
+.time-right {
+  text-align: right;
+  display: block; /* Ensures the <small> element takes the full width */
+}
+
+/* // chat section */
+.user_chat {
+  width: 98%;
+  padding: 10px 0;
+  position: relative;
+  overflow-y: auto;
+  z-index: 100;
+  height: 550px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.parent-chat-section,
+.rp-chat-section {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  width: 80%;
+  background-color: #eee;
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+.parent-chat-section {
+  margin-left: auto;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.rp-chat-section {
+  margin-right: auto;
+  padding: 10px;
+  border-radius: 10px;
+}

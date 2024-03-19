@@ -33,44 +33,51 @@ function ParentViewAnswer() {
     <>
       <div style={{ minHeight: "100vh" }}>
         <Usernav />
-        <div className="container mt-5">
-          <h2>Task Results</h2>
-          <Table striped bordered hover size="sm" className="mt-5">
-            <thead>
-              <tr>
-                <th> No.</th>
-                <th> Task Title </th>
-                <th style={{ width: "400px" }}> Task Description</th>
-                <th>Score 1</th>
-                <th>Score 2 </th>
-                <th>Score 3</th>
-                <th>Score 4</th>
-                <th>Score 4</th>
-                <th>Total Score</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Answers.map((items, index) => {
-                console.log("ite", items);
-                return (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{items?.taskid?.title}</td>
-                    <td>{items?.taskid?.description}</td>
-                    <td>{items?.score1}</td>
-                    <td>{items?.score2}</td>
-                    <td>{items?.score3}</td>
-                    <td>{items?.score4}</td>
-                    <td>{items?.score5}</td>
-                    <td>{items?.total}</td>
-                    <td>{items?.comments}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>{" "}
-        </div>{" "}
+
+        {Answers.length === 0 ? (
+          <div className="container mt-5">
+            <h1>Complete Tasks and see the results here.</h1>
+          </div>
+        ) : (
+          <div className="container mt-5">
+            <h2>Task Results</h2>
+            <Table striped bordered hover size="sm" className="mt-5">
+              <thead>
+                <tr>
+                  <th> No.</th>
+                  <th> Task Title </th>
+                  <th style={{ width: "400px" }}> Task Description</th>
+                  <th>Score 1</th>
+                  <th>Score 2 </th>
+                  <th>Score 3</th>
+                  <th>Score 4</th>
+                  <th>Score 4</th>
+                  <th>Total Score</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Answers.map((items, index) => {
+                  console.log("ite", items);
+                  return (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{items?.taskid?.title}</td>
+                      <td>{items?.taskid?.description}</td>
+                      <td>{items?.score1}</td>
+                      <td>{items?.score2}</td>
+                      <td>{items?.score3}</td>
+                      <td>{items?.score4}</td>
+                      <td>{items?.score5}</td>
+                      <td>{items?.total}</td>
+                      <td>{items?.comments}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          </div>
+        )}
       </div>
       <div className="mt-5">
         <Footer />
