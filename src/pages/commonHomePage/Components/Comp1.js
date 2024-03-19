@@ -22,7 +22,6 @@ function Comp1() {
     navigate("/sign_in");
   };
 
-  
   function redirectResourcePerson() {
     if (activeUser) {
       navigate("/view-resouce-person");
@@ -63,7 +62,7 @@ function Comp1() {
       }, 1500);
     }
   }
-  function redirectToChat () {
+  function redirectToChat() {
     if (activeUser) {
       navigate("/user_chat");
     } else {
@@ -73,8 +72,7 @@ function Comp1() {
       }, 1500);
     }
   }
-  function redirectToAnswers
-  () {
+  function redirectToAnswers() {
     if (activeUser) {
       navigate("/parent_answers");
     } else {
@@ -199,15 +197,26 @@ function Comp1() {
                 </a>
               </li>
             ) : (
-              <li
-                className="bg-success nav-item"
-                style={{ cursor: "pointer" }}
-                onClick={() => navigate("/sign_up")}
-              >
-                <a className="nav-link active text-white" id="a5">
-                  Signup
-                </a>
-              </li>
+              <>
+                <li
+                  className="bg-success nav-item"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/sign_up")}
+                >
+                  <a className="nav-link active text-white" id="a5">
+                    Sign up
+                  </a>
+                </li>
+                <li
+                  className="bg-primary  nav-item"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/sign_in")}
+                >
+                  <a className="nav-link active text-white" id="a5">
+                    Sign in
+                  </a>
+                </li>
+              </>
             )}
           </ul>
         </div>

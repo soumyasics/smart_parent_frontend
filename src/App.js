@@ -80,11 +80,9 @@ import CounsellorWatchTutorial from "./Components/counsellor/counselor_pages/Vie
 import ViewCounsellorDeatils from "./Components/user/pages/counsellor/viewCouncellorDeatails.jsx";
 import ParentWatchCounselorTutorial from "./Components/user/pages/counsellor/View-Tutorials/counsellor-tuturial-watch.jsx";
 import ParentViewAnswer from "./Components/parent/ParentViewAnswer.js";
-import userNav from "./pages/commonHomePage/Components/Comp1.js"
+import userNav from "./pages/commonHomePage/Components/Comp1.js";
 function App() {
   return (
-    
-
     <div className="appjs">
       <Router basename="/smart_parent">
         <Routes>
@@ -100,7 +98,10 @@ function App() {
             path="/view-counsellor/:id"
             element={<ViewCounsellorDeatils />}
           />
-          <Route path="/counselor-tutorial-video/:id" element={<ParentWatchCounselorTutorial />}/>
+          <Route
+            path="/counselor-tutorial-video/:id"
+            element={<ParentWatchCounselorTutorial />}
+          />
 
           {/* User  */}
 
@@ -242,12 +243,11 @@ function App() {
             element={[<Rpnav />, <RPprofileEdit />, <Footer />]}
           />
           <Route
-          path="/parent_answers"
-          element={[<userNav/>, <ParentViewAnswer />, <Footer />]}
-        /> 
+            path="/parent_answers"
+            element={[<userNav />, <ParentViewAnswer />]}
+          />
         </Routes>
       </Router>
-
     </div>
   );
 }
