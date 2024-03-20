@@ -74,17 +74,16 @@ import CounsellorProfileEdit from "./Components/counsellor/counselor_pages/Profi
 import RPprofileEdit from "./Components/resource_person/RP_Pages/Profile/RPprofileEdit.js";
 import Rpchatmain from "./Components/user/User_Pages/rpchat/Userchatmain.js";
 import Userchatmain from "./Components/user/User_Pages/Chat/Userchatmain.js";
+import UserCounsellorChat from "./Components/user/User_Pages/chat-to-counsellor/Userchatmain.js";
 import Rpchat from "./Components/resource_person/RP_Pages/Chat/Rpchat";
 import CounsellorViewTutorial from "./Components/counsellor/counselor_pages/View-Tutorials/counsellor-view-tutorial.jsx";
 import CounsellorWatchTutorial from "./Components/counsellor/counselor_pages/View-Tutorials/counsellor-tuturial-watch.jsx";
 import ViewCounsellorDeatils from "./Components/user/pages/counsellor/viewCouncellorDeatails.jsx";
 import ParentWatchCounselorTutorial from "./Components/user/pages/counsellor/View-Tutorials/counsellor-tuturial-watch.jsx";
 import ParentViewAnswer from "./Components/parent/ParentViewAnswer.js";
-import userNav from "./pages/commonHomePage/Components/Comp1.js"
+import userNav from "./pages/commonHomePage/Components/Comp1.js";
 function App() {
   return (
-    
-
     <div className="appjs">
       <Router basename="/smart_parent">
         <Routes>
@@ -100,7 +99,10 @@ function App() {
             path="/view-counsellor/:id"
             element={<ViewCounsellorDeatils />}
           />
-          <Route path="/counselor-tutorial-video/:id" element={<ParentWatchCounselorTutorial />}/>
+          <Route
+            path="/counselor-tutorial-video/:id"
+            element={<ParentWatchCounselorTutorial />}
+          />
 
           {/* User  */}
 
@@ -109,6 +111,8 @@ function App() {
           <Route path="/user_subscription" element={<Usersubscription />} />
           <Route path="/user_task" element={<Usertask />} />
           <Route path="/user_chat" element={<Userchatmain />} />
+          <Route path="/counsellor_chat" element={<UserCounsellorChat />} />
+
           <Route path="/user_profile" element={<Userprofile />} />
           <Route path="/user_editprofile" element={<Editprofile />} />
           <Route
@@ -242,12 +246,11 @@ function App() {
             element={[<Rpnav />, <RPprofileEdit />, <Footer />]}
           />
           <Route
-          path="/parent_answers"
-          element={[<userNav/>, <ParentViewAnswer />, <Footer />]}
-        /> 
+            path="/parent_answers"
+            element={[<userNav />, <ParentViewAnswer />]}
+          />
         </Routes>
       </Router>
-
     </div>
   );
 }

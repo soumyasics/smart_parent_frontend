@@ -174,7 +174,6 @@ const SubscribedRp = () => {
   }
   const parentLoggedInStatus = isParentLoggedIn();
   const handleSubscribe = () => {
-    console.log("par", parentLoggedInStatus);
     if (!parentLoggedInStatus) {
       alert("Please login to subscribe");
       return;
@@ -412,12 +411,12 @@ const SubscribedRp = () => {
             return (
               <Card key={index} border="info" style={{ width: "18rem" }}>
                 <Card.Header>Task </Card.Header>
-                <Card.Body>
+                <Card.Body style={{ height: "250px" }}>
                   <Card.Title>
                     {task.title || "Task for your children"}
                   </Card.Title>
-                  <Card.Text>
-                    {task.description ||
+                  <Card.Text style={{ height: "110px" }}>
+                    {task.description.substring(0, 120) ||
                       "This task for your children. please attend based on your result we provide the scores"}
                   </Card.Text>
                   <div className="d-flex justify-content-center">

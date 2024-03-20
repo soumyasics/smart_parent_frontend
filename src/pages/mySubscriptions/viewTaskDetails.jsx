@@ -12,6 +12,7 @@ const ViewAllTasks = () => {
   const { taskId } = useParams();
   const [taskData, setTaskData] = useState(null);
   const [btnContent, setBtnContent] = useState("Accept Task");
+  const [isTaskCompleted, setIsTaskCompleted] = useState(false);
   const [taskAccepted, setTaskAccepted] = useState(false);
   const navigate = useNavigate();
   const [answerData, setAnswerData] = useState({
@@ -39,9 +40,7 @@ const ViewAllTasks = () => {
       return;
     }
   }, []);
-  useEffect(() => {
-    // console.log("ans", answerData);
-  }, [answerData]);
+
   async function getTaskData() {
     try {
       let res = await axiosInstance.get("viewTaskQnById/" + taskId);
@@ -99,6 +98,7 @@ const ViewAllTasks = () => {
       if (res.status === 200) {
         let status = res?.data?.data?.comments || "Answer added successfully";
         alert(status);
+        setIsTaskCompleted(true);
       } else {
         alert("Something went wrong");
       }
@@ -130,12 +130,23 @@ const ViewAllTasks = () => {
           </Col>
           <Col>
             {" "}
-            <Button
-              variant={btnContent === "Cancel Task" ? "danger" : "primary"}
-              onClick={taskStatusSwitch}
-            >
-              {btnContent}
-            </Button>
+            {isTaskCompleted ? (
+              <Button
+                variant="success"
+                onClick={() => {
+                  navigate("/parent_answers");
+                }}
+              >
+                View Task Status
+              </Button>
+            ) : (
+              <Button
+                variant={btnContent === "Cancel Task" ? "danger" : "primary"}
+                onClick={taskStatusSwitch}
+              >
+                {btnContent}
+              </Button>
+            )}
           </Col>
         </Row>
 

@@ -73,8 +73,10 @@ function Counselor() {
     let filteredCo = fixedCo.filter((co) => {
       return co?.name.toLowerCase().includes(searchCo.toLowerCase());
     });
-    console.log("fil", filteredCo);
     setAllCo(filteredCo);
+  }
+  function redirectToChat() {
+    navigate("/counsellor_chat");
   }
   return (
     <div>
@@ -95,6 +97,10 @@ function Counselor() {
           <Button className="ms-3" onClick={handleSearch}>
             {" "}
             Search Councilor
+          </Button>
+          <Button className="ms-3 bg-success" onClick={redirectToChat}>
+            {" "}
+            Chat With Councilors
           </Button>
         </div>
 
