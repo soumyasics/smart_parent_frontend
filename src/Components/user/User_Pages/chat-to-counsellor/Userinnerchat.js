@@ -8,7 +8,7 @@ import chatIllus from "../../../../Assets/illustrators/chat-2.jpg";
 import manPlaceholder from "../../../../Assets/illustrators/man-placeholder.jpg";
 import "./Userinnerchat.css";
 import BASE_URL from "../../../../apis/baseUrl";
-function Userinnerchat({ activeRpId }) {
+function Userinnerchat({ activeCounsellorId }) {
   const [activeParent, setActiveParent] = useState(null);
   const [activeRpData, setActiveRpData] = useState(null);
   const [rpProfilePicture, setRpProfilePicture] = useState(manPlaceholder);
@@ -51,12 +51,12 @@ function Userinnerchat({ activeRpId }) {
 
   // update rp id & get rp data
   useEffect(() => {
-    if (activeRpId) {
-      setMessage({ ...message, rpid: activeRpId });
-      setRpAndParentIds({ ...rpAndParentIds, rpid: activeRpId });
+    if (activeCounsellorId) {
+      setMessage({ ...message, rpid: activeCounsellorId });
+      setRpAndParentIds({ ...rpAndParentIds, rpid: activeCounsellorId });
       getRpData();
     }
-  }, [activeRpId]);
+  }, [activeCounsellorId]);
 
   // get all chats
   useEffect(() => {
@@ -92,7 +92,7 @@ function Userinnerchat({ activeRpId }) {
   }
   async function getRpData() {
     try {
-      let res = await axiosInstance.get("view-rp-by-id/" + activeRpId);
+      let res = await axiosInstance.get("view-rp-by-id/" + activeCounsellorId);
       let data = res?.data?.data || null;
       if (data) {
         setActiveRpData(data);
@@ -134,7 +134,7 @@ function Userinnerchat({ activeRpId }) {
       console.log("error on sending message", error);
     }
   }
-  if (!activeRpId) {
+  if (!activeCounsellorId) {
     return (
       <div className="w-100 mx-auto mt-5 d-flex flex-column justify-content-center">
         <h2 className="text-center"> Chat With Subscribed Resouce Persons</h2>

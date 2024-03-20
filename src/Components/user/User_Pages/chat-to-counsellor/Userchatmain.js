@@ -59,7 +59,7 @@ function Userchatmain() {
           />
         </div>
         <div className="col-9">
-          {/* <Userinnerchat activeRpId={selectedCounsellorId} /> */}
+          <Userinnerchat activeCounsellorId={selectedCounsellorId} />
         </div>
       </div>
       <div className="mt-2">
