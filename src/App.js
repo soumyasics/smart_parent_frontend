@@ -82,6 +82,7 @@ import ViewCounsellorDeatils from "./Components/user/pages/counsellor/viewCounce
 import ParentWatchCounselorTutorial from "./Components/user/pages/counsellor/View-Tutorials/counsellor-tuturial-watch.jsx";
 import ParentViewAnswer from "./Components/parent/ParentViewAnswer.js";
 import userNav from "./pages/commonHomePage/Components/Comp1.js";
+import CounsellorToParentChat from "./Components/user/User_Pages/counsellor-to-parent/Userchatmain.js";
 function App() {
   return (
     <div className="appjs">
@@ -176,10 +177,15 @@ function App() {
             path="/counselor_chat"
             element={[<Counsellornav />, <Counselorchat />, <Footer />]}
           />
+
           {/* Resource Person */}
 
           <Route path="/resourceperson_signup" element={<Rpsignup />} />
           <Route path="/resourceperson_chat" element={<Rpchat />} />
+          <Route
+            path="/counselor_to_parent_chat"
+            element={<CounsellorToParentChat />}
+          />
           <Route
             path="/resourceperson_resetpassword"
             element={<Rpresetpass />}

@@ -68,7 +68,7 @@ function Counsellornav() {
 
   function handleChat() {
     if (isactivecouncilorLoggedIn()) {
-      navigate("/counselor_chat");
+      navigate("/counselor_to_parent_chat");
     } else {
       alert("Please login first");
       setTimeout(() => {
@@ -87,7 +87,6 @@ function Counsellornav() {
     }
   }
 
-  console.log(activeUser.profilePicture, "kk");
   return (
     <div>
       <nav

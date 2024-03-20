@@ -8,10 +8,9 @@ import chatIllus from "../../../../Assets/illustrators/chat-2.jpg";
 import manPlaceholder from "../../../../Assets/illustrators/man-placeholder.jpg";
 import "./Userinnerchat.css";
 import BASE_URL from "../../../../apis/baseUrl";
-function Userinnerchat({ activeCounsellorId }) {
-  console.log("act coun id", activeCounsellorId);
+function Userinnerchat({ activeParentId }) {
   const [activeParent, setActiveParent] = useState(null);
-  const [activeRpData, setActiveRpData] = useState(null);
+  const [activeCounsellorData, setactiveCounsellorData] = useState(null);
   const [rpProfilePicture, setRpProfilePicture] = useState(manPlaceholder);
   const [chatHistory, setChatHistory] = useState([]);
   const navigate = useNavigate();
@@ -19,45 +18,60 @@ function Userinnerchat({ activeCounsellorId }) {
     cid: "",
     parentid: "",
     content: "",
-    sender: "parent",
+    sender: "counsellor",
   });
+  const chatContainerRef = useRef(null);
 
   const [rpAndParentIds, setRpAndParentIds] = useState({
     parentid: null,
     cid: null,
   });
-  const chatContainerRef = useRef(null);
 
   // get parent data from LS
   useEffect(() => {
-    let parentData = JSON.parse(localStorage.getItem("parentData")) || null;
-    if (parentData) {
-      setActiveParent(parentData);
+    let rpData = JSON.parse(localStorage.getItem("activecouncilor")) || null;
+    if (rpData) {
+      setactiveCounsellorData(rpData);
     } else {
       console.log("Parent not logged in.");
-      setActiveParent(null);
-      navigate("/sign_in");
+      setactiveCounsellorData(null);
+      navigate("/admin");
     }
   }, []);
 
   // update parent id
   useEffect(() => {
-    let parentId = activeParent?._id || null;
+    let cid = activeCounsellorData?._id || null;
 
-    if (parentId) {
-      setMessage({ ...message, parentid: parentId });
-      setRpAndParentIds({ ...rpAndParentIds, parentid: parentId });
+    if (cid) {
+      setMessage({ ...message, cid: cid });
+      setRpAndParentIds({ ...rpAndParentIds, cid: cid });
     }
-  }, [activeParent]);
+  }, [activeCounsellorData]);
 
   // update rp id & get rp data
   useEffect(() => {
-    if (activeCounsellorId) {
-      setMessage({ ...message, cid: activeCounsellorId });
-      setRpAndParentIds({ ...rpAndParentIds, cid: activeCounsellorId });
-      getRpData();
+    if (activeParentId) {
+      setMessage({ ...message, parentid: activeParentId });
+      setRpAndParentIds({ ...rpAndParentIds, parentid: activeParentId });
+      getParentData();
     }
-  }, [activeCounsellorId]);
+  }, [activeParentId]);
+
+  async function getParentData() {
+    try {
+      let res = await axiosInstance.post("viewParentById/" + activeParentId);
+      let data = res?.data?.data || null;
+      if (data) {
+        setActiveParent(data);
+      } else {
+        console.log("Data not found on parent data");
+        setActiveParent(null);
+      }
+    } catch (error) {
+      console.log("error on getting rp data", error);
+    }
+  }
 
   // get all chats
   useEffect(() => {
@@ -66,6 +80,7 @@ function Userinnerchat({ activeCounsellorId }) {
     }
   }, [rpAndParentIds]);
 
+  // scroll down
   useEffect(() => {
     if (chatContainerRef?.current) {
       chatContainerRef.current.scrollTop =
@@ -89,28 +104,6 @@ function Userinnerchat({ activeCounsellorId }) {
       }
     } catch (error) {
       console.log("Error on getting chats", error);
-    }
-  }
-  async function getRpData() {
-    try {
-      let res = await axiosInstance.get(
-        "viewCouncilarById/" + activeCounsellorId
-      );
-      let data = res?.data?.data || null;
-      if (data) {
-        setActiveRpData(data);
-        let filename = data?.profilePicture?.filename || null;
-        if (filename) {
-          let url = `${BASE_URL}${filename}`;
-          setRpProfilePicture(url);
-        } else {
-          setRpProfilePicture(manPlaceholder);
-        }
-      } else {
-        console.log("Data not found on get rp data");
-      }
-    } catch (error) {
-      console.log("error on getting rp data", error);
     }
   }
 
@@ -139,10 +132,10 @@ function Userinnerchat({ activeCounsellorId }) {
       console.log("error on sending message", error);
     }
   }
-  if (!activeCounsellorId) {
+  if (!activeParentId) {
     return (
       <div className="w-100 mx-auto mt-5 d-flex flex-column justify-content-center">
-        <h2 className="text-center"> Chat With Counsellors</h2>
+        <h2 className="text-center"> Chat With Parents</h2>
         <img className="w-50 mx-auto mt-5" src={chatIllus} alt="chat" />
       </div>
     );
@@ -155,7 +148,7 @@ function Userinnerchat({ activeCounsellorId }) {
           <div className="innerchatprofile">
             <img src={rpProfilePicture} alt="Resource_person" />
           </div>
-          <h1>{activeRpData?.name || ""}</h1>
+          <h1>{activeParent?.name || ""}</h1>
         </div>
       </div>
 
@@ -164,7 +157,7 @@ function Userinnerchat({ activeCounsellorId }) {
           return (
             <div
               className={
-                chat.sender === "parent"
+                chat.sender === "counsellor"
                   ? "parent-chat-section"
                   : "rp-chat-section"
               }
@@ -182,7 +175,7 @@ function Userinnerchat({ activeCounsellorId }) {
         <div className="col-11">
           <input
             type="text"
-            placeholder="Ask Something.."
+            placeholder="Type here.."
             className=""
             name="content"
             value={message.content}
