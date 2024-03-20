@@ -23,7 +23,7 @@ const RpViewTutorials = () => {
       console.log("Parent data not available in the Local storage");
     }
   }, []);
-  
+
   async function getCounsellorTutorials(id) {
     try {
       const res = await axiosInstance.get("viewTutorialByCounsellorId/" + id);
@@ -38,7 +38,6 @@ const RpViewTutorials = () => {
       console.log("error get all video tutorials", error);
     }
   }
-
 
   async function getBlogs(id) {
     try {
@@ -55,11 +54,11 @@ const RpViewTutorials = () => {
     }
   }
 
-
   function findActiveCounsellor() {
     let activeCounsellor;
     if (localStorage.getItem("activecouncilor")) {
-      activeCounsellor = JSON.parse(localStorage.getItem("activecouncilor")) || null;
+      activeCounsellor =
+        JSON.parse(localStorage.getItem("activecouncilor")) || null;
     } else {
       return null;
     }
@@ -152,79 +151,6 @@ const RpViewTutorials = () => {
             );
           })}
         </div>
-
-       
-        
-
-        {allBlogs.length === 0 && (
-          <h1 className="text-center mt-5"> No Blogs </h1>
-        )}
-        {allBlogs.length > 0 && (
-          <h1 className="text-center mt-5"> My Blogs </h1>
-        )}
-        {allBlogs.length > 0 && (
-          <div
-            style={{
-              width: "90%",
-              minHeight: "500px",
-              boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-            }}
-            className=" video-tutorials mx-auto d-flex flex-wrap justify-content-center mt-4 p-4 gap-3"
-          >
-            {allBlogs?.map((blog, index) => {
-
-              let blogImg =
-                "https://media.istockphoto.com/id/1253922154/vector/blog-authors-writing-articles.jpg?s=612x612&w=0&k=20&c=rfl7LAg3NoD2fYlPXTBvnXexaq2cFTZLxt7ronsBsWk=";
-
-              let pathname = blog.img?.filename || null;
-
-
-              if (pathname) {
-                if (/\.(jpeg|jpg|gif|png)$/.test(pathname)) {
-                  blogImg = `${BASE_URL}${pathname}`;
-                }
-              }
-
-              let description = blog?.para1
-                ? blog.para1.length > 50
-                  ? blog.para1.substring(0, 50) + "..."
-                  : blog.para1
-                : "Description";
-
-              let title = blog?.title
-                ? blog.title.length > 50
-                  ? blog.title.substring(0, 50) + "..."
-                  : blog.title
-                : "Title";
-
-              return (
-                <Card
-                  key={index}
-                  style={{ width: "18rem", maxHeight: "400px" }}
-                >
-                  <Card.Img
-                    style={{ maxHeight: "50%" }}
-                    className="h-50"
-                    variant="top"
-                    src={blogImg}
-                    alt="blog"
-                  />
-                  <Card.Body className="text-center">
-                    <Card.Title>{title || "Title"}</Card.Title>
-                    <Card.Text>{description || "Description"}</Card.Text>
-
-                    <Button
-                      variant="primary"
-                      onClick={() => viewBlogDetails(blog?._id)}
-                    >
-                      Read{" "}
-                    </Button>
-                  </Card.Body>
-                </Card>
-              );
-            })}
-          </div>
-        )}
       </div>
 
       <div className="mt-5">
