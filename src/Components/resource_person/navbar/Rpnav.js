@@ -6,7 +6,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import BASE_URL from "../../../apis/baseUrl";
 import img from "../../../Assets/illustrators/man-placeholder-2.jpg";
-
+import logo from "../../../Assets/illustrators/logo.png";
+import smartParentLogo from "../../../Assets/logo.png";
 function Rpnav() {
   const navigate = useNavigate();
   const [activeUser, setActiveUser] = useState(null);
@@ -113,7 +114,7 @@ function Rpnav() {
       >
         <div className="container-fluid text-white">
           <img
-            src="http://localhost:3000/static/media/logo.02ba8ea67b2b7903e412.png"
+            src={logo}
             onClick={() => navigate("/resource_person_home")}
             alt="Logo"
             width="60"
