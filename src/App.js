@@ -73,6 +73,7 @@ function App() {
         <Route path="/adminhome" element={<AdminLandingPage />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/paymentform/:id" element={<Paymentform />} />
 
       </Routes>

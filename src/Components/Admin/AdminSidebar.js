@@ -4,8 +4,16 @@ import { FaMicrophone } from "react-icons/fa";
 import { HiUsers } from "react-icons/hi";
 import { MdVideoLibrary } from "react-icons/md";
 import { RiSearchLine } from "react-icons/ri";
+import { RiLogoutCircleRLine  } from "react-icons/ri";
 import {Link} from 'react-router-dom'
 function AdminSidebar() {
+
+  const handleLogout=()=>{
+    localStorage.removeItem("admin")
+    localStorage.removeItem("token")
+
+  }
+  
   return (
     <div className="sidebar">
     <div className="container-fluid">
@@ -15,22 +23,22 @@ function AdminSidebar() {
       </div>
       <div className="sidebarelements">
         {" "}
-        <Link to="/admindashboard"><FaMicrophone className="text-dark" /></Link>
+        <Link to="/podcastlist"><FaMicrophone className="text-dark" /></Link>
 
       </div>
       <div className="sidebarelements">
         {" "}
-        <Link to="/admindashboard"><HiUsers className="text-dark" /></Link>
+        <Link to="/creatorlist"><HiUsers className="text-dark" /></Link>
 
       </div>
       <div className="sidebarelements">
         {" "}
-        <Link to="/admindashboard"><MdVideoLibrary className="text-dark" /></Link>
+        <Link to="/subscriptionList"><MdVideoLibrary className="text-dark" /></Link>
 
       </div>
       <div className="sidebarelements">
         {" "}
-        <Link to="/admindashboard"><RiSearchLine className="text-dark" /></Link>
+        <div onClick={handleLogout}><RiLogoutCircleRLine  className="text-dark" /></div>
       </div>
     </div></div>
   );

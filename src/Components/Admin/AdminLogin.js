@@ -52,12 +52,13 @@ function AdminLogin() {
         if (userCaptchaInput === captchaText) {
           toast.success("Login successful");
           localStorage.setItem("token", result.data.token);
-          localStorage.setItem("creatorid", result.data.id);
+          localStorage.setItem("admin", result.data.id);
           console.log(result);
           alert(result.data.message);
           console.log(result.data.id);
+          console.log(result.data.email);
 
-          navigate("/admin_dashboard");
+          navigate("/admindashboard");
         } else {
           document.getElementById("alertuser").innerHTML =
             "Invalid CAPTCHA. Please enter the correct text.";
