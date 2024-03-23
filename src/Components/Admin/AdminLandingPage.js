@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import "./Admin.css";
-
+import {Link} from 'react-router-dom'
 function AdminLandingPage() {
   return (
     <div className="AdminHomebody">
@@ -17,7 +17,7 @@ function AdminLandingPage() {
               creators, and overseeing user experiences with seamless ease.
             </div>
             <div>
-              <button className="Adminloginbtn">Log in</button>
+              <button className="Adminloginbtn"><Link to="/adminlogin" className="text-light">Log in</Link></button>
             </div>
           </div>
           <div className="col-5"></div>

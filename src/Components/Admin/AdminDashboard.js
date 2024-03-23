@@ -2,31 +2,36 @@ import React from "react";
 import topimg from "../../Assest/dash.png";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-
+import Sidebar from './AdminSidebar'
 function AdminDashboard() {
   return (
-    <div>
+    <div >
       <img src={topimg} alt="img" className="topimg"></img>
-      <div className="text-center m-4">Popular Episode</div>
-      <div className="container">
-        <div className="row">
-          <div className="col-4">
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-            </Card>
+      <div className="row">
+        <div className="col-2"><Sidebar /></div>
+        <div className="col-8 text-center m-4">Popular Episode
+          <div className="container">
+            <div className="row">
+              <div className="col-4">
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src="holder.js/100px180" />
+                </Card>
+              </div>
+              <div className="col-4">
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src="holder.js/100px180" />
+                </Card>
+              </div>
+              <div className="col-4">
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src="holder.js/100px180" />
+                </Card>
+              </div>
+            </div>
+            <div>
+            </div>
           </div>
-          <div className="col-4">
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-            </Card>
-          </div>
-          <div className="col-4">
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-            </Card>
-          </div>
-        </div>
-        <div>
+
           <p className="text-center">Recent Updates</p>
           <div className="row">
             <div className="col-5">
@@ -36,7 +41,7 @@ function AdminDashboard() {
               </div>
             </div>
             <div className="col-7">
-            <div className="row">
+              <div className="row">
                 <div className="col">1</div>
                 <div className="col">5</div>
               </div></div>
