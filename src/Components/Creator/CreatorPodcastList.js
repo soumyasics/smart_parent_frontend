@@ -30,7 +30,7 @@ function CreatorPodcastList({ data }) {
   }, []);
 
   const gotoEpisode=(id)=>{
-    navigate(`/creatorepisodadd/${id}`)
+    navigate(`/creatorepisodes/${id}`)
   }
   const gotoPayment=(id)=>{
     navigate(`/paymentform/${id}`)
@@ -58,16 +58,17 @@ function CreatorPodcastList({ data }) {
                     <h6 class="card-text">{a.description}</h6>
                     <h6 class="card-text">{a.price}</h6>
                     {data.role === 'creator' ? '' : <button onClick={()=>gotoPayment(a._id)} >Subscribe</button>}
-                    {data.role === 'creator'?<button onClick={()=>gotoEpisode(a._id + ',' + a.podcastname)} className="episodebtn">Add Episode
+                    {data.role === 'creator'?<button onClick={()=>gotoEpisode(a._id + ',' + a.podcastname)} className="episodebtn">Go to Episode
                       <FaPlus  />
                     </button>:""}
-                  </div>
-                  <div>
+                    <div>
                   <audio controls className="w-100">
                     <source src={a.audio ? data.url + a.audio.filename : ''} type="audio/mpeg" />
                     Your browser does not support the audio element.
                   </audio>
                 </div>
+                  </div>
+                  
                 </div>
               );
             })

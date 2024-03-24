@@ -87,7 +87,7 @@ const creatorname=localStorage.getItem('creatorname')
             value={creatorname}
               name="creatorname"
               type="text"
-              class="form-control"
+              class="form-control text-light"
               id="Creator_Name"
               onChange={creatorPodcastChange}
               disabled
@@ -97,7 +97,7 @@ const creatorname=localStorage.getItem('creatorname')
             </label>
             <input
               type="text"
-              class="form-control"
+              class="form-control text-light"
               id="podcast_Name"
               placeholder="Title"
               onChange={creatorPodcastChange}

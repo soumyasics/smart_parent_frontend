@@ -29,6 +29,13 @@ import CreatorEpisodeAdd from "./Components/Creator/CreatorEpisodeAdd";
 import CreatorSubscription from "./Components/Creator/CreatorSubscription";
 import CreatorPodcastList from "./Components/Creator/CreatorPodcastList";
 import Paymentform from "./Pages/payment/Paymentform";
+import ListenerList from "./Pages/Admin/ListenerList";
+import CreatorList from "./Pages/Admin/CreatorList";
+import PodcastList from "./Pages/Admin/PodcastList";
+import SbscriptionList from "./Pages/Admin/SbscriptionList";
+import CreatorEpisodes from "./Components/Creator/CreatorEpisodes";
+import CreatorEditEpisode from "./Components/Creator/CreatorEditEpisode";
+import WishlistList from "./Components/Listener/WishlistList";
 
 function App() {
 
@@ -75,7 +82,13 @@ function App() {
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/paymentform/:id" element={<Paymentform />} />
-
+        <Route path="/listenerlist" element={<ListenerList />} />
+        <Route path="/creatorlist" element={<CreatorList />} />
+        <Route path="/podcastlist" element={<PodcastList />} />
+        <Route path="/subscriptionList" element={<SbscriptionList />} />
+        <Route path="/creatorepisodes/:id" element={<CreatorEpisodes />} />
+        <Route path="/creatoreditepisode/:id" element={<CreatorEditEpisode />} />
+        <Route path="/wishlist" element={<WishlistList />} />
       </Routes>
     </BrowserRouter>
   );
