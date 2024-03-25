@@ -190,11 +190,20 @@ const RpViewTutorials = () => {
             className=" video-tutorials mx-auto d-flex flex-wrap justify-content-center mt-4 p-4 gap-3"
           >
             {allTasks?.map((task, index) => {
+              console.log("task id", task._id);
+              let desc = task?.description || null;
+              let description = "";
+              if (desc) {
+                if (desc.length > 150) {
+                  desc = desc.substring(0, 150) + "...";
+                }
+                description = desc;
+              }
               return (
-                <Card key={index} style={{ width: "18rem" }}>
+                <Card key={index} style={{ width: "18rem", height: "250px" }}>
                   <Card.Body>
                     <Card.Title>{task?.title}</Card.Title>
-                    <Card.Text>{task?.description}</Card.Text>
+                    <Card.Text>{description}</Card.Text>
                   </Card.Body>
                 </Card>
               );
