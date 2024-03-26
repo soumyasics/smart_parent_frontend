@@ -35,19 +35,15 @@ function SignUp() {
     setErrors((preError) => ({ ...preError, [name]: "" }));
   };
 
-  const handlechildBtnClick = (e) => {
-    console.log("e", e);
-    e.preventDefault();
-    if (e) {
-      e.stopPropagation();
-      e.preventDefault();
-    }
+
+  const handlechildBtnClick = () => {
     setIsChildPageActive(!isChildPageActive);
   };
+
   let formValid;
 
   const formValidating = (fieldName, value) => {
-    if (!value.trim()) {
+    if (!value?.trim()) {
       formValid = false;
       return `${fieldName} is required`;
     }
@@ -75,6 +71,9 @@ function SignUp() {
     console.log("signup data", signup);
     if (!formValid) {
       console.log("form is not valid");
+    }else {
+      handlechildBtnClick()
+
     }
   };
 
@@ -201,7 +200,7 @@ function SignUp() {
             {!isChildPageActive && (
               <button
 
-                onClick={handlechildBtnClick}
+                onClick={submitfn}
                 className="register-child-btn"
               >
                 Next
