@@ -40,7 +40,7 @@ const CounsilarTutorials = ({ id }) => {
     <>
       <div>
         {allTutorials.length > 0 && (
-          <h1 className="text-center mt-5"> My Tutorials </h1>
+          <h1 className="text-center mt-5"> Tutorial Videos </h1>
         )}
 
         <div

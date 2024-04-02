@@ -4,6 +4,7 @@ import "./Counselornav.css";
 import { useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import BASE_URL from "../../../apis/baseUrl";
+import logo from "../../../Assets/illustrators/logo.png";
 import img from "../../../Assets/illustrators/man-placeholder-2.jpg";
 
 function Counsellornav() {
@@ -95,7 +96,7 @@ function Counsellornav() {
       >
         <div className="container-fluid text-white">
           <img
-            src="http://localhost:3000/static/media/logo.02ba8ea67b2b7903e412.png"
+            src={logo}
             onClick={() => navigate("/counsellor_home")}
             alt="Logo"
             width="60"

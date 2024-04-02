@@ -101,7 +101,7 @@ function Comp1() {
         />
         &nbsp;&nbsp;
         <b style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
-          SmartParent.
+          SmartParent
         </b>
         <button
           className="navbar-toggler"
