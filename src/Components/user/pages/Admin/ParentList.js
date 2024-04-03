@@ -3,11 +3,15 @@ import { useState, useEffect } from "react";
 import "./admin.css";
 import Sidebar from "./Sidebar";
 import axiosInstance from "../../../../apis/axiosInstance";
-import Table from "react-bootstrap/Table";
+import {Table} from "react-bootstrap";
 
 function ParentList() {
   const [parentlist, setParentList] = useState([]);
 
+  useEffect(() => {
+    parentData();
+  }, []);
+  
   const parentData = async () => {
     try {
       const response = await axiosInstance.get("/viewAllChilds");
@@ -17,9 +21,7 @@ function ParentList() {
       console.error("Error fetching parent data:", error, "parent");
     }
   };
-  useEffect(() => {
-    parentData();
-  }, []);
+  
 
   return (
     <div>
@@ -28,6 +30,10 @@ function ParentList() {
           <Sidebar />
         </div>
         <div className="col-6 ms-5 container  w-75">
+        {parentlist.length === 0 && (
+            <h1 className="mt-5"> No parents Found</h1>
+          )}
+          
           <h3 className="mt-5">All Parents</h3>
           <Table striped bordered hover>
             <thead>
@@ -44,20 +50,20 @@ function ParentList() {
               </tr>
             </thead>
             <tbody>
-              {parentlist.map((data,index) => {
+              {(parentlist.map((data,index) => {
                 return (
                   <tr key={index} className="mt-4">
-                    <td>{data.parentId.name}</td>
-                    <td>{data.parentId.email}</td>
-                    <td>{data.parentId.contact}</td>
-                    <td>{data.childName}</td>
-                    <td>{data.childAge}</td>
-                    <td>{data.childGender}</td>
-                    <td>{data.childWeight}</td>
-                    <td>{data.childHeight}</td>
+                    <td>{data?.parentId?.name}</td>
+                    <td>{data?.parentId?.email}</td>
+                    <td>{data?.parentId?.contact}</td>
+                    <td>{data?.childName}</td>
+                    <td>{data?.childAge}</td>
+                    <td>{data?.childGender}</td>
+                    <td>{data?.childWeight}</td>
+                    <td>{data?.childHeight}</td>
                   </tr>
-                );
-              })}
+                )
+              }))}
             </tbody>
           </Table>
         </div>

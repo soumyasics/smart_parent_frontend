@@ -28,7 +28,7 @@ function TutorialList() {
         <Sidebar />
       </div>
       <div className="col-8">
-        {tutoriallist.map((item, index) => (
+        {tutoriallist.length ?(tutoriallist.map((item, index) => (
           <div className="tutorial_page">
             <div className="card p-2  mt-5">
               <div className="row">
@@ -56,7 +56,7 @@ function TutorialList() {
               </div>
             </div>
           </div>
-        ))}
+        ))):<div className="fs-4 text-center">No Tutorials Available</div>}
       </div>
     </div>
   );

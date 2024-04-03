@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Table from "react-bootstrap/Table";
+import { useNavigate } from "react-router-dom";
 
 function AdminDashboard() {
   
@@ -45,6 +46,15 @@ function AdminDashboard() {
       console.error("Error fetching data:", error);
     }
   };
+  const navigate=useNavigate()
+
+  useEffect(() => {
+    if (localStorage.getItem("loggedUser") !== null) {
+      navigate("/admin_dashboard");
+    } else {
+      navigate("/admin");
+    }
+  }, []);
 
   useEffect(() => {
     parentCollectionCount();

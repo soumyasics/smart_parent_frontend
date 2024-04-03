@@ -17,8 +17,8 @@ function CounsellorChatmain() {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("activeRp")) {
-      setActiveUser(JSON.parse(localStorage.getItem("activeRp")));
+    if (localStorage.getItem("activecouncilor")) {
+      setActiveUser(JSON.parse(localStorage.getItem("activecouncilor")));
     } else {
       console.log("Parent data not found in the local storage");
       alert("Please login first");
@@ -34,11 +34,12 @@ function CounsellorChatmain() {
 
   async function getRpSubscriptions(id) {
     try {
-      let res = await axiosInstance.get("get-all-subscriptions-by-rp-id/" + id);
+      let res = await axiosInstance.get("viewAllChilds");
       let data = res?.data?.data || null;
-
+      // console.log(data,"data");
       if (data) {
         setparents(data);
+        
       } else {
         console.log("Data not found on get parent parents");
         setparents([]);
@@ -47,7 +48,7 @@ function CounsellorChatmain() {
       console.log("error on getting parent parents", error);
     }
   }
-
+// console.log(parents,"parent");
   return (
     <>
       <Counsellornav />
