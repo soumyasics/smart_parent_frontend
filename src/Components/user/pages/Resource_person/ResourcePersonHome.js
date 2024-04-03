@@ -1,6 +1,7 @@
 import React from "react";
 import "../../../parent/parenthome.css";
 import CommonFooter from "../../../../pages/commonHomePage/Components/commonFooter.jsx";
+import { Link } from "react-router-dom";
 
 function ResourcePersonHome() {
   return (
@@ -12,7 +13,7 @@ function ResourcePersonHome() {
               Welcome to our <h1></h1>Smart Parenting<h1></h1> Resource Person
               <h1></h1> Hub
             </h1>
-            <button className="parent_home_button  me-5">Get Started</button>
+            <Link to="/admin" className="parent_home_button  me-5 text-decoration-none btn btn-light">Get Started</Link>
           </div>
         </div>
 

@@ -8,13 +8,13 @@ import "./Rpsignup.css"
 function Rpsignup() {
   const navigate = useNavigate();
   const [rpsignup, setRpsignup] = useState({
-    name: "akshay",
-    age: "22",
-    email: "akshay@gmail.com",
-    contact: "9074018563",
-    qualification: "Bachelor's degree",
-    experienceYear: "3",
-    password: "1234567",
+    name: "",
+    age: "",
+    email: "",
+    contact: "",
+    qualification: "",
+    experienceYear: "",
+    password: "",
     certificateImg: null,
     profilePicture: null,
   });

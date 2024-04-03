@@ -12,11 +12,11 @@ const PaymentForm = () => {
   const isParentLoggedin = useParentLoggedIn();
 
   const [userAcDetails, setUserAcDetails] = useState({
-    acHolderName: "Anand R P",
-    cardNumber: "1234568789876543",
-    expiryDate: "2024-03-14",
-    cvv: "123",
-    amount: "999",
+    acHolderName: "",
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
+    amount: "",
   });
 
   const doPayment = async () => {
