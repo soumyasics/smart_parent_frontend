@@ -51,6 +51,16 @@ function Counsellornav() {
       }, 1000);
     }
   };
+  const handleChat = () => {
+    if (isactivecouncilorLoggedIn()) {
+      navigate("/counselor_to_parent_chat");
+    } else {
+      alert("Please login first");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 1000);
+    }
+  };
 
   const handleProfile = () => {
     navigate("/counselor_profile/" + activeUser._id);
@@ -66,17 +76,8 @@ function Counsellornav() {
       }, 1500);
     }
   }
+  // counselor_to_parent_chat
 
-  function handleChat() {
-    if (isactivecouncilorLoggedIn()) {
-      navigate("/counselor_to_parent_chat");
-    } else {
-      alert("Please login first");
-      setTimeout(() => {
-        navigate("/admin");
-      }, 1500);
-    }
-  }
   function redirectView() {
     if (isactivecouncilorLoggedIn()) {
       navigate("/counselor-view-tutorial");
@@ -97,7 +98,7 @@ function Counsellornav() {
         <div className="container-fluid text-white">
           <img
             src={logo}
-            onClick={() => navigate("/counsellor_home")}
+            onClick={() => navigate("/")}
             alt="Logo"
             width="60"
             height="60"
@@ -105,7 +106,7 @@ function Counsellornav() {
             id="logo"
           />
           &nbsp;&nbsp;
-          <b onClick={() => navigate("/counsellor_home")}>SmartParent.</b>
+          <b onClick={() => navigate("/")}>SmartParent.</b>
           <button
             className="navbar-toggler"
             type="button"
@@ -140,9 +141,9 @@ function Counsellornav() {
               <li
                 style={{ cursor: "pointer" }}
                 onClick={handleChat}
-                className="nav-item"
+                class="nav-item"
               >
-                <a className="nav-link active text-white" aria-current="page">
+                <a class="nav-link active text-white" aria-current="page">
                   Chat
                 </a>
               </li>
@@ -165,7 +166,7 @@ function Counsellornav() {
                           src={
                             activeUser.profilePicture
                               ? BASE_URL +
-                                activeUser.profilePicture.originalname
+                              activeUser.profilePicture.originalname
                               : img
                           }
                         ></img>

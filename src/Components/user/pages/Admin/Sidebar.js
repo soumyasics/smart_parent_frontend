@@ -9,8 +9,8 @@ function Sidebar() {
     console.log("pp");
     try {
       localStorage.removeItem("loggedUser");
-      navigate("/admin");
-      window.location.href = "/admin";
+      // navigate("/admin");
+      window.location.href = "/smart_parent/admin";
     } catch (error) {
       console.log(error);
     }
@@ -35,16 +35,12 @@ function Sidebar() {
               <Link to="/parent_list">Parents List</Link>
             </li>
             <li>
-              <Link to="/subscription_list">Subscriptions</Link>
-            </li>
-            <li>
               <Link to="/tutorials_list">Tutorials</Link>
             </li>
             <li>
               <Link to="/blog_list">Blogs</Link>
-              <Link to="">
+              <Link>
                 <div onClick={handleLogout}>
-                  <button></button>
                   Logout
                 </div>
               </Link>

@@ -11,7 +11,7 @@ function Userchat({ onSelectRecipient, subscribers }) {
   const [allSubs, setAllSubs] = useState([]);
   const [varySubs, setVarySubs] = useState([]);
   const [search, setSearch] = useState("");
-
+// console.log(subscribers,"ll");
   useEffect(() => {
     setAllSubs(subscribers);
     setVarySubs(subscribers);
@@ -53,10 +53,14 @@ function Userchat({ onSelectRecipient, subscribers }) {
       >
         <div className="friendsimg">
           {varySubs?.map((parent, index) => {
+            console.log(parent,"hh");
             let name = parent?.parentId?.name || "";
             let mail = parent?.parentId?.email || "";
             let parentId = parent?.parentId?._id || null;
             let rpProfilePicture = chatimg;
+            console.log(name,"name");
+            console.log(mail,"name");
+            console.log(parentId,"name");
 
             return (
               <div

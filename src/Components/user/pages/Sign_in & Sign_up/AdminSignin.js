@@ -141,6 +141,16 @@ function AdminSignin() {
 
     // console.log("Form submitted with data:", formData, loginURL);
   };
+  const navigate=useNavigate()
+
+  useEffect(() => {
+    if (localStorage.getItem("loggedUser") == null) {
+      navigate("/admin");
+    } else {
+      alert("logout please...")
+      navigate("/admin_dashboard");
+    }
+  }, []);
 
   return (
     <div>
