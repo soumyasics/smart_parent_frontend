@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import placeholderImg from "../../../../Assets/illustrators/img-placeholder.png";
 import { Image } from "react-bootstrap";
 import placeHolderImg from "../../../../Assets/illustrators/man-placeholder.jpg";
-function RpListDetails() {
+function CounsellorDetails() {
   const [rpData, setRpData] = useState(null);
   const [profilePic, setProfilePic] = useState(placeHolderImg);
   const [imgPlaceholder, setImgPlaceholder] = useState(placeholderImg);
@@ -21,7 +21,7 @@ function RpListDetails() {
 
   function getData() {
     axiosInstance
-      .get("view-rp-by-id/" + id)
+      .get("viewCouncilarById/" + id)
       .then((res) => {
         console.log("res", res);
         let rpData = res?.data?.data || [];
@@ -46,6 +46,7 @@ function RpListDetails() {
       }
     }
   }, [rpData]);
+  console.log("rp d", rpData)
 
   return (
     <div>
@@ -58,11 +59,12 @@ function RpListDetails() {
           className="shadow p-3 mt-5 d-flex container"
         >
           <div className="w-50">
-            <h1> Resource Person </h1>
+            <h1> Counselor </h1>
             <br />
             <div className="text-dark">
               <h5 style={{ color: "black" }}>Name: {rpData?.name}</h5>
               <br />
+              <h6 style={{ color: "black" }}>Age: {rpData?.age}</h6>
               <h6 style={{ color: "black" }}>Email: {rpData?.email}</h6>
               <h6 style={{ color: "black" }}>
                 Experience Year: {rpData?.experienceYear}
@@ -70,9 +72,7 @@ function RpListDetails() {
               <h6 style={{ color: "black" }}>
                 Contact Number: {rpData?.contact}
               </h6>
-              <h6 style={{ color: "black" }}>
-                Current Rating: {rpData?.rating}
-              </h6>
+              
             </div>
           </div>
           <div
@@ -119,4 +119,4 @@ function RpListDetails() {
   );
 }
 
-export default RpListDetails;
+export default CounsellorDetails;

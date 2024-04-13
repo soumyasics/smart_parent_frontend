@@ -1,4 +1,5 @@
 import "./rplist.css";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import React, { useState, useEffect } from "react";
 import axiosInstance from "../../../../apis/axiosInstance";
@@ -8,7 +9,7 @@ import img from "../../../../Assets/illustrators/man-placeholder.jpg"
 
 function Counselorlist() {
   const [userData, setUserData] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     getData();
   }, []);
@@ -71,6 +72,9 @@ function Counselorlist() {
         console.log("err", err);
       });
   }
+  const navigateCounsellorDetails = (id) => {
+    navigate('/counsiler_list/'+id)
+  }
   return (
     <div>
       <div className="row">
@@ -102,6 +106,7 @@ function Counselorlist() {
                     <th>Phone Number</th>
                     <th>Accept</th>
                     <th>Reject</th>
+                    <th>View More</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -144,6 +149,17 @@ function Counselorlist() {
                             Reject
                           </button>
                         </td>
+                        <td>
+                          <button
+                            className="btn btn-primary rp-request-handls-btn"
+                            onClick={() => {
+                              navigateCounsellorDetails(councilar._id);
+                            }}
+                          >
+                            View More
+                          </button>
+                        </td>
+                        
                       </tr>
                     );
                   })}
