@@ -4,9 +4,10 @@ import axiosInstance from "../../../../apis/axiosInstance";
 import { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import BASE_URL from "../../../../apis/baseUrl";
-import img from "../../../../Assets/illustrators/man-placeholder.jpg"
-
+import img from "../../../../Assets/illustrators/man-placeholder.jpg";
+import { useNavigate } from "react-router-dom";
 function RPLIst() {
+  const navigate = useNavigate();
   const [rpLists, setRpLists] = useState([]);
 
   useEffect(() => {
@@ -29,8 +30,7 @@ function RPLIst() {
       });
   }
 
-  console.log(rpLists, "list");
-  
+
   function handleRejectClick(id) {
     console.log(id);
     axiosInstance
@@ -72,6 +72,9 @@ function RPLIst() {
         console.log("err", err);
       });
   }
+  const navigateRpDetails = (id) => {
+    navigate("/rp_pendinglist/" + id);
+  };
   return (
     <div>
       <div className="row">
@@ -103,6 +106,7 @@ function RPLIst() {
                     <th>Phone Number</th>
                     <th>Accept</th>
                     <th>Reject</th>
+                    <th>View More</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -111,15 +115,15 @@ function RPLIst() {
                       <tr key={index} className="mt-4">
                         <td>{index + 1}</td>
                         <td>
-                        <img
-                          className="parentimage"
-                          src={
-                            rp.profilePicture
-                              ? BASE_URL + rp.profilePicture.originalname
-                              : img
-                          }
-                        ></img>
-                      </td>
+                          <img
+                            className="parentimage"
+                            src={
+                              rp.profilePicture
+                                ? BASE_URL + rp.profilePicture.originalname
+                                : img
+                            }
+                          ></img>
+                        </td>
                         <td>{rp.name}</td>
                         <td>{rp.email}</td>
                         <td>{rp.experienceYear}</td>
@@ -143,6 +147,16 @@ function RPLIst() {
                             }}
                           >
                             Reject
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            className="btn btn-primary rp-request-handls-btn"
+                            onClick={() => {
+                              navigateRpDetails(rp._id);
+                            }}
+                          >
+                            View More
                           </button>
                         </td>
                       </tr>

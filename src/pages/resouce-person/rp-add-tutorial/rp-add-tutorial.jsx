@@ -83,7 +83,7 @@ const ResourceUploadForm = () => {
       if (res.status === 200) {
         alert("Tutorial uploaded successfully");
         setTimeout(() => {
-          navigate("rp-view-tutorials");
+          navigate("../rp-view-tutorials");
         }, 1000);
       } else {
         alert("Something went wrong");

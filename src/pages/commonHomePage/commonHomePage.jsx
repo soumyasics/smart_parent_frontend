@@ -13,7 +13,7 @@ const CommonHomePage = () => {
       <Goals />
       <Freev />
       <Freeb />
-      <Topres />
+      {/* <Topres />   */}
       <div className="mt-5">
         <CommonFooter />
       </div>

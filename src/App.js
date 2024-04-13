@@ -83,6 +83,8 @@ import ParentWatchCounselorTutorial from "./Components/user/pages/counsellor/Vie
 import ParentViewAnswer from "./Components/parent/ParentViewAnswer.js";
 import userNav from "./pages/commonHomePage/Components/Comp1.js";
 import CounsellorToParentChat from "./Components/user/User_Pages/counsellor-to-parent/Userchatmain.js";
+import RpListDetails from "./Components/user/pages/Admin/rpListDetails.jsx";
+import CounsellorDetails from "./Components/user/pages/Admin/conselorDetails.jsx";
 function App() {
   return (
     <div className="appjs">
@@ -230,8 +232,10 @@ function App() {
 
           <Route path="/rp_list" element={<RpMain />} />
           <Route path="/rp_pendinglist" element={<RPLIst />} />
+          <Route path="/rp_pendinglist/:id" element={<RpListDetails />} />
           <Route path="/sidebar" element={<Sidebar />} />
           <Route path="/counsiler_list" element={<Counselorlist />} />
+          <Route path="/counsiler_list/:id" element={<CounsellorDetails />} />
           <Route path="/counsiler_accepted" element={<CounselorAccepted />} />
           <Route path="/user_nav" element={<Usernav />} />
           <Route path="/admin_dashboard" element={<AdminDashboard />} />
