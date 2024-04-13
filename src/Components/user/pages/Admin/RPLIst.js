@@ -30,7 +30,6 @@ function RPLIst() {
       });
   }
 
-  console.log(rpLists, "list");
 
   function handleRejectClick(id) {
     console.log(id);
@@ -107,6 +106,7 @@ function RPLIst() {
                     <th>Phone Number</th>
                     <th>Accept</th>
                     <th>Reject</th>
+                    <th>View More</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -151,7 +151,7 @@ function RPLIst() {
                         </td>
                         <td>
                           <button
-                            className="btn btn-danger rp-request-handls-btn"
+                            className="btn btn-primary rp-request-handls-btn"
                             onClick={() => {
                               navigateRpDetails(rp._id);
                             }}
