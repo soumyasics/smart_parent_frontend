@@ -38,6 +38,9 @@ function Sidebar() {
               <Link to="/tutorials_list">Tutorials</Link>
             </li>
             <li>
+              <Link to="/payment_list">Payment Details</Link>
+            </li>
+            <li>
               <Link to="/blog_list">Blogs</Link>
               <Link>
                 <div onClick={handleLogout}>

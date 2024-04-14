@@ -16,7 +16,7 @@ const PaymentForm = () => {
     cardNumber: "",
     expiryDate: "",
     cvv: "",
-    amount: "",
+    amount: "999",
   });
 
   const doPayment = async () => {
