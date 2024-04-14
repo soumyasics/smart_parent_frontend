@@ -14,19 +14,19 @@ function SignUp() {
   const [signup, setSignup] = useState({
     name: "",
     email: "",
-  
+
     contact: "",
     password: "",
-    profilePicture: null
+    profilePicture: null,
   });
 
   const [errors, setErrors] = useState({
     name: "",
     email: "",
-  
+
     contact: "",
     password: "",
-    profilePicture: ""
+    profilePicture: "",
   });
 
   const changefn = (e) => {
@@ -34,7 +34,6 @@ function SignUp() {
     setSignup((preData) => ({ ...preData, [name]: value }));
     setErrors((preError) => ({ ...preError, [name]: "" }));
   };
-
 
   const handlechildBtnClick = () => {
     setIsChildPageActive(!isChildPageActive);
@@ -57,10 +56,10 @@ function SignUp() {
 
     errors.name = formValidating("Name", signup.name);
     errors.email = formValidating("Email", signup.email);
-  
+
     errors.contact = formValidating("Contact Number", signup.contact);
     errors.password = formValidating("Password", signup.password);
-    errors.profilePicture = formValidating("Image", signup.profilePicture)
+    errors.profilePicture = formValidating("Image", signup.profilePicture);
 
     if (signup.name && signup.email && signup.contact) {
       formValid = true;
@@ -71,9 +70,8 @@ function SignUp() {
     console.log("signup data", signup);
     if (!formValid) {
       console.log("form is not valid");
-    }else {
-      handlechildBtnClick()
-
+    } else {
+      handlechildBtnClick();
     }
   };
 
@@ -124,8 +122,6 @@ function SignUp() {
                   )}
                 </div>
 
-               
-
                 <div className="input-box">
                   <div className="label">
                     {" "}
@@ -166,7 +162,11 @@ function SignUp() {
                     {" "}
                     <label>Profile Picture</label>{" "}
                   </div>
-                  <input type="file" name="profilePicture" onChange={changefn} />
+                  <input
+                    type="file"
+                    name="profilePicture"
+                    onChange={changefn}
+                  />
 
                   {errors.profilePicture && (
                     <div className="text-danger errortext">
@@ -176,6 +176,24 @@ function SignUp() {
                 </div>
 
                 <div className="text">
+                  <br />
+                  <br />
+                  <div className="mt-5">
+                    <p
+                      style={{ fontSize: "20px" }}
+                      className="font-weight-bold"
+                    >
+                      Become a counselor?{" "}
+                      <Link to={"/counselor_signup"}>Register here</Link>
+                    </p>
+                    <p
+                      style={{ fontSize: "20px" }}
+                      className="font-weight-bold"
+                    >
+                      Become a resouce person?{" "}
+                      <Link to={"/resourceperson_signup"}>Register here</Link>
+                    </p>
+                  </div>
                   <h5>
                     Already have an account?{" "}
                     <Link to={"/sign_in"}>Login now</Link>
@@ -198,11 +216,7 @@ function SignUp() {
           </div>
           <div className="page-switch-btn-container">
             {!isChildPageActive && (
-              <button
-
-                onClick={submitfn}
-                className="register-child-btn"
-              >
+              <button onClick={submitfn} className="register-child-btn">
                 Next
               </button>
             )}
