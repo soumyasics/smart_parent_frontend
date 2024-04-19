@@ -214,6 +214,8 @@ function Rpsignup() {
               <label>Contact</label>{" "}
             </div>
             <input
+              minLength={10}
+              maxLength={10}
               type="text"
               value={rpsignup.contact}
               placeholder="Contact Number"

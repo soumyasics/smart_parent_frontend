@@ -14,7 +14,6 @@ function SignUp() {
   const [signup, setSignup] = useState({
     name: "",
     email: "",
-
     contact: "",
     password: "",
     profilePicture: null,
@@ -129,6 +128,8 @@ function SignUp() {
                   </div>
                   <input
                     type="text"
+                    maxLength="10"
+                    minLength="10"
                     placeholder="Contact Number"
                     name="contact"
                     value={signup.contact}
