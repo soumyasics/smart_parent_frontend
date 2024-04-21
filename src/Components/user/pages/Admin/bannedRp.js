@@ -8,8 +8,8 @@ import BASE_URL from "../../../../apis/baseUrl";
 import img from "../../../../Assets/illustrators/man-placeholder.jpg";
 import { Button } from "react-bootstrap";
 
-function RpComplaints() {
-  const [complaints, setComplaints] = useState([]);
+export function ViewAllBannedRps() {
+  const [bannedRps, setBannedRps] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     getData();
@@ -17,35 +17,37 @@ function RpComplaints() {
 
   function getData() {
     axiosInstance
-      .post("viewComplaints")
+      .get("view-all-baned-rp")
       .then((res) => {
         console.log(res, "complaint data ");
-        let allComplaints = res?.data?.data || [];
-        setComplaints(allComplaints);
+        if (res.status === 200) {
+          let allBannedResourcePersons = res?.data?.data || [];
+          setBannedRps(allBannedResourcePersons);
+        }
       })
       .catch((err) => {
-        console.log("err on get rp complaints", err);
+        console.log("err on get rp bannedRps", err);
       });
   }
-  const handleBanRp = async (rpId, bannedComplaintId) => {
-    if (!rpId || !bannedComplaintId) {
+  const handleUnBanRp = async (rpId) => {
+    if (!rpId) {
       alert("Please try again later.");
-      console.log("Rp id and banned complaint id is required");
+      console.log("Rp id  is required");
       return;
     }
     let obj = {
       rpId,
-      bannedComplaintId,
     };
-    console.log("obg", obj);
     try {
-      let res = await axiosInstance.post("banRP", obj);
+      let res = await axiosInstance.post("unBanRP", obj);
       if (res.status === 200) {
-        alert("Resource Person banned successfully");
+        alert("Resource Person unBanned successfully");
+        getData()
         return;
       }
+
     } catch (error) {
-      if (error.response?.status === 409) {
+      if (error.response?.status === 401) {
         alert(error.response.data.message);
         return;
       }
@@ -60,14 +62,12 @@ function RpComplaints() {
           <Sidebar />
         </div>
         <div style={{ maxWidth: "77%" }} className="container">
-          {complaints.length === 0 && (
-            <h1 className="mt-5"> No complaints Found</h1>
+          {bannedRps.length === 0 && (
+            <h1 className="mt-5"> No Resource Person is banned</h1>
           )}
-          {complaints.length > 0 && (
+          {bannedRps.length > 0 && (
             <div>
-              <h3 className="mt-5 ms-3">
-                Parents complaints against Resource Persons
-              </h3>
+              <h3 className="mt-5 ms-3">Banned Resource Persons</h3>
               <Table
                 striped
                 bordered
@@ -78,36 +78,32 @@ function RpComplaints() {
                 <thead style={{ height: "50px" }}>
                   <tr>
                     <th>No</th>
-                    <th>Parent Name</th>
-                    <th>Complaint</th>
-                    <th>RP Name</th>
+                    <th>Resource Person Name</th>
+                    <th>Reson for banning</th>
                     <th>RP Email</th>
-                    <th>Send Warning</th>
-                    <th>Ban Resource Person</th>
+                    <th>RP Current Status</th>
+                    <th>Un Ban Resource Person</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {complaints.map((com, index) => {
+                  {bannedRps.map((banRp, index) => {
                     return (
                       <tr key={index} className="mt-4">
                         <td>{index + 1}</td>
 
-                        <td>{com.parentId?.name}</td>
-                        <td>{com.complaint}</td>
-                        <td>{com.rpId?.name}</td>
-                        <td>{com.rpId?.email}</td>
-                        <td>
-                          <Button variant="warning"> Send Warning</Button>
-                        </td>
+                        <td>{banRp.rpId?.name}</td>
+                        <td>{banRp.bannedComplaintId?.complaint}</td>
+                        <td>{banRp.rpId?.email}</td>
+                        <td>{banRp.currentStatus}</td>
                         <td>
                           <Button
                             onClick={() => {
-                              handleBanRp(com.rpId?._id, com._id);
+                              handleUnBanRp(banRp.rpId?._id);
                             }}
-                            variant="danger"
+                            variant="success"
                           >
                             {" "}
-                            Ban Resource Person
+                            UnBan Resource Person
                           </Button>
                         </td>
                       </tr>
@@ -122,5 +118,3 @@ function RpComplaints() {
     </div>
   );
 }
-
-export default RpComplaints;
