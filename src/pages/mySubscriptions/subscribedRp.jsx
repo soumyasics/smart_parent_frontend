@@ -33,6 +33,7 @@ const SubscribedRp = () => {
   const [newRating, setNewRating] = useState(null);
   const [currentRating, setCurrentRating] = useState(0);
   const [ratingLoading, setRatingLoading] = useState(false);
+  const [complaint, setComplaint] = useState("");
   const navigate = useNavigate();
 
   const [activeUser, setActiveUser] = useState(null);
@@ -250,6 +251,42 @@ const SubscribedRp = () => {
       console.log("rp details not found");
     }
   }
+
+  // report complaint
+  const reportComplaint = () => {
+    if (!complaint) {
+      alert("Please enter your complaint.");
+      return;
+    }
+    console.log("rp dett", rpDetails)
+
+    let obj = {
+      rpId: rpDetails._id,
+      complaint: complaint,
+      parentId: activeUser?._id,
+    };
+    if (!obj.rpId || !obj.complaint || !obj.parentId) {
+      console.log("Some fields are missing", obj);
+      return; 
+    }
+    sendComplaintToServer(obj);
+    
+    console.log("objb", obj)
+  };
+  const sendComplaintToServer = async (obj) => {
+    try {
+        let res = await axiosInstance.post("addRpComplaint", obj);
+        if (res.status === 201) {
+          alert("Your complaint reported successfully, admin will review it");
+          setComplaint("")
+          console.log("updated rating", res);
+        }else {
+          console.log("something wrong on add complaint check server", res);
+        }
+    }catch(err) {
+      console.log("Error on complaint rp ", err);
+    }
+  }
   return (
     <>
       <div>
@@ -358,6 +395,29 @@ const SubscribedRp = () => {
                             Confirm Rating{" "}
                           </Button>
                         )}
+                      </div>
+                      <div
+                        className="shadow d-flex p-2 align-items-center"
+                        style={{ width: "515px", height: "140px" }}
+                      >
+                        <textarea
+                          placeholder="Report complaint here.."
+                          name="complaintRp"
+                          id="complaintRp"
+                          onChange={(e) => {
+                            setComplaint(e.target.value);
+                          }}
+                          value={complaint}
+                          style={{ width: "280px" }}
+                        ></textarea>
+                        <Button
+                          onClick={reportComplaint}
+                          className="ms-3 bg-danger"
+                          style={{ height: "40px", width: "200px" }}
+                        >
+                          {" "}
+                          Report Complaint
+                        </Button>
                       </div>
                     </Card.Text>
                   </Card.Body>
