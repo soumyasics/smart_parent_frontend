@@ -82,8 +82,8 @@ function RpComplaints() {
                     <th>Complaint</th>
                     <th>RP Name</th>
                     <th>RP Email</th>
-                    <th>Suspension</th>
-                    <th>Permenent Removal</th>
+                    <th>Experience Year</th>
+                    <th>Ban Resource Person</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -96,13 +96,9 @@ function RpComplaints() {
                         <td>{com.complaint}</td>
                         <td>{com.rpId?.name}</td>
                         <td>{com.rpId?.email}</td>
+                        <td>{com.rpId?.experienceYear}</td>
 
-                        <td>
-                          <Button variant="warning">
-                            {" "}
-                            Suspend Account for 24 hours
-                          </Button>
-                        </td>
+                        
                         <td>
                           <Button
                             onClick={() => {
@@ -111,7 +107,7 @@ function RpComplaints() {
                             variant="danger"
                           >
                             {" "}
-                            Remove Permenently
+                            Ban Resource Person
                           </Button>
                         </td>
                       </tr>
