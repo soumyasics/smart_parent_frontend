@@ -82,7 +82,7 @@ function RpComplaints() {
                     <th>Complaint</th>
                     <th>RP Name</th>
                     <th>RP Email</th>
-                    <th>Send Warning</th>
+                    <th>Experience Year</th>
                     <th>Ban Resource Person</th>
                   </tr>
                 </thead>
@@ -96,9 +96,9 @@ function RpComplaints() {
                         <td>{com.complaint}</td>
                         <td>{com.rpId?.name}</td>
                         <td>{com.rpId?.email}</td>
-                        <td>
-                          <Button variant="warning"> Send Warning</Button>
-                        </td>
+                        <td>{com.rpId?.experienceYear}</td>
+
+                        
                         <td>
                           <Button
                             onClick={() => {
