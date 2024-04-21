@@ -211,6 +211,8 @@ function Counsellorsignup() {
             <input
               type="text"
               placeholder="Contact Number"
+              minLength="10"
+              maxLength="10"
               name="contact"
               value={counselorsignup.contact}
               onChange={changefn}

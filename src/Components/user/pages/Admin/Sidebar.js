@@ -29,6 +29,8 @@ function Sidebar() {
               <Link to="/rp_pendinglist">Resource person pending List</Link>
 
               <Link to="/counsiler_list">Counselor Request List</Link>
+              <Link to="/rp-complaints">Resource Person Complaints</Link>
+              <Link to="/ViewAllBannedRps">Banned Resource Persons</Link>
 
               <Link to="/counsiler_accepted">Counselor List</Link>
 
