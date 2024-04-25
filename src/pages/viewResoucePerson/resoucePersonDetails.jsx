@@ -31,7 +31,6 @@ const ResoucePersonDetails = () => {
   useEffect(() => {
     let filePath = rpDetails?.profilePicture?.filename || null;
 
-    console.log("rpdd", filePath);
     if (filePath) {
       let url = `${BASE_URL}${filePath}`;
       if (rpDetails) {
@@ -64,7 +63,6 @@ const ResoucePersonDetails = () => {
 
     if (tutorialVideoLink) {
       let URL = `${BASE_URL}${tutorialVideoLink}`;
-      console.log("ur", URL);
       // validate if it's a valid video URL
       if (isValidVideoURL(URL)) {
         setVideoUrl(URL);
@@ -100,7 +98,6 @@ const ResoucePersonDetails = () => {
   }
   const parentLoggedInStatus = isParentLoggedIn();
   const handleSubscribe = () => {
-    console.log("par", parentLoggedInStatus);
     if (!parentLoggedInStatus) {
       alert("Please login to subscribe");
       return;
