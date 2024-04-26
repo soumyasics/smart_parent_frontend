@@ -147,7 +147,6 @@ function AdminSignin() {
     if (localStorage.getItem("loggedUser") == null) {
       navigate("/admin");
     } else {
-      alert("logout please...")
       navigate("/admin_dashboard");
     }
   }, []);
