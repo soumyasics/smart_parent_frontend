@@ -30,7 +30,9 @@ function Sidebar() {
 
               <Link to="/counsiler_list">Counselor Request List</Link>
               <Link to="/rp-complaints">Resource Person Complaints</Link>
+              <Link to="/councilar-complaints">Counsiler Complaints</Link>
               <Link to="/ViewAllBannedRps">Banned Resource Persons</Link>
+              <Link to="/ViewAllBannedCounsellors">View All banned counselors</Link>
 
               <Link to="/counsiler_accepted">Counselor List</Link>
 
