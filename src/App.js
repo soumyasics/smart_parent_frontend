@@ -88,6 +88,8 @@ import CounsellorDetails from "./Components/user/pages/Admin/conselorDetails.jsx
 import PaymentList from "./Components/user/pages/Admin/paymentList.jsx";
 import RpComplaints from "./Components/user/pages/Admin/rpComplaints.js";
 import { ViewAllBannedRps } from "./Components/user/pages/Admin/bannedRp.js";
+import CouncilarComplaints from "./Components/user/pages/Admin/councilarComplaints.js";
+import { ViewAllBannedCounsellors } from "./Components/user/pages/Admin/bannedCounsellors.js";
 function App() {
   return (
     <div className="appjs">
@@ -243,7 +245,9 @@ function App() {
           <Route path="/user_nav" element={<Usernav />} />
           <Route path="/admin_dashboard" element={<AdminDashboard />} />
           <Route path="/rp-complaints" element={<RpComplaints />}/>
+          <Route path="/councilar-complaints" element={<CouncilarComplaints />}/>
           <Route path="/ViewAllBannedRps" element={<ViewAllBannedRps />}/>
+          <Route path="/ViewAllBannedCounsellors" element={<ViewAllBannedCounsellors />}/>
           <Route path="/rpnav" element={<Rpnav />} />
           <Route path="/parent_list" element={<ParentList />} />
           <Route path="/payment_list" element={<PaymentList />} />
